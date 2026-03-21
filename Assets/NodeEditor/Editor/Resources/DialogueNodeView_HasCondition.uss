@@ -1,0 +1,5 @@
+DialogueNodeView #title{
+    background-color: rgba(139,0,139, 0.91);
+    font-size: 20px;
+    -unity-font-style: bold;
+}

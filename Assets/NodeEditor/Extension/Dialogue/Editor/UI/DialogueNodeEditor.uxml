@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="LeftDiv" style="flex-grow: 0.2; flex-direction: column; align-self: auto; width: auto; flex-basis: auto;">
+            <ui:Label text="inspector" name="inspector" style="color: rgb(207, 207, 207); -unity-text-align: upper-center; flex-grow: 0; flex-shrink: 1;"/>
+            <InspectorViewer style="flex-grow: 1; width: auto;"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="RightDiv" style="flex-grow: 0.8; flex-direction: column; flex-shrink: 1;">
+            <ui:Label text="DialogueGraphy" name="DialogueGraphy" style="-unity-font-style: bold; font-size: 16px; -unity-text-align: upper-center; color: rgb(207, 207, 207); flex-grow: 0; flex-shrink: 1;"/>
+            <uie:Toolbar style="-unity-text-align: middle-center; font-size: 8px;">
+                <uie:ObjectField label="选择文件" name="ObjectField" style="width: 300px; overflow: hidden; font-size: 12px; -unity-text-align: middle-center;"/>
+                <uie:ToolbarButton text="加载" name="LoadDataButton" enable-rich-text="true" style="width: 60px; height: 20px; margin-left: 20px; margin-right: 23px; -unity-font-style: bold; background-image: none; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;"/>
+                <uie:ToolbarButton text="保存" name="SaveDataButton" style="width: 60px; height: 20px; margin-right: 20px; margin-left: 20px; background-image: none; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; -unity-font-style: bold; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px;"/>
+                <uie:ToolbarButton text="创建节点" name="CreateNodeButton" style="width: 60px; height: 20px; margin-right: 20px; margin-left: 20px; background-image: none; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; -unity-font-style: bold; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px;"/>
+                <uie:ToolbarButton text="创建新对话" name="CreateTreeButton" style="width: 60px; height: 20px; margin-right: 20px; margin-left: 20px; background-image: none; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; -unity-font-style: bold; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px;"/>
+            </uie:Toolbar>
+            <MyNodeEditor.Extension.Dialogue.DialogueTreeViewer name="DialogueTreeViewer" style="flex-grow: 1;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

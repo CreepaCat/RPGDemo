@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e3c8ad42e94457a205e6946621457c, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Inventories.WeaponItem
+  _itemID: a78e1296-5857-49a1-90ee-212c61bc2806
+  _displayName: "\u5355\u624B\u5251"
+  _description: "\u7834\u65E7\u7684\u5355\u624B\u5251"
+  _icon: {fileID: 21300000, guid: 33f2c49316e4df54b81848280edfac48, type: 3}
+  _pickupPrefab: {fileID: 5278529781784925265, guid: 091a27eda2dd33f4c815b16a5fa2e120, type: 3}
+  _isStackable: 0
+  _maxStackableAmount: 0
+  _itemCategory: 1
+  _price: 50
+  _allowedEquipLocation: 4
+  _levelLimitation: 1
+  _weaponConfig: {fileID: 11400000, guid: 6c43aa33af65f45488a2d65b2f2f8028, type: 2}

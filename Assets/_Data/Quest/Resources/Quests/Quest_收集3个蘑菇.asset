@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3883fa03b9d8e642956ae7715362fbf, type: 3}
+  m_Name: "Quest_\u6536\u96C63\u4E2A\u8611\u83C7"
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quest.QuestSO
+  <questID>k__BackingField: 12324
+  <questName>k__BackingField: "\u8611\u83C7\u6C64"
+  <questLevel>k__BackingField: 1
+  description: "\u6536\u96C6\u4E09\u4E2A\u8611\u83C7\uFF0C\u665A\u4E0A\u505A\u8611\u83C7\u6C64"
+  <objectives>k__BackingField:
+  - {fileID: 11400000, guid: 481e92f09e5b7ef4980ba43af9b88197, type: 2}
+  <rewardItems>k__BackingField:
+  - quantity: 1
+    item: {fileID: 11400000, guid: 5952599bead123141bd114ca1100cde9, type: 2}
+  <rewardCoins>k__BackingField: -1
+  <rewardExp>k__BackingField: -1

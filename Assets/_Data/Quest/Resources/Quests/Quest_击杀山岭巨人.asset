@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3883fa03b9d8e642956ae7715362fbf, type: 3}
+  m_Name: "Quest_\u51FB\u6740\u5C71\u5CAD\u5DE8\u4EBA"
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quest.QuestSO
+  <questName>k__BackingField: "\u51FB\u6740\u5C71\u5CAD\u5DE8\u4EBA"
+  <questLevel>k__BackingField: 4
+  description: "\u5B88\u62A4\u7740\u77EE\u4EBA\u8D22\u5B9D\u7684\u5C71\u5CAD\u5DE8\u4EBA"
+  <objectives>k__BackingField:
+  - {fileID: 11400000, guid: 91e8f1ae04d6fd3409a6b205fea268df, type: 2}
+  <rewardItems>k__BackingField:
+  - quantity: 1
+    item: {fileID: 11400000, guid: f191e729999ad004aac345f899c840ea, type: 2}
+  - quantity: 1
+    item: {fileID: 11400000, guid: 5952599bead123141bd114ca1100cde9, type: 2}
+  <rewardCoins>k__BackingField: 100
+  <rewardExp>k__BackingField: 100
+  <preQuests>k__BackingField:
+  - {fileID: 11400000, guid: 7f35e8cba89ba444ab0df6af0fb95a5b, type: 2}

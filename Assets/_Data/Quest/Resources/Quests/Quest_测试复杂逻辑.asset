@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3883fa03b9d8e642956ae7715362fbf, type: 3}
+  m_Name: "Quest_\u6D4B\u8BD5\u590D\u6742\u903B\u8F91"
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quest.QuestSO
+  <questID>k__BackingField: 12324565
+  <questName>k__BackingField: "\u5251\u548C\u65A7\u5934\u7684\u95EE\u9898"
+  <questLevel>k__BackingField: 1
+  description: "\u5251\u548C\u65A7\u5934\u7684\u95EE\u9898"
+  <objectives>k__BackingField:
+  - {fileID: 11400000, guid: 72e9b8e176b16354e89e2fa961d32430, type: 2}
+  - {fileID: 11400000, guid: 833e168e020199d46a39e96d5df2a96b, type: 2}
+  - {fileID: 11400000, guid: 77f86149a4961d64b97ad8123d55c364, type: 2}
+  - {fileID: 11400000, guid: e34b71e92df51614696611250d667c36, type: 2}
+  - {fileID: 11400000, guid: 4cd4f4a90e1ed2c41bb8188d665e133a, type: 2}
+  <rewardItems>k__BackingField:
+  - quantity: 1
+    item: {fileID: 11400000, guid: 5952599bead123141bd114ca1100cde9, type: 2}
+  <rewardCoins>k__BackingField: -1
+  <rewardExp>k__BackingField: -1
