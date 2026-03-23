@@ -45,7 +45,8 @@ namespace RPGDemo.Skills
         [SerializeField] public List<EffectStrategy> effectStrategies = new(); // 可多效果（伤害+Buff+治疗）
         [SerializeField] public FilterStrategy filterStrategy;               // 敌/友/无视
         [SerializeField] public CastRequirementStrategy requirementStrategy; // 怒气/血量消耗(可为空)
-        [SerializeField] public VisualStrategy visualStrategy;               // 粒子+音效+动画
+        [SerializeField] public ProjectileVisualStrategy projectileVisual;  //生成投射物
+        [SerializeField] public List<VisualStrategy> visualStrategies;      // 粒子+音效+动画
 
 
 
@@ -78,10 +79,11 @@ namespace RPGDemo.Skills
             var targets = targetStrategy?.GetValidTargets(caster, rangeStrategy, filterStrategy);
 
             //判断是否是投射类技能, 如果是投射物类的技能，可以不用管目标是否为0
-            ProjectileVisualStrategy projectileVisual = visualStrategy as ProjectileVisualStrategy;
+
             if (projectileVisual != null)
             {
                 projectileVisual.Play(caster, targets, GetItemID());
+                PlayVisuals(caster, targets);
                 return true;
             }
 
@@ -98,15 +100,18 @@ namespace RPGDemo.Skills
             }
 
             // 5. 播放视觉表现
-            visualStrategy?.Play(caster, targets, GetItemID());
-
-            // 6. 触发冷却（由 SkillHotbar 或 Player 统一管理）
-            //  caster.StartCooldown(this, cooldown);
-
+            PlayVisuals(caster, targets);
             return true;
 
         }
 
-
+        private void PlayVisuals(Character caster, List<Character> targets)
+        {
+            if (visualStrategies == null) return;
+            foreach (var visual in visualStrategies)
+            {
+                visual?.Play(caster, targets, GetItemID());
+            }
+        }
     }
 }

@@ -52354,6 +52354,7 @@ GameObject:
   - component: {fileID: 1640715928691297894}
   - component: {fileID: 511816465787583793}
   - component: {fileID: 6835345497770047698}
+  - component: {fileID: 507301975519762849}
   m_Layer: 7
   m_Name: PlayerArmature
   m_TagString: Player
@@ -52378,6 +52379,7 @@ Transform:
   - {fileID: 3824603828721807877}
   - {fileID: 2248043250882903363}
   - {fileID: 8479669084341761360}
+  - {fileID: 6622604400188189963}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3602397510838884658
@@ -52439,6 +52441,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f321c7c2a01db5841be5a5ca4a615b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  characterModel: {fileID: 6273426047836659889}
+  damageNumberUIPrefab: {fileID: 3269273814348931015, guid: e48c601c2bb87754598646f8cd95dc4d, type: 3}
+  damageNumberUIParent: {fileID: 0}
 --- !u!114 &59923928024504132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52676,6 +52681,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   currentHealth: 0
+  damageNumberPrefab: {fileID: 3269273814348931015, guid: e48c601c2bb87754598646f8cd95dc4d, type: 3}
+  damageNumberStartPos: {fileID: 6622604400188189963}
 --- !u!114 &4233209055052596992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52763,7 +52770,7 @@ MonoBehaviour:
   _startingLevel: 1
   <CurrentLevel>k__BackingField: 2
   _processionConfig: {fileID: 11400000, guid: 08de7c4130b23514882ea082b29dc079, type: 2}
-  _levelUpEffect: {fileID: 3280519133390621005, guid: 24521340b69a72442bbb75da5260cf67, type: 3}
+  _levelUpEffect: {fileID: 9158635742410941698, guid: 0767fdb081295684aa29dc66fa58825d, type: 3}
 --- !u!114 &8234758324420539903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52884,6 +52891,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Inventories.Purse
   startingBalance: 2000
   currentBalance: 0
+--- !u!114 &507301975519762849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6404256082447505823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e70e713e4eb5b44ca35c337c225268c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Buffs.BuffStore
+  defaultBuffs:
+  - {fileID: 11400000, guid: 56a3ed438ea36d840aea247f6a597590, type: 2}
 --- !u!1 &6406612339540235573
 GameObject:
   m_ObjectHideFlags: 0
@@ -63652,6 +63673,37 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0070605427, y: -0.011226236, z: -0.0020696633}
     m_Extent: {x: 0.109360345, y: 0.023144543, z: 0.016177604}
   m_DirtyAABB: 0
+--- !u!1 &7989857759945989793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6622604400188189963}
+  m_Layer: 7
+  m_Name: DamageNumberPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6622604400188189963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7989857759945989793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.87, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5314719785142122362}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7992408943966771318
 GameObject:
   m_ObjectHideFlags: 0

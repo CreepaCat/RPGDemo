@@ -17,6 +17,9 @@ using UnityEngine.InputSystem;
 
 public class Player : Character, ISaveable
 {
+    [SerializeField] Transform characterModel;
+    [SerializeField] DamageNumberWorldUI damageNumberUIPrefab;
+    [SerializeField] Canvas damageNumberUIParent;
     public ThirdPersonController TpController => _tpController;
 
     public Animator Animator => _animator;
@@ -83,7 +86,11 @@ public class Player : Character, ISaveable
 
         if (Keyboard.current.vKey.wasPressedThisFrame)
         {
-            _health.TakeDamage(10);
+            _health.TakeDamage(10f);
+            // DamageNumberWorldUI damageNumberUI = Instantiate(damageNumberUIPrefab);
+            // //
+            // damageNumberUI.transform.position = characterModel.position + Vector3.up * 2f;
+            // damageNumberUI.SetTextNumber(10f);
         }
     }
 

@@ -21,9 +21,9 @@ MonoBehaviour:
   _maxStackableAmount: 20
   _itemCategory: 3
   _price: 20
-  cooldown: 1
+  cooldown: 0.5
   _isConsumable: 1
-  effectValue: 50
+  useValue: 50
   targetStrategy: {fileID: 11400000, guid: 3347b6ee92b30b24fb14c50a20f16cf4, type: 2}
   effectStrategies:
   - {fileID: 11400000, guid: e6731ce8ef0d6294fa8ee195ee86fc92, type: 2}

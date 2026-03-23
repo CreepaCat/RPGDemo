@@ -178,8 +178,6 @@ namespace MyNodeEditor.Extension.Dialogue
                     }
                     Debug.Log($"选项{nexDialogueStart}对应" + option.OptionText + "被选择了");
                     NodeData nodeData = tree.GetNodeData(option.ChildGuid);
-                    //  children[nextDialogueIndex].state = State.Running;
-
                     if (!children.Contains(nodeData))
                     {
                         Debug.Log("子节点不在选项中");
@@ -188,7 +186,6 @@ namespace MyNodeEditor.Extension.Dialogue
 
                     nodeData.state = State.Running;
                     return nodeData;
-                    // return children[nextDialogueIndex];
                 }
             }
             return this;

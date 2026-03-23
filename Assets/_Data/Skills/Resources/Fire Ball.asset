@@ -24,17 +24,18 @@ MonoBehaviour:
   cooldown: 5
   _isConsumable: 0
   skillType: 0
-  <damageMultiplier>k__BackingField: 150
+  damageMultiplier: 1
   <manaCost>k__BackingField: 10
-  <isHeal>k__BackingField: 0
+  <isHealingSkill>k__BackingField: 0
   <baseHeal>k__BackingField: 0
   unlockCost: 1
   prerequisites: []
   isUnlockedByDefault: 1
-  targetStrategy: {fileID: 0}
+  targetStrategy: {fileID: 11400000, guid: a1cdea75d0b42264784278fafc711ee9, type: 2}
   rangeStrategy: {fileID: 0}
   effectStrategies:
   - {fileID: 11400000, guid: 1d3d20a69a6a9c841b4b31cd390b7a01, type: 2}
   filterStrategy: {fileID: 0}
   requirementStrategy: {fileID: 0}
-  visualStrategy: {fileID: 11400000, guid: db0ff5b157f3a374d988c4da322207fa, type: 2}
+  projectileVisual: {fileID: 11400000, guid: db0ff5b157f3a374d988c4da322207fa, type: 2}
+  visualStrategies: []

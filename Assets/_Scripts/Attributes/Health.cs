@@ -13,6 +13,8 @@ namespace RPGDemo.Attributes
     {
         [SerializeField] private float maxHealth = 100;
         [SerializeField] private float currentHealth;
+        [SerializeField] private DamageNumberWorldUI damageNumberPrefab;
+        [SerializeField] private Transform damageNumberStartPos;
 
         //自动恢复
         private float regenInterval = 5f;
@@ -101,6 +103,9 @@ namespace RPGDemo.Attributes
             else
             {
                 Debug.Log(transform.name + "受到伤害" + damageToTake);
+                DamageNumberWorldUI damageNumber = Instantiate(damageNumberPrefab);
+                damageNumber.transform.position = damageNumberStartPos.position;
+                damageNumber.SetTextNumber(damageToTake);
             }
         }
 

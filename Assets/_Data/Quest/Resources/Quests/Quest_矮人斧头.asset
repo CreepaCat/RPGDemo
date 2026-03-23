@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3883fa03b9d8e642956ae7715362fbf, type: 3}
   m_Name: "Quest_\u77EE\u4EBA\u65A7\u5934"
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quest.QuestSO
-  <questID>k__BackingField: 12324
   <questName>k__BackingField: "1\u52511\u65A7\u5934"
   <questLevel>k__BackingField: 1
   description: "1\u5251\u548C1\u65A7\u5934"
@@ -21,8 +20,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 469566e67a42cfb49909fae545a020b4, type: 2}
   <rewardItems>k__BackingField:
   - quantity: 100
-    item: {fileID: 11400000, guid: 5952599bead123141bd114ca1100cde9, type: 2}
+    item: {fileID: 11400000, guid: b94eea10664d7724b844ab8e745fde2f, type: 2}
   - quantity: 10
     item: {fileID: 11400000, guid: 73211144d65c01d40a9eff04c41f510f, type: 2}
   <rewardCoins>k__BackingField: -1
   <rewardExp>k__BackingField: -1
+  <preQuests>k__BackingField: []

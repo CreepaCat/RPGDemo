@@ -23,6 +23,12 @@ namespace RPGDemo.Quests
 
         public AIQuestListStatus questListStatus = AIQuestListStatus.NoQuest;
 
+        PlayerQuestHandler playerQuestHandler;
+        private void Awake()
+        {
+            playerQuestHandler = PlayerQuestHandler.GetInstance();
+        }
+
         public AIQuestListStatus GetAIQuestListStatus()
         {
             var playerQuestList = PlayerQuestHandler.GetInstance();
@@ -35,7 +41,6 @@ namespace RPGDemo.Quests
                 var questStatus = playerQuestList.GetQuestStatus(quest);
                 if (questStatus == null)
                 {
-
                     hasCanGiveQuest = playerQuestHandler.CanAcceptQuest(quest);
                 }
                 if (questStatus != null && !questStatus.IsFinished())
@@ -58,13 +63,6 @@ namespace RPGDemo.Quests
             if (hasInProgressQuest) return AIQuestListStatus.InProgress;
             return AIQuestListStatus.NoQuest;
         }
-
-        PlayerQuestHandler playerQuestHandler;
-        private void Awake()
-        {
-            playerQuestHandler = PlayerQuestHandler.GetInstance();
-        }
-
         public void AddQuest(QuestSO questToAdd)
         {
             if (quests.Contains(questToAdd)) return;
@@ -91,12 +89,10 @@ namespace RPGDemo.Quests
             var rewardItems = questToReward.GetQuestRewardItems();
             if (rewardItems != null && rewardItems.Count > 0)
             {
-                bool flowControl = CheckPlayerInventorySpace(rewardItems);
-                if (!flowControl)
+                if (!TryRewardItemsToPlayer(rewardItems))
                 {
                     return;
                 }
-
             }
 
             //奖励金币
@@ -117,12 +113,13 @@ namespace RPGDemo.Quests
 
         }
 
-        private bool CheckPlayerInventorySpace(List<QuestSO.RewardItem> rewardItems)
+        private bool TryRewardItemsToPlayer(List<QuestSO.RewardItem> rewardItems)
         {
             Dictionary<InventoryItem, int> rewardItemDict = new();
             var playerInventory = Inventory.GetPlayerInventory();
             foreach (var rewardItemData in rewardItems)
             {
+                if (rewardItemData == null) continue;
                 if (rewardItemDict.ContainsKey(rewardItemData.item))
                 {
                     rewardItemDict[rewardItemData.item] += rewardItemData.quantity;

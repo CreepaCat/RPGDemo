@@ -90,6 +90,7 @@ namespace RPGDemo.Attributes
 
         public void RecoverMana(float manaToRecover)
         {
+            Debug.Log("RecoverMana" + manaToRecover);
             LazyInit();
 
             if (manaToRecover <= 0f) return;

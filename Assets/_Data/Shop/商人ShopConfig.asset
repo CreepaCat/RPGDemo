@@ -19,7 +19,11 @@ MonoBehaviour:
     stockAmount: 3
   - item: {fileID: 11400000, guid: 222e6bf6586250a45b8b90e79062d40a, type: 2}
     stockAmount: 20
+  - item: {fileID: 11400000, guid: b94eea10664d7724b844ab8e745fde2f, type: 2}
+    stockAmount: 50
   - item: {fileID: 11400000, guid: 73211144d65c01d40a9eff04c41f510f, type: 2}
     stockAmount: 100
   - item: {fileID: 11400000, guid: 05df93f21e8909240b126b14abadce6e, type: 2}
-    stockAmount: 10
+    stockAmount: 1
+  - item: {fileID: 11400000, guid: 17af7bfd6a1a1ab4aa92bae41a1909ad, type: 2}
+    stockAmount: 1

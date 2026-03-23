@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7663503360977125061}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DamageNumberSpawnPos
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 439022455886034415}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50,6 +50,26 @@ PrefabInstance:
     - target: {fileID: 70758787706661249, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
       propertyPath: m_Name
       value: ElementalGolem
+      objectReference: {fileID: 0}
+    - target: {fileID: 70758787706661249, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 70758787706661249, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 243667675371013035, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
+      propertyPath: damageNumberPrefab
+      value: 
+      objectReference: {fileID: 3269273814348931015, guid: e48c601c2bb87754598646f8cd95dc4d, type: 3}
+    - target: {fileID: 243667675371013035, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
+      propertyPath: damageNumberStartPos
+      value: 
+      objectReference: {fileID: 7663503360977125061}
+    - target: {fileID: 243667675371013035, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
+      propertyPath: damageNumberStartPos.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 289062282928372290, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
       propertyPath: _procession

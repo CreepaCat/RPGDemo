@@ -17,11 +17,11 @@ namespace NewDialogueFrame
         public event Action<DialogueNodeData> OnDialogueTreeUpdated;
         public event Action OnDialogueBegun;
         public event Action OnDialogueEnded;
-        
+
 
         DialogueNodeData _currentNodeData = null;
         CanversantTarget currentDialogueTarget = null;
-        
+
 
         private DialogueNodeData CurrentNodeData
         {
@@ -33,13 +33,13 @@ namespace NewDialogueFrame
             }
             get { return _currentNodeData; }
         }
-        
+
         private void Awake()
         {
             Init();
         }
 
-      
+
 
 
         void Update()
@@ -57,7 +57,7 @@ namespace NewDialogueFrame
             return GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCanversant>();
         }
 
-   
+
         /// <summary>
         /// 发布更新UI事件
         /// </summary>
@@ -66,7 +66,7 @@ namespace NewDialogueFrame
         {
             if (runningNodeData == null) return;
             CurrentNodeData = runningNodeData;
-            
+
             OnDialogueTreeUpdated?.Invoke(runningNodeData);
 
         }
@@ -75,9 +75,9 @@ namespace NewDialogueFrame
         /// 控制显示和关闭对话面板
         /// </summary>
         /// <param name="shouldShow"></param>
-        public void StartDialogue(DialogueTree newDialoguTree,CanversantTarget newTarget)
+        public void StartDialogue(DialogueTree newDialoguTree, CanversantTarget newTarget)
         {
-            if (currentDialogueTree!=null 
+            if (currentDialogueTree != null
                 && currentDialogueTree.treeState == NodeData.State.Running)
             {
                 Debug.Log("已经有在进行中的对话");
@@ -87,40 +87,36 @@ namespace NewDialogueFrame
             //禁用角色移动输入
             GetComponent<Player>().DisableInput();
             currentDialogueTarget = newTarget;
-            
+
             Debug.Log("Starting Dialogue");
             currentDialogueTree.OnTreeStart();
             OnDialogueBegun?.Invoke();
-           
+
         }
 
 
         public void EndDialogue()
         {
+            //主动触发最后一个节点的退出事件
+            TriggerExitEvent();
+
             //恢复角色移动输入
             GetComponent<Player>().EnableInput();
             currentDialogueTarget = null;
-            
+
             Debug.Log("Ending Dialogue");
             currentDialogueTree.OnTreeEnd();
             currentDialogueTree = null;
             OnDialogueEnded?.Invoke();
         }
-    
+
 
         public void OnChoose(int chooseIndex)
         {
             _currentNodeData.Choose(chooseIndex);
         }
-        
-          //获取角色身上的所有的条件判断器
-        public IEnumerable<IPredicateEvaluator> GetEvaluators()
-        {
-          //  return GetComponents<IPredicateEvaluator>();
-          return ConditionHandler.GetInstance().GetEvaluators();
-        }
 
-        
+
         //PRIAVTE
         private void Init()
         {
@@ -128,7 +124,7 @@ namespace NewDialogueFrame
             currentDialogueTarget = null;
             _currentNodeData = null;
         }
-        
+
         private void SetCurrentDialogueTree(DialogueTree newDialogueTree)
         {
             currentDialogueTree = newDialogueTree;
@@ -143,13 +139,13 @@ namespace NewDialogueFrame
         {
             if (_currentNodeData != null && _currentNodeData.OnEnterAction != null)
             {
-                if(currentDialogueTarget == null) return;
+                if (currentDialogueTarget == null) return;
                 DialogueEventTrigger[] eventTriggers =
                     currentDialogueTarget.GetComponentsInChildren<DialogueEventTrigger>();
                 foreach (DialogueEventTrigger trigger in eventTriggers)
                 {
-                    if(!ReferenceEquals(trigger.GetDialogueEvent(),_currentNodeData.OnEnterAction))
-                        //  if((DialogueNodeEnterEvent)trigger.GetDialogueEvent() != _currentNodeData.OnEnterAction) 
+                    if (!ReferenceEquals(trigger.GetDialogueEvent(), _currentNodeData.OnEnterAction))
+                        //  if((DialogueNodeEnterEvent)trigger.GetDialogueEvent() != _currentNodeData.OnEnterAction)
                         continue;
                     trigger.TriggerEvent();
                 }
@@ -160,20 +156,20 @@ namespace NewDialogueFrame
         {
             if (_currentNodeData != null && _currentNodeData.OnExitAction != null)
             {
-                if(currentDialogueTarget == null) return;
+                if (currentDialogueTarget == null) return;
                 DialogueEventTrigger[] eventTriggers =
                     currentDialogueTarget.GetComponentsInChildren<DialogueEventTrigger>();
                 foreach (DialogueEventTrigger trigger in eventTriggers)
                 {
-                    if(!ReferenceEquals(trigger.GetDialogueEvent(),_currentNodeData.OnExitAction))
-                        //  if((DialogueNodeEnterEvent)trigger.GetDialogueEvent() != _currentNodeData.OnEnterAction) 
+                    if (!ReferenceEquals(trigger.GetDialogueEvent(), _currentNodeData.OnExitAction))
+                        //  if((DialogueNodeEnterEvent)trigger.GetDialogueEvent() != _currentNodeData.OnEnterAction)
                         continue;
                     trigger.TriggerEvent();
                 }
             }
         }
-    #endregion
-  
+        #endregion
+
 
 
     }

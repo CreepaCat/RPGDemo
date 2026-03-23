@@ -16,12 +16,9 @@ MonoBehaviour:
   started: 0
   guid: d24238e5a1ce2f54483027d65f5fa948
   isEntryPoint: 0
-  position: {x: 639.2, y: 10.399992}
+  position: {x: 639.19995, y: 10.400009}
   tree: {fileID: 11400000}
   children:
-  - {fileID: 3580930234381135994}
-  - {fileID: 3580930234381135994}
-  - {fileID: 3580930234381135994}
   - {fileID: 3580930234381135994}
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
@@ -87,21 +84,6 @@ MonoBehaviour:
   - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
     PortName: a1f22252f86c15c439258c1d9fa497c8
     TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
-  - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    TargetNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
   - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
     PortName: 1d0521a58f2660f41b3864560e0ee20e
     TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
@@ -117,9 +99,6 @@ MonoBehaviour:
   - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
     PortName: a1f22252f86c15c439258c1d9fa497c8
     TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
-  - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
   - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
     PortName: 1d0521a58f2660f41b3864560e0ee20e
     TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
@@ -129,88 +108,16 @@ MonoBehaviour:
   - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
     PortName: f51434f6449e7ef4e85094ab618d3dab
     TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    TargetNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
-  - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
-  - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
-  - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
-  - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
-  - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    TargetNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    TargetNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    TargetNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    TargetNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
-  - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
-  - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
   - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
     PortName: dc8f5bcf1c263b74e9fab37313240c6a
     TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
   NodeDatas:
   - {fileID: -2054946775868500934}
-  - {fileID: 3580930234381135994}
   - {fileID: 8891721505704969372}
   - {fileID: -3943322433167162897}
   - {fileID: 4319166153582976278}
   - {fileID: 2529207625594687576}
+  - {fileID: 3580930234381135994}
 --- !u!114 &2529207625594687576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,9 +137,6 @@ MonoBehaviour:
   position: {x: 639.19995, y: 140.8}
   tree: {fileID: 11400000}
   children:
-  - {fileID: 8891721505704969372}
-  - {fileID: 8891721505704969372}
-  - {fileID: 8891721505704969372}
   - {fileID: 8891721505704969372}
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
@@ -264,15 +168,15 @@ MonoBehaviour:
   started: 0
   guid: 6ca1de937c2785d48909d34bb2203142
   isEntryPoint: 0
-  position: {x: 923.19995, y: 10.399994}
+  position: {x: 923.19995, y: 10.400002}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
   dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
   dialogueContent: "\u65A7\u5934\u4EFB\u52A1\u5956\u52B1"
-  OnEnterAction: {fileID: 11400000, guid: af6d47beb671d5940be1d0d3858f0f76, type: 2}
-  OnExitAction: {fileID: 0}
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 11400000, guid: af6d47beb671d5940be1d0d3858f0f76, type: 2}
   condition: {fileID: 11400000, guid: 4220893776aa6864f9bba6bb727910d8, type: 2}
   OptionList: []
   nextDialogueIndex: 0
@@ -299,15 +203,6 @@ MonoBehaviour:
   - {fileID: -3943322433167162897}
   - {fileID: 2529207625594687576}
   - {fileID: -2054946775868500934}
-  - {fileID: -3943322433167162897}
-  - {fileID: 2529207625594687576}
-  - {fileID: -2054946775868500934}
-  - {fileID: -3943322433167162897}
-  - {fileID: 2529207625594687576}
-  - {fileID: -2054946775868500934}
-  - {fileID: -3943322433167162897}
-  - {fileID: 2529207625594687576}
-  - {fileID: -2054946775868500934}
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
   dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
@@ -328,7 +223,7 @@ MonoBehaviour:
     PortName: f51434f6449e7ef4e85094ab618d3dab
     ChildGuid: a8493c4e572dfd949996962a6177eea0
     OptionIndex: 2
-  nextDialogueIndex: 1
+  nextDialogueIndex: 0
   nexDialogueStart: 1
 --- !u!114 &8891721505704969372
 MonoBehaviour:
@@ -355,7 +250,7 @@ MonoBehaviour:
   dialogueContent: "\u5C71\u5CAD\u4EFB\u52A1\u5956\u52B1"
   OnEnterAction: {fileID: 11400000, guid: 3358db13d6fb80e498f7373df28e093a, type: 2}
   OnExitAction: {fileID: 0}
-  condition: {fileID: 11400000, guid: a102f6b78b2a7b3469c16c7642f6fbc4, type: 2}
+  condition: {fileID: 11400000, guid: bb42fb37a97c0d8469cb638cb24da6d1, type: 2}
   OptionList: []
   nextDialogueIndex: 0
-  nexDialogueStart: 0
+  nexDialogueStart: 1

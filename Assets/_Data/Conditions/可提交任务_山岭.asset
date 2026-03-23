@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3643bdf12c7c442ad331f7083639e5, type: 3}
+  m_Name: "\u53EF\u63D0\u4EA4\u4EFB\u52A1_\u5C71\u5CAD"
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Core.ConditionSO
+  description: "\u53EF\u63A5\u53D6\u5C71\u5CAD\u4EFB\u52A1"
+  predicateType: 6
+  parameters:
+  - scriptableObject: {fileID: 11400000, guid: cea53ac5a7fcc19489407f964cd1b9a7, type: 2}
+    number: 0
+    description: 
+  logicType: 0
+  isNegative: 0
+  subConditions: []

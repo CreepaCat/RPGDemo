@@ -16,4 +16,4 @@ MonoBehaviour:
   _completedRequireAmount: 1
   objectiveType: 0
   useCandition: 1
-  condition: {fileID: 11400000, guid: a3cb3432c701cea449a44bd286330bd9, type: 2}
+  condition: {fileID: 11400000, guid: 0d2e6c155c1843b4194f400c68c77573, type: 2}

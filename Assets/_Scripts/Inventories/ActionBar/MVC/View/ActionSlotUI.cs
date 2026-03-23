@@ -1,7 +1,8 @@
-using System;
 using RPGDemo.Core.DraggingFrame;
 using RPGDemo.Inventories.Utils;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPGDemo.Inventories.ActionBar
 {
@@ -11,12 +12,17 @@ namespace RPGDemo.Inventories.ActionBar
         [SerializeField] private int _index;
         [SerializeField] InventoryItemIcon _itemIcon;
 
+        [SerializeField] Image coolDownFill; //冷却图片
+
+        float cooldownTimer = float.MaxValue;
+
         //CACHE
         ActionStore _playerActionStore = null;
 
         private void Awake()
         {
             _playerActionStore = GameObject.FindGameObjectWithTag("Player").GetComponent<ActionStore>();
+            coolDownFill.fillAmount = 0;
         }
 
         private void OnEnable()
@@ -27,12 +33,19 @@ namespace RPGDemo.Inventories.ActionBar
         private void OnDisable()
         {
             _playerActionStore.OnActionStoreUpdated -= Redraw;
+
         }
 
         private void Start()
         {
             Redraw();
 
+        }
+
+        private void Update()
+        {
+            if (GetItem() != null)
+                coolDownFill.fillAmount = _playerActionStore.GetCooldownRatio((ActionItem)GetItem());
         }
 
         private void Redraw()

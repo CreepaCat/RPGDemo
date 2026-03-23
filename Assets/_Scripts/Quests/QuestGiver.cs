@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace  RPGDemo.Quests
+namespace RPGDemo.Quests
 {
     public class QuestGiver : MonoBehaviour
     {
@@ -13,7 +13,7 @@ namespace  RPGDemo.Quests
         /// </summary>
         private void Awake()
         {
-            if(questConfig == null)
+            if (questConfig == null)
                 Debug.LogError($"{gameObject.name}的任务没有配置,请先配置再使用");
             aiQuestHandler = GetComponentInParent<AIQuestHandler>();
             aiQuestHandler.AddQuest(questConfig);
@@ -24,8 +24,8 @@ namespace  RPGDemo.Quests
             aiQuestHandler.GiveQuest(questConfig);
         }
 
-      
-         public void GiveReward()
+
+        public void GiveReward()
         {
             aiQuestHandler.GiveReward(questConfig);
 

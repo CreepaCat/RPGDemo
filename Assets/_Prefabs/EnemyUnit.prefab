@@ -220,6 +220,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3922748914991470471, guid: 5f0345388a20bc545a71a77b77269d6a, type: 3}
+      propertyPath: _startingLevel
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6359663322162291170, guid: 5f0345388a20bc545a71a77b77269d6a, type: 3}
       propertyPath: m_Name
       value: ElementalGolem
@@ -231,8 +235,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6359663322162291170, guid: 5f0345388a20bc545a71a77b77269d6a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4548505328789981801}
   m_SourcePrefab: {fileID: 100100000, guid: 5f0345388a20bc545a71a77b77269d6a, type: 3}
+--- !u!1 &1394989921006641739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6359663322162291170, guid: 5f0345388a20bc545a71a77b77269d6a, type: 3}
+  m_PrefabInstance: {fileID: 5411620213588853673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4548505328789981801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394989921006641739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d4012789f20e94294da32127fa869a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quests.QuestObjectiveCompletion
+  quest: {fileID: 11400000, guid: cea53ac5a7fcc19489407f964cd1b9a7, type: 2}
+  objective: {fileID: 11400000, guid: 91e8f1ae04d6fd3409a6b205fea268df, type: 2}
+  completeNumber: 1
 --- !u!4 &9144492996564765814 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3890595540110659551, guid: 5f0345388a20bc545a71a77b77269d6a, type: 3}

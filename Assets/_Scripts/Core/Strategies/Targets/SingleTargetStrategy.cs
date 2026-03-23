@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using RPGDemo.Combat;
 
 namespace RPGDemo.Core.Strategies
 {
@@ -14,13 +15,25 @@ namespace RPGDemo.Core.Strategies
         {
             if (isSelfTarget) return new List<Character>() { caster };
             // 示例：鼠标指向或自动锁定最近敌人（可改成 Raycast）
-            var target = caster.TargetingSystem.GetCurrentTarget();
-            if (target != null && range.IsPositionInRange(caster.transform.position, target.transform.position)
-                && filter.IsValidTarget(caster, target))
+            var target = caster.GetComponent<Fighter>().GetCurrentTarget();
+
+
+            if (target == null)
             {
-                return new List<Character> { target };
+                return new List<Character>();
             }
-            return new List<Character>();
+
+            if (range != null && !range.IsPositionInRange(caster.transform.position, target.transform.position))
+            {
+
+                return new List<Character>();
+            }
+
+            if (filter != null && !filter.IsValidTarget(caster, target))
+            {
+                return new List<Character>();
+            }
+            return new List<Character>() { target };
         }
     }
 }

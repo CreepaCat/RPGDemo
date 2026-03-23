@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace RPGDemo.Projectiles
 {
-    // Assets/Projectiles/ProjectileController.cs
-    [RequireComponent(typeof(Rigidbody))] // 或不使用物理，用 transform 手动移动
+    [RequireComponent(typeof(Rigidbody), typeof(ParticleSystem))] // 或不使用物理，用 transform 手动移动
     public class ProjectileController : MonoBehaviour
     {
         public IProjectileStrategy strategy;     // 在生成时注入
@@ -14,6 +13,8 @@ namespace RPGDemo.Projectiles
         public Character owner;
         public float lifetime = 10f;
         private float spawnTime;
+
+        Transform targetTransform = null;
 
         private void Awake()
         {
@@ -24,6 +25,7 @@ namespace RPGDemo.Projectiles
                             string skillGuid, Vector3 startPos, Vector3 dir)
         {
             owner = caster;
+            targetTransform = target?.transform;
             strategy = strat;
             skillId = skillGuid;
             strategy.InitializeAndLaunch(this.gameObject, caster, target, startPos, dir);
@@ -35,20 +37,22 @@ namespace RPGDemo.Projectiles
         {
             if (strategy != null && strategy.RequiresUpdate)
             {
-                // strategy 可以在这里继续控制（追踪类常用）
-                // 或让 strategy 自己接管 Update（见下方实现）
+                // 使用投射物轨迹策略来控制移动
+                if (strategy is HomingProjectile)
+                {
+                    (strategy as HomingProjectile).UpdateHoming(transform, targetTransform, Time.deltaTime);
+                }
+
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
             // 碰撞逻辑：伤害、特效、销毁等
-            // 可通过 owner 或 event 调用 EffectStrategies
+            // 可通过 owner 或 event 或回调方法 调用 EffectStrategies
             if (other.TryGetComponent<Character>(out var target) && target != owner)
             {
                 Debug.Log(owner + "投射物命中目标" + target);
-
-
                 // 示例：对目标应用效果（如果技能有多个 EffectStrategy）
                 // 这里可以从 Skill 传过来的效果列表应用
                 SkillItem skill = SkillItem.GetItemFromID(skillId) as SkillItem;

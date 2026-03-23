@@ -5,7 +5,7 @@ namespace RPGDemo.Core.Strategies
 {
     public abstract class RangeStrategy : ScriptableObject, IRangeStrategy
     {
-        public float MaxCastDistance { get; set; }
+        [field: SerializeField] public float MaxCastDistance { get; set; }
 
         public abstract List<Vector3> GetAreaPositions(Character caster);
 

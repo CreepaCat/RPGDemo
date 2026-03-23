@@ -29,17 +29,32 @@ namespace RPGDemo.Inventories.Pickups
         {
             //对于一组多个的物品，逐个向背包添加，当背包满时停止
 
-            int quantityRemained = 0;
-            for (int i = 0; i < GetItemAmount(); i++)
+            if (CanBePickedUp())
             {
-                bool success = _inventory.AddItemToFirstFoundSlot(_item, 1);
-                if (!success)
+                Dictionary<InventoryItem, int> itemDict = new()
                 {
-                    quantityRemained = _amount - i;
-                    break;
-                }
-                Debug.Log("Picked up " + _item.GetDisplayName() + "x" + (_amount - quantityRemained));
+                    { _item,_amount}
+                };
+                _inventory.AddItemDict(itemDict);
+
             }
+            else
+            {
+                //todo:计算当前物品最多能捡多少个
+                return;
+            }
+
+            int quantityRemained = 0;
+            // for (int i = 0; i < GetItemAmount(); i++)
+            // {
+            //     bool success = _inventory.AddItemToFirstFoundSlot(_item, 1);
+            //     if (!success)
+            //     {
+            //         quantityRemained = _amount - i;
+            //         break;
+            //     }
+            //     Debug.Log("Picked up " + _item.GetDisplayName() + "x" + (_amount - quantityRemained));
+            // }
 
             PickupSpawner spawner = GetComponentInParent<PickupSpawner>();
             spawner?.PickupCallback(_amount - quantityRemained);

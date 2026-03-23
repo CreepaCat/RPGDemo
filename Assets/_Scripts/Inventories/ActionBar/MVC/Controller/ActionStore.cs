@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using RPGDemo.Saving;
 using UnityEngine;
@@ -12,14 +13,15 @@ namespace RPGDemo.Inventories.ActionBar
     /// </summary>
     public class ActionStore : MonoBehaviour, ISaveable
     {
-        // [SerializeField] Key actionKey1 = Key.Numpad1;
-        // [SerializeField] Key actionKey2 = Key.Numpad2;
-        // [SerializeField] Key actionKey3 = Key.Numpad3;
-        // [SerializeField] Key actionKey4 = Key.Numpad4;
+        //冷却物品缓存
+        Dictionary<ActionItem, float> cooldownItems = new Dictionary<ActionItem, float>();
 
+        //快捷栏物品
         Dictionary<int, ActionSlot> actionItems = new Dictionary<int, ActionSlot>();
 
         public event Action OnActionStoreUpdated;
+        public event Action<int> OnUse;
+
 
         private void Start()
         {
@@ -36,9 +38,26 @@ namespace RPGDemo.Inventories.ActionBar
                     Use(i, gameObject);
                 }
             }
+
+            //更新物品冷却
+            UpdateCooldownItems();
         }
 
+        private void UpdateCooldownItems()
+        {
+            var keys = cooldownItems.Keys.ToList();
+            foreach (var key in keys)
+            {
+                cooldownItems[key] -= Time.deltaTime;
+                if (cooldownItems[key] <= 0f)
+                {
+                    //移除
+                    cooldownItems.Remove(key);
+                }
+            }
+        }
 
+        //运行时数据
         [System.Serializable]
         class ActionSlot
         {
@@ -48,9 +67,16 @@ namespace RPGDemo.Inventories.ActionBar
 
         public bool Use(int index, GameObject user)
         {
-            if (!actionItems.ContainsKey(index)) return false;
             Debug.Log($"{gameObject.name}使用了快捷键{index}");
+            if (!actionItems.ContainsKey(index)) return false;
+
             var actionItem = actionItems[index].actionItem;
+            //检查冷却
+            if (cooldownItems.ContainsKey(actionItem))
+            {
+                return false;
+            }
+
 
             if (actionItem.Use(user))
             {
@@ -62,19 +88,33 @@ namespace RPGDemo.Inventories.ActionBar
                 {
                     print("使用非消耗品");
                 }
-                StartCooldown(index, actionItems[index].actionItem.cooldown);
+                AddCooldownItem(actionItem);
+
+                OnActionStoreUpdated?.Invoke(); //刷新UI
+                return true;
 
             }
 
             return false;
 
         }
-
-        public void StartCooldown(int index, float cooldown)
+        #region 物品冷却相关
+        public void AddCooldownItem(ActionItem actionItem)
         {
-            Debug.Log("快捷物品进入冷却");
-            //throw new NotImplementedException();
+            Debug.Log($"物品{actionItem.GetDisplayName()}进入冷却");
+            cooldownItems[actionItem] = actionItem.cooldown;
         }
+
+        public float GetCooldownRatio(ActionItem actionItem)
+        {
+            if (!cooldownItems.ContainsKey(actionItem)) return 0;
+            return cooldownItems[actionItem] / actionItem.cooldown;
+        }
+
+        #endregion
+
+
+
 
         public ActionItem GetItemInSlot(int index)
         {
