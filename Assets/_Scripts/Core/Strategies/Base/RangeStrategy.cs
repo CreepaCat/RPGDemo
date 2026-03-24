@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace RPGDemo.Core.Strategies
 {
-    public abstract class RangeStrategy : ScriptableObject, IRangeStrategy
+    public abstract class RangeStrategy : IRangeStrategy
     {
         [field: SerializeField] public float MaxCastDistance { get; set; }
 

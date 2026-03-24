@@ -1,37 +1,38 @@
+using System;
+using System.Collections.Generic;
 using RPGDemo.Attributes;
+using RPGDemo.Core.Strategies;
 using RPGDemo.Stats;
+using UnityEngine;
 
 namespace RPGDemo.Buffs
 {
     /// <summary>
     /// 运行时buff实例类
     /// </summary>
+    [System.Serializable]
     public class BuffInstance
     {
         public BuffSO data;
-        public float remainingTime;
-        public int currentStack = 1; //buff层数
-        public Character owner; // 施加者（可用于归属伤害）
-        public Character target;
-        public float nextTickTime;        // 下次 tick 时间戳
-
+        [SerializeReference] List<EffectStrategy> effects = new();
+        [HideInInspector] public float remainingTime;
+        [HideInInspector] public int currentStack = 1; //buff层数
+        [HideInInspector] public Character owner; // 施加者（可用于归属伤害）
+        [HideInInspector] public Character target;
+        [HideInInspector] public float nextTickTime;        // 下次 tick 时间戳
 
         public void ApplyEffects()
         {
-            if (data.isDamageOrHeal)
+            foreach (var effect in effects)
             {
-                if (data.healValue > 0f) //治疗
-                {
-                    target.GetComponent<Health>().Heal(data.healValue);
-                }
-
-                if (data.damageValue > 0f)
-                {
-                    //todo：buff伤害同样要计算发出者的攻击力和目标的防御数值
-                    target.GetComponent<Health>().TakeDamage(data.damageValue);
-                }
+                effect.Apply(owner, target, data.buffID);
             }
         }
 
+        public void Setup(Character caster, Character target)
+        {
+            owner = caster;
+            this.target = target;
+        }
     }
 }

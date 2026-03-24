@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: _processionConfig
       value: 
       objectReference: {fileID: 11400000, guid: 04babf084e0b98e4f9ea16683843e774, type: 2}
+    - target: {fileID: 8133220164834546618, guid: 5f0345388a20bc545a71a77b77269d6a, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

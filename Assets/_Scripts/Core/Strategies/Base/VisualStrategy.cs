@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace RPGDemo.Core.Strategies
 {
-    public abstract class VisualStrategy : ScriptableObject, IVisualStrategy
+    [System.Serializable]
+    public abstract class VisualStrategy : IVisualStrategy
     {
         public abstract void Play(Character caster, List<Character> targets, string skillId, Transform castPoint = null);
 

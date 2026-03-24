@@ -20,9 +20,9 @@ namespace RPGDemo.Buffs
         public bool isStackable = false; //是否可叠层
         public int maxStack = 5; //最大叠层数
         public float tickInterval = 1f;  // 每隔多少秒触发一次 OnTick
-        public bool isDamageOrHeal;
-        public float damageValue = 0f;
-        public float healValue = 0f;
+        // public bool isDamageOrHeal;
+        // public float damageValue = 0f;
+        // public float healValue = 0f;
         public GameObject vfxPrefab;           // Buff 特效
 
         [Header("Buff数值")]

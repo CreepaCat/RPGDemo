@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
-public class DestroyAfterSeconds : MonoBehaviour
+public class DestroyAfterEffect : MonoBehaviour
 {
     [SerializeField] ParticleSystem ps;
+    public float destroyDelay = 3f;
+    public bool useDelayDestroy = false;
 
     private void Awake()
     {
@@ -10,6 +13,17 @@ public class DestroyAfterSeconds : MonoBehaviour
         {
             ps = GetComponentInChildren<ParticleSystem>();
         }
+
+        if (useDelayDestroy)
+        {
+            SetDestroyDelay(destroyDelay);
+        }
+
+    }
+
+    public void SetDestroyDelay(float delay)
+    {
+        Destroy(gameObject, delay);
     }
 
     private void Update()

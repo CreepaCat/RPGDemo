@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// 多目标选择策略
 /// </summary>
-[CreateAssetMenu(menuName = "RPGDemo/Strategy/Target/MultiTargetStrategy")]
+//[CreateAssetMenu(menuName = "RPGDemo/Strategy/Target/MultiTargetStrategy")]
 public class MultiTargetStrategy : TargetStrategy
 {
     public int maxTargetNum = 3;

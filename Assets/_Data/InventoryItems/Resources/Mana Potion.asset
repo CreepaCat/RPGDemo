@@ -24,8 +24,23 @@ MonoBehaviour:
   cooldown: 0.5
   _isConsumable: 1
   useValue: 50
-  targetStrategy: {fileID: 11400000, guid: 3347b6ee92b30b24fb14c50a20f16cf4, type: 2}
   effectStrategies:
-  - {fileID: 11400000, guid: 50804def7fe26c446b4c12466e8f469f, type: 2}
-  requirementStrategy: {fileID: 0}
-  visualStrategy: {fileID: 0}
+  - rid: 5548055959870111982
+  requirementStrategy:
+    rid: -2
+  visualStrategy:
+    rid: 5548055959870112016
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 5548055959870111982
+      type: {class: RestoreManaEffect, ns: , asm: Assembly-CSharp}
+      data:
+        restoreValue: 50
+    - rid: 5548055959870112016
+      type: {class: PotionUsingVisualStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
+      data:
+        onUsingVfxPrefab: {fileID: 19884996, guid: 598b13efe6e3a5a4da35a68ab480d69c, type: 3}
+        destroyAfterSeconds: 1

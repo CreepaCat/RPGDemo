@@ -7,7 +7,7 @@ namespace RPGDemo.Core.Strategies
     /// <summary>
     /// 单目标选择策略
     /// </summary>
-    [CreateAssetMenu(menuName = "RPGDemo/Strategy/Target/SingleTarget")]
+   // [CreateAssetMenu(menuName = "RPGDemo/Strategy/Target/SingleTarget")]
     public class SingleTargetStrategy : TargetStrategy
     {
         public bool isSelfTarget = false; //是否以自己为目标

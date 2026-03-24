@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace RPGDemo.Core.Strategies
 {
-    public abstract class FilterStrategy : ScriptableObject, IFilterStrategy
+    [System.Serializable]
+    public abstract class FilterStrategy : IFilterStrategy
     {
         public abstract bool IsValidTarget(Character caster, Character target);
     }

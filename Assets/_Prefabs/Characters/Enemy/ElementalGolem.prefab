@@ -171,6 +171,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 70758787706661249, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
       insertIndex: 4
       addedObject: {fileID: 2555973410490757776}
+    - targetCorrespondingSourceObject: {fileID: 70758787706661249, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5798462562790604890}
   m_SourcePrefab: {fileID: 100100000, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
 --- !u!4 &3890595540110659551 stripped
 Transform:
@@ -205,9 +208,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &7638223347013664280
 CapsuleCollider:
@@ -254,3 +257,16 @@ NavMeshAgent:
   m_BaseOffset: -0.15
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5798462562790604890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359663322162291170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e70e713e4eb5b44ca35c337c225268c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Buffs.BuffStore
+  defaultBuffs: []

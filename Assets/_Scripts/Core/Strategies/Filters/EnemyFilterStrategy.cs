@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 目标过滤策略
 /// </summary>
-[CreateAssetMenu(menuName = "RPGDemo/Strategy/Filter/EnemyFilter")]
+//[CreateAssetMenu(menuName = "RPGDemo/Strategy/Filter/EnemyFilter")]
 public class EnemyFilterStrategy : FilterStrategy
 {
     public bool isCaontainBoss = false;

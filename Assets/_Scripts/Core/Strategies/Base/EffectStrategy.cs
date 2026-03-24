@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace RPGDemo.Core.Strategies
 {
-    public abstract class EffectStrategy : ScriptableObject, IEffectStrategy
+    [System.Serializable]
+    public abstract class EffectStrategy : IEffectStrategy
     {
         public abstract void Apply(Character caster, Character target, string skillId);
     }

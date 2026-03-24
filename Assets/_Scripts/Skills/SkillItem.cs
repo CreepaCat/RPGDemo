@@ -1,7 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using RPGDemo.Attributes;
 using RPGDemo.Core.Strategies;
 using RPGDemo.Inventories.ActionBar;
+using RPGDemo.Projectiles;
 using UnityEngine;
 
 
@@ -19,13 +21,7 @@ namespace RPGDemo.Skills
         //public float baseDamage = 1;//基础伤害
         // Active / Passive 主动技能与被动技能
         public SkillType skillType = SkillType.Active;
-        [SerializeField]
-        [Range(0, 9999)] public float damageMultiplier = 1;
         [field: SerializeField] public float manaCost { get; private set; } = 10;
-
-        [field: SerializeField] public bool isHealingSkill { get; private set; } = false;
-
-        [field: SerializeField] public float baseHeal { get; private set; } = 0f;
 
         [Header("解锁配置")]
         public int unlockCost = 1;                 // 消耗技能点
@@ -38,19 +34,21 @@ namespace RPGDemo.Skills
         {
             // 子类实现具体逻辑
         }
+        [Header("== 生成投射物 ==")]
+        [SerializeField] public ProjectileController projectilePrefab;  //生成投射物
+        [SerializeReference] public ProjectileStrategy projectileStrategy; //投射物控制策略
 
         [Header("=== 技能策略乐高积木模块 ===")]
-        [SerializeField] public TargetStrategy targetStrategy;      // 单目标 / 多目标 / 自动锁定
-        [SerializeField] public RangeStrategy rangeStrategy;                 // 最远距离 + AoE 形状
-        [SerializeField] public List<EffectStrategy> effectStrategies = new(); // 可多效果（伤害+Buff+治疗）
-        [SerializeField] public FilterStrategy filterStrategy;               // 敌/友/无视
-        [SerializeField] public CastRequirementStrategy requirementStrategy; // 怒气/血量消耗(可为空)
-        [SerializeField] public ProjectileVisualStrategy projectileVisual;  //生成投射物
-        [SerializeField] public List<VisualStrategy> visualStrategies;      // 粒子+音效+动画
+        [SerializeReference] public TargetStrategy targetStrategy;      // 单目标 / 多目标 / 自动锁定
+        [SerializeReference] public RangeStrategy rangeStrategy;                 // 最远距离 + AoE 形状
+        [SerializeReference] public FilterStrategy filterStrategy;               // 敌/友/无视
 
+        [SerializeReference] public AnimationStrategy animationStrategy;//播放动画
 
+        [SerializeReference] public List<EffectStrategy> effectStrategies = new(); // 可多效果（伤害+Buff+治疗）
+        [SerializeReference] public CastRequirementStrategy requirementStrategy; // 怒气/血量消耗(可为空)
 
-        // [SerializeField] public ProjectileVisualStrategy projectileVisualStrategy;  //技能产生投射物策略
+        [SerializeReference] public List<VisualStrategy> visualStrategies = new();      // 粒子+音效
 
         /// <summary>玩家在快捷栏按下时调用</summary>
         public override bool Use(GameObject instigator)
@@ -71,25 +69,104 @@ namespace RPGDemo.Skills
                     return false;
                 }
             }
-
-
-
-
-            // 3. 获取有效目标（范围 + 过滤）
+            // 获取有效目标（范围 + 过滤）
             var targets = targetStrategy?.GetValidTargets(caster, rangeStrategy, filterStrategy);
 
-            //判断是否是投射类技能, 如果是投射物类的技能，可以不用管目标是否为0
-
-            if (projectileVisual != null)
+            Character primary = null;
+            if (targets != null && targets.Count > 0)
             {
-                projectileVisual.Play(caster, targets, GetItemID());
-                PlayVisuals(caster, targets);
-                return true;
+                primary = targets[0];
             }
 
-            if (targets == null || targets.Count == 0) return false;
+            Vector3 dir = primary != null ?
+            (primary.transform.position - caster.transform.position).normalized
+            : caster.transform.forward;
 
-            // 4. 对每个目标依次应用所有效果
+
+            //todo:禁用角色输入，并插值转向
+            caster.transform.rotation = Quaternion.LookRotation(dir);
+
+            caster.StartCoroutine(CastSkillCroutine(animationStrategy.DelayTime, caster, targets));
+            return true;
+
+
+
+
+        }
+
+        IEnumerator CastSkillCroutine(float delayCastTime, Character caster, List<Character> targets)
+        {
+            animationStrategy?.PlayAnimation(caster);
+            //释放者身上的粒子效果与音效
+            PlayVisuals(caster, targets);
+            yield return new WaitForSeconds(delayCastTime);
+            //判断是否是投射类技能, 如果是投射物类的技能，可以不用管目标是否为0
+            if (projectilePrefab != null)
+            {
+                ApplyProjectile(caster, targets);
+                yield break;
+
+            }
+            // 若不是投射类技能，对每个目标依次应用所有效果
+            ApllyEffectToTargets(caster, targets);
+
+
+        }
+
+        private void ApplyProjectile(Character caster, List<Character> targets)
+        {
+            var launchPos = caster.transform.position + Vector3.up * 2f;
+
+
+            //是否是多目标，对每个目标单独生成投射物
+            if (targets == null || targets.Count == 0)
+            {
+                SpawnProjectile(caster, null, launchPos);
+
+            }
+            else
+            {
+                //多目标
+                foreach (var target in targets)
+                {
+                    SpawnProjectile(caster, target, launchPos);
+                }
+            }
+
+        }
+        /// <summary>
+        /// 生成投射物
+        /// </summary>
+        /// <param name="caster"></param>
+        /// <param name="launchPos"></param>
+        private void SpawnProjectile(Character caster, Character target, Vector3 launchPos)
+        {
+            //如果没有目标，就直线发射
+            Vector3 dir = target != null
+            ? (target.transform.position + Vector3.up - launchPos).normalized
+            : caster.transform.forward;
+
+
+
+
+            ProjectileController projectileController = Instantiate(projectilePrefab, launchPos, Quaternion.LookRotation(dir));
+
+            projectileController.Launch(projectileStrategy, caster, target, GetItemID(), launchPos, dir);
+
+            //命中回调函数
+            projectileController.SetCallback((Character character) =>
+            {
+                foreach (var effect in effectStrategies)
+                {
+                    if (effect != null)
+                        effect.Apply(caster, character, GetItemID());
+                }
+            });
+        }
+
+        private void ApllyEffectToTargets(Character caster, List<Character> targets)
+        {
+
             foreach (var target in targets)
             {
                 foreach (var effect in effectStrategies)
@@ -98,16 +175,11 @@ namespace RPGDemo.Skills
                         effect.Apply(caster, target, GetItemID());
                 }
             }
-
-            // 5. 播放视觉表现
-            PlayVisuals(caster, targets);
-            return true;
-
         }
 
         private void PlayVisuals(Character caster, List<Character> targets)
         {
-            if (visualStrategies == null) return;
+            if (visualStrategies == null || targets == null) return;
             foreach (var visual in visualStrategies)
             {
                 visual?.Play(caster, targets, GetItemID());

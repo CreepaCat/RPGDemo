@@ -5,30 +5,28 @@ namespace RPGDemo.Core.Strategies
     /// <summary>
     /// 直线投射物策略
     /// </summary>
-    [CreateAssetMenu(menuName = "RPGDemo/Strategy/Projectile/StraightLine")]
+   // [CreateAssetMenu(menuName = "RPGDemo/Strategy/Projectile/StraightLine")]
     public class StraightLineProjectile : ProjectileStrategy
     {
         public float speed = 20f;
-        // public bool usePhysics = true;  // true 用 Rigidbody.velocity，false 用 transform.position
+        public new bool RequiresUpdate { get; private set; } = false;
 
-        public override void InitializeAndLaunch(GameObject proj, Character caster, Character primaryTarget, Vector3 launchPos, Vector3 launchDir)
+        public override void Initialize(GameObject projectile, Character caster, Character target, Vector3 launchPosition, Vector3 launchDirection)
         {
-            proj.transform.position = launchPos;
-            proj.transform.rotation = Quaternion.LookRotation(launchDir);
-
-            if (!RequiresUpdate)
-            {
-                if (proj.TryGetComponent<Rigidbody>(out var rb))
-                {
-                    rb.linearVelocity = launchDir.normalized * speed;
-                }
-            }
-            else
-            {
-                // 非物理：手动移动（在 ProjectileController Update 中实现）
-                // 或这里添加一个协程 MoveStraight()
-            }
+            var rb = projectile.GetComponent<Rigidbody>();
+            if (rb)
+                rb.linearVelocity = rb.transform.forward * speed;
         }
+
+        //直线发射无需计算
+        public override void UpdateProjectile(Rigidbody rb, Transform target, float deltaTime)
+        {
+            rb.MovePosition(rb.transform.position + speed * rb.transform.forward * deltaTime);
+
+
+        }
+
+
 
     }
 }

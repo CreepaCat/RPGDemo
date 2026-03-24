@@ -22,11 +22,12 @@ namespace RPGDemo.Buffs
                 ApplyBuff(buffSO, GetComponent<Character>(), GetComponent<Character>(), buffSO.baseDuration);
             }
         }
+        //todo:改用Hash表
         private List<BuffInstance> activeBuffs = new List<BuffInstance>();
 
         public void ApplyBuff(BuffSO data, Character caster, Character target, float duration = -1)
         {
-            // 处理叠加逻辑...
+            //todo: 处理叠加逻辑...
             BuffInstance instance = new BuffInstance { data = data, owner = caster, target = target };
             //若持续时间小于零 说明是永久buff
             instance.remainingTime = duration > 0 ? duration : float.PositiveInfinity;
@@ -34,6 +35,23 @@ namespace RPGDemo.Buffs
 
             activeBuffs.Add(instance);
             data.OnApply(target, instance);
+            //打上时间戳,获得Buff时立即tick一次
+            instance.nextTickTime = Time.time;
+
+            // 启动协程计时（永久 Buff duration=-1 不会结束）
+            if (duration > 0) StartCoroutine(RemoveAfterTime(instance, duration));
+        }
+
+        public void ApplyBuff(BuffInstance instance, Character caster, Character target, float duration = -1)
+        {
+            // todo:处理叠加逻辑...
+            instance.Setup(caster, target);
+            //若持续时间小于零 说明是永久buff
+            instance.remainingTime = duration > 0 ? duration : float.PositiveInfinity;
+            Debug.Log($"角色{target}获得Buff{instance.data.buffName},持续时间{duration}");
+
+            activeBuffs.Add(instance);
+            instance.data.OnApply(target, instance);
             //打上时间戳,获得Buff时立即tick一次
             instance.nextTickTime = Time.time;
 
@@ -78,25 +96,24 @@ namespace RPGDemo.Buffs
                 {
                     b.nextTickTime = now + b.data.tickInterval;
                     ApplyTickEffect(b); //应用buff效果
-                    b.data.OnTick(b.target, b);
+                    //b.data.OnTick(b.target, b);
 
 
                 }
             }
 
         }
-
+        /// <summary>
+        /// buff实例的伤害或治疗等效果，使用Effect策略
+        /// </summary>
+        /// <param name="b"></param>
         private void ApplyTickEffect(BuffInstance b)
         {
             //通过数值系统来判断造成的伤害或者治疗
             b.ApplyEffects();
-
-            // 这里调用你的伤害系统（推荐使用独立 DamageSystem）
-            // 例：b.target.TakeDamage(Mathf.Abs(b.data.tickDamageOrHeal) * b.currentStack, b.owner);
-            // 或 b.target.Heal(...)
         }
 
-        #region Buff数值
+        #region Buff对角色属性的影响数值
         //一些对角色固定属性修改的数值
         public IEnumerable<float> GetAdditiveModifiers(StatsType statsType)
         {

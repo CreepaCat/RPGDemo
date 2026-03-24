@@ -11,9 +11,9 @@ namespace RPGDemo.Inventories.ActionBar
         public float useValue = 0;
         [Header("=== 药瓶使用策略 ===")]
         // [SerializeField] public SingleTargetStrategy targetStrategy;      // 单目标
-        [SerializeField] public List<EffectStrategy> effectStrategies = new(); // 可多效果（伤害+Buff+治疗）
-        [SerializeField] public CastRequirementStrategy requirementStrategy; // 蓝量/血量百分比要求
-        [SerializeField] public PotionUsingVisualStrategy visualStrategy;   // 粒子+音效+动画
+        [SerializeReference] public List<EffectStrategy> effectStrategies = new(); // 可多效果（伤害+Buff+治疗）
+        [SerializeReference] public CastRequirementStrategy requirementStrategy; // 蓝量/血量百分比要求
+        [SerializeReference] public PotionUsingVisualStrategy visualStrategy;   // 粒子+音效+动画
 
         /// <summary>玩家在快捷栏按下时调用</summary>
         public override bool Use(GameObject instigator)

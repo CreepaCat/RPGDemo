@@ -12,12 +12,12 @@ public class RestoreManaEffect : EffectStrategy
     public float restoreValue = 10f;
     public override void Apply(Character caster, Character target, string itemId)
     {
-        PotionItem potion = PotionItem.GetItemFromID(itemId) as PotionItem;
-        if (potion != null && potion.useValue > 0f)
-        {
+        // PotionItem potion = PotionItem.GetItemFromID(itemId) as PotionItem;
+        // if (potion != null && potion.useValue > 0f)
+        // {
 
-            restoreValue = potion.useValue;
-        }
+        //     restoreValue = potion.useValue;
+        // }
         Debug.Log("RestoreManaEffect" + restoreValue);
 
         target.GetComponent<Mana>()?.RecoverMana(restoreValue);

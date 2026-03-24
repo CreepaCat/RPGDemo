@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109dec173414cc14ab0083b50a6ae43f, type: 3}
+  m_Name: Multi Firball
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Skills.SkillItem
+  _itemID: 1e200bdb-dc92-47a2-91aa-c4f224448e57
+  _displayName: "\u591A\u91CD\u706B\u7403\u672F"
+  _description: "\u547D\u4E2D\u65F6\u53E0\u52A0\u4E00\u5C42\u71C3\u70E7\uFF0C\u6BCF\u79D2\u5341\u70B9\u4F24\u5BB3"
+  _icon: {fileID: 21300000, guid: c584f782e9ce03444b6cd36893975997, type: 3}
+  _pickupPrefab: {fileID: 0}
+  _isStackable: 0
+  _maxStackableAmount: 0
+  _itemCategory: 0
+  _price: 10
+  cooldown: 1
+  _isConsumable: 0
+  skillType: 0
+  <manaCost>k__BackingField: 10
+  unlockCost: 1
+  prerequisites:
+  - {fileID: 11400000, guid: 01e49aabbe075e347b83908681a11c2e, type: 2}
+  isUnlockedByDefault: 0
+  projectilePrefab: {fileID: 6756598444278479333, guid: 93225e0f77d11734990094acc0bb7160, type: 3}
+  projectileStrategy:
+    rid: 5548055959870111993
+  targetStrategy:
+    rid: 5548055959870111994
+  rangeStrategy:
+    rid: 5548055959870111995
+  filterStrategy:
+    rid: 5548055959870111996
+  animationStrategy:
+    rid: 5548055959870112007
+  effectStrategies:
+  - rid: 5548055959870111992
+  - rid: 5548055959870112004
+  requirementStrategy:
+    rid: -2
+  visualStrategies:
+  - rid: 5548055959870112010
+  - rid: 5548055959870112011
+  - rid: 5548055959870112012
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 5548055959870111992
+      type: {class: DamageEffectStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
+      data:
+        baseDamage: 20
+    - rid: 5548055959870111993
+      type: {class: HomingProjectile, ns: , asm: Assembly-CSharp}
+      data:
+        <RequiresUpdate>k__BackingField: 1
+        speed: 12
+        turnSpeed: 180
+        maxLifetime: 8
+        closeEnoughDistance: 0.5
+    - rid: 5548055959870111994
+      type: {class: MultiTargetStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        maxTargetNum: 3
+    - rid: 5548055959870111995
+      type: {class: CircleRangeStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        <MaxCastDistance>k__BackingField: 8
+        raidius: 8
+    - rid: 5548055959870111996
+      type: {class: EnemyFilterStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        isCaontainBoss: 1
+    - rid: 5548055959870112004
+      type: {class: AddBuffEffectStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        buff:
+          data: {fileID: 11400000, guid: 78054e8b829d5e342a26ef6d3f496c6f, type: 2}
+          effects:
+          - rid: 5548055959870112005
+          remainingTime: 1.8982571
+          currentStack: 1
+          owner: {fileID: 0}
+          target: {fileID: 0}
+          nextTickTime: 74.81245
+    - rid: 5548055959870112005
+      type: {class: DamageEffectStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
+      data:
+        baseDamage: 10
+    - rid: 5548055959870112007
+      type: {class: CastingAnimationStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
+      data:
+        <DelayTime>k__BackingField: 0.6
+        <animationClip>k__BackingField: {fileID: -203655887218126122, guid: 47aff60ea3fa20f40aab04cfa39b6bc5, type: 3}
+    - rid: 5548055959870112010
+      type: {class: SoundVisualStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        audioClip: {fileID: 8300000, guid: 561b6a4e69f38a745939dfa7fd2befab, type: 3}
+    - rid: 5548055959870112011
+      type: {class: VfxVisualStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        vfx: {fileID: 19884194, guid: 8f3db2ef4b3fd674eafb97a117b99408, type: 3}
+        spawnOffset: {x: 0, y: 0, z: 0}
+        destroyAfterSeconds: 2
+    - rid: 5548055959870112012
+      type: {class: VfxVisualStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        vfx: {fileID: 198430637241592466, guid: c787459d7b28c9a4ab701b1720cef097, type: 3}
+        spawnOffset: {x: 0, y: 2, z: 0}
+        destroyAfterSeconds: 1

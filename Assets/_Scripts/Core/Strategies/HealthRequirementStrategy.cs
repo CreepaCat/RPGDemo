@@ -6,10 +6,10 @@ namespace RPGDemo.Core.Strategies
     /// <summary>
     /// 血量百分比要求策略
     /// </summary>
-    [CreateAssetMenu(menuName = "RPGDemo/Strategy/CastRequirement/HealthRequirement")]
+    //[CreateAssetMenu(menuName = "RPGDemo/Strategy/CastRequirement/HealthRequirement")]
     public class HealthRequirementStrategy : CastRequirementStrategy
     {
-        [SerializeField,]
+        [SerializeField]
         [Range(0f, 100f)] public float healthPercentage;
         [SerializeField] public bool isLessThan = true;
         public override bool CanCast(Character caster)

@@ -1,15 +1,7 @@
 fileFormatVersion: 2
-guid: 3b671081e44be1c4aa4355e8ba6e8a5e
-timeCreated: 1499121568
-licenseType: Store
-NativeFormatImporter:
+guid: 93225e0f77d11734990094acc0bb7160
+PrefabImporter:
+  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 57772
-  packageName: Epic Toon FX
-  packageVersion: 1.82
-  assetPath: Assets/Epic Toon FX/Prefabs/Combat/Missiles/Fireball/FireballMissileFire.prefab
-  uploadId: 679579
