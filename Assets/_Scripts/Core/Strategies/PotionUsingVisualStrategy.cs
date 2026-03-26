@@ -7,6 +7,8 @@ namespace RPGDemo.Core.Strategies
     /// 血量要求策略
     /// </summary>
     //[CreateAssetMenu(menuName = "RPGDemo/Strategy/Visual/PotionUsingVisual")]
+    [System.Serializable]
+
     public class PotionUsingVisualStrategy : VisualStrategy
     {
         public ParticleSystem onUsingVfxPrefab;

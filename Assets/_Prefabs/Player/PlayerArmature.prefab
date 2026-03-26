@@ -52539,6 +52539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f321c7c2a01db5841be5a5ca4a615b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  RightHand: {fileID: 4765955133753749721}
+  LeftHand: {fileID: 4175829382823444705}
+  Weapon: {fileID: 3916308543484999305}
+  Head: {fileID: 6022357624566844948}
   characterModel: {fileID: 6273426047836659889}
   damageNumberUIPrefab: {fileID: 3269273814348931015, guid: e48c601c2bb87754598646f8cd95dc4d, type: 3}
   damageNumberUIParent: {fileID: 0}
@@ -53006,7 +53010,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Buffs.BuffStore
   defaultBuffs:
-  - {fileID: 11400000, guid: 56a3ed438ea36d840aea247f6a597590, type: 2}
+  - data: {fileID: 0}
+    effects: []
+    remainingTime: 0
+    currentStack: 0
+    owner: {fileID: 0}
+    target: {fileID: 0}
+    nextTickTime: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &6406612339540235573
 GameObject:
   m_ObjectHideFlags: 0

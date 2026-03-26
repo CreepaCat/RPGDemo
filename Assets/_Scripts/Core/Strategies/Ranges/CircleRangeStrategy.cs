@@ -6,6 +6,8 @@ using UnityEngine;
 /// 圆形范围选择策略
 /// </summary>
 //[CreateAssetMenu(menuName = "RPGDemo/Strategy/Range/CircleRangeStrategy")]
+[System.Serializable]
+
 public class CircleRangeStrategy : RangeStrategy
 {
     public float raidius = 10f;

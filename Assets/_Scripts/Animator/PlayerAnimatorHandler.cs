@@ -25,50 +25,52 @@ public class PlayerAnimatorHandler : MonoBehaviour
         _player = GetComponent<Player>();
         _animator.applyRootMotion = false;
     }
-    
-    public void PlayTargetAnimation(int targetAnimation,bool isInteractingAnima,float crossFadeTime = 0.2f)
+
+    public bool PlayTargetAnimation(int targetAnimation, bool isInteractingAnima, float crossFadeTime = 0.2f)
     {
-        if (IsInteracting) return;
-        
-       _animator.SetBool(PlayerAnimatorParamConfig.animIDIsinteracting, isInteractingAnima);
-       _animator.Play(targetAnimation); 
-       _animator.CrossFade(targetAnimation,crossFadeTime);
+        if (IsInteracting) return false;
+
+        _animator.SetBool(PlayerAnimatorParamConfig.animIDIsinteracting, isInteractingAnima);
+        _animator.Play(targetAnimation);
+        _animator.CrossFade(targetAnimation, crossFadeTime);
+        return true;
     }
-    
+
     /// <summary>
     /// 手部遮罩动画
     /// </summary>
     /// <param name="targetAnimation"></param>
     /// <param name="isHandInteractingAnima"></param>
     /// <param name="crossFadeTime"></param>
-    public void PlayTargetHandMaskedAnimation(int targetAnimation,bool isHandInteractingAnima,float crossFadeTime = 0.1f)
+    public bool PlayTargetHandMaskedAnimation(int targetAnimation, bool isHandInteractingAnima, float crossFadeTime = 0.1f)
     {
-        if(IsHandInteracting || IsInteracting) return;
-        
+        if (IsHandInteracting || IsInteracting) return false;
+
         _animator.SetBool(PlayerAnimatorParamConfig.animIDIsHandInteracting, isHandInteractingAnima);
-        _animator.Play(targetAnimation); 
-        _animator.CrossFade(targetAnimation,crossFadeTime);
+        _animator.Play(targetAnimation);
+        _animator.CrossFade(targetAnimation, crossFadeTime);
+        return true;
     }
-    
-    
+
+
     /// <summary>
     ///计算并应用动画位移和旋转，此函数在LateUpdate执行
     /// </summary>
     private void OnAnimatorMove()
     {
         //非Interacting动画不使用根动画计算位移
-        if(!IsInteracting || Time.deltaTime <= 0f) return;
-        
+        if (!IsInteracting || Time.deltaTime <= 0f) return;
+
         //由于Fall和Jump都属于Interacting动画，但不由根动画计算位移，所以排除
-        if(IsFalling) return;
-        
+        if (IsFalling) return;
+
         Vector3 deltaPosition = _animator.deltaPosition;
         deltaPosition.y = 0;
-       _player.Move(deltaPosition);
+        _player.Move(deltaPosition);
 
-       if (_animator.deltaRotation != Quaternion.identity)
-       {
-           transform.rotation = _animator.deltaRotation * transform.rotation;
-       }
+        if (_animator.deltaRotation != Quaternion.identity)
+        {
+            transform.rotation = _animator.deltaRotation * transform.rotation;
+        }
     }
 }

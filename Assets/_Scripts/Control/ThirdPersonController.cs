@@ -1,6 +1,6 @@
-﻿ using RPGDemo;
- using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
+﻿using RPGDemo;
+using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
 
@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 namespace RPGDemo.Inputs
 {
     [RequireComponent(typeof(CharacterController))]
-#if ENABLE_INPUT_SYSTEM 
+#if ENABLE_INPUT_SYSTEM
     [RequireComponent(typeof(PlayerInput))]
 #endif
     public class ThirdPersonController : MonoBehaviour
@@ -88,25 +88,25 @@ namespace RPGDemo.Inputs
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f; //下坠最大速度
 
-        
+
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
         private float _rollTimeDelta;
         private float _attackTimeoutDelta;
-        
+
         //custom
         public float _attackTimeout = 0.2f;
         private bool isAttacking => _animator.GetBool(PlayerAnimatorParamConfig.animIDAttack);
 
         [SerializeField] private float _rollTimeOut = 0.1f;
-        
-        [field:SerializeField]public bool CanDoCombo { get; private set; } 
- 
 
-   
+        [field: SerializeField] public bool CanDoCombo { get; private set; }
 
-#if ENABLE_INPUT_SYSTEM 
+
+
+
+#if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
 #endif
         private Animator _animator;
@@ -131,7 +131,7 @@ namespace RPGDemo.Inputs
         }
 
         private Player _player;
-        
+
 
         private void Awake()
         {
@@ -140,25 +140,25 @@ namespace RPGDemo.Inputs
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
-            
+
         }
-        
+
 
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             _player = GetComponent<Player>();
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<PlayerInputs>();
-#if ENABLE_INPUT_SYSTEM 
+#if ENABLE_INPUT_SYSTEM
             _playerInput = GetComponent<PlayerInput>();
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
-           // AssignAnimationIDs();
+            // AssignAnimationIDs();
 
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
@@ -170,8 +170,8 @@ namespace RPGDemo.Inputs
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-            
-            
+
+
             if (!_player.AnimatorHandler.IsInteracting)
             {
                 Move();
@@ -179,9 +179,9 @@ namespace RPGDemo.Inputs
                 HandleAttackInput();
                 HandleInteractInput();
             }
-            
-            
-           
+
+
+
             JumpAndGravity();
             GroundedCheck();
 
@@ -194,7 +194,7 @@ namespace RPGDemo.Inputs
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
                 Cursor.lockState = CursorLockMode.None;
-               // _player.DisableInput();
+                // _player.DisableInput();
             }
         }
 
@@ -209,20 +209,20 @@ namespace RPGDemo.Inputs
             {
                 _input.interact = false;
                 _player.Interactor.DoInteract();
-                
+
             }
         }
-        
-        
+
+
         private void HandleRollInput()
         {
             _rollTimeDelta += Time.deltaTime;
-            if(_rollTimeDelta < _rollTimeOut) return;
-            
+            if (_rollTimeDelta < _rollTimeOut) return;
+
             if (_input.roll)
             {
                 _rollTimeDelta = 0f;
-                
+
                 //旋转到对应方向，翻滚时若无方向输入，则以角色的朝向作为翻滚方向
                 Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
                 if (inputDirection.magnitude > _threshold)
@@ -234,28 +234,28 @@ namespace RPGDemo.Inputs
                 {
                     _targetRotation = transform.eulerAngles.y;
                 }
-                transform.rotation = Quaternion.Euler(0.0f,_targetRotation, 0.0f);
-                
-                _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDRolling,true,0.1f);
+                transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
+
+                _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDRolling, true, 0.1f);
                 _input.roll = false;
             }
         }
 
-  
+
         /// <summary>
         /// 自定义函数
         /// </summary>
         private void HandleAttackInput()
         {
-            _attackTimeoutDelta+= Time.deltaTime;
-            if(!Grounded) return;
-            if(_attackTimeoutDelta < _attackTimeout) return;
-            
+            _attackTimeoutDelta += Time.deltaTime;
+            if (!Grounded) return;
+            if (_attackTimeoutDelta < _attackTimeout) return;
+
             // if (_input.heaveyAttack)
             // {
             //     _player.Weapon.HeaveAttack();
             //     _input.heaveyAttack = false; //防止长按连续重击
-            //     
+            //
             // }
             if (_input.lightAttack)
             {
@@ -269,9 +269,9 @@ namespace RPGDemo.Inputs
                 {
                     _player.Weapon.LightAttack();
                 }
-                
+
             }
-         
+
         }
 
         private void GroundedCheck()
@@ -287,10 +287,10 @@ namespace RPGDemo.Inputs
             {
                 _animator.SetBool(PlayerAnimatorParamConfig.animIDGrounded, Grounded);
             }
-        } 
-        
+        }
+
         /// <summary>
-        ///手搓旋转相机，写法值得借鉴 
+        ///手搓旋转相机，写法值得借鉴
         /// </summary>
         private void CameraRotation()
         {
@@ -313,8 +313,8 @@ namespace RPGDemo.Inputs
                 _cinemachineTargetYaw, 0.0f);
         }
 
-        
-       // Vector3 inputDirection =>new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+
+        // Vector3 inputDirection =>new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
@@ -359,13 +359,13 @@ namespace RPGDemo.Inputs
                 _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                                  new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
             }
-       
+
 
             // update animator if using character
             if (_hasAnimator)
             {
-                if(!_input.enabled) return;
-              //  Debug.Log("anima set float speed" + _animationBlend);
+                if (!_input.enabled) return;
+                //  Debug.Log("anima set float speed" + _animationBlend);
                 _animator.SetFloat(PlayerAnimatorParamConfig.animIDSpeed, _animationBlend);
                 _animator.SetFloat(PlayerAnimatorParamConfig.animIDMotionSpeed, inputMagnitude);
             }
@@ -390,10 +390,10 @@ namespace RPGDemo.Inputs
                 {
                     _verticalVelocity = -2f;
                 }
-                
-                
+
+
                 //项目暂不使用跳跃
-                // Jump  
+                // Jump
                 // if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 // {
                 //     // the square root of H * -2 * G = how much velocity needed to reach desired height
@@ -415,7 +415,7 @@ namespace RPGDemo.Inputs
             else
             {
                 // reset the jump timeout timer
-               // _jumpTimeoutDelta = JumpTimeout;
+                // _jumpTimeoutDelta = JumpTimeout;
 
                 // fall timeout
                 if (_fallTimeoutDelta >= 0.0f)
@@ -428,12 +428,12 @@ namespace RPGDemo.Inputs
                     if (_hasAnimator)
                     {
                         _animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, true);
-                        _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDFreeFall,true,0.04f);
-                      
+                        _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDFreeFall, true, 0.04f);
+
                     }
                     //手动计算应用坠落位移，覆盖根动画的位移计算,但会与Rolling根动画冲突
                     Vector3 targetDirection = CaculateDirection();
-                        
+
                     // move the player
                     if (_controller.enabled)
                     {
@@ -443,7 +443,7 @@ namespace RPGDemo.Inputs
                 }
 
                 // if we are not grounded, do not jump
-               // _input.jump = false;
+                // _input.jump = false;
             }
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -470,7 +470,7 @@ namespace RPGDemo.Inputs
 
 
             return Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-        
+
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -479,32 +479,32 @@ namespace RPGDemo.Inputs
             if (lfAngle > 360f) lfAngle -= 360f;
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
-        
+
         #region 动画事件处理
         public void OnFootstep()
         {
-           
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
-                }
-            
+
+            if (FootstepAudioClips.Length > 0)
+            {
+                var index = Random.Range(0, FootstepAudioClips.Length);
+                AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+
         }
-    
+
         public void OnLand()
         {
-            
+
             AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            
+
         }
-    
+
         public void OnAttackOver()
         {
-           // _player.TpController.OnAttackOver();
-          
+            // _player.TpController.OnAttackOver();
+
             Debug.Log("攻击结束");
-           // _input.lightAttack = false;
+            // _input.lightAttack = false;
             //_input.chargeAttack = false;
             _attackTimeoutDelta = 0f;
         }
@@ -524,6 +524,6 @@ namespace RPGDemo.Inputs
                 GroundedRadius);
         }
 
-       
+
     }
 }

@@ -9,6 +9,8 @@ namespace RPGDemo.Core.Strategies
     /// 伤害效果策略
     /// </summary>
     //[CreateAssetMenu(menuName = "RPGDemo/Strategy/Effect/DamageEffect")]
+    [System.Serializable]
+
     public class DamageEffectStrategy : EffectStrategy
     {
         public float baseDamage; //固定伤害

@@ -32,6 +32,8 @@ namespace RPGDemo.Projectiles
 
             audioSource = GetComponent<AudioSource>();
             audioSource.spatialBlend = 1f;  //3d空间音效
+
+            GetComponent<Collider>().isTrigger = true;
         }
 
         public void Launch(IProjectileStrategy strat, Character caster, Character target,
@@ -60,23 +62,34 @@ namespace RPGDemo.Projectiles
 
         }
 
-        private void OnCollisionEnter(Collision collosion)
+        private void OnTriggerEnter(Collider other)
         {
+            if (other.transform == owner.transform) return;
+            if (other.isTrigger) return;
+
+            //对于必中弹
+            if (targetTransform != null && other.transform != targetTransform) return;
+
+
             // 碰撞逻辑：伤害、特效、销毁等
             // 可通过 owner 或 event 或回调方法 调用 EffectStrategies
-            if (collosion.transform.TryGetComponent<Character>(out var target) && target != owner)
+            //说明是直线发射无目标飞弹，直接对第一个命中物生效
+            if (other.transform.TryGetComponent<Character>(out var target))
             {
                 Debug.Log(owner + "投射物命中目标" + target);
-                hitAction(target);
-
-
+                hitAction?.Invoke(target);
             }
-            var hitpos = collosion.contacts[0];
 
+            var hitpos = other.bounds.ClosestPoint(transform.position);
             audioSource.PlayOneShot(hitSfx);
+
+            var hitNormal = (owner.transform.position - hitpos).normalized;
             //根据碰撞点的法线来决定方向
-            Instantiate(hitVfx, hitpos.point, Quaternion.LookRotation(hitpos.normal));
+            Instantiate(hitVfx, hitpos, Quaternion.LookRotation(hitNormal));
             Destroy(gameObject);
+
+
+
         }
 
         /// <summary>
@@ -86,7 +99,7 @@ namespace RPGDemo.Projectiles
         /// <exception cref="NotImplementedException"></exception>
         public void SetCallback(Action<Character> callback)
         {
-            hitAction = callback;
+            hitAction += callback;
 
         }
     }

@@ -10,6 +10,7 @@ namespace RPGDemo.Core.Strategies
         AnimationClip animationClip { get; }
 
         void PlayAnimation(Character caster);
+        bool CanPlayAnimation(Character caster);
 
     }
 }

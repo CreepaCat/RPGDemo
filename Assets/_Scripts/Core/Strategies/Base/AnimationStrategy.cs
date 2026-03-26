@@ -13,7 +13,11 @@ namespace RPGDemo.Core.Strategies
 
         [field: SerializeField] public AnimationClip animationClip { get; private set; }
 
+        public abstract bool CanPlayAnimation(Character caster);
+
         public abstract void PlayAnimation(Character caster);
+
+
 
     }
 }

@@ -35,16 +35,21 @@ namespace RPGDemo.Skills
             // 子类实现具体逻辑
         }
         [Header("== 生成投射物 ==")]
+        //todo:使用投射物工厂生产投射物
         [SerializeField] public ProjectileController projectilePrefab;  //生成投射物
         [SerializeReference] public ProjectileStrategy projectileStrategy; //投射物控制策略
+        public Character.CastType castType = Character.CastType.RightHand;
+        public Vector3 castOffset = Vector3.zero;
 
         [Header("=== 技能策略乐高积木模块 ===")]
+        //todo:使用目标选择系统
         [SerializeReference] public TargetStrategy targetStrategy;      // 单目标 / 多目标 / 自动锁定
         [SerializeReference] public RangeStrategy rangeStrategy;                 // 最远距离 + AoE 形状
         [SerializeReference] public FilterStrategy filterStrategy;               // 敌/友/无视
 
         [SerializeReference] public AnimationStrategy animationStrategy;//播放动画
 
+        //todo：效果拆分，分为应用在自身的效果 和 应用在目标身上的效果
         [SerializeReference] public List<EffectStrategy> effectStrategies = new(); // 可多效果（伤害+Buff+治疗）
         [SerializeReference] public CastRequirementStrategy requirementStrategy; // 怒气/血量消耗(可为空)
 
@@ -57,6 +62,12 @@ namespace RPGDemo.Skills
             // 1. 检查释放条件
             if (requirementStrategy != null && !requirementStrategy.CanCast(caster))
                 return false;
+
+            //若不能播放技能动画，则无法释放该技能
+            if (animationStrategy != null && !animationStrategy.CanPlayAnimation(caster))
+            {
+                return false;
+            }
 
             // 2. 消耗资源,用于除法力值外的资源消耗策略
             requirementStrategy?.Consume(caster);
@@ -86,7 +97,8 @@ namespace RPGDemo.Skills
             //todo:禁用角色输入，并插值转向
             caster.transform.rotation = Quaternion.LookRotation(dir);
 
-            caster.StartCoroutine(CastSkillCroutine(animationStrategy.DelayTime, caster, targets));
+            float delayTiem = animationStrategy == null ? 0f : animationStrategy.DelayTime;
+            caster.StartCoroutine(CastSkillCroutine(delayTiem, caster, targets));
             return true;
 
 
@@ -96,7 +108,9 @@ namespace RPGDemo.Skills
 
         IEnumerator CastSkillCroutine(float delayCastTime, Character caster, List<Character> targets)
         {
+
             animationStrategy?.PlayAnimation(caster);
+
             //释放者身上的粒子效果与音效
             PlayVisuals(caster, targets);
             yield return new WaitForSeconds(delayCastTime);
@@ -115,7 +129,8 @@ namespace RPGDemo.Skills
 
         private void ApplyProjectile(Character caster, List<Character> targets)
         {
-            var launchPos = caster.transform.position + Vector3.up * 2f;
+            var castPoint = caster.GetCastTransform(castType);
+            var launchPos = castPoint.transform.position + castOffset;
 
 
             //是否是多目标，对每个目标单独生成投射物
@@ -126,9 +141,12 @@ namespace RPGDemo.Skills
             }
             else
             {
+                // 用局部变量固定当前 target,防止闭包影响
+                // Character currentTarget = null;
                 //多目标
                 foreach (var target in targets)
                 {
+                    //  currentTarget = target;
                     SpawnProjectile(caster, target, launchPos);
                 }
             }
@@ -146,20 +164,17 @@ namespace RPGDemo.Skills
             ? (target.transform.position + Vector3.up - launchPos).normalized
             : caster.transform.forward;
 
-
-
-
             ProjectileController projectileController = Instantiate(projectilePrefab, launchPos, Quaternion.LookRotation(dir));
 
             projectileController.Launch(projectileStrategy, caster, target, GetItemID(), launchPos, dir);
 
             //命中回调函数
-            projectileController.SetCallback((Character character) =>
+            projectileController.SetCallback((hitTarget) =>
             {
                 foreach (var effect in effectStrategies)
                 {
                     if (effect != null)
-                        effect.Apply(caster, character, GetItemID());
+                        effect.Apply(caster, hitTarget, GetItemID());
                 }
             });
         }

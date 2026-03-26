@@ -14,25 +14,41 @@ namespace RPGDemo.Buffs
     public class BuffInstance
     {
         public BuffSO data;
-        [SerializeReference] List<EffectStrategy> effects = new();
+        [SerializeReference] public List<EffectStrategy> effects = new();
         [HideInInspector] public float remainingTime;
         [HideInInspector] public int currentStack = 1; //buff层数
         [HideInInspector] public Character owner; // 施加者（可用于归属伤害）
         [HideInInspector] public Character target;
         [HideInInspector] public float nextTickTime;        // 下次 tick 时间戳
 
+        public BuffInstance(BuffSO data, Character caster, Character target, List<EffectStrategy> effects)
+        {
+            this.data = data;
+            this.owner = caster;
+            this.target = target;
+            this.effects = effects;
+
+        }
+
         public void ApplyEffects()
         {
             foreach (var effect in effects)
             {
-                effect.Apply(owner, target, data.buffID);
+
+                for (int i = 0; i < currentStack; i++)
+                {
+                    effect.Apply(owner, target, data.buffID);
+                }
+
             }
         }
 
-        public void Setup(Character caster, Character target)
+        internal float GetRemainingTimeRatio()
         {
-            owner = caster;
-            this.target = target;
+            if (data.baseDuration < 0)
+                return 1f;
+
+            return remainingTime / data.baseDuration;
         }
     }
 }

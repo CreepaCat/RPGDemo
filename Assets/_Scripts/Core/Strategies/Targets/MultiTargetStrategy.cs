@@ -7,6 +7,7 @@ using UnityEngine;
 /// 多目标选择策略
 /// </summary>
 //[CreateAssetMenu(menuName = "RPGDemo/Strategy/Target/MultiTargetStrategy")]
+[System.Serializable]
 public class MultiTargetStrategy : TargetStrategy
 {
     public int maxTargetNum = 3;

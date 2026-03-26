@@ -5,6 +5,8 @@ using UnityEngine;
 /// 追踪弹
 /// </summary>
 //[CreateAssetMenu(menuName = "RPGDemo/Strategy/Projectile/Homing")]
+[System.Serializable]
+
 public class HomingProjectile : ProjectileStrategy
 {
     public float speed = 12f;
@@ -31,28 +33,6 @@ public class HomingProjectile : ProjectileStrategy
     // 在 ProjectileController Update 中调用
     public override void UpdateProjectile(Rigidbody rb, Transform targetTransform, float deltaTime)
     {
-        // Transform projTransform = rb.transform;
-        // if (targetTransform == null) return;
-
-        // //todo:获取目标模型的中点
-        // var targetPos = targetTransform.position + Vector3.up;
-
-        // Vector3 toTarget = (targetPos - projTransform.position).normalized;
-        // Vector3 currentDir = projTransform.forward;
-
-        // // 平滑转向
-        // Vector3 newDir = Vector3.RotateTowards(currentDir, toTarget, turnSpeed * Mathf.Deg2Rad * deltaTime, 0f);
-        // projTransform.forward = newDir;
-
-        // rb.linearVelocity = newDir * speed;
-
-        // // 接近目标时可加速或直接命中
-        // if (Vector3.Distance(projTransform.position, targetPos) < closeEnoughDistance)
-        // {
-        //     //speed += 0.2f;
-        //     // 可直接销毁或触发爆炸
-        //     Debug.Log("HomingProjectile命中" + targetTransform);
-        // }
         if (targetTransform == null) return;
 
         // todo: 获取目标模型的中点（可以再优化为实际的 collider center）

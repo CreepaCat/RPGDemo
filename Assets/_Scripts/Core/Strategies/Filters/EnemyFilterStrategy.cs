@@ -5,6 +5,8 @@ using UnityEngine;
 /// 目标过滤策略
 /// </summary>
 //[CreateAssetMenu(menuName = "RPGDemo/Strategy/Filter/EnemyFilter")]
+[System.Serializable]
+
 public class EnemyFilterStrategy : FilterStrategy
 {
     public bool isCaontainBoss = false;

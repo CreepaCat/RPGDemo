@@ -8,6 +8,8 @@ namespace RPGDemo.Core.Strategies
     /// 治疗效果策略
     /// </summary>
     //[CreateAssetMenu(menuName = "RPGDemo/Strategy/Effect/HealEffect")]
+    [System.Serializable]
+
     public class HealEffectStrategy : EffectStrategy
     {
         public float baseHeal = 50;

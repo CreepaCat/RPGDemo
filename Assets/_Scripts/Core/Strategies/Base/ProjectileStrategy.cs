@@ -9,7 +9,7 @@ namespace RPGDemo.Core.Strategies
     public abstract class ProjectileStrategy : IProjectileStrategy
     {
         //是否手动计算投射物路径
-        [field: SerializeField] public bool RequiresUpdate { get; private set; }
+        public bool RequiresUpdate = true;
 
         public abstract void Initialize(GameObject projectile, Character caster, Character target, Vector3 launchPosition, Vector3 launchDirection);
 

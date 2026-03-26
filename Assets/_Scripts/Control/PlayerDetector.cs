@@ -7,13 +7,13 @@ public class PlayerDetector : MonoBehaviour
 
     public Vector3 GetPlayerPosition()
     {
-        if(player == null)
+        if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
         return player.position;
     }
     public float DistanceToPlayer()
     {
-        if(player == null)
+        if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
         return Vector3.Distance(player.position, transform.position);
     }

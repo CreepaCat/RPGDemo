@@ -57,6 +57,9 @@ namespace RPGDemo.Attributes
             lastRegenTimer += Time.deltaTime;
         }
 
+        public float GetCurrentHealth() => currentHealth;
+        public float GetMaxHealth() => baseStats.GetStats(StatsType.Health);
+
         public bool IsDead()
         {
             LazyInit();
@@ -169,7 +172,7 @@ namespace RPGDemo.Attributes
 
             maxHealth = baseStats.GetStats(StatsType.Health);
             //将当前血量限制在正常范围
-            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            currentHealth = Mathf.Clamp(maxHealth, 0, maxHealth);
             IsInitialized = true;
             onDone?.Invoke();
         }

@@ -5,12 +5,11 @@ namespace RPGDemo.Core.Strategies
     /// <summary>
     /// 直线投射物策略
     /// </summary>
-   // [CreateAssetMenu(menuName = "RPGDemo/Strategy/Projectile/StraightLine")]
+    // [CreateAssetMenu(menuName = "RPGDemo/Strategy/Projectile/StraightLine")]
+    [System.Serializable]
     public class StraightLineProjectile : ProjectileStrategy
     {
         public float speed = 20f;
-        public new bool RequiresUpdate { get; private set; } = false;
-
         public override void Initialize(GameObject projectile, Character caster, Character target, Vector3 launchPosition, Vector3 launchDirection)
         {
             var rb = projectile.GetComponent<Rigidbody>();

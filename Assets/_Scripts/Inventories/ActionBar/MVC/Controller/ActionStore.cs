@@ -182,8 +182,8 @@ namespace RPGDemo.Inventories.ActionBar
 
             if (actionItem.IsConsumable())
             {
-                print("消耗品，可在快捷栏无限叠加");
-                return int.MaxValue;
+                print("消耗品");
+                return actionItem.GetMaxStackableAmount();
             }
 
             if (actionItems.ContainsKey(index)
@@ -193,9 +193,10 @@ namespace RPGDemo.Inventories.ActionBar
                 return 0;
             }
 
+            //技能也是一种快捷物品,可使用的道具也是
 
             print("一般快捷品，只能放一个");
-            //因为技能也是一种快捷物品
+
             return 1;
         }
 

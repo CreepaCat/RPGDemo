@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using RPGDemo.Core.Strategies;
 using UnityEngine;
-
+[System.Serializable]
 public class VfxVisualStrategy : VisualStrategy
 {
     public ParticleSystem vfx;

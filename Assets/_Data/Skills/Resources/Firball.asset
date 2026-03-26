@@ -31,12 +31,14 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6756598444278479333, guid: 93225e0f77d11734990094acc0bb7160, type: 3}
   projectileStrategy:
     rid: 5548055959870112001
+  castType: 2
+  castOffset: {x: 0, y: 0, z: 0}
   targetStrategy:
-    rid: 5548055959870111997
+    rid: -2
   rangeStrategy:
-    rid: 5548055959870111999
+    rid: -2
   filterStrategy:
-    rid: 5548055959870112000
+    rid: -2
   animationStrategy:
     rid: 5548055959870112006
   effectStrategies:
@@ -54,29 +56,18 @@ MonoBehaviour:
       type: {class: DamageEffectStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
       data:
         baseDamage: 10
-    - rid: 5548055959870111997
-      type: {class: SingleTargetStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
-      data:
-        isSelfTarget: 0
-    - rid: 5548055959870111999
-      type: {class: CircleRangeStrategy, ns: , asm: Assembly-CSharp}
-      data:
-        <MaxCastDistance>k__BackingField: 10
-        raidius: 10
-    - rid: 5548055959870112000
-      type: {class: EnemyFilterStrategy, ns: , asm: Assembly-CSharp}
-      data:
-        isCaontainBoss: 1
     - rid: 5548055959870112001
       type: {class: StraightLineProjectile, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
       data:
-        <RequiresUpdate>k__BackingField: 0
-        speed: 12
+        RequiresUpdate: 1
+        speed: 20
     - rid: 5548055959870112006
       type: {class: CastingAnimationStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
       data:
-        <DelayTime>k__BackingField: 0
+        <DelayTime>k__BackingField: 0.2
         <animationClip>k__BackingField: {fileID: -203655887218126122, guid: 6b8ae3a6a130d0d4594f4e401f19bdb3, type: 3}
+        isInteractingAnima: 0
+        isHandInteractingAnima: 1
     - rid: 5548055959870112013
       type: {class: SoundVisualStrategy, ns: , asm: Assembly-CSharp}
       data:

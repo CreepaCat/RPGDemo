@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using RPGDemo.Core.Strategies;
 using UnityEngine;
-
+[System.Serializable]
 public class SoundVisualStrategy : VisualStrategy
 {
     public AudioClip audioClip;
