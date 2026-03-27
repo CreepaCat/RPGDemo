@@ -78,8 +78,10 @@ public class NpcHeadUI : MonoBehaviour
             iconImage.color = originIconColor;
 
         }
+        Debug.Log(transform.name + ":" + questStatus.ToString());
         switch (questStatus)
         {
+
             case AIQuestListStatus.CanGiveQuest:
                 iconImage.enabled = true;
                 iconImage.sprite = canAcceptIcon;

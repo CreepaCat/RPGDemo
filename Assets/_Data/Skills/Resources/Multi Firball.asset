@@ -24,7 +24,7 @@ MonoBehaviour:
   cooldown: 1
   _isConsumable: 0
   skillType: 0
-  <manaCost>k__BackingField: 10
+  <manaCost>k__BackingField: 60
   unlockCost: 1
   prerequisites:
   - {fileID: 11400000, guid: 01e49aabbe075e347b83908681a11c2e, type: 2}

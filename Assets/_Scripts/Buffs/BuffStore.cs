@@ -27,6 +27,7 @@ namespace RPGDemo.Buffs
         {
             foreach (var buffInstance in defaultBuffs)
             {
+                if (buffInstance == null || buffInstance.data == null) return;
                 ApplyBuff(buffInstance, GetComponent<Character>(), GetComponent<Character>(), buffInstance.data.baseDuration);
             }
         }

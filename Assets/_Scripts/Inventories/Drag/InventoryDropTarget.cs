@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using RPGDemo.Core;
 using RPGDemo.Core.DraggingFrame;
 using RPGDemo.Inventories.Utils;
@@ -23,6 +23,7 @@ namespace RPGDemo.Inventories
         {
             Debug.Log("丢弃物品 " + amount + " items" + item.GetDisplayName());
             GameObject.FindGameObjectWithTag("Player").GetComponent<RandomDropper>().DropItem(item, amount);
+            SideMessageBox.ShowDrop(item, amount);
             //触发条件检测
             ConditionHandler.GetInstance().AnyConditionChanged();
         }

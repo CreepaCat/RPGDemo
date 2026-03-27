@@ -146,6 +146,7 @@ namespace RPGDemo.Inventories
             var virtualSlots = VirtualAdd(itemDict);
             if (virtualSlots == null)
             {
+                BottomMessageBox.ShowInventorySpaceNotEnough();
                 return false;
             }
             //若可添加，直接把虚拟背包赋值给当前背包，进行全部添加

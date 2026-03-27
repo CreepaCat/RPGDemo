@@ -16,8 +16,6 @@ namespace RPGDemo.InteractionSystem
 
 
 
-
-
         private void Update()
         {
             IInteractable neareast = FindNearestInteractable();

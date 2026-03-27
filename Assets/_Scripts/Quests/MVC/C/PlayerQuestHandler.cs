@@ -11,7 +11,7 @@ namespace RPGDemo.Quests
 {
     public class PlayerQuestHandler : MonoBehaviour, IPredicateEvaluator, ISaveable
     {
-        [SerializeField] List<QuestSO> quests;
+        [SerializeField] List<QuestSO> congfigQuests;
         [SerializeField] QuestObjectiveTracker objectiveTrackerPrefab;
 
         private List<QuestStatus> activeQuests = new();
@@ -22,18 +22,15 @@ namespace RPGDemo.Quests
 
         private void Start()
         {
-            // 确保持久化容器存在
-
-            // quests = QuestSO.
-            foreach (QuestSO quest in quests)
+            foreach (QuestSO quest in congfigQuests)
             {
 
                 AcceptQuest(quest);
 
             }
+            // OnQuestProgressChanged?.Invoke(null);
 
         }
-
 
         public static PlayerQuestHandler GetInstance()
         {
@@ -50,6 +47,11 @@ namespace RPGDemo.Quests
             InstantiateQuestTracker(quest);
 
             activeQuests.Add(new QuestStatus(quest));
+            SideMessageBox.ShowQuestAccepted(quest.GetQuestName());
+
+            //接取任务后立马进行一次条件检测
+            ConditionHandler.GetInstance().AnyConditionChanged();
+
             OnQuestProgressChanged?.Invoke(quest);
         }
         /// <summary>
@@ -85,6 +87,12 @@ namespace RPGDemo.Quests
             return qs != null && qs.IsFinished();
         }
 
+        public bool IsQuestInProgress(QuestSO quest)
+        {
+            var qs = GetQuestStatus(quest);
+            return qs != null && qs.IsInProgress();
+        }
+
         /// <summary>
         /// 获得任务奖励时调用
         /// </summary>
@@ -102,6 +110,7 @@ namespace RPGDemo.Quests
                 Destroy(tracker);
             }
             OnQuestProgressChanged?.Invoke(quest);
+            SideMessageBox.ShowQuestCompleted(quest.GetQuestName());
             ConditionHandler.GetInstance().AnyConditionChanged();
         }
 
@@ -115,13 +124,14 @@ namespace RPGDemo.Quests
                 return;
             }
             var qs = GetQuestStatus(quest);
-            if (qs == null) return;
+            //防止重复完成已结束的任务
+            if (qs == null || qs.IsCompleted() || qs.IsFinished()) return;
 
             qs.CompleteObjective(objective, number);
             OnQuestProgressChanged?.Invoke(quest);
             Debug.Log("Objective Completed");
 
-            if (qs.IsCompleted())
+            if (qs.IsAllObjectivesCompleted())
             {
                 qs.CompleteQuest();
                 OnQuestCompleted?.Invoke(quest);
@@ -144,24 +154,41 @@ namespace RPGDemo.Quests
         public bool CanAcceptQuest(QuestSO questSo)
         {
             if (questSo == null) return false;
-            //是否已完成
-            if (GetQuestStatus(questSo)?.progress == QuestProgress.Finished)
+
+            var questStatus = GetQuestStatus(questSo);
+            // if (questStatus == null) return true;
+            //是否已提交
+            //todo:严格判断，只要接取了就不能再接取（除非中途放其了）
+            //todo:如此一来对话端就要做更细化的分支,可接取、进行中、可提交、已完成，用四个分支进行细化对话
+            if (HasQuest(questSo))
             {
+                // Debug.Log("已任务" + questSo.GetQuestName());
                 return false;
             }
+            // if (GetQuestStatus(questSo)?.progress == QuestProgress.Finished)
+            // {
+            //     // Debug.Log("已任务" + questSo.GetQuestName());
+            //     return false;
+            // }
             //等级限制
             if (GetComponent<BaseStats>().CurrentLevel < questSo.questLevel)
             {
+                // Debug.Log("等级不足" + questSo.GetQuestName());
                 return false;
             }
             //前置任务限制
             foreach (var preQuest in questSo.preQuests)
             {
-                if (!HasQuest(preQuest) || GetQuestStatus(preQuest)?.progress != QuestProgress.Finished)
+                if (!HasQuest(preQuest) || GetQuestStatus(preQuest).progress != QuestProgress.Finished)
+                {
+                    // Debug.Log("前置任务未完成" + questSo.GetQuestName());
                     return false;
+                }
             }
             return true;
         }
+
+        #region 条件检测
         /// <summary>
         /// 用于计算角色身上与任务相关的条件判断
         /// </summary>
@@ -170,30 +197,34 @@ namespace RPGDemo.Quests
         /// <returns></returns>
         public bool? Evaluate(Predicate predicate, IEnumerable<ConditionSO.Parameter> parameters)
         {
+
+            QuestSO quest = (QuestSO)parameters.ToArray()[0].scriptableObject;
             switch (predicate)
             {
                 case Predicate.QuestCompleted:
-                    QuestSO quest1 = (QuestSO)parameters.ToArray()[0].scriptableObject;
-                    if (quest1 == null) return false;
-                    return HasQuest(quest1) && IsQuestCompleted(quest1);
+                    if (quest == null) return false;
+                    return HasQuest(quest) && IsQuestCompleted(quest);
 
                 case Predicate.QuestFinished:
-                    QuestSO quest2 = (QuestSO)parameters.ToArray()[0].scriptableObject;
-                    if (quest2 == null) return false;
-                    return HasQuest(quest2) && IsQuestFinished(quest2);
+
+                    if (quest == null) return false;
+                    return HasQuest(quest) && IsQuestFinished(quest);
 
                 case Predicate.CanAcceptQuest:
-                    QuestSO quest3 = (QuestSO)parameters.ToArray()[0].scriptableObject;
-                    return CanAcceptQuest(quest3);
+
+                    return CanAcceptQuest(quest);
+                case Predicate.QuestInprogress:
+                    if (quest == null) return false;
+                    return HasQuest(quest) && IsQuestInProgress(quest);
                 default:
                     return null;
             }
         }
-
+        #endregion
 
         //玩家身上的任务状态存档
-
-        enum QuestSaveKeys
+        #region 存档相关
+        enum SaveData
         {
             QuestStatuses,
         }
@@ -203,7 +234,7 @@ namespace RPGDemo.Quests
             JObject state = new JObject();
             IDictionary<string, JToken> statusDict = state;
 
-            string saveKey = QuestSaveKeys.QuestStatuses.ToString();
+            string saveKey = SaveData.QuestStatuses.ToString();
             List<object> questStatusRecords = new();
 
             foreach (var questStatus in activeQuests)
@@ -221,7 +252,7 @@ namespace RPGDemo.Quests
         {
             JObject state = s as JObject;
             IDictionary<string, JToken> stateDict = state;
-            string saveKey = QuestSaveKeys.QuestStatuses.ToString();
+            string saveKey = SaveData.QuestStatuses.ToString();
             if (!stateDict.ContainsKey(saveKey)) return;
 
             List<object> questStatusRecords = stateDict[saveKey].ToObject<List<object>>();
@@ -240,7 +271,8 @@ namespace RPGDemo.Quests
             }
 
         }
-
+        #endregion
 
     }
+
 }

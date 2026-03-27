@@ -21,7 +21,7 @@ namespace RPGDemo.Quests
     {
         [SerializeField] private List<QuestSO> quests;
 
-        public AIQuestListStatus questListStatus = AIQuestListStatus.NoQuest;
+        // public AIQuestListStatus questListStatus = AIQuestListStatus.NoQuest;
 
         PlayerQuestHandler playerQuestHandler;
         private void Awake()
@@ -41,6 +41,7 @@ namespace RPGDemo.Quests
                 var questStatus = playerQuestList.GetQuestStatus(quest);
                 if (questStatus == null)
                 {
+                    Debug.Log("有没有接取的任务" + quest.GetQuestName());
                     hasCanGiveQuest = playerQuestHandler.CanAcceptQuest(quest);
                 }
                 if (questStatus != null && !questStatus.IsFinished())
@@ -84,6 +85,7 @@ namespace RPGDemo.Quests
             if (!playerQuestHandler.HasQuest(questToReward))
             {
                 Debug.Log($"玩家没有任务{questToReward.GetQuestName()},无法获得任务奖励");
+
                 return;
             }
             var rewardItems = questToReward.GetQuestRewardItems();
@@ -91,6 +93,7 @@ namespace RPGDemo.Quests
             {
                 if (!TryRewardItemsToPlayer(rewardItems))
                 {
+                    BottomMessageBox.ShowCustom("无法获得任务奖励");
                     return;
                 }
             }
@@ -99,6 +102,7 @@ namespace RPGDemo.Quests
             if (questToReward.GetQuestRewardCoins() > 0)
             {
                 Purse.GetPlayerPurse().AddMoney(questToReward.GetQuestRewardCoins());
+                SideMessageBox.ShowReward("金币", questToReward.GetQuestRewardCoins());
             }
 
 
@@ -106,7 +110,10 @@ namespace RPGDemo.Quests
             if (questToReward.GetQuestRewardExp() > 0)
             {
                 Player.GetInstance().Experience.GainExp(questToReward.GetQuestRewardExp());
+                SideMessageBox.ShowReward("经验", questToReward.GetQuestRewardExp());
             }
+
+
 
             //修改任务状态
             playerQuestHandler.FinishQuest(questToReward);
@@ -133,7 +140,13 @@ namespace RPGDemo.Quests
             if (!playerInventory.AddItemDict(rewardItemDict))
             {
                 Debug.Log("玩家背包没有空位，无法获得任务奖励，");
+                BottomMessageBox.ShowInventorySpaceNotEnough();
                 return false;
+            }
+
+            foreach (var rewardData in rewardItems)
+            {
+                SideMessageBox.ShowReward(rewardData.item.GetDisplayName(), rewardData.quantity);
             }
 
             return true;

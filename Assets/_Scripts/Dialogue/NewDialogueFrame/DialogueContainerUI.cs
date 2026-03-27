@@ -55,18 +55,18 @@ namespace NewDialogueFrame
         private void Update()
         {
             //按空格代表选择next或默认第一个选项
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                if (dialogueOptionsRoot.gameObject.activeSelf)
-                {
-                    dialogueOptionsRoot.transform.GetChild(0).GetComponent<Button>().onClick.Invoke();
-                }
-                else if (nextButton.gameObject.activeSelf)
-                {
-                    nextButton.onClick.Invoke();
-                }
+            // if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            // {
+            //     if (dialogueOptionsRoot.gameObject.activeSelf)
+            //     {
+            //         dialogueOptionsRoot.transform.GetChild(0).GetComponent<Button>().onClick.Invoke();
+            //     }
+            //     else if (nextButton.gameObject.activeSelf)
+            //     {
+            //         nextButton.onClick.Invoke();
+            //     }
 
-            }
+            // }
         }
 
         private void ShowMe()

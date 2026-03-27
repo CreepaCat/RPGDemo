@@ -24,7 +24,7 @@ MonoBehaviour:
   cooldown: 1
   _isConsumable: 0
   skillType: 0
-  <manaCost>k__BackingField: 10
+  <manaCost>k__BackingField: 30
   unlockCost: 1
   prerequisites: []
   isUnlockedByDefault: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
       data:
         <DelayTime>k__BackingField: 0.2
         <animationClip>k__BackingField: {fileID: -203655887218126122, guid: 6b8ae3a6a130d0d4594f4e401f19bdb3, type: 3}
-        isInteractingAnima: 0
+        isInteractingAnima: 1
         isHandInteractingAnima: 1
     - rid: 5548055959870112013
       type: {class: SoundVisualStrategy, ns: , asm: Assembly-CSharp}

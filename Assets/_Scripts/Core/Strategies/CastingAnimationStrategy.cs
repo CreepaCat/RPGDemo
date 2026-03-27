@@ -20,7 +20,7 @@ namespace RPGDemo.Core.Strategies
 
         public override void PlayAnimation(Character caster)
         {
-            Debug.Log(caster + "播放动画片段" + animationClip.name);
+            Debug.Log(caster + "播放施法动画片段" + animationClip.name);
             // caster.GetComponent<Animator>().CrossFade(animationClip.name, 0.2f);
             var animatorHandler = caster.GetComponent<PlayerAnimatorHandler>();
             if (isInteractingAnima)
@@ -34,6 +34,7 @@ namespace RPGDemo.Core.Strategies
             }
 
             animatorHandler.PlayTargetAnimation(Animator.StringToHash(animationClip.name), false);
+            caster.GetComponent<Animator>().SetBool("isCasting", true);
 
 
         }

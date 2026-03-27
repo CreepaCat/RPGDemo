@@ -69,9 +69,17 @@ namespace MyNodeEditorExtension.Dialogue
 
         public void RepaintCurrentGraph()
         {
-            GenerateDialogueNodes();
-            ConnectDialogueNodes();
-            _targetDialogueTree.RemapEdgeData();
+            _targetGraph.SetGraphViewWriteBackSuppressed(true);
+            try
+            {
+                GenerateDialogueNodes();
+                ConnectDialogueNodes();
+                _targetDialogueTree.RemapEdgeData();
+            }
+            finally
+            {
+                _targetGraph.SetGraphViewWriteBackSuppressed(false);
+            }
         }
 
 
@@ -85,11 +93,19 @@ namespace MyNodeEditorExtension.Dialogue
                 return;
             }
 
-            ClearGraph();
+            _targetGraph.SetGraphViewWriteBackSuppressed(true);
+            try
+            {
+                ClearGraph();
 
-            GenerateDialogueNodes();
-            ConnectDialogueNodes();
-            _targetDialogueTree.RemapEdgeData();
+                GenerateDialogueNodes();
+                ConnectDialogueNodes();
+                _targetDialogueTree.RemapEdgeData();
+            }
+            finally
+            {
+                _targetGraph.SetGraphViewWriteBackSuppressed(false);
+            }
             // AddExposedProperties();
             // GenerateCommentBlocks();
         }

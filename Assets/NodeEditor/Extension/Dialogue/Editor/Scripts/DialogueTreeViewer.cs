@@ -15,6 +15,8 @@ namespace MyNodeEditor.Extension.Dialogue
     {
         public InspectorViewer InspectorViewer = null;
         public DialogueTree currentNodeTree;
+        private bool _undoRegistered = false;
+        private bool _suppressGraphViewWriteBack = false;
 
 
         //节点选中事件
@@ -45,7 +47,25 @@ namespace MyNodeEditor.Extension.Dialogue
 
             //撤销重做事件
             Undo.undoRedoPerformed += OnUndoRedo;
+            _undoRegistered = true;
 
+        }
+
+        public void DisposeViewer()
+        {
+            if (_undoRegistered)
+            {
+                Undo.undoRedoPerformed -= OnUndoRedo;
+                _undoRegistered = false;
+            }
+
+            graphViewChanged -= OnGraphViewChanged;
+            OnNodeSelected = null;
+        }
+
+        public void SetGraphViewWriteBackSuppressed(bool suppressed)
+        {
+            _suppressGraphViewWriteBack = suppressed;
         }
 
         /// <summary>
@@ -138,14 +158,15 @@ namespace MyNodeEditor.Extension.Dialogue
         {
             var tempNodeView = new DialogueNodeView(nodeDate);
             //节点样式
-            if (nodeDate.HasCondition())
-            {
-                tempNodeView.styleSheets.Add(Resources.Load<StyleSheet>("DialogueNodeView_HasCondition"));
-            }
-            else
-            {
-                tempNodeView.styleSheets.Add(Resources.Load<StyleSheet>("DialogueNodeView"));
-            }
+            // if (nodeDate.HasCondition())
+            // {
+            //     tempNodeView.styleSheets.Add(Resources.Load<StyleSheet>("DialogueNodeView_HasCondition"));
+            // }
+            // else
+            // {
+            //     tempNodeView.styleSheets.Add(Resources.Load<StyleSheet>("DialogueNodeView"));
+            // }
+            tempNodeView.UpdateStyleSheet();
 
 
             // tempDialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
@@ -354,14 +375,13 @@ namespace MyNodeEditor.Extension.Dialogue
             // dialogueTextField.style.minHeight = 50;
             dialogueTextField.style.maxWidth = DefaultNodeSize.x + 10;
             dialogueTextField.style.maxHeight = 100; // 限制最大高度，避免无限拉伸
-                                                     //对话文本数据绑定
-                                                     // tempDialogueNodeView.NodeData.OnChanged += tempDialogueNodeView.UpdateDialogueContent;
+
+            //对话文本数据绑定
             dialogueTextField.SetValueWithoutNotify(tempDialogueNodeView.NodeData.dialogueContent);
 
             dialogueTextField.RegisterValueChangedCallback(evt =>
             {
-                // tempNodeView.DialogueText = evt.newValue; //编辑器中显示
-                //tempNodeView.title = evt.newValue;
+
                 //实时保存对话输入
                 tempDialogueNodeView.NodeData.dialogueContent = evt.newValue; //数据容器发生改变要setdirty
                                                                               // Debug.Log($"<实时保存对话输入>: {tempDialogueNodeView.NodeData.dialogueContent}");
@@ -494,6 +514,7 @@ namespace MyNodeEditor.Extension.Dialogue
 
             entryNodeData.guid = "Start";
             entryNodeData.name = "START";
+            // entryNodeData.tree = currentNodeTree; //必须将当前树赋值，当前树可能为空
             entryNodeData.isEntryPoint = true;
             entryNodeData.position = new Vector2(100, 200);
 
@@ -528,6 +549,11 @@ namespace MyNodeEditor.Extension.Dialogue
         /// <returns></returns>
         private GraphViewChange OnGraphViewChanged(GraphViewChange graphViewChange)
         {
+            if (_suppressGraphViewWriteBack)
+            {
+                return graphViewChange;
+            }
+
             Debug.Log("OnGraphViewChanged");
             //处理移除元素的情况（节点 或连线）
             if (graphViewChange.elementsToRemove != null)

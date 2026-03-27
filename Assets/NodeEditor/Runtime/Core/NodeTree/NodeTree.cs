@@ -142,6 +142,20 @@ public class NodeTree : ScriptableObject
         NodeLinks = temp;
     }
 
+    public void RemoveDuplicateLinkData()
+    {
+        var unique = new HashSet<string>();
+        var temp = new List<NodeLinkData>();
+        foreach (var linkData in NodeLinks)
+        {
+            if (linkData == null) continue;
+            var key = $"{linkData.BaseNodeGUID}|{linkData.PortName}|{linkData.TargetNodeGUID}";
+            if (!unique.Add(key)) continue;
+            temp.Add(linkData);
+        }
+        NodeLinks = temp;
+    }
+
     /// <summary>
     /// 删除节点，返回被删除的节点
     /// </summary>
@@ -167,6 +181,7 @@ public class NodeTree : ScriptableObject
 
     public void DisconnectChild(NodeData parent, NodeData child)
     {
+        if (parent == null || child == null) return;
         Undo.RecordObject(parent, "Node Tree(RemoveChild)");
         //同时移除缓存的连线信息
         NodeLinks.RemoveAll(l => l.BaseNodeGUID == parent.guid && l.TargetNodeGUID == child.guid);
@@ -179,7 +194,6 @@ public class NodeTree : ScriptableObject
         }
 
         parent.DisconnectChild(child.guid);
-        // parent.RemoveChild(child);
 
 
         //Undo追踪修改状态无法保存到SO文件，要通过SetDirty来通知Unity保存
@@ -187,23 +201,38 @@ public class NodeTree : ScriptableObject
     }
     public void LinkChild(NodeData parent, string portName, NodeData child)
     {
+        if (parent == null || child == null) return;
         Undo.RecordObject(parent, "Node Tree(AddChild)");
-        // parent.AddChild(child);
-        parent.LinkChild(child.guid, portName);
 
         //检查更新根节点
         if (parent.guid == "Start")
         {
+            parent.tree = this; //!起始节点的树必须赋值
             rootNodeData = NodeDatas.Find(x => x.guid == child.guid);
         }
 
-        //同时添加进缓存
-        NodeLinks.Add(new NodeLinkData()
+        parent.LinkChild(child.guid, portName);
+
+        //同一父节点同一端口仅允许一条连线，先移除旧目标
+        NodeLinks.RemoveAll(l => l.BaseNodeGUID == parent.guid && l.PortName == portName && l.TargetNodeGUID != child.guid);
+
+        var hasLink = NodeLinks.Any(l =>
+            l.BaseNodeGUID == parent.guid &&
+            l.PortName == portName &&
+            l.TargetNodeGUID == child.guid);
+        if (!hasLink)
         {
-            BaseNodeGUID = parent.guid,
-            PortName = portName,
-            TargetNodeGUID = child.guid,
-        });
+            //同时添加进缓存
+            NodeLinks.Add(new NodeLinkData()
+            {
+                BaseNodeGUID = parent.guid,
+                PortName = portName,
+                TargetNodeGUID = child.guid,
+            });
+        }
+
+        RemoveNullLinkData();
+        RemoveDuplicateLinkData();
 
         EditorUtility.SetDirty(parent);
     }
@@ -213,6 +242,9 @@ public class NodeTree : ScriptableObject
     /// </summary>
     public void RemapEdgeData()
     {
+        RemoveNullLinkData();
+        RemoveDuplicateLinkData();
+
         foreach (var baseNode in NodeDatas)
         {
             //清除旧关系

@@ -372,6 +372,22 @@ PrefabInstance:
       propertyPath: dialogueRole
       value: 
       objectReference: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+    - target: {fileID: 4679112943219343345, guid: 28fbc3c5c0b3604478a675f8aafa3804, type: 3}
+      propertyPath: inProgressColor.b
+      value: 0.69232464
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679112943219343345, guid: 28fbc3c5c0b3604478a675f8aafa3804, type: 3}
+      propertyPath: inProgressColor.g
+      value: 0.69232464
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679112943219343345, guid: 28fbc3c5c0b3604478a675f8aafa3804, type: 3}
+      propertyPath: inProgressColor.r
+      value: 0.7660377
+      objectReference: {fileID: 0}
+    - target: {fileID: 7575395853772511750, guid: 28fbc3c5c0b3604478a675f8aafa3804, type: 3}
+      propertyPath: minDistanceToCamera
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

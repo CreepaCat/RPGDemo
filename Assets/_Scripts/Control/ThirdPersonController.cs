@@ -82,6 +82,7 @@ namespace RPGDemo.Inputs
 
         // player
         private float _speed;
+        public bool IsMoving => _input.move.sqrMagnitude > 0.01f || _speed > 0.01;
         private float _animationBlend;
         private float _targetRotation = 0.0f;
         private float _rotationVelocity;
@@ -174,7 +175,7 @@ namespace RPGDemo.Inputs
 
             if (!_player.AnimatorHandler.IsInteracting)
             {
-                Move();
+                //Move();
                 HandleRollInput();
                 HandleAttackInput();
                 HandleInteractInput();
@@ -182,7 +183,7 @@ namespace RPGDemo.Inputs
 
 
 
-            JumpAndGravity();
+            // JumpAndGravity();
             GroundedCheck();
 
             if (Keyboard.current.enterKey.wasPressedThisFrame)
@@ -315,8 +316,9 @@ namespace RPGDemo.Inputs
 
 
         // Vector3 inputDirection =>new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-        private void Move()
+        public void Move()
         {
+            Debug.Log("Palyer is Moving");
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -354,36 +356,36 @@ namespace RPGDemo.Inputs
 
             Vector3 targetDirection = CaculateDirection();
             // move the player
-            if (_controller.enabled)
-            {
-                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-            }
+            //  if (_controller.enabled)
+            //{
+            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            // }
 
 
             // update animator if using character
-            if (_hasAnimator)
-            {
-                if (!_input.enabled) return;
-                //  Debug.Log("anima set float speed" + _animationBlend);
-                _animator.SetFloat(PlayerAnimatorParamConfig.animIDSpeed, _animationBlend);
-                _animator.SetFloat(PlayerAnimatorParamConfig.animIDMotionSpeed, inputMagnitude);
-            }
+            // if (_hasAnimator)
+            // {
+            //     if (!_input.enabled) return;
+            //  Debug.Log("anima set float speed" + _animationBlend);
+            _animator.SetFloat(PlayerAnimatorParamConfig.animIDSpeed, _animationBlend);
+            _animator.SetFloat(PlayerAnimatorParamConfig.animIDMotionSpeed, inputMagnitude);
+            // }
         }
 
-        private void JumpAndGravity()
+        public void JumpAndGravity()
         {
             if (Grounded)
             {
                 // reset the fall timeout timer
                 _fallTimeoutDelta = FallTimeout;
 
-                // update animator if using character
-                if (_hasAnimator)
-                {
-                    //_animator.SetBool(PlayerAnimatorParaConfig.animIDJump, false);
-                    _animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, false);
-                }
+                // // update animator if using character
+                // if (_hasAnimator)
+                // {
+                //     //_animator.SetBool(PlayerAnimatorParaConfig.animIDJump, false);
+                //     _animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, false);
+                // }
 
                 // stop our velocity dropping infinitely when grounded
                 if (_verticalVelocity < 0.0f)
@@ -425,12 +427,12 @@ namespace RPGDemo.Inputs
                 else
                 {
                     // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, true);
-                        _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDFreeFall, true, 0.04f);
+                    // if (_hasAnimator)
+                    // {
+                    //     _animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, true);
+                    //     _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDFreeFall, true, 0.04f);
 
-                    }
+                    // }
                     //手动计算应用坠落位移，覆盖根动画的位移计算,但会与Rolling根动画冲突
                     Vector3 targetDirection = CaculateDirection();
 

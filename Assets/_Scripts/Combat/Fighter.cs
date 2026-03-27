@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using RPGDemo.Weapons;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPGDemo.Combat
@@ -8,9 +10,22 @@ namespace RPGDemo.Combat
     {
         [SerializeField] float autoTargetRadius = 20f;
         [SerializeField] LayerMask targetLayer;
+        // [SerializeField] Weapon weapon;
+
+
         private Player _player;
 
-        CombatTarget currentTarget = null;
+        CombatTarget currentTarget => GetCurrentTarget()?.GetComponent<CombatTarget>();
+        // [SerializeField] CombatTarget CurrentTarget = currentTarget;
+
+
+
+        public bool IsAttacking;
+        //public bool IsCasting;
+        private bool performedAttack = false;
+
+        public bool HasTarget() => currentTarget != null;
+
 
         RaycastHit[] targetBuffer = new RaycastHit[32];
 
@@ -19,6 +34,12 @@ namespace RPGDemo.Combat
         private void Awake()
         {
             _player = GetComponent<Player>();
+        }
+
+
+        public void HandleAttack()
+        {
+            _player.Weapon.HandleWeaponCombo();
         }
 
 
@@ -34,14 +55,19 @@ namespace RPGDemo.Combat
         }
 
 
-        public void OpenCombatTargetDetector()
+        public void OnAttackStart()
         {
+            // attackTimeDelta = attackingTimeOut;
+            IsAttacking = true;
             _player.Weapon.OpenDamageCollider();
+            //_player.Animator.SetBool("DoCombo", false);
         }
 
-        public void CloseCombatTargetDetector()
+        public void OnAttackOver()
         {
+            IsAttacking = false;
             _player.Weapon.CloseDamageCollider();
+            _player.Animator.SetBool("DoCombo", false);
         }
 
         public Character GetCurrentTarget()

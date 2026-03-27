@@ -10,21 +10,29 @@ using RPGDemo.Attributes;
 using UnityEngine;
 using RPGDemo.Stats;
 using UnityEngine.InputSystem;
+using HSM;
+using System.Linq;
+using NewDialogueFrame;
+using TMPro;
 
-[RequireComponent(typeof(ThirdPersonController))]
+//[RequireComponent(typeof(ThirdPersonController))]
 [RequireComponent(typeof(Weapon))]
 [RequireComponent(typeof(PlayerAnimatorHandler))]
 
 public class Player : Character, ISaveable
 {
+    [SerializeField] InputReader input;
     [SerializeField] Transform characterModel;
     [SerializeField] DamageNumberWorldUI damageNumberUIPrefab;
     [SerializeField] Canvas damageNumberUIParent;
-    public ThirdPersonController TpController => _tpController;
+    [SerializeField] TextMeshProUGUI tmp_statePath;
+    public bool IsCombating => _fighter.HasTarget();
 
+    #region  set & get
+
+    public InputReader Input => input;
+    public PlayerLocomotion Locomotion => _locomotion;
     public Animator Animator => _animator;
-    public CharacterController CharacterController => _characterController;
-    public PlayerInputs Input => _input;
     public Interactor Interactor => _interactor;
     public BaseStats BaseStats => _baseStats;
     public Health Health => _health;
@@ -32,11 +40,12 @@ public class Player : Character, ISaveable
     public Fighter Fighter => _fighter;
     public Weapon Weapon => _weapon;
     public PlayerAnimatorHandler AnimatorHandler => _animatorHandler;
+    public PlayerCanversant PlayerCanversant => _playerCanversant;
 
-    private ThirdPersonController _tpController;
-    private CharacterController _characterController;
+    private PlayerLocomotion _locomotion;
+    //private CharacterController _characterController;
     private Animator _animator;
-    private PlayerInputs _input;
+    // private PlayerInputs _input;
     private BaseStats _baseStats;
     private Health _health;
     private Experience _experience;
@@ -45,7 +54,15 @@ public class Player : Character, ISaveable
     private Fighter _fighter;
     private Weapon _weapon;
 
+    private PlayerCanversant _playerCanversant;
+    #endregion
+
     //[SerializeField] private InputReader inputReader;
+
+    //角色状态机
+    HSM.StateMachine stateMachine;
+    State rootState;
+    [SerializeField] string statePath;
 
 
 
@@ -54,10 +71,11 @@ public class Player : Character, ISaveable
 
     private void Awake()
     {
-        _tpController = GetComponent<ThirdPersonController>();
-        _characterController = GetComponent<CharacterController>();
+        // _tpController = GetComponent<ThirdPersonController>();
+        _locomotion = GetComponent<PlayerLocomotion>();
+        //  _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
-        _input = GetComponent<PlayerInputs>();
+
 
         _interactor = GetComponentInChildren<Interactor>();
 
@@ -69,16 +87,26 @@ public class Player : Character, ISaveable
         _weapon = GetComponent<Weapon>();
 
         _animatorHandler = GetComponent<PlayerAnimatorHandler>();
+        _playerCanversant = GetComponent<PlayerCanversant>();
+
+        //构建状态机
+        rootState = new PlayerRoot(null, this);
+        var builder = new StateMachineBuilder(rootState);
+        stateMachine = builder.Build();
     }
 
     void Start()
     {
         _baseStats.SetLevelByTotalExp(100);
 
+        input.EnablePlayerActions();
+
     }
 
     void Update()
     {
+
+
         if (Keyboard.current.nKey.wasPressedThisFrame)
         {
             _experience.GainExp(100);
@@ -92,19 +120,42 @@ public class Player : Character, ISaveable
             // damageNumberUI.transform.position = characterModel.position + Vector3.up * 2f;
             // damageNumberUI.SetTextNumber(10f);
         }
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            SetCursorState();
+        }
+
+        stateMachine.Tick(Time.deltaTime);
+        statePath = SetPath(stateMachine.Root.Leaf());
+        tmp_statePath.text = statePath;
+    }
+
+    private void SetCursorState()
+    {
+        Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+
+    public static string SetPath(State s)
+    {
+        return string.Join(">", s.PathToRoot().AsEnumerable().Reverse().Select(n => n.GetType().Name));
     }
 
     public static Player GetInstance() => GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-    public void EnableInput() => _input.EnablePlayerInput();
-    public void DisableInput() => _input.DisablePlayerInput();
+    public void EnablePlayerControl() { input.EnablePlayerControl(); }
+    public void DisablePlayerControl() { input.DisablePlayerAction(); }
 
-    public void EnableCharacterController() => _characterController.enabled = true;
-    public void DisableCharacterController() => _characterController.enabled = false;
+    public void EnableLocomotion() => _locomotion.enabled = true;
+    public void DisableLocomotion() => _locomotion.enabled = false;
 
     public void Move(Vector3 movement)
     {
-        CharacterController.Move(movement);
+        Locomotion.Move(movement);
+    }
+
+    public void Move(Vector3 movement, Quaternion deltaRotation)
+    {
+        Locomotion.Move(movement, deltaRotation);
     }
 
 

@@ -1,12 +1,22 @@
 using System.Collections.Generic;
+using RPGDemo.Core;
 using UnityEngine;
 
-namespace  MyNodeEditor.Extension.Dialogue
+namespace MyNodeEditor.Extension.Dialogue
 {
 
     [CreateAssetMenu(menuName = "MyDialogue/DialogueTree", fileName = "New DialogueTree")]
     public class DialogueTree : NodeTree
     {
+
+        [SerializeField] public string displayName;
+        [SerializeField] ConditionSO condition;
+
+        public bool CanEnter()
+        {
+            if (condition == null) return true;
+            return condition.Check();
+        }
 
         /// <summary>
         /// 开始执行树

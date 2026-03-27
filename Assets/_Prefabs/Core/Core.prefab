@@ -31,9 +31,93 @@ Transform:
   m_Children:
   - {fileID: 4042547296839235740}
   - {fileID: 5166232950703207011}
-  - {fileID: 7055361657300371937}
+  - {fileID: 9213819373776527990}
   - {fileID: 6418769422734510535}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5638720880327417786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8031843553906361201}
+  - component: {fileID: 2618507267337108979}
+  m_Layer: 0
+  m_Name: CameraRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8031843553906361201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638720880327417786}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 252.564, y: 4.67, z: 321.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9213819373776527990}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2618507267337108979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5638720880327417786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16056affaa4354547a853df585874fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCameraRotator
+  CinemachineCameraTarget: {fileID: 5638720880327417786}
+  input: {fileID: 11400000, guid: 9d6fcbd30f32b3248a645d61de34bc6b, type: 2}
+  offsetY: 1.37
+  TopClamp: 70
+  BottomClamp: -30
+  CameraAngleOverride: 0
+  LockCameraPosition: 0
+--- !u!1 &9169699648535640295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9213819373776527990}
+  m_Layer: 0
+  m_Name: FollowCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9213819373776527990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169699648535640295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7055361657300371937}
+  - {fileID: 8031843553906361201}
+  m_Father: {fileID: 8592356840453999040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1041325486522221849
 PrefabInstance:
@@ -49,15 +133,15 @@ PrefabInstance:
       objectReference: {fileID: 4585107167360392139}
     - target: {fileID: 5314719785142122362, guid: 0f0c272ad6f26d345b0f44883534ff86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 250.64
+      value: 252.564
       objectReference: {fileID: 0}
     - target: {fileID: 5314719785142122362, guid: 0f0c272ad6f26d345b0f44883534ff86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.34
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 5314719785142122362, guid: 0f0c272ad6f26d345b0f44883534ff86, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 321.4159
+      value: 321.96
       objectReference: {fileID: 0}
     - target: {fileID: 5314719785142122362, guid: 0f0c272ad6f26d345b0f44883534ff86, type: 3}
       propertyPath: m_LocalRotation.w
@@ -95,14 +179,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
-    - target: {fileID: 8171229332507752254, guid: 0f0c272ad6f26d345b0f44883534ff86, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8171229332507752254, guid: 0f0c272ad6f26d345b0f44883534ff86, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -113,38 +189,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5314719785142122362, guid: 0f0c272ad6f26d345b0f44883534ff86, type: 3}
   m_PrefabInstance: {fileID: 1041325486522221849}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8166971980249504009 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9161836483930283024, guid: 0f0c272ad6f26d345b0f44883534ff86, type: 3}
-  m_PrefabInstance: {fileID: 1041325486522221849}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2772935815954171539
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8592356840453999040}
+    m_TransformParent: {fileID: 9213819373776527990}
     m_Modifications:
     - target: {fileID: 419156749109735570, guid: bc041b55b7545fd4180ef585a56ffe71, type: 3}
       propertyPath: m_Name
       value: PlayerFollowCamera
       objectReference: {fileID: 0}
     - target: {fileID: 4278317175358743828, guid: bc041b55b7545fd4180ef585a56ffe71, type: 3}
+      propertyPath: Lens.FieldOfView
+      value: 35.983395
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278317175358743828, guid: bc041b55b7545fd4180ef585a56ffe71, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
-      objectReference: {fileID: 8166971980249504009}
+      objectReference: {fileID: 8031843553906361201}
     - target: {fileID: 5157426850575994738, guid: bc041b55b7545fd4180ef585a56ffe71, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 250.84
+      value: 252.76399
       objectReference: {fileID: 0}
     - target: {fileID: 5157426850575994738, guid: bc041b55b7545fd4180ef585a56ffe71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.715
+      value: 4.67
       objectReference: {fileID: 0}
     - target: {fileID: 5157426850575994738, guid: bc041b55b7545fd4180ef585a56ffe71, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 317.4159
+      value: 317.96
       objectReference: {fileID: 0}
     - target: {fileID: 5157426850575994738, guid: bc041b55b7545fd4180ef585a56ffe71, type: 3}
       propertyPath: m_LocalRotation.w
@@ -192,21 +267,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8592356840453999040}
     m_Modifications:
+    - target: {fileID: 2611105020140198988, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
+      propertyPath: UpdateMethod
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6143767611020540455, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
       propertyPath: m_Name
       value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6333545189535118546, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 250.84
+      value: 252.76399
       objectReference: {fileID: 0}
     - target: {fileID: 6333545189535118546, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.715
+      value: 4.67
       objectReference: {fileID: 0}
     - target: {fileID: 6333545189535118546, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 317.4159
+      value: 317.96
       objectReference: {fileID: 0}
     - target: {fileID: 6333545189535118546, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -235,6 +314,10 @@ PrefabInstance:
     - target: {fileID: 6333545189535118546, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517097417101743161, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
+      propertyPath: field of view
+      value: 35.983395
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

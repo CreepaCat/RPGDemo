@@ -14,6 +14,7 @@ namespace RPGDemo.Core
         QuestFinished,
         QuestCompleted,
         ObjectiveCompleted,
+        QuestInprogress,
     }
 
     // 使用复杂条件判断时，此SO只作为容器使用，因此其parameters失去意义，置空

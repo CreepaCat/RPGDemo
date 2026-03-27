@@ -47,8 +47,8 @@ namespace RPGDemo.SceneManagement
 
             Player playerBeforeTransition = Player.GetInstance();
             //禁用角色输入和cc,以防影响角色瞬移
-            playerBeforeTransition.DisableInput();
-            playerBeforeTransition.DisableCharacterController();
+            playerBeforeTransition.DisablePlayerControl();
+            playerBeforeTransition.DisableLocomotion();
 
             //淡出和加载场景
             yield return fader.FadeOut(_fadeOutTime);
@@ -59,8 +59,8 @@ namespace RPGDemo.SceneManagement
 
             //场景切换后寻找新场景的palyer,因为两个场景的player GO不一定是同一个,组件引用可能丢失
             Player playerAfterTransition = Player.GetInstance();
-            playerAfterTransition.DisableCharacterController();
-            playerAfterTransition.DisableInput();
+            playerAfterTransition.DisableLocomotion();
+            playerAfterTransition.DisablePlayerControl();
 
 
             //寻找角色出生点并更新角色位置
@@ -71,13 +71,13 @@ namespace RPGDemo.SceneManagement
             savingWrapper.Save();
 
             //尽早恢复cc,使角色恢复落地状态
-            playerAfterTransition.EnableCharacterController();
+            playerAfterTransition.EnableLocomotion();
 
             //等待时间和淡入
             yield return new WaitForSeconds(_waitTime);
             yield return fader.FadeIn(_fadeInTime);
             //恢复角色输入
-            playerAfterTransition.EnableInput();
+            playerAfterTransition.EnablePlayerControl();
 
             //销毁此脚本对象的根GO
             Destroy(transform.root.gameObject);
@@ -94,8 +94,8 @@ namespace RPGDemo.SceneManagement
             Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
             //禁用角色输入和cc,以防影响角色瞬移
-            player.DisableInput();
-            player.DisableCharacterController();
+            player.DisablePlayerControl();
+            player.DisableLocomotion();
 
 
             //淡出
@@ -112,13 +112,13 @@ namespace RPGDemo.SceneManagement
             yield return new WaitForSeconds(_waitTime);
 
             //尽早恢复cc,使角色恢复落地状态
-            player.EnableCharacterController();
+            player.EnableLocomotion();
 
             //淡入
             yield return fader.FadeIn(_fadeInTime);
 
             //恢复角色输入
-            player.EnableInput();
+            player.EnablePlayerControl();
 
         }
 

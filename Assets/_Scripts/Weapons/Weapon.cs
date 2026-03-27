@@ -26,8 +26,8 @@ namespace RPGDemo.Weapons
         //伤害目标检测
         public DamageCollider damageCollider = null;
 
-        public event Action OnEnterCombat;
-        public event Action OnExitCombat;
+        // public event Action OnEnterCombat;
+        // public event Action OnExitCombat;
 
 
         public bool HasSheathedWeapon => _sheathHolder.transform.childCount > 0;
@@ -67,16 +67,16 @@ namespace RPGDemo.Weapons
         private void Update()
         {
 
-            if (!player.AnimatorHandler.IsCombat && HasEquippedWeapon)
-            {
-                OnEnterCombat?.Invoke();
-                player.Animator.SetBool(PlayerAnimatorParamConfig.animaIDIsCombat, HasEquippedWeapon);
-            }
-            else if (player.AnimatorHandler.IsCombat && !HasEquippedWeapon)
-            {
-                OnExitCombat?.Invoke();
-                player.Animator.SetBool(PlayerAnimatorParamConfig.animaIDIsCombat, HasEquippedWeapon);
-            }
+            // if (!player.AnimatorHandler.IsCombat && HasEquippedWeapon)
+            // {
+            //     OnEnterCombat?.Invoke();
+            //     player.Animator.SetBool(PlayerAnimatorParamConfig.animaIDIsCombat, HasEquippedWeapon);
+            // }
+            // else if (player.AnimatorHandler.IsCombat && !HasEquippedWeapon)
+            // {
+            //     OnExitCombat?.Invoke();
+            //     player.Animator.SetBool(PlayerAnimatorParamConfig.animaIDIsCombat, HasEquippedWeapon);
+            // }
 
 
         }
@@ -126,9 +126,11 @@ namespace RPGDemo.Weapons
             Player player = GetComponent<Player>();
             if (player.AnimatorHandler.CanDoCombo)
             {
-                player.AnimatorHandler.UpdateCanDoCombo(false);
+                player.Animator.SetBool("DoCombo", true);
+
                 string nextCombo = _currentWeaponConfig.GetNextCombo(currentCombo);
-                player.AnimatorHandler.PlayTargetAnimation(Animator.StringToHash(nextCombo), true);
+                //  player.AnimatorHandler.PlayTargetAnimation(Animator.StringToHash(nextCombo), true, 0.2f, true);
+                player.AnimatorHandler.PlayTargetAnimation(Animator.StringToHash(_currentWeaponConfig.GetNextCombo(-1)), true, 0.2f, true);
                 lastAttack = nextCombo;
                 currentCombo++;
             }

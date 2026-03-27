@@ -17,16 +17,25 @@ namespace NewDialogueFrame
         public event Action<DialogueNodeData> OnDialogueTreeUpdated;
         public event Action OnDialogueBegun;
         public event Action OnDialogueEnded;
+        public event Action OnChooseDialogue;
 
 
         DialogueNodeData _currentNodeData = null;
+
         CanversantTarget currentDialogueTarget = null;
+        internal CanversantTarget GetCurrentCanversantTarget() => currentDialogueTarget;
+        internal void SetCurrentCanversantTarget(CanversantTarget target) => currentDialogueTarget = target;
+
+
+
+        public bool IsInDialogue => currentDialogueTree != null;
 
 
         private DialogueNodeData CurrentNodeData
         {
             set
             {
+                if (value == _currentNodeData) return;
                 TriggerExitEvent();
                 _currentNodeData = value;
                 TriggerEnterEvent();
@@ -71,6 +80,13 @@ namespace NewDialogueFrame
 
         }
 
+        public void ChooseDialogue(CanversantTarget newTarget)
+        {
+            currentDialogueTarget = newTarget;
+            OnChooseDialogue?.Invoke();
+
+        }
+
         /// <summary>
         /// 控制显示和关闭对话面板
         /// </summary>
@@ -85,7 +101,7 @@ namespace NewDialogueFrame
             }
             SetCurrentDialogueTree(newDialoguTree);
             //禁用角色移动输入
-            GetComponent<Player>().DisableInput();
+            //  GetComponent<Player>().DisablePlayerControl();
             currentDialogueTarget = newTarget;
 
             Debug.Log("Starting Dialogue");
@@ -98,10 +114,11 @@ namespace NewDialogueFrame
         public void EndDialogue()
         {
             //主动触发最后一个节点的退出事件
-            TriggerExitEvent();
+            // TriggerExitEvent();
+            CurrentNodeData = null;
 
             //恢复角色移动输入
-            GetComponent<Player>().EnableInput();
+            // GetComponent<Player>().EnablePlayerControl();
             currentDialogueTarget = null;
 
             Debug.Log("Ending Dialogue");
@@ -168,6 +185,10 @@ namespace NewDialogueFrame
                 }
             }
         }
+
+
+
+
         #endregion
 
 

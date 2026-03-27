@@ -90,7 +90,15 @@ namespace MyNodeEditor.Extension.Dialogue
         #region 连接和移除子节点时调用
         public override void DisconnectChild(string childGuid)
         {
-            children.Remove(tree.GetNodeData(childGuid));
+            var nodeDate = tree?.GetNodeData(childGuid);
+            if (nodeDate != null)
+            {
+                children?.RemoveAll(n => n != null && n.guid == childGuid);
+            }
+            else
+            {
+                children?.RemoveAll(n => n == null || n.guid == childGuid);
+            }
 
             for (int i = 0; i < OptionList.Count; i++)
             {
@@ -104,7 +112,16 @@ namespace MyNodeEditor.Extension.Dialogue
         }
         public override void LinkChild(string childGuid, string portName)
         {
-            children.Add(tree.GetNodeData(childGuid));
+            var nodeDate = tree?.GetNodeData(childGuid);
+            if (nodeDate == null) return;
+            if (children == null)
+            {
+                children = new List<NodeData>();
+            }
+            if (!children.Contains(nodeDate))
+            {
+                children.Add(nodeDate);
+            }
 
             for (int i = 0; i < OptionList.Count; i++)
             {

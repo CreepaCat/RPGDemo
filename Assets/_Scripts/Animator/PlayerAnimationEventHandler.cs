@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public  class PlayerAnimationEventHandler : MonoBehaviour
+public class PlayerAnimationEventHandler : MonoBehaviour
 {
     private Player _player;
-    
+
     private void Awake()
     {
         _player = GetComponentInParent<Player>();
     }
-    
+
     #region 动画事件
 
     //此种动画事件的写法值得借鉴
@@ -16,77 +16,77 @@ public  class PlayerAnimationEventHandler : MonoBehaviour
     {
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-           _player.TpController.OnFootstep();
+            //_player.TpController.OnFootstep();
         }
     }
-    
+
     private void OnLand(AnimationEvent animationEvent)
     {
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
             // Debug.Log("播放落地声");
-            _player.TpController.OnLand();
+            //_player.TpController.OnLand();
 
         }
     }
 
     private void OnAttackStart(AnimationEvent animationEvent)
     {
-     
+
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
             Debug.Log("OnAttackStart");
-            _player.Fighter.OpenCombatTargetDetector();
+            _player.Fighter.OnAttackStart();
         }
     }
-    
+
     private void OnAttackOver(AnimationEvent animationEvent)
     {
-      
+
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-           Debug.Log("OnAttackOver");
-            _player.TpController.OnAttackOver();
-           // _player.Animator.SetBool(PlayerAnimatorParamConfig.animIDAttack,false);
-            
+            Debug.Log("OnAttackOver");
+            // _player.TpController.OnAttackOver();
+            // _player.Animator.SetBool(PlayerAnimatorParamConfig.animIDAttack,false);
+
+
             //关闭武器伤害检测
-            _player.Fighter.CloseCombatTargetDetector();
+            _player.Fighter.OnAttackOver();
         }
-            
-       
+
+
     }
 
     private void OnRollOver(AnimationEvent animationEvent)
     {
-       // Debug.Log("OnRollOver");
+        // Debug.Log("OnRollOver");
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-           // _player.Input.RollInput(false);
-           // _player.Weapon.UnsheathSword();
+
         }
     }
 
     private void OnFreeFallOver(AnimationEvent animationEvent)
     {
-       // Debug.Log("OnFreeFallOver");
+        // Debug.Log("OnFreeFallOver");
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
             // _player.Input.RollInput(false);
             // _player.Input.JumpInput(false);
             // _player.Input.SprintInput(false);
-           
+
         }
     }
-    
+
     private void Hit(AnimationEvent animationEvent)
     {
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-           // Debug.Log("Hit");
+            // Debug.Log("Hit");
             //打开武器伤害范围检测，对所有符合条件的对象施加伤害
             _player.Fighter.Hit();
         }
-       
+
     }
 
     private void OnDisableInput(AnimationEvent animationEvent)
@@ -94,8 +94,19 @@ public  class PlayerAnimationEventHandler : MonoBehaviour
         Debug.Log("OnDisableInput");
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-            _player.DisableInput();
+            _player.DisablePlayerControl();
         }
+    }
+
+    private void OnCastingStart(AnimationEvent animationEvent)
+    {
+        Debug.Log("OnCastingStart");
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            // _player.DisableInput();
+            // _player.Fighter.IsCasting = true;
+        }
+
     }
 
     private void OnEnableInput(AnimationEvent animationEvent)
@@ -103,17 +114,17 @@ public  class PlayerAnimationEventHandler : MonoBehaviour
         Debug.Log("OnEnableInput");
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
-            _player.EnableInput();
+            _player.EnablePlayerControl();
         }
     }
 
     private void Unsheath(AnimationEvent animationEvent)
     {
-        
+
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
             Debug.Log("Unsheath");
-           
+
             _player.Weapon.OnUnsheath();
         }
     }
@@ -123,7 +134,7 @@ public  class PlayerAnimationEventHandler : MonoBehaviour
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
             Debug.Log("Sheath");
-          
+
             _player.Weapon.OnSheath();
         }
     }

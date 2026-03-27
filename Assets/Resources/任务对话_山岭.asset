@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3943322433167162897
+--- !u!114 &-6929788860139818911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,27 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
   state: 1
   started: 0
-  guid: d24238e5a1ce2f54483027d65f5fa948
+  guid: 5c110e5cb33cf72438a667b232e41eee
   isEntryPoint: 0
-  position: {x: 639.19995, y: 10.400009}
+  position: {x: 271.2, y: 200.00002}
   tree: {fileID: 11400000}
   children:
-  - {fileID: 3580930234381135994}
+  - {fileID: 1082579510751355279}
+  - {fileID: 5651296346936203191}
+  - {fileID: 9155175205349047291}
+  - {fileID: -5323489253862005796}
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
   dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
-  dialogueContent: "\u53D1\u5E03\u65A7\u5934\u4EFB\u52A1"
-  OnEnterAction: {fileID: 11400000, guid: bbf682ef74f581f4ab45ff579ec4101a, type: 2}
+  dialogueContent: "\u4F60\u597D\u65C5\u884C\u8005"
+  OnEnterAction: {fileID: 0}
   OnExitAction: {fileID: 0}
-  condition: {fileID: 11400000, guid: 09c5b1f2174be9d49a1303a7006a10c4, type: 2}
+  condition: {fileID: 0}
   OptionList:
-  - OptionText: "\u5B8C\u6210\u4E86"
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    ChildGuid: 6ca1de937c2785d48909d34bb2203142
+  - OptionText: "\u63A5\u53D6\u4EFB\u52A1"
+    PortName: d346dcca94b31ea4ca7218f5f52bcf75
+    ChildGuid: 4650222303aefbe44b6321f092a1d9a5
     OptionIndex: 0
-  nextDialogueIndex: 0
+  - OptionText: "\u4EFB\u52A1\u7EC6\u8282"
+    PortName: 47ed3a4a21c09ec4ba5136acd9c4ce0f
+    ChildGuid: 14ab5b423acd7714dba31e37546f77e1
+    OptionIndex: 1
+  - OptionText: "\u4EFB\u52A1\u5DF2\u7ED3\u675F"
+    PortName: e55a996f9c1b4d04fa2795285f4091b8
+    ChildGuid: 8a7ec33e18d2ddf40b51e63869c0061c
+    OptionIndex: 2
+  - OptionText: "\u518D\u89C1"
+    PortName: d8ea4b57dc774724cbd688b05eb3e18b
+    ChildGuid: 39619ce13bbe28440b2d3646c57d7533
+    OptionIndex: 3
+  nextDialogueIndex: 1
   nexDialogueStart: 1
---- !u!114 &-2054946775868500934
+--- !u!114 &-5323489253862005796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,18 +63,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
   state: 1
   started: 0
-  guid: a8493c4e572dfd949996962a6177eea0
+  guid: 39619ce13bbe28440b2d3646c57d7533
   isEntryPoint: 0
-  position: {x: 639.1999, y: 300.80002}
+  position: {x: 617.6, y: 476.00003}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
   dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
-  dialogueContent: "\u4E0B\u6B21\u6765"
+  dialogueContent: "\u6B22\u8FCE\u518D\u6765"
   OnEnterAction: {fileID: 0}
   OnExitAction: {fileID: 0}
   condition: {fileID: 0}
+  OptionList: []
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &-1856341101875287752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 8bafa4bb537c2e548928dc1a015835b1
+  isEntryPoint: 0
+  position: {x: 852, y: 140.80002}
+  tree: {fileID: 11400000}
+  children: []
+  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
+  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+  dialogueContent: "\u6CA1\u60F3\u5230\u4F60\u771F\u7684\u505A\u5230\u4E86\uFF0C\u8FD9\u662F\u7ED9\u4F60\u5F97\u5956\u52B1"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 11400000, guid: 3358db13d6fb80e498f7373df28e093a, type: 2}
+  condition: {fileID: 11400000, guid: bb42fb37a97c0d8469cb638cb24da6d1, type: 2}
   OptionList: []
   nextDialogueIndex: 0
   nexDialogueStart: 1
@@ -73,52 +117,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4a3cfab8c9cf23488426aba0df3a932, type: 3}
-  m_Name: "\u4E3B\u7EBF\u5BF9\u8BDD01"
+  m_Name: "\u4EFB\u52A1\u5BF9\u8BDD_\u5C71\u5CAD"
   m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueTree
-  rootNodeData: {fileID: 4319166153582976278}
+  rootNodeData: {fileID: -6929788860139818911}
   treeState: 1
   NodeLinks:
   - BaseNodeGUID: Start
     PortName: Next
-    TargetNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-  - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    TargetNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
-  - BaseNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-    PortName: a1f22252f86c15c439258c1d9fa497c8
-    TargetNodeGUID: 6ca1de937c2785d48909d34bb2203142
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    TargetNodeGUID: d24238e5a1ce2f54483027d65f5fa948
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    TargetNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-  - BaseNodeGUID: 26e8b317cf885cc4180845a09eec8fd4
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    TargetNodeGUID: a8493c4e572dfd949996962a6177eea0
-  - BaseNodeGUID: a9a7abf620a445846b9bf1f15896edc3
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    TargetNodeGUID: b5385cafba266b849b5876fceb37eeb1
+    TargetNodeGUID: 5c110e5cb33cf72438a667b232e41eee
+  - BaseNodeGUID: 5c110e5cb33cf72438a667b232e41eee
+    PortName: d346dcca94b31ea4ca7218f5f52bcf75
+    TargetNodeGUID: 4650222303aefbe44b6321f092a1d9a5
+  - BaseNodeGUID: 5c110e5cb33cf72438a667b232e41eee
+    PortName: 47ed3a4a21c09ec4ba5136acd9c4ce0f
+    TargetNodeGUID: 14ab5b423acd7714dba31e37546f77e1
+  - BaseNodeGUID: 5c110e5cb33cf72438a667b232e41eee
+    PortName: e55a996f9c1b4d04fa2795285f4091b8
+    TargetNodeGUID: 8a7ec33e18d2ddf40b51e63869c0061c
+  - BaseNodeGUID: 5c110e5cb33cf72438a667b232e41eee
+    PortName: d8ea4b57dc774724cbd688b05eb3e18b
+    TargetNodeGUID: 39619ce13bbe28440b2d3646c57d7533
+  - BaseNodeGUID: 14ab5b423acd7714dba31e37546f77e1
+    PortName: 86ec4c8a957069645902dbd5b4bac76d
+    TargetNodeGUID: 8bafa4bb537c2e548928dc1a015835b1
   NodeDatas:
-  - {fileID: -2054946775868500934}
-  - {fileID: 8891721505704969372}
-  - {fileID: -3943322433167162897}
-  - {fileID: 4319166153582976278}
-  - {fileID: 2529207625594687576}
-  - {fileID: 3580930234381135994}
---- !u!114 &2529207625594687576
+  - {fileID: -6929788860139818911}
+  - {fileID: 1082579510751355279}
+  - {fileID: -5323489253862005796}
+  - {fileID: 9155175205349047291}
+  - {fileID: -1856341101875287752}
+  - {fileID: 5651296346936203191}
+  displayName: "\u5C71\u5CAD\u95EE\u9898"
+  condition: {fileID: 11400000, guid: 304343eaaccc6364884abdf1d43fcad3, type: 2}
+--- !u!114 &1082579510751355279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,56 +163,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
   state: 1
   started: 0
-  guid: a9a7abf620a445846b9bf1f15896edc3
+  guid: 4650222303aefbe44b6321f092a1d9a5
   isEntryPoint: 0
-  position: {x: 639.19995, y: 140.8}
-  tree: {fileID: 11400000}
-  children:
-  - {fileID: 8891721505704969372}
-  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
-  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
-  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
-  dialogueContent: "\u53D1\u5E03\u5C71\u5CAD"
-  OnEnterAction: {fileID: 11400000, guid: 16abc906e5c723e48bfd604153f567ea, type: 2}
-  OnExitAction: {fileID: 0}
-  condition: {fileID: 11400000, guid: fc21f923a99c4354287dea9b58ca3fe6, type: 2}
-  OptionList:
-  - OptionText: "\u5B8C\u6210\u4E86"
-    PortName: dc8f5bcf1c263b74e9fab37313240c6a
-    ChildGuid: b5385cafba266b849b5876fceb37eeb1
-    OptionIndex: 0
-  nextDialogueIndex: 0
-  nexDialogueStart: 1
---- !u!114 &3580930234381135994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
-  m_Name: DialogueNodeData
-  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
-  state: 1
-  started: 0
-  guid: 6ca1de937c2785d48909d34bb2203142
-  isEntryPoint: 0
-  position: {x: 923.19995, y: 10.400002}
+  position: {x: 571.2, y: 3.199997}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
   dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
-  dialogueContent: "\u65A7\u5934\u4EFB\u52A1\u5956\u52B1"
+  dialogueContent: "\u4F60\u5C31\u662F\u4F20\u8BF4\u4E2D\u7684\u52C7\u58EB\uFF0C\u6765\u62EF\u6551\u77EE\u4EBA\u65CF\u5371\u673A"
   OnEnterAction: {fileID: 0}
-  OnExitAction: {fileID: 11400000, guid: af6d47beb671d5940be1d0d3858f0f76, type: 2}
-  condition: {fileID: 11400000, guid: 4220893776aa6864f9bba6bb727910d8, type: 2}
+  OnExitAction: {fileID: 11400000, guid: 16abc906e5c723e48bfd604153f567ea, type: 2}
+  condition: {fileID: 11400000, guid: fc21f923a99c4354287dea9b58ca3fe6, type: 2}
   OptionList: []
   nextDialogueIndex: 0
   nexDialogueStart: 1
---- !u!114 &4319166153582976278
+--- !u!114 &3965407194700245977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,37 +192,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
   state: 1
   started: 0
-  guid: 26e8b317cf885cc4180845a09eec8fd4
+  guid: 26dd04bf898a42849a4b76a7d698269a
   isEntryPoint: 0
-  position: {x: 334.142, y: 94.40001}
+  position: {x: 568.8, y: 265.59998}
   tree: {fileID: 11400000}
-  children:
-  - {fileID: -3943322433167162897}
-  - {fileID: 2529207625594687576}
-  - {fileID: -2054946775868500934}
-  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
-  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
-  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
-  dialogueContent: "\u4F60\u597D\u65C5\u4EBA"
+  children: []
+  speakerName: 
+  avatar: {fileID: 0}
+  dialogueRole: {fileID: 0}
+  dialogueContent: 
   OnEnterAction: {fileID: 0}
   OnExitAction: {fileID: 0}
   condition: {fileID: 0}
-  OptionList:
-  - OptionText: "\u65A7\u5934"
-    PortName: 1d0521a58f2660f41b3864560e0ee20e
-    ChildGuid: d24238e5a1ce2f54483027d65f5fa948
-    OptionIndex: 0
-  - OptionText: "\u5C71\u5CAD"
-    PortName: 0555851a93f2ed54f969ac5e15d6a91d
-    ChildGuid: a9a7abf620a445846b9bf1f15896edc3
-    OptionIndex: 1
-  - OptionText: "\u518D\u89C1"
-    PortName: f51434f6449e7ef4e85094ab618d3dab
-    ChildGuid: a8493c4e572dfd949996962a6177eea0
-    OptionIndex: 2
+  OptionList: []
   nextDialogueIndex: 0
-  nexDialogueStart: 1
---- !u!114 &8891721505704969372
+  nexDialogueStart: 0
+--- !u!114 &5651296346936203191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,18 +221,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
   state: 1
   started: 0
-  guid: b5385cafba266b849b5876fceb37eeb1
+  guid: 14ab5b423acd7714dba31e37546f77e1
   isEntryPoint: 0
-  position: {x: 923.2, y: 140.79999}
+  position: {x: 571.2001, y: 140.79999}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: -1856341101875287752}
+  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
+  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+  dialogueContent: "\u6740\u6B7B\u4E00\u4E2A\u5C71\u5CAD\u5DE8\u4EBA"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 0}
+  condition: {fileID: 11400000, guid: c8418511876a1394398bd91b937ef6f0, type: 2}
+  OptionList:
+  - OptionText: "\u53EF\u63D0\u4EA4"
+    PortName: 86ec4c8a957069645902dbd5b4bac76d
+    ChildGuid: 8bafa4bb537c2e548928dc1a015835b1
+    OptionIndex: 0
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &9155175205349047291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 8a7ec33e18d2ddf40b51e63869c0061c
+  isEntryPoint: 0
+  position: {x: 559.19995, y: 272}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
   dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
-  dialogueContent: "\u5C71\u5CAD\u4EFB\u52A1\u5956\u52B1"
-  OnEnterAction: {fileID: 11400000, guid: 3358db13d6fb80e498f7373df28e093a, type: 2}
+  dialogueContent: "\u77EE\u4EBA\u65CF\u6C38\u8FDC\u94ED\u8BB0\u60A8\u5F97\u82F1\u52C7\u4E8B\u8FF9"
+  OnEnterAction: {fileID: 0}
   OnExitAction: {fileID: 0}
-  condition: {fileID: 11400000, guid: bb42fb37a97c0d8469cb638cb24da6d1, type: 2}
+  condition: {fileID: 11400000, guid: ace4d35c58ba16149a429afc34c9fe55, type: 2}
   OptionList: []
   nextDialogueIndex: 0
   nexDialogueStart: 1

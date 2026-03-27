@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using RPGDemo.Inventories;
 using UnityEngine;
 
 namespace RPGDemo.Quests
@@ -43,9 +44,15 @@ namespace RPGDemo.Quests
             status.currentProgress = Mathf.Max(0, status.currentProgress - number);
         }
 
-        public bool IsCompleted()
+        public bool IsAllObjectivesCompleted()
         {
             return objectiveStatuses.TrueForAll(s => s.IsCompleted());
+        }
+
+        public bool IsCompleted()
+        {
+            //return objectiveStatuses.TrueForAll(s => s.IsCompleted());
+            return progress == QuestProgress.Completed;
         }
         public void CompleteQuest()
         {
@@ -56,6 +63,11 @@ namespace RPGDemo.Quests
         public bool IsFinished()
         {
             return progress == QuestProgress.Finished;
+        }
+
+        public bool IsInProgress()
+        {
+            return progress == QuestProgress.Active || progress == QuestProgress.Completed;
         }
 
 

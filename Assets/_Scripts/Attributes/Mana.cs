@@ -80,8 +80,13 @@ namespace RPGDemo.Attributes
         {
             LazyInit();
 
-            if (manaCost < 0f) return false;
-            if (currentMana < manaCost) return false;
+            if (manaCost < 0f || currentMana < manaCost)
+            {
+                BottomMessageBox.ShowManaNotEnough();
+                return false;
+
+            }
+
 
             currentMana -= manaCost;
             OnManaChanged?.Invoke(manaCost);

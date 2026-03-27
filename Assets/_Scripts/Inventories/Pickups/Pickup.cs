@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPGDemo.Inventories.Pickups
@@ -58,6 +58,8 @@ namespace RPGDemo.Inventories.Pickups
 
             PickupSpawner spawner = GetComponentInParent<PickupSpawner>();
             spawner?.PickupCallback(_amount - quantityRemained);
+
+            SideMessageBox.ShowPickup(_item, _amount - quantityRemained);
 
             if (quantityRemained != 0)
             {

@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 2292580561147770964}
   - component: {fileID: 3651564949216569086}
   - component: {fileID: 8195727748196359240}
+  - component: {fileID: 8172102865526450060}
   m_Layer: 5
   m_Name: EnemyHeadCanavs
   m_TagString: Untagged
@@ -388,6 +389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldCanvasFacingCamera
   target: {fileID: 0}
+  minDistanceToCamera: 5
+  onlyDirectionFacing: 1
 --- !u!114 &8195727748196359240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +405,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHeadUI
   image_healthBarFill: {fileID: 8960924302200995994}
   tmp_healthNumber: {fileID: 4022577907144235189}
+--- !u!225 &8172102865526450060
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4495781220428522590}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &8724945400567357870
 GameObject:
   m_ObjectHideFlags: 0

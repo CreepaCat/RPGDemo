@@ -21,7 +21,7 @@ MonoBehaviour:
   - quantity: 1
     item: {fileID: 11400000, guid: f191e729999ad004aac345f899c840ea, type: 2}
   - quantity: 1
-    item: {fileID: 11400000, guid: 17af7bfd6a1a1ab4aa92bae41a1909ad, type: 2}
+    item: {fileID: 11400000, guid: 023e1b7614a9f8243b78ce5d8cc2b83c, type: 2}
   <rewardCoins>k__BackingField: 100
   <rewardExp>k__BackingField: 100
   <preQuests>k__BackingField:
