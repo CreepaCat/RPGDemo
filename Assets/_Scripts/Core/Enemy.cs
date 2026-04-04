@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using RPGDemo.Attributes;
+using MyBehaviourTree;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
@@ -14,6 +15,7 @@ public class Enemy : Character
     public NavMeshAgent Agent => agent;
     public Animator Animator => animator;
     public AIController AIController => aiController;
+    public BehaviourTreeRunner TreeRunner => treeRunner;
 
 
     StateMachine stateMachine;
@@ -22,6 +24,17 @@ public class Enemy : Character
     AIController aiController;
     Health health;
     BaseStats baseStats;
+    BehaviourTreeRunner treeRunner;
+
+
+
+    public enum EnemyState
+    {
+        Patrol,
+        Chase,
+        Attack,
+        Dead
+    }
 
     Player player;
 
@@ -32,6 +45,7 @@ public class Enemy : Character
         aiController = GetComponent<AIController>();
         health = GetComponent<Health>();
         baseStats = GetComponent<BaseStats>();
+        treeRunner = GetComponent<BehaviourTreeRunner>();
 
         agent.isStopped = false;
 
@@ -53,26 +67,27 @@ public class Enemy : Character
 
     private void Start()
     {
-        EnemyPatrolState patrolState = new EnemyPatrolState(this);
-        EnemyChaseState chaseState = new EnemyChaseState(this);
-        EnemySuspectState suspectState = new EnemySuspectState(this);
-        EnemyDeathState deathState = new EnemyDeathState(this);
+        // EnemyPatrolState patrolState = new EnemyPatrolState(this);
+        // EnemyChaseState chaseState = new EnemyChaseState(this);
+        // EnemySuspectState suspectState = new EnemySuspectState(this);
+        // EnemyDeathState deathState = new EnemyDeathState(this);
 
-        stateMachine = new StateMachine(patrolState);
-        stateMachine.AddState(chaseState);
-        stateMachine.AddState(suspectState);
-        stateMachine.AddState(deathState);
+        // stateMachine = new StateMachine(patrolState);
+        // stateMachine.AddState(chaseState);
+        // stateMachine.AddState(suspectState);
+        // stateMachine.AddState(deathState);
     }
 
     void Update()
     {
-        stateMachine.OnUpdate();
+        //stateMachine.OnUpdate();
+
 
     }
 
     void FixedUpdate()
     {
-        stateMachine.OnFixedUpdate();
+        // stateMachine.OnFixedUpdate();
     }
 
     private void OnDeathCallback()
@@ -87,4 +102,12 @@ public class Enemy : Character
         animator.CrossFade("Hit", 0.2f);
     }
 
+    internal void Move(Vector3 deltaPosition, Quaternion deltaRotation)
+    {
+        //throw new NotImplementedException();
+        agent.isStopped = true;
+        //使用rb或transform移动
+        aiController.Move(deltaPosition, deltaRotation);
+
+    }
 }

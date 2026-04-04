@@ -34,6 +34,9 @@ public class AIController : MonoBehaviour
     private PathPatrol patrol;
 
     PlayerDetector playerDetector;
+    AnimationHandler animationHandler;
+    Rigidbody rb;
+    Enemy enemy;
 
 
     private float patrolDeltaTime;
@@ -44,11 +47,52 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         patrol = GetComponent<PathPatrol>();
         playerDetector = GetComponent<PlayerDetector>();
+        animationHandler = GetComponent<AnimationHandler>();
+        rb = GetComponent<Rigidbody>();
+        enemy = GetComponent<Enemy>();
+
+        rb.isKinematic = true;
+        FreezeRb();
+    }
+
+    private void FreezeRb()
+    {
+
+        rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+    }
+
+    private void DefreezeRb()
+    {
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     private void Start()
     {
         SetAgentPatrol();
+    }
+
+    private void Update()
+    {
+        if (animationHandler.UsingRootMotion || animationHandler.IsInteracting)
+        {
+            agent.isStopped = true;
+            DefreezeRb();
+        }
+        else if (agent.isStopped)
+        {
+            agent.isStopped = false;
+            FreezeRb();
+        }
+
+        if (enemy.TreeRunner.currentState == "Patrol")
+        {
+
+        }
+
+        float speed = agent.isStopped ? 0f : agent.desiredVelocity.magnitude;
+        animationHandler.Animator.SetFloat("Speed", speed);
+
+
     }
 
     public void SetAgentPatrol()
@@ -109,6 +153,20 @@ public class AIController : MonoBehaviour
                 patrolDeltaTime = 0f;
             }
         }
+    }
+    public void Move(Vector3 movement, Quaternion deltaRotation)
+    {
+        var targetMovement = movement;
+
+
+        rb.MovePosition(rb.position + targetMovement);
+
+        if (deltaRotation != Quaternion.identity)
+        {
+            rb.MoveRotation(rb.rotation * deltaRotation);
+            //  _cachedMoveDirection = (rb.rotation * deltaRotation) * Vector3.forward;
+        }
+
     }
 
 

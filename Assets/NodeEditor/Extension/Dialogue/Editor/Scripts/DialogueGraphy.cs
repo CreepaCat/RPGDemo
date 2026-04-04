@@ -26,7 +26,7 @@ namespace MyNodeEditor.Extension.Dialogue
 
         //  private VisualTreeAsset m_VisualTreeAsset = null;
 
-        [MenuItem("Tools/DialogueGraphy")]
+        [MenuItem("MyTools/对话编辑器")]
         public static void ShowGraphWindow()
         {
             DialogueGraphy wnd = GetWindow<DialogueGraphy>();

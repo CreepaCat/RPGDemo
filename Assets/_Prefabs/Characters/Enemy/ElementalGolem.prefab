@@ -339,7 +339,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1240436048535494684, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
       propertyPath: _startingLevel
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -1240436048535494684, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
       propertyPath: _processionConfig
@@ -582,8 +582,14 @@ PrefabInstance:
       insertIndex: 4
       addedObject: {fileID: 2555973410490757776}
     - targetCorrespondingSourceObject: {fileID: 70758787706661249, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 3700166313702117369}
+    - targetCorrespondingSourceObject: {fileID: 70758787706661249, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5798462562790604890}
+    - targetCorrespondingSourceObject: {fileID: 70758787706661249, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8212237399484111383}
   m_SourcePrefab: {fileID: 100100000, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
 --- !u!4 &3890595540110659551 stripped
 Transform:
@@ -618,7 +624,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -659,7 +665,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 1000
-  m_StoppingDistance: 0.1
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -667,6 +673,18 @@ NavMeshAgent:
   m_BaseOffset: -0.15
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3700166313702117369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359663322162291170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec6c7d30b287224d9935e2c46a7f0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElenemtalGolemAnimationHandler
 --- !u!114 &5798462562790604890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,3 +701,18 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &8212237399484111383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359663322162291170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d4012789f20e94294da32127fa869a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quests.QuestObjectiveCompletion
+  quest: {fileID: 11400000, guid: cea53ac5a7fcc19489407f964cd1b9a7, type: 2}
+  objective: {fileID: 11400000, guid: 91e8f1ae04d6fd3409a6b205fea268df, type: 2}
+  completeNumber: 1

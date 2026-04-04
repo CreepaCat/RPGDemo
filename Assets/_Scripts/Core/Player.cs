@@ -17,7 +17,7 @@ using TMPro;
 
 //[RequireComponent(typeof(ThirdPersonController))]
 [RequireComponent(typeof(Weapon))]
-[RequireComponent(typeof(PlayerAnimatorHandler))]
+[RequireComponent(typeof(PlayerAnimationHandler))]
 
 public class Player : Character, ISaveable
 {
@@ -39,7 +39,7 @@ public class Player : Character, ISaveable
     public Experience Experience => _experience;
     public Fighter Fighter => _fighter;
     public Weapon Weapon => _weapon;
-    public PlayerAnimatorHandler AnimatorHandler => _animatorHandler;
+    public PlayerAnimationHandler AnimatorHandler => _animatorHandler;
     public PlayerCanversant PlayerCanversant => _playerCanversant;
 
     private PlayerLocomotion _locomotion;
@@ -66,7 +66,7 @@ public class Player : Character, ISaveable
 
 
 
-    private PlayerAnimatorHandler _animatorHandler;
+    private PlayerAnimationHandler _animatorHandler;
 
 
     private void Awake()
@@ -86,7 +86,7 @@ public class Player : Character, ISaveable
         _fighter = GetComponent<Fighter>();
         _weapon = GetComponent<Weapon>();
 
-        _animatorHandler = GetComponent<PlayerAnimatorHandler>();
+        _animatorHandler = GetComponent<PlayerAnimationHandler>();
         _playerCanversant = GetComponent<PlayerCanversant>();
 
         //构建状态机
