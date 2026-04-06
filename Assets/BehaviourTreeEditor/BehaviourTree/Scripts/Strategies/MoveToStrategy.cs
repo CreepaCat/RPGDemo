@@ -19,11 +19,12 @@ namespace MyBehaviourTree
                 return Node.State.Failure;
             }
 
-            NavMeshAgent agent = context.GetComponent<NavMeshAgent>();
-            if (agent == null)
-            {
-                return Node.State.Failure;
-            }
+            // NavMeshAgent agent = context.GetComponent<NavMeshAgent>();
+            // if (agent == null)
+            // {
+            //     return Node.State.Failure;
+            // }
+            var agent = context.Agent;
 
             Transform target = ResolveTarget(context);
             if (target == null)
@@ -38,7 +39,6 @@ namespace MyBehaviourTree
             {
                 return Node.State.Success;
             }
-            Debug.Log("move to " + targetKey);
 
             return Node.State.Running;
         }

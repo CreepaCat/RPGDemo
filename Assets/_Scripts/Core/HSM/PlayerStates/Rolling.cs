@@ -21,11 +21,11 @@ public class Rolling : State
     {
         _player.Locomotion.CanMove = false;
         _player.Animator.SetBool(PlayerAnimatorParamConfig.animIDIsRolling, true);
-        _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDRolling, true, 0.1f, true);
+        _player.AnimationHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDRolling, true, true, 0.1f);
     }
     protected override void OnUpdate(float deltaTime)
     {
-        if (!_player.AnimatorHandler.IsRolling && _player.Locomotion.RollPerformed)
+        if (!_player.AnimationHandler.IsRolling && _player.Locomotion.RollPerformed)
         {
             _player.Locomotion.RollPerformed = false;
         }

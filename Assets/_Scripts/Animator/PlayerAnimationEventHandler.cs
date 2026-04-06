@@ -36,7 +36,7 @@ public class PlayerAnimationEventHandler : MonoBehaviour
         if (animationEvent.animatorClipInfo.weight > 0.5f)
         {
             Debug.Log("OnAttackStart");
-            _player.Fighter.OnAttackStart();
+            _player.Fighter.OnAttackStart(animationEvent.intParameter);
         }
     }
 

@@ -7,19 +7,17 @@ namespace MyBehaviourTree
     /// <summary>
     /// 类似FSM的状态切换节点:
     /// 读取黑板中的状态值，执行对应case的子节点。
+    /// 子节点必须是StateNode
     /// </summary>
     public class SwitchNode : CompositeNode
     {
-        public string stateKey = "CurrentState";
-        public int defaultChildIndex = -1;
-        public List<string> caseValues = new(); //与黑板设定的状态值对应
+        public BehaviourState CurrentState;
 
-        private int runningChildIndex = -1;
+        private StateNode currentRunningState;
 
         protected override void OnStart()
         {
-            SyncCasesWithChildren();
-            runningChildIndex = -1;
+            currentRunningState = null;
         }
 
         protected override void OnStop()
@@ -29,49 +27,23 @@ namespace MyBehaviourTree
 
         protected override State OnUpdate()
         {
-            SyncCasesWithChildren();
             if (children.Count == 0)
             {
                 return State.Failure;
             }
 
-            int targetIndex = ResolveTargetChildIndex();
-            if (targetIndex < 0 || targetIndex >= children.Count)
+            var runningState = ResolveTargetChild();
+            if (runningState == null)
             {
-                AbortRunningChild();
                 return State.Failure;
             }
-
-            if (runningChildIndex != -1 && runningChildIndex != targetIndex)
+            if (currentRunningState != runningState)
             {
-                children[runningChildIndex]?.Abort();
+                AbortRunningChild();
+                currentRunningState = runningState;
             }
 
-            runningChildIndex = targetIndex;
-            return children[targetIndex].Update();
-        }
-
-        public void SyncCasesWithChildren()
-        {
-            if (caseValues == null)
-            {
-                caseValues = new List<string>();
-            }
-
-            while (caseValues.Count < children.Count)
-            {
-                caseValues.Add(string.Empty);
-            }
-
-            if (caseValues.Count > children.Count)
-            {
-                caseValues.RemoveRange(children.Count, caseValues.Count - children.Count);
-            }
-
-            if (defaultChildIndex >= children.Count)
-            {
-                defaultChildIndex = -1;
-            }
+            return runningState.Update();
         }
 
         public override void Abort()
@@ -80,33 +52,28 @@ namespace MyBehaviourTree
             base.Abort();
         }
 
-        private int ResolveTargetChildIndex()
-        {
-            string currentState = string.Empty;
-            if (context?.Blackboard != null)
-            {
-                context.Blackboard.TryGetString(stateKey, out currentState);
-            }
-
-            for (int i = 0; i < caseValues.Count; i++)
-            {
-                if (string.Equals(caseValues[i], currentState, StringComparison.Ordinal))
-                {
-                    return i;
-                }
-            }
-
-            return defaultChildIndex;
-        }
-
         private void AbortRunningChild()
         {
-            if (runningChildIndex >= 0 && runningChildIndex < children.Count)
+            currentRunningState?.Abort();
+        }
+
+        private StateNode ResolveTargetChild()
+        {
+            if (context?.Blackboard != null)
             {
-                children[runningChildIndex]?.Abort();
+                CurrentState = context.Blackboard.CurrentState;
             }
 
-            runningChildIndex = -1;
+            foreach (var child in children)
+            {
+                StateNode state = child as StateNode;
+                if (state == null) continue;
+                if (state.RepeatState == CurrentState)
+                {
+                    return state;
+                }
+            }
+            return null;
         }
     }
 }

@@ -61,13 +61,12 @@ public class Ground : State
     }
     protected override void OnExit()
     {
-        // _player.Input.Interact -= HandleInteractInput;
         _player.Input.Interact -= InteractPerformed;
     }
 
     protected override void OnUpdate(float deltaTime)
     {
-        Debug.Log("on state Ground");
+
         if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
             isInCombat = !isInCombat;
@@ -75,7 +74,6 @@ public class Ground : State
         }
 
         _player.Locomotion.CaculateMovement();
-        // _player.Locomotion.CheckRolling();
 
         if (interactPerformed)
         {

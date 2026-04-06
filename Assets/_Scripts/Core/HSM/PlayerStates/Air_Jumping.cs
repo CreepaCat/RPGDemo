@@ -25,7 +25,7 @@ public class Air_Jumping : State
     protected override void OnEnter()
     {
         Debug.Log("Jumping");
-        _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDJumping, true, 0.04f, false);
+        _player.AnimationHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDJumping, true, false, 0.04f);
         _player.Animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, false);
         _player.Locomotion.SetJump();
 

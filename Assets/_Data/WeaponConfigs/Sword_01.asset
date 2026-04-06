@@ -20,10 +20,11 @@ MonoBehaviour:
   weaponLayer:
     serializedVersion: 2
     m_Bits: 1024
-  <LightAttack_01>k__BackingField: 1H_Light_Attack_1
-  <LightAttack_02>k__BackingField: 1H_Light_Attack_2
-  <LightAttack_03>k__BackingField: 1H_Light_Attack_3
-  <HeaveyAttack>k__BackingField: 1H_Heavey_Attack
+  hitSoundData:
+    clip: {fileID: 8300000, guid: 97a93348ae9ec424a9b78f55944f74b0, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
   AttackCombo:
   - 1H_Light_Attack_1
   - 1H_Light_Attack_2

@@ -16,7 +16,7 @@ namespace MyBehaviourTree
         public NodeView(Node node) : base("Assets/BehaviourTreeEditor/BehaviourTree/Editor/NodeView.uxml")
         {
             this.node = node;
-            this.title = node.name;
+            this.title = node?.name/*.Replace("Node", "")*/;
             this.viewDataKey = node.guid;
 
             style.left = node.position.x;

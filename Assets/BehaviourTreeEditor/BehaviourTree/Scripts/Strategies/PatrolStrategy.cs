@@ -8,7 +8,7 @@ namespace MyBehaviourTree
     [System.Serializable]
     public class PatrolStrategy : ActionStrategy
     {
-        public List<Transform> wayPoints;
+        private List<Transform> wayPoints = new();
 
         [SerializeField] int currentIndex;
 
@@ -16,12 +16,16 @@ namespace MyBehaviourTree
         {
             base.OnStart(context);
             context.Agent.isStopped = false;
+            wayPoints = context.Blackboard.WayPoints;
         }
 
         public override Node.State Process(BehaviourTreeContext context)
         {
             NavMeshAgent agent = context.Agent;
+
             if (agent == null) return Node.State.Failure;
+            if (wayPoints == null) return Node.State.Failure;
+
             agent.SetDestination(wayPoints[currentIndex].position);
 
             if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)

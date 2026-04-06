@@ -27,7 +27,7 @@ public class Combat : State
     {
         //如果在战斗返回战斗idle
         //如果在普通状态，返回普通Idle
-        if (_player.AnimatorHandler.IsCasting)
+        if (_player.AnimationHandler.IsCasting)
         {
             return Casting;
         }
@@ -63,7 +63,7 @@ public class Combat : State
         if (attackPerformed)
         {
             attackPerformed = false;
-            _player.Fighter.HandleAttack();
+            _player.Fighter.HandleComboAttack();
         }
     }
 

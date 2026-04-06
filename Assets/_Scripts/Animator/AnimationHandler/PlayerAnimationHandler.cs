@@ -30,17 +30,17 @@ public class PlayerAnimationHandler : AnimationHandler
         _animator.applyRootMotion = false;
     }
 
-    public bool PlayTargetAnimation(int targetAnimation, bool isInteractingAnima, float crossFadeTime = 0.2f, bool usingRootMotion = false)
-    {
+    // public bool PlayTargetAnimation(int targetAnimation, bool isInteractingAnima, float crossFadeTime = 0.2f, bool usingRootMotion = false)
+    // {
 
-        if (IsInteracting) return false;
+    //     if (IsInteracting) return false;
 
-        _animator.SetBool(PlayerAnimatorParamConfig.animIDIsinteracting, isInteractingAnima);
-        _animator.SetBool("usingRootMotion", usingRootMotion);
-        _animator.Play(targetAnimation);
-        _animator.CrossFade(targetAnimation, crossFadeTime);
-        return true;
-    }
+    //     _animator.SetBool(PlayerAnimatorParamConfig.animIDIsinteracting, isInteractingAnima);
+    //     _animator.SetBool("usingRootMotion", usingRootMotion);
+    //     _animator.Play(targetAnimation);
+    //     _animator.CrossFade(targetAnimation, crossFadeTime);
+    //     return true;
+    // }
 
     /// <summary>
     /// 手部遮罩动画

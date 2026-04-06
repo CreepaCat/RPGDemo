@@ -1,14 +1,15 @@
-using System;
 using RPGDemo.Stats;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 using RPGDemo.Attributes;
 using MyBehaviourTree;
+using System.Collections;
+using Core.AudioSystem;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AIController))]
+[RequireComponent(typeof(BehaviourTreeRunner))]
 public class Enemy : Character
 {
     public StateMachine StateMachine => stateMachine;
@@ -24,22 +25,14 @@ public class Enemy : Character
     AIController aiController;
     Health health;
     BaseStats baseStats;
-    BehaviourTreeRunner treeRunner;
+    BehaviourTreeRunner treeRunner; //不使用状态机而使用行为树
 
-
-
-    public enum EnemyState
-    {
-        Patrol,
-        Chase,
-        Attack,
-        Dead
-    }
 
     Player player;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         aiController = GetComponent<AIController>();
@@ -55,59 +48,121 @@ public class Enemy : Character
     private void OnEnable()
     {
         health.OnHealthChanged += PlayTakeDamageAnimation;
-        health.OnDeath += OnDeathCallback;
+        health.OnDeath += OnDeath;
+
+        TreeRunner.blackboard.OnStateEnter += OnStateEnterCallBack;
+        TreeRunner.blackboard.OnStateExit += OnStateExitCallBack;
+        TreeRunner.blackboard.OnStateUpdate += OnStateUpdateCallback;
     }
 
     private void OnDisable()
     {
         health.OnHealthChanged -= PlayTakeDamageAnimation;
+
+        TreeRunner.blackboard.OnStateEnter -= OnStateEnterCallBack;
+        TreeRunner.blackboard.OnStateExit -= OnStateExitCallBack;
+        TreeRunner.blackboard.OnStateUpdate -= OnStateUpdateCallback;
     }
 
     public bool IsDead() => health.IsDead();
 
-    private void Start()
-    {
-        // EnemyPatrolState patrolState = new EnemyPatrolState(this);
-        // EnemyChaseState chaseState = new EnemyChaseState(this);
-        // EnemySuspectState suspectState = new EnemySuspectState(this);
-        // EnemyDeathState deathState = new EnemyDeathState(this);
 
-        // stateMachine = new StateMachine(patrolState);
-        // stateMachine.AddState(chaseState);
-        // stateMachine.AddState(suspectState);
-        // stateMachine.AddState(deathState);
+
+    #region 状态切换回调方法
+    private void OnStateEnterCallBack(BehaviourState state)
+    {
+        switch (state)
+        {
+            case BehaviourState.Patrol:
+                aiController.SetAgentPatrol();
+                break;
+            case BehaviourState.Suspect:
+                aiController.ResetSuspectTimer();
+                break;
+            case BehaviourState.Chase:
+                aiController.SetAgentChase();
+                break;
+            case BehaviourState.Attack:
+                break;
+            case BehaviourState.Death:
+                aiController.Disable();
+                break;
+        }
     }
 
-    void Update()
+    private void OnStateUpdateCallback(BehaviourState state)
     {
-        //stateMachine.OnUpdate();
+        // switch (state)
+        // {
 
-
+        //     case BehaviourState.Suspect:
+        //         UpdateSuspectState();
+        //         break;
+        // }
     }
 
-    void FixedUpdate()
+    private void OnStateExitCallBack(BehaviourState state)
     {
-        // stateMachine.OnFixedUpdate();
+        //NO OP
     }
 
-    private void OnDeathCallback()
+    #endregion
+
+
+    private void OnDeath()
     {
+        aiController.Disable();
         player.Experience.GainExp((int)baseStats.GetStats(StatsType.Experience));
+
+        AnimationHandler.PlayInterruptAnimation(Animator.StringToHash("Death"), true);
+        Fighter.DisableWeaponDamage();
+
+
+        StartCoroutine(DeathCoroutine(5f));
 
     }
 
     private void PlayTakeDamageAnimation(float healthChnagedValue)
     {
-        animator.Play("Hit");
-        animator.CrossFade("Hit", 0.2f);
-    }
+        if (healthChnagedValue > 0)
+        {
+            // animationHand
+            animator.Play("Hit");
+            animator.CrossFade("Hit", 0.2f);
+        }
 
+
+    }
+    /// <summary>
+    /// 根动画移动
+    /// </summary>
+    /// <param name="deltaPosition"></param>
+    /// <param name="deltaRotation"></param>
     internal void Move(Vector3 deltaPosition, Quaternion deltaRotation)
     {
         //throw new NotImplementedException();
         agent.isStopped = true;
         //使用rb或transform移动
         aiController.Move(deltaPosition, deltaRotation);
+
+    }
+    /// <summary>
+    /// 死亡后隐藏尸体
+    /// </summary>
+    /// <param name="waitTiem"></param>
+    /// <returns></returns>
+    IEnumerator DeathCoroutine(float waitTiem)
+    {
+        yield return new WaitForSeconds(waitTiem);
+
+        while (transform.position.y > -2f)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - 1f * Time.deltaTime, transform.position.z);
+            yield return null;
+
+        }
+
+        transform.gameObject.SetActive(false);
 
     }
 }

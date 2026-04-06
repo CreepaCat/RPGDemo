@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4062970156637049135
+--- !u!114 &-8523152566823385365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,27 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a952e0e0cf6b2a74a8f8d483b964b502, type: 3}
-  m_Name: SwitchNode
-  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.SwitchNode
-  description: "\u72B6\u6001\u5207\u6362"
+  m_Script: {fileID: 11500000, guid: 1c462780c6498814d865d77ff718ca38, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.DebugLogNode
+  description: "\u653B\u51FB\u884C\u4E3A"
   state: 0
-  guid: 35227eb18f7e07d4f9a22434739a374b
-  position: {x: -0.000017882237, y: 72.64917}
+  guid: e91cec4d8d340574d94919aeaf97a9aa
+  position: {x: 931.19995, y: 1009.60004}
   started: 0
-  children:
-  - {fileID: -1440126342213433776}
-  - {fileID: 237596085375464285}
-  - {fileID: 3459206563322386422}
-  - {fileID: 7457872940509511356}
-  stateKey: CurrentState
-  defaultChildIndex: -1
-  caseValues:
-  - Patrol
-  - Chase
-  - Attack
-  - 
---- !u!114 &-1440126342213433776
+  strategy:
+    rid: 2184903425464729765
+  message: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 2184903425464729765
+      type: {class: AttackStrategy, ns: MyBehaviourTree, asm: Assembly-CSharp}
+      data: 
+--- !u!114 &-7682536823234701679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,77 +38,123 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ed2438037566c40967f069f017656d, type: 3}
   m_Name: RepeatNode
   m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.RepeatNode
-  description: "\u5DE1\u903B"
-  state: 0
-  guid: f82c19ee5339468478d64527ddd2a9ad
-  position: {x: -205.59999, y: 279.99994}
-  started: 0
-  child: {fileID: 4088261426132292645}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf3798b47100eec40b448eed83dc6082, type: 3}
-  m_Name: Golem BehaviourTree
-  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.BehaviourTree
-  rootNode: {fileID: 1512633229803985458}
-  treeState: 0
-  nodes:
-  - {fileID: 1512633229803985458}
-  - {fileID: -4062970156637049135}
-  - {fileID: -1440126342213433776}
-  - {fileID: 237596085375464285}
-  - {fileID: 3459206563322386422}
-  - {fileID: 2282102860653559703}
-  - {fileID: 4088261426132292645}
-  - {fileID: 7457872940509511356}
-  - {fileID: 8901307971228140717}
-  - {fileID: 1808941229862285720}
-  blackboard:
-    transformEntries: []
-    stringEntries: []
---- !u!114 &237596085375464285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ed2438037566c40967f069f017656d, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.RepeatNode
-  description: "\u8FFD\u51FB"
-  state: 0
-  guid: 17c95d768b821a64b8316dffb0deca9b
-  position: {x: 190.39996, y: 279.2}
-  started: 0
-  child: {fileID: 1808941229862285720}
---- !u!114 &1512633229803985458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c40df9bf92a3954783d59e2c667a2a0, type: 3}
-  m_Name: RootNode
-  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.RootNode
   description: 
   state: 0
-  guid: 47dbf5116a487654bae5113fb88a52c2
-  position: {x: 0.000053762968, y: -132.95245}
+  guid: 5a3067b4efd39d745b64c24fe9d599b6
+  position: {x: -849.59985, y: 665.6}
   started: 0
-  child: {fileID: -4062970156637049135}
---- !u!114 &1808941229862285720
+  child: {fileID: -1282151080699659693}
+--- !u!114 &-7020310319828181208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1fe015a68f547478c7954d48c53cdd, type: 3}
+  m_Name: StateNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.StateNode
+  description: "\u653B\u51FB"
+  state: 0
+  guid: 37e4edc5e662bac42a71b8f73423ffe1
+  position: {x: 1111.1998, y: 452}
+  started: 0
+  child: {fileID: 1854673217760595419}
+  RepeatState: 3
+--- !u!114 &-6956648855900010109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e1d22a3e6c6be468556ae7dbc5ef6e, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.ConditionNode
+  description: "\u73A9\u5BB6\u5728\u653B\u51FB\u8303\u56F42"
+  state: 0
+  guid: 003069ec16fd21349b383afee60de1cd
+  position: {x: 349.60004, y: 875.20013}
+  started: 0
+  strategy:
+    rid: -2
+  toState: 3
+  isNagetive: 0
+  condition:
+    rid: 2184903441031102553
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2184903441031102553
+      type: {class: IsPlayerInRange, ns: , asm: Assembly-CSharp}
+      data:
+        range: 2
+--- !u!114 &-6463113065397235971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c462780c6498814d865d77ff718ca38, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.DebugLogNode
+  description: "\u505C\u6B62\u79FB\u52A8"
+  state: 0
+  guid: f56ad066943bde446b9664686a2de48e
+  position: {x: -559.99976, y: 688.79987}
+  started: 0
+  strategy:
+    rid: 2184903425464729767
+  message: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 2184903425464729767
+      type: {class: MoveToStrategy, ns: MyBehaviourTree, asm: Assembly-CSharp}
+      data:
+        moveToPlayer: 0
+        moveToSelf: 1
+        useBlackboardTarget: 1
+        targetKey: Target
+        targetPoint: {fileID: 0}
+        arriveDistanceOverride: -1
+--- !u!114 &-5815411793241904251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c462780c6498814d865d77ff718ca38, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.DebugLogNode
+  description: "\u8DEF\u70B9\u5FAA\u73AF"
+  state: 0
+  guid: 4195e7070abbb414eaef7ff9fb11fcb2
+  position: {x: -949.59985, y: 971.2}
+  started: 0
+  strategy:
+    rid: 2184903425464729762
+  message: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 2184903425464729762
+      type: {class: PatrolStrategy, ns: MyBehaviourTree, asm: Assembly-CSharp}
+      data:
+        currentIndex: 0
+--- !u!114 &-5215159432976044304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,25 +168,595 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.DebugLogNode
   description: "\u5411\u73A9\u5BB6\u79FB\u52A8"
   state: 0
-  guid: cb35b20ce725e684eb56d34c97437d3e
-  position: {x: 189.59998, y: 452.00003}
+  guid: 081d04ebe46233f4c97b57bffb0e152c
+  position: {x: 538.4, y: 875.2002}
   started: 0
   strategy:
-    rid: 2184903425464729760
+    rid: 2184903425464729763
   message: 
   references:
     version: 2
     RefIds:
-    - rid: 2184903425464729760
+    - rid: 2184903425464729763
       type: {class: MoveToStrategy, ns: MyBehaviourTree, asm: Assembly-CSharp}
       data:
         moveToPlayer: 1
         moveToSelf: 0
-        useBlackboardTarget: 1
+        useBlackboardTarget: 0
         targetKey: Target
         targetPoint: {fileID: 0}
         arriveDistanceOverride: -1
---- !u!114 &2282102860653559703
+--- !u!114 &-4725266227761738043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ee67a745a9eb45a3d9c69dac0062c, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.WaitNode
+  description: "\u653B\u51FB\u95F4\u96943\u79D2"
+  state: 0
+  guid: e3bc88b4008fb9f4485161fb0d9dcc8e
+  position: {x: 1129.6, y: 1009.6792}
+  started: 0
+  strategy:
+    rid: -2
+  duration: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &-4193103738519646022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4c1ef979f84f24b9fe8c382c68cd8c, type: 3}
+  m_Name: Parallel
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.Parallel
+  description: 
+  state: 0
+  guid: dc80695ab9c27ff41b1b803e00ba0c11
+  position: {x: -1023.19995, y: 548.8}
+  started: 0
+  children:
+  - {fileID: 5710016816886797585}
+  - {fileID: -7682536823234701679}
+--- !u!114 &-3998302742247260914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ee67a745a9eb45a3d9c69dac0062c, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.WaitNode
+  description: "\u7B49\u5F852\u79D2"
+  state: 0
+  guid: d1366c1932607f944bc19abe141fbb79
+  position: {x: -377.59998, y: 688.8}
+  started: 0
+  strategy:
+    rid: -2
+  duration: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &-3418205465974848783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46ed2438037566c40967f069f017656d, type: 3}
+  m_Name: RepeatNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.RepeatNode
+  description: 
+  state: 0
+  guid: d7d997f1273d0f049af03c3a259c78e0
+  position: {x: 960.80005, y: 716}
+  started: 0
+  child: {fileID: -1667043035079436450}
+--- !u!114 &-3399140873720501707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ee67a745a9eb45a3d9c69dac0062c, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.WaitNode
+  description: "\u7B49\u5F853\u79D2"
+  state: 0
+  guid: 3dcd29967ba50aa49830507c36681efe
+  position: {x: -739.19995, y: 971.2}
+  started: 0
+  strategy:
+    rid: -2
+  duration: 3
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &-2772842845757457619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4c1ef979f84f24b9fe8c382c68cd8c, type: 3}
+  m_Name: Parallel
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.Parallel
+  description: 
+  state: 0
+  guid: da789b306f454db4cbe6bf175ca4f827
+  position: {x: -162.3999, y: 688.79987}
+  started: 0
+  children:
+  - {fileID: -1668914629433634562}
+  - {fileID: -733731855307286333}
+--- !u!114 &-2092099416298967717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a952e0e0cf6b2a74a8f8d483b964b502, type: 3}
+  m_Name: SwitchNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.SwitchNode
+  description: 
+  state: 0
+  guid: 9c08a35380ca0414fb8917f1a532f074
+  position: {x: 237.60004, y: -154.17487}
+  started: 0
+  children:
+  - {fileID: 3894618846474910716}
+  - {fileID: 9117768115135474782}
+  - {fileID: 6304569844833004121}
+  - {fileID: -7020310319828181208}
+  - {fileID: -124909075687278914}
+  CurrentState: 0
+--- !u!114 &-1689798363131423852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e1d22a3e6c6be468556ae7dbc5ef6e, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.ConditionNode
+  description: "\u73A9\u5BB6\u4E0D\u5728\u653B\u51FB\u8303\u56F42"
+  state: 0
+  guid: 081b9f8b3033a1c4a92e58cac8ef65ce
+  position: {x: 1330.658, y: 738.40015}
+  started: 0
+  strategy:
+    rid: -2
+  toState: 2
+  isNagetive: 1
+  condition:
+    rid: 2184903441031102555
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2184903441031102555
+      type: {class: IsPlayerInRange, ns: , asm: Assembly-CSharp}
+      data:
+        range: 2
+--- !u!114 &-1668914629433634562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e1d22a3e6c6be468556ae7dbc5ef6e, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.ConditionNode
+  description: "\u73A9\u5BB6\u5728\u8FFD\u51FB\u8303\u56F416"
+  state: 0
+  guid: 4b22af3f5617dc64f9c5e8d5bb1a52af
+  position: {x: -278.4, y: 858.4}
+  started: 0
+  strategy:
+    rid: -2
+  toState: 2
+  isNagetive: 0
+  condition:
+    rid: 2184903441031102550
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2184903441031102550
+      type: {class: IsPlayerInRange, ns: , asm: Assembly-CSharp}
+      data:
+        range: 16
+--- !u!114 &-1667043035079436450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f608101de87f65742ac0340a9d26f5c6, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.SequencerNode
+  description: 
+  state: 0
+  guid: 406cf0e5774a4da40bbf314b08b6147c
+  position: {x: 960.8001, y: 852.8945}
+  started: 0
+  children:
+  - {fileID: 7973784319076289686}
+  - {fileID: -8523152566823385365}
+  - {fileID: -4725266227761738043}
+--- !u!114 &-1282151080699659693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f608101de87f65742ac0340a9d26f5c6, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.SequencerNode
+  description: 
+  state: 0
+  guid: 33601cde25df66a4cad832b9ffbefb03
+  position: {x: -849.59985, y: 843.2}
+  started: 0
+  children:
+  - {fileID: -5815411793241904251}
+  - {fileID: -3399140873720501707}
+--- !u!114 &-733731855307286333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e1d22a3e6c6be468556ae7dbc5ef6e, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.ConditionNode
+  description: "\u73A9\u5BB6\u4E0D\u5728\u8FFD\u51FB\u8303\u56F416"
+  state: 0
+  guid: 58ae76d4673629649abb5cb71b07e216
+  position: {x: -12, y: 858.4}
+  started: 0
+  strategy:
+    rid: -2
+  toState: 0
+  isNagetive: 1
+  condition:
+    rid: 2184903441031102551
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2184903441031102551
+      type: {class: IsPlayerInRange, ns: , asm: Assembly-CSharp}
+      data:
+        range: 16
+--- !u!114 &-124909075687278914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1fe015a68f547478c7954d48c53cdd, type: 3}
+  m_Name: StateNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.StateNode
+  description: "\u6B7B\u4EA1"
+  state: 0
+  guid: 905dc410c7472464b85596f12745da33
+  position: {x: 1564.7999, y: 452}
+  started: 0
+  child: {fileID: 6838787670918821871}
+  RepeatState: 4
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3798b47100eec40b448eed83dc6082, type: 3}
+  m_Name: Golem BehaviourTree
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.BehaviourTree
+  rootNode: {fileID: 6247362616811323659}
+  treeState: 0
+  nodes:
+  - {fileID: 6247362616811323659}
+  - {fileID: -2092099416298967717}
+  - {fileID: 3894618846474910716}
+  - {fileID: 9117768115135474782}
+  - {fileID: 6304569844833004121}
+  - {fileID: -7020310319828181208}
+  - {fileID: -5815411793241904251}
+  - {fileID: -3399140873720501707}
+  - {fileID: -1282151080699659693}
+  - {fileID: -5215159432976044304}
+  - {fileID: -8523152566823385365}
+  - {fileID: -4725266227761738043}
+  - {fileID: 7973784319076289686}
+  - {fileID: 4409288257922867187}
+  - {fileID: -6463113065397235971}
+  - {fileID: -3998302742247260914}
+  - {fileID: -1668914629433634562}
+  - {fileID: -733731855307286333}
+  - {fileID: 5710016816886797585}
+  - {fileID: -4193103738519646022}
+  - {fileID: -7682536823234701679}
+  - {fileID: 1195086932369930376}
+  - {fileID: -6956648855900010109}
+  - {fileID: 5687073124706087847}
+  - {fileID: -2772842845757457619}
+  - {fileID: 1854673217760595419}
+  - {fileID: -1689798363131423852}
+  - {fileID: -1667043035079436450}
+  - {fileID: -3418205465974848783}
+  - {fileID: -124909075687278914}
+  - {fileID: 6838787670918821871}
+  blackboard:
+    CurrentState: 0
+    WayPoints: []
+    transformEntries: []
+--- !u!114 &1195086932369930376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4c1ef979f84f24b9fe8c382c68cd8c, type: 3}
+  m_Name: Parallel
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.Parallel
+  description: 
+  state: 0
+  guid: d48e8f7c9facdb7458d90bd1728d22ab
+  position: {x: 388.00003, y: 556}
+  started: 0
+  children:
+  - {fileID: 5687073124706087847}
+  - {fileID: -6956648855900010109}
+  - {fileID: -5215159432976044304}
+--- !u!114 &1854673217760595419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4c1ef979f84f24b9fe8c382c68cd8c, type: 3}
+  m_Name: Parallel
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.Parallel
+  description: 
+  state: 0
+  guid: 367ad1bb901a4754aa288914f9405cc1
+  position: {x: 1111.2, y: 594.14197}
+  started: 0
+  children:
+  - {fileID: -3418205465974848783}
+  - {fileID: -1689798363131423852}
+--- !u!114 &3894618846474910716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1fe015a68f547478c7954d48c53cdd, type: 3}
+  m_Name: StateNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.StateNode
+  description: "\u5DE1\u903B"
+  state: 0
+  guid: 1a27cb52a309abc41a979fadfc63d023
+  position: {x: -1023.2001, y: 393.3496}
+  started: 0
+  child: {fileID: -4193103738519646022}
+  RepeatState: 0
+--- !u!114 &4409288257922867187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f608101de87f65742ac0340a9d26f5c6, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.SequencerNode
+  description: 
+  state: 0
+  guid: e83c11ec71949f4499e0b32c68c27572
+  position: {x: -377.59985, y: 541.5999}
+  started: 0
+  children:
+  - {fileID: -6463113065397235971}
+  - {fileID: -3998302742247260914}
+  - {fileID: -2772842845757457619}
+--- !u!114 &5687073124706087847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e1d22a3e6c6be468556ae7dbc5ef6e, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.ConditionNode
+  description: "\u73A9\u5BB6\u4E0D\u5728\u8FFD\u51FB\u8303\u56F416"
+  state: 0
+  guid: 076da9bb475a14c4db863d61430ee3c7
+  position: {x: 173.6, y: 875.2001}
+  started: 0
+  strategy:
+    rid: -2
+  toState: 1
+  isNagetive: 1
+  condition:
+    rid: 2184903441031102554
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2184903441031102554
+      type: {class: IsPlayerInRange, ns: , asm: Assembly-CSharp}
+      data:
+        range: 16
+--- !u!114 &5710016816886797585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e1d22a3e6c6be468556ae7dbc5ef6e, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.ConditionNode
+  description: "\u73A9\u5BB6\u5728\u7591\u60D1\u8303\u56F48"
+  state: 0
+  guid: cbaa8990f75beb6428f41ec90cd34d55
+  position: {x: -1222.4, y: 665.6}
+  started: 0
+  strategy:
+    rid: -2
+  toState: 1
+  isNagetive: 0
+  condition:
+    rid: 2184903441031102552
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 2184903441031102552
+      type: {class: IsPlayerInRange, ns: , asm: Assembly-CSharp}
+      data:
+        range: 8
+--- !u!114 &6247362616811323659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c40df9bf92a3954783d59e2c667a2a0, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.RootNode
+  description: 
+  state: 0
+  guid: 01e7842ce25730345baf2afc402d77d0
+  position: {x: 237.60011, y: -360.8431}
+  started: 0
+  child: {fileID: -2092099416298967717}
+--- !u!114 &6304569844833004121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1fe015a68f547478c7954d48c53cdd, type: 3}
+  m_Name: StateNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.StateNode
+  description: "\u8FFD\u51FB"
+  state: 0
+  guid: 89cde5a75ee75044eb1b4a38e352dc2a
+  position: {x: 349.6, y: 407.20007}
+  started: 0
+  child: {fileID: 1195086932369930376}
+  RepeatState: 2
+--- !u!114 &6838787670918821871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ee67a745a9eb45a3d9c69dac0062c, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.WaitNode
+  description: 
+  state: 0
+  guid: 55bc2171ca2769b448d3609fc73b75cd
+  position: {x: 1564.7999, y: 620.60236}
+  started: 0
+  strategy:
+    rid: -2
+  duration: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &7973784319076289686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,26 +768,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c462780c6498814d865d77ff718ca38, type: 3}
   m_Name: DebugLogNode
   m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.DebugLogNode
-  description: "\u8DEF\u70B9\u5DE1\u903B"
+  description: "\u9762\u5411\u73A9\u5BB6"
   state: 0
-  guid: b339be961096be7439cd4ba93c2ae5fd
-  position: {x: -603.18524, y: 428.16403}
+  guid: 90223ea3e5d2cc04fb859bf426591f05
+  position: {x: 780.7998, y: 994.3999}
   started: 0
   strategy:
-    rid: 2184903425464729702
+    rid: 2184903425464729766
   message: 
   references:
     version: 2
     RefIds:
-    - rid: 2184903425464729702
-      type: {class: PatrolStrategy, ns: MyBehaviourTree, asm: Assembly-CSharp}
+    - rid: 2184903425464729766
+      type: {class: RotateToTargetStrategy, ns: MyBehaviourTree, asm: Assembly-CSharp}
       data:
-        wayPoints:
-        - {fileID: 0}
-        - {fileID: 0}
-        - {fileID: 0}
-        currentIndex: 0
---- !u!114 &3459206563322386422
+        rotateToPlayer: 1
+        useBlackboardTarget: 0
+        targetKey: Target
+        target: {fileID: 0}
+        rotateSpeed: 600
+        maxRotateDuration: 1
+--- !u!114 &9117768115135474782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,80 +797,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ed2438037566c40967f069f017656d, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.RepeatNode
-  description: "\u653B\u51FB"
-  state: 0
-  guid: 344645ab077cd4d46b9a870243a29f4c
-  position: {x: 402.24396, y: 279.19995}
-  started: 0
-  child: {fileID: 0}
---- !u!114 &4088261426132292645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 014ee67a745a9eb45a3d9c69dac0062c, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.WaitNode
-  description: "\u7B49\u5F85"
-  state: 0
-  guid: 2286e250ae97a2d4aa9f2b1e1504526e
-  position: {x: -205.6, y: 450.4}
-  started: 0
-  strategy:
-    rid: -2
-  duration: 1
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
---- !u!114 &7457872940509511356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ed2438037566c40967f069f017656d, type: 3}
-  m_Name: RepeatNode
-  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.RepeatNode
+  m_Script: {fileID: 11500000, guid: ba1fe015a68f547478c7954d48c53cdd, type: 3}
+  m_Name: StateNode
+  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.StateNode
   description: "\u6000\u7591"
   state: 0
-  guid: 7eebc274e1a4fc0499baae0d3d81cad4
-  position: {x: 0.000009925061, y: 279.19998}
+  guid: 87085b46b7fef3e41ac9e5b5ea6725ab
+  position: {x: -377.6, y: 415.19998}
   started: 0
-  child: {fileID: 8901307971228140717}
---- !u!114 &8901307971228140717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 014ee67a745a9eb45a3d9c69dac0062c, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.WaitNode
-  description: "\u7B49\u5F85"
-  state: 0
-  guid: df9cd49c6d1905f479bacb0e1baf7018
-  position: {x: 0.000009536743, y: 450.40002}
-  started: 0
-  strategy:
-    rid: -2
-  duration: 1
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+  child: {fileID: 4409288257922867187}
+  RepeatState: 1

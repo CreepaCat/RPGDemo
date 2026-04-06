@@ -37199,6 +37199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c755d2661e79b5428ec985043e482ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Weapon.WeaponHolder
+  isLeftHand: 0
 --- !u!1 &4636001372095446886
 GameObject:
   m_ObjectHideFlags: 0
@@ -52438,7 +52439,6 @@ GameObject:
   - component: {fileID: 2454998770834233870}
   - component: {fileID: 4839011467739815610}
   - component: {fileID: 230029311490946738}
-  - component: {fileID: 7830405412221087126}
   - component: {fileID: 4407582275514132685}
   - component: {fileID: 8234758324420539903}
   - component: {fileID: 5484740022203303494}
@@ -52450,6 +52450,7 @@ GameObject:
   - component: {fileID: 511816465787583793}
   - component: {fileID: 6835345497770047698}
   - component: {fileID: 507301975519762849}
+  - component: {fileID: 5851805369131820711}
   m_Layer: 7
   m_Name: PlayerArmature
   m_TagString: Player
@@ -52804,6 +52805,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 4096
+  weaponConfig: {fileID: 0}
   IsAttacking: 0
 --- !u!114 &230029311490946738
 MonoBehaviour:
@@ -52819,25 +52821,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Saving.SaveableEntity
   _uniqueIdentifier: Player
   useAutoGuid: 0
---- !u!114 &7830405412221087126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6404256082447505823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6687f0973290c0e4e95113f28472fe31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Weapons.Weapon
-  _currentWeaponConfig: {fileID: 0}
-  _weaponHolder: {fileID: 0}
-  _sheathHolder: {fileID: 0}
-  drawOrSheathKey: 31
-  lastAttack: 
-  currentCombo: -1
-  damageCollider: {fileID: 0}
 --- !u!114 &4407582275514132685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52934,7 +52917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1335882fb5e24b4482774a4d71800d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quest.PlayerQuest
-  quests: []
+  congfigQuests: []
   objectiveTrackerPrefab: {fileID: 4005437254303714311, guid: df2eb06767ae6004c92380dac23b89f7, type: 3}
 --- !u!114 &1640715928691297894
 MonoBehaviour:
@@ -52998,6 +52981,24 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &5851805369131820711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6404256082447505823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd283c6a197566438eee6a8b359db8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Weapons.PlayerWeapon
+  _currentWeaponConfig: {fileID: 0}
+  _rightWeaponHolder: {fileID: 0}
+  _leftWeaponHolder: {fileID: 0}
+  damageColliders: []
+  _sheathHolder: {fileID: 7444601801764434987}
+  drawOrSheathKey: 31
 --- !u!1 &6406612339540235573
 GameObject:
   m_ObjectHideFlags: 0

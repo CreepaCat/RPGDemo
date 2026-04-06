@@ -143,7 +143,7 @@ namespace RPGDemo.Attributes
             {
                 return;
             }
-            Debug.Log("自动恢复生命值");
+
 
 
             currentHealth += currentHealth + value >= maxHealth

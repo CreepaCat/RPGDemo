@@ -1,5 +1,6 @@
 using UnityEngine;
 using RPGDemo.Items;
+using Core.AudioSystem;
 namespace RPGDemo.Weapons
 {
     [CreateAssetMenu(fileName = "New Weapon", menuName = "Weapons/New Weapon", order = 0)]
@@ -9,16 +10,18 @@ namespace RPGDemo.Weapons
         [SerializeField] GameObject equippedPrefab;
         [SerializeField] private bool isUnarmed = false;
         [SerializeField] private LayerMask weaponLayer;
+        [SerializeField] SoundData hitSoundData;
 
         // [field: SerializeField] public int MaxCombo { get; private set; }
 
         public float WeaponDamage => weaponDamage;
+        public SoundData HitSound => hitSoundData;
 
 
-        [field: SerializeField] public string LightAttack_01 { get; private set; }
-        [field: SerializeField] public string LightAttack_02 { get; private set; }
-        [field: SerializeField] public string LightAttack_03 { get; private set; }
-        [field: SerializeField] public string HeaveyAttack { get; private set; }
+        // [field: SerializeField] public string LightAttack_01 { get; private set; }
+        // [field: SerializeField] public string LightAttack_02 { get; private set; }
+        // [field: SerializeField] public string LightAttack_03 { get; private set; }
+        // [field: SerializeField] public string HeaveyAttack { get; private set; }
 
         public string[] AttackCombo;
         public int MaxCombo => AttackCombo.Length;
@@ -47,6 +50,14 @@ namespace RPGDemo.Weapons
         {
             int nextCombo = (currentCombo + 1) % MaxCombo;
             return AttackCombo[nextCombo];
+        }
+
+        public string GetRandomAttack()
+        {
+
+            if (AttackCombo == null || AttackCombo.Length == 0) return string.Empty;
+            int random = Random.Range(0, AttackCombo.Length);
+            return AttackCombo[random];
         }
 
     }

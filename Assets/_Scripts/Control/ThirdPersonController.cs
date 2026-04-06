@@ -173,7 +173,7 @@ namespace RPGDemo.Inputs
             _hasAnimator = TryGetComponent(out _animator);
 
 
-            if (!_player.AnimatorHandler.IsInteracting)
+            if (!_player.AnimationHandler.IsInteracting)
             {
                 //Move();
                 HandleRollInput();
@@ -237,7 +237,7 @@ namespace RPGDemo.Inputs
                 }
                 transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
 
-                _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDRolling, true, 0.1f);
+                _player.AnimationHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDRolling, true, true, 0.1f);
                 _input.roll = false;
             }
         }
@@ -262,13 +262,13 @@ namespace RPGDemo.Inputs
             {
                 if (CanDoCombo)
                 {
-                    _player.AnimatorHandler.UpdateCanDoCombo(true);
+                    _player.AnimationHandler.UpdateCanDoCombo(true);
                     _player.Weapon.HandleWeaponCombo();
-                    _player.AnimatorHandler.UpdateCanDoCombo(false);
+                    _player.AnimationHandler.UpdateCanDoCombo(false);
                 }
                 else
                 {
-                    _player.Weapon.LightAttack();
+                    // _player.Weapon.LightAttack();
                 }
 
             }

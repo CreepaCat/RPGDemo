@@ -1,10 +1,23 @@
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace MyBehaviourTree
 {
+    /// <summary>
+    /// 敌人的一些通用状态
+    /// </summary>
+    public enum BehaviourState
+    {
+        Patrol,
+        Suspect,
+        Chase,
+        Attack,
+        Death
+    }
+
+
+
     /// <summary>
     /// 黑板的内容依赖于树的使用者传入，可由多个使用者共用
     /// 因此，当运行时修改黑板内容时，可能存在竞争条件，需要安排权限优先级
@@ -12,11 +25,19 @@ namespace MyBehaviourTree
     [Serializable]
     public class Blackboard
     {
+        [SerializeField] public BehaviourState CurrentState = BehaviourState.Patrol;
+        [SerializeField] public List<Transform> WayPoints = new();
         [SerializeField] private List<TransformEntry> transformEntries = new();
-        [SerializeField] private List<StringEntry> stringEntries = new();
+
 
         //共用字段
-        [ShowInInspector] private static Transform player;
+        private static Transform player;
+
+
+
+        public Action<BehaviourState> OnStateEnter;
+        public Action<BehaviourState> OnStateExit;
+        public Action<BehaviourState> OnStateUpdate;
 
 
         public Transform GetPlayer() => player;
@@ -66,36 +87,6 @@ namespace MyBehaviourTree
 
         }
 
-        public bool TryGetString(string key, out string value)
-        {
-            for (int i = 0; i < stringEntries.Count; i++)
-            {
-                StringEntry entry = stringEntries[i];
-                if (entry != null && entry.key == key)
-                {
-                    value = entry.value;
-                    return true;
-                }
-            }
-
-            value = string.Empty;
-            return false;
-        }
-
-        public void SetString(string key, string value)
-        {
-            for (int i = 0; i < stringEntries.Count; i++)
-            {
-                StringEntry entry = stringEntries[i];
-                if (entry != null && entry.key == key)
-                {
-                    entry.value = value;
-                    return;
-                }
-            }
-
-            stringEntries.Add(new StringEntry { key = key, value = value });
-        }
     }
 
     [Serializable]
@@ -103,12 +94,5 @@ namespace MyBehaviourTree
     {
         public string key;
         public Transform value;
-    }
-
-    [Serializable]
-    public class StringEntry
-    {
-        public string key;
-        public string value;
     }
 }

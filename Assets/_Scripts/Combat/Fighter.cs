@@ -1,8 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using RPGDemo.Weapons;
-using Unity.VisualScripting;
 using UnityEngine;
+using RPGDemo.Attributes;
+
+#if UNITY_EDITOR
+using Sirenix.OdinInspector;
+#endif
 
 namespace RPGDemo.Combat
 {
@@ -10,19 +14,16 @@ namespace RPGDemo.Combat
     {
         [SerializeField] float autoTargetRadius = 20f;
         [SerializeField] LayerMask targetLayer;
-        // [SerializeField] Weapon weapon;
+        [Required][SerializeField] WeaponConfig weaponConfig;
 
+        //[SerializeField] bool isPlayer = false;
 
-        private Player _player;
+        Weapon weapon;
 
         CombatTarget currentTarget => GetCurrentTarget()?.GetComponent<CombatTarget>();
-        // [SerializeField] CombatTarget CurrentTarget = currentTarget;
-
 
 
         public bool IsAttacking;
-        //public bool IsCasting;
-        private bool performedAttack = false;
 
         public bool HasTarget() => currentTarget != null;
 
@@ -33,41 +34,43 @@ namespace RPGDemo.Combat
 
         private void Awake()
         {
-            _player = GetComponent<Player>();
-        }
-
-
-        public void HandleAttack()
-        {
-            _player.Weapon.HandleWeaponCombo();
+            //将player Weapon和 enmey weapon统一
+            weapon = GetComponent<Weapon>();
+            weapon.targetLayer = targetLayer;
         }
 
 
 
-        public void HandleLightAttack()
+        private void Start()
         {
-            _player.Weapon.LightAttack();
+            weapon.UpdateWeaponConfig(weaponConfig);
         }
 
-        public void HandleHeaveyAttack()
+        public void HandleRandomAttack()
         {
-            _player.Weapon.HeaveAttack();
+            weapon.HandleRandomAttack();
         }
 
 
-        public void OnAttackStart()
+        public void HandleComboAttack()
         {
-            // attackTimeDelta = attackingTimeOut;
+            weapon.HandleWeaponCombo();
+        }
+
+        public void OnAttackStart(int handIndex)
+        {
+
+
             IsAttacking = true;
-            _player.Weapon.OpenDamageCollider();
-            //_player.Animator.SetBool("DoCombo", false);
+            weapon.OpenDamageCollider(handIndex);
+
         }
 
         public void OnAttackOver()
         {
             IsAttacking = false;
-            _player.Weapon.CloseDamageCollider();
-            _player.Animator.SetBool("DoCombo", false);
+            weapon.CloseDamageColliders();
+            //_player.Animator.SetBool("DoCombo", false);
         }
 
         public Character GetCurrentTarget()
@@ -76,6 +79,16 @@ namespace RPGDemo.Combat
             return GetAllTarget().FirstOrDefault();
 
 
+        }
+
+        // public void EnableWeaponDamage()
+        // {
+        //     weapon.OpenDamageCollider();
+        // }
+
+        public void DisableWeaponDamage()
+        {
+            weapon.CloseDamageColliders();
         }
 
         public List<Character> GetAllTarget()

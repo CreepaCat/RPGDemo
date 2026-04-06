@@ -21,7 +21,7 @@ public class Air_Falling : State
     {
         if (!_player.Animator.GetBool(PlayerAnimatorParamConfig.animIDIsFalling))
         {
-            _player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDFreeFall, true, 0.04f, false);
+            _player.AnimationHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDFreeFall, true, false, 0.04f);
         }
         _player.Animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, true);
     }

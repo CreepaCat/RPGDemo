@@ -12,23 +12,9 @@ namespace RPGDemo.Combat
     public class CombatTarget : MonoBehaviour
     {
         Health health;
-        Animator animator;
-
         private void Awake()
         {
             health = GetComponent<Health>();
-            animator = GetComponent<Animator>();
-        }
-
-        private void OnEnable()
-        {
-            health.OnDeath += OnDeath;
-        }
-
-        private void OnDeath()
-        {
-            //死亡处理
-            animator?.SetBool("Death", true);
         }
 
         public void TakeDamage(float damageToTake)

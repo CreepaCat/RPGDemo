@@ -120,7 +120,7 @@ namespace RPGDemo.Attributes
             if (GetComponent<Health>().IsDead()) return;
 
             if (manaToRege <= 0f) return;
-            Debug.Log("自动恢复法力值");
+
 
 
             float manaBeforeRecover = currentMana;

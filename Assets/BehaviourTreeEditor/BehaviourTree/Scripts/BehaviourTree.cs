@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 namespace MyBehaviourTree
 {
+
     [CreateAssetMenu(menuName = "MyBehaviourTree/new tree", fileName = "New BehaviourTree")]
     public class BehaviourTree : ScriptableObject
     {
@@ -148,10 +149,10 @@ namespace MyBehaviourTree
             {
                 Undo.RecordObject(composite, "BehaviourTree (Remove Child)");
                 composite.children.Remove(child); //todo:清除null child
-                if (composite is SwitchNode switchNode)
-                {
-                    switchNode.SyncCasesWithChildren();
-                }
+                // if (composite is SwitchNode switchNode)
+                // {
+                //     switchNode.SyncCasesWithChildren();
+                // }
                 EditorUtility.SetDirty(composite);
             }
             else if (parent is RootNode rootNode && rootNode != null)
@@ -180,10 +181,10 @@ namespace MyBehaviourTree
             {
                 Undo.RecordObject(composite, "BehaviourTree (Add Child)");
                 composite.children.Add(child);
-                if (composite is SwitchNode switchNode)
-                {
-                    switchNode.SyncCasesWithChildren();
-                }
+                // if (composite is SwitchNode switchNode)
+                // {
+                //     switchNode.SyncCasesWithChildren();
+                // }
                 EditorUtility.SetDirty(composite);
             }
             else if (parent is RootNode rootNode && rootNode != null)

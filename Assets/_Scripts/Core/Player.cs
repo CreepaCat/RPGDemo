@@ -16,7 +16,7 @@ using NewDialogueFrame;
 using TMPro;
 
 //[RequireComponent(typeof(ThirdPersonController))]
-[RequireComponent(typeof(Weapon))]
+[RequireComponent(typeof(PlayerWeapon))]
 [RequireComponent(typeof(PlayerAnimationHandler))]
 
 public class Player : Character, ISaveable
@@ -26,7 +26,6 @@ public class Player : Character, ISaveable
     [SerializeField] DamageNumberWorldUI damageNumberUIPrefab;
     [SerializeField] Canvas damageNumberUIParent;
     [SerializeField] TextMeshProUGUI tmp_statePath;
-    public bool IsCombating => _fighter.HasTarget();
 
     #region  set & get
 
@@ -37,62 +36,64 @@ public class Player : Character, ISaveable
     public BaseStats BaseStats => _baseStats;
     public Health Health => _health;
     public Experience Experience => _experience;
-    public Fighter Fighter => _fighter;
-    public Weapon Weapon => _weapon;
-    public PlayerAnimationHandler AnimatorHandler => _animatorHandler;
+    public PlayerWeapon Weapon => _weapon;
+    public new PlayerAnimationHandler AnimationHandler => _animatorHandler;
     public PlayerCanversant PlayerCanversant => _playerCanversant;
 
     private PlayerLocomotion _locomotion;
-    //private CharacterController _characterController;
     private Animator _animator;
-    // private PlayerInputs _input;
     private BaseStats _baseStats;
     private Health _health;
     private Experience _experience;
     private Interactor _interactor;
 
-    private Fighter _fighter;
-    private Weapon _weapon;
+    private PlayerWeapon _weapon;
 
     private PlayerCanversant _playerCanversant;
     #endregion
-
-    //[SerializeField] private InputReader inputReader;
 
     //角色状态机
     HSM.StateMachine stateMachine;
     State rootState;
     [SerializeField] string statePath;
 
-
-
     private PlayerAnimationHandler _animatorHandler;
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        // _tpController = GetComponent<ThirdPersonController>();
+        base.Awake();
+        _animatorHandler = GetComponent<PlayerAnimationHandler>();
+
         _locomotion = GetComponent<PlayerLocomotion>();
-        //  _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
-
-
         _interactor = GetComponentInChildren<Interactor>();
 
 
         _baseStats = GetComponent<BaseStats>();
         _health = GetComponent<Health>();
         _experience = GetComponent<Experience>();
-        _fighter = GetComponent<Fighter>();
-        _weapon = GetComponent<Weapon>();
+        _weapon = GetComponent<PlayerWeapon>();
 
-        _animatorHandler = GetComponent<PlayerAnimationHandler>();
         _playerCanversant = GetComponent<PlayerCanversant>();
 
         //构建状态机
         rootState = new PlayerRoot(null, this);
         var builder = new StateMachineBuilder(rootState);
         stateMachine = builder.Build();
+    }
+    private void OnEnable()
+    {
+        _health.OnHealthChanged += OnHealthChanged;
+        _health.OnDeath += OnDeath;
+    }
+
+
+
+    private void OnDisable()
+    {
+        _health.OnDeath -= OnDeath;
+        _health.OnHealthChanged -= OnHealthChanged;
     }
 
     void Start()
@@ -115,10 +116,7 @@ public class Player : Character, ISaveable
         if (Keyboard.current.vKey.wasPressedThisFrame)
         {
             _health.TakeDamage(10f);
-            // DamageNumberWorldUI damageNumberUI = Instantiate(damageNumberUIPrefab);
-            // //
-            // damageNumberUI.transform.position = characterModel.position + Vector3.up * 2f;
-            // damageNumberUI.SetTextNumber(10f);
+
         }
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
@@ -126,8 +124,10 @@ public class Player : Character, ISaveable
         }
 
         stateMachine.Tick(Time.deltaTime);
+#if UNITY_EDITOR
         statePath = SetPath(stateMachine.Root.Leaf());
         tmp_statePath.text = statePath;
+#endif
     }
 
     private void SetCursorState()
@@ -156,6 +156,23 @@ public class Player : Character, ISaveable
     public void Move(Vector3 movement, Quaternion deltaRotation)
     {
         Locomotion.Move(movement, deltaRotation);
+    }
+
+    private void OnDeath()
+    {
+        DisablePlayerControl();
+        AnimationHandler.PlayInterruptAnimation(PlayerAnimatorParamConfig.clipIDDeath, true);
+        Fighter.DisableWeaponDamage();
+
+    }
+
+    private void OnHealthChanged(float value)
+    {
+        if (value > 0)
+        {
+            Animator.Play(Animator.StringToHash("Hit"));
+            Animator.CrossFade(Animator.StringToHash("Hit"), 0.2f);
+        }
     }
 
 

@@ -11,16 +11,16 @@ public class EnemyPatrolState : EnemyBaseState
         Debug.Log("进入巡逻状态");
         enemy.AIController.SetAgentPatrol();
     }
-    
+
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (enemy.AIController.IsPlayerInSuspectRange())
+        if (enemy.AIController.IsPlayerInMinSuspectRange())
         {
             enemy.StateMachine.TransiteToState(typeof(EnemySuspectState));
         }
         enemy.AIController.UpdatePatrolDestination();
-        enemy.Animator.SetFloat(animaIDSpeed,enemy.Agent.velocity.magnitude);
-        
+        enemy.Animator.SetFloat(animaIDSpeed, enemy.Agent.velocity.magnitude);
+
     }
 }

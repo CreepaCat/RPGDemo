@@ -168,7 +168,7 @@ namespace MyBehaviourTree
 
         private void OnSelectionChange()
         {
-            Debug.Log("OnSelectionChange");
+            // Debug.Log("OnSelectionChange");
 
             UpdateCachedTree();
 

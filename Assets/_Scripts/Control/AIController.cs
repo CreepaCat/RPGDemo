@@ -1,3 +1,6 @@
+using System;
+using MyBehaviourTree;
+using RPGDemo.Combat;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,16 +30,14 @@ public class AIController : MonoBehaviour
     [SerializeField] private float _attackRange = 1.5f;
     [SerializeField] private float _attackDamage = 5f;
 
-
-
-
     private NavMeshAgent agent;
     private PathPatrol patrol;
 
     PlayerDetector playerDetector;
     AnimationHandler animationHandler;
     Rigidbody rb;
-    Enemy enemy;
+    Collider col;
+
 
 
     private float patrolDeltaTime;
@@ -49,10 +50,44 @@ public class AIController : MonoBehaviour
         playerDetector = GetComponent<PlayerDetector>();
         animationHandler = GetComponent<AnimationHandler>();
         rb = GetComponent<Rigidbody>();
-        enemy = GetComponent<Enemy>();
+        col = GetComponent<Collider>();
 
         rb.isKinematic = true;
         FreezeRb();
+
+
+    }
+
+    private void Start()
+    {
+
+        SetAgentPatrol();
+    }
+
+
+    private void Update()
+    {
+        if (agent.enabled)
+        {
+            if (animationHandler.UsingRootMotion || animationHandler.IsInteracting)
+            {
+                agent.isStopped = true;
+
+            }
+            else if (agent.isStopped)
+            {
+
+                agent.isStopped = false;
+
+            }
+            float realSpeed = agent.isStopped ? 0f : agent.velocity.magnitude;
+            animationHandler.Animator.SetFloat("Speed", realSpeed);
+
+        }
+
+
+
+
     }
 
     private void FreezeRb()
@@ -61,52 +96,18 @@ public class AIController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
-    private void DefreezeRb()
-    {
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-    }
-
-    private void Start()
-    {
-        SetAgentPatrol();
-    }
-
-    private void Update()
-    {
-        if (animationHandler.UsingRootMotion || animationHandler.IsInteracting)
-        {
-            agent.isStopped = true;
-            DefreezeRb();
-        }
-        else if (agent.isStopped)
-        {
-            agent.isStopped = false;
-            FreezeRb();
-        }
-
-        if (enemy.TreeRunner.currentState == "Patrol")
-        {
-
-        }
-
-        float speed = agent.isStopped ? 0f : agent.desiredVelocity.magnitude;
-        animationHandler.Animator.SetFloat("Speed", speed);
-
-
-    }
-
     public void SetAgentPatrol()
     {
         agent.speed = _speed;
         agent.stoppingDistance = _stoppingDistance;
-        agent.destination = patrol.GetCurrentWaypoint().position;
+        // agent.destination = patrol.GetCurrentWaypoint().position;
     }
 
     public void SetAgentChase()
     {
         agent.speed = _chaseSpeed;
         agent.stoppingDistance = _chaseStoppingDistance;
-        agent.destination = GetPlayerPosition();
+        //agent.destination = GetPlayerPosition();
     }
     public Vector3 GetPlayerPosition() => playerDetector.GetPlayerPosition();
 
@@ -114,7 +115,7 @@ public class AIController : MonoBehaviour
     public float GetMinSuspectRange() => _minSuspectRange;
     public float GetAttackRange() => _attackRange;
 
-    public bool IsPlayerInSuspectRange() => DistanceToPlayer() < _minSuspectRange;
+    public bool IsPlayerInMinSuspectRange() => DistanceToPlayer() < _minSuspectRange;
     public bool IsPlayerInChaseRange() => DistanceToPlayer() < _minChaseRange;
     public bool IsPlayerInAttackRange() => DistanceToPlayer() < _attackRange;
     public bool IsSuspectOver() => suspectDeltaTime > _suspectTimeout;
@@ -156,17 +157,42 @@ public class AIController : MonoBehaviour
     }
     public void Move(Vector3 movement, Quaternion deltaRotation)
     {
-        var targetMovement = movement;
-
-
-        rb.MovePosition(rb.position + targetMovement);
+        agent.isStopped = true;
+        agent.Move(movement);
 
         if (deltaRotation != Quaternion.identity)
         {
-            rb.MoveRotation(rb.rotation * deltaRotation);
-            //  _cachedMoveDirection = (rb.rotation * deltaRotation) * Vector3.forward;
+
+            transform.rotation = transform.rotation * deltaRotation;
         }
 
+    }
+
+    internal void Disable()
+    {
+        if (agent.enabled)
+        {
+            agent.destination = transform.position;
+            agent.speed = 0;
+            agent.isStopped = true;
+            agent.enabled = false;
+        }
+
+        col.enabled = false;
+        //todo:执行死亡后的消失动画协程
+    }
+
+    public void Attack()
+    {
+        //调用fighter脚本进行Attack
+        GetComponent<Fighter>().HandleRandomAttack();
+
+
+        // if (animationHandler.IsInteracting) return;
+        // int animaId = UnityEngine.Random.Range(0, 2);
+        // animaId = animaId > 0 ? Animator.StringToHash("LightAttack") : Animator.StringToHash("HeaveyAttack");
+
+        // animationHandler.PlayTargetAnimation(animaId, true, true);
     }
 
 
@@ -183,4 +209,6 @@ public class AIController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _minSuspectRange);
     }
+
+
 }

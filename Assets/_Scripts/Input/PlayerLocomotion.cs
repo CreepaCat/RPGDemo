@@ -99,7 +99,7 @@ public class PlayerLocomotion : MonoBehaviour
     public bool IsMoving => input.Direction.sqrMagnitude > 0.01f
     && rbVelocity.sqrMagnitude > 0.01f
     && CanMove
-    && !player.AnimatorHandler.IsInteracting;
+    && !player.AnimationHandler.IsInteracting;
     public bool RollPerformed;
     public bool JumpPerformed;
 
@@ -153,7 +153,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void OnJump()
     {
-        if (player.AnimatorHandler.IsInteracting || _jumpTimeOutDelta > 0f)
+        if (player.AnimationHandler.IsInteracting || _jumpTimeOutDelta > 0f)
             return;
         if (!Grounded) return;
         JumpPerformed = true;
@@ -178,7 +178,7 @@ public class PlayerLocomotion : MonoBehaviour
     private void FixedUpdate()
     {
         // 根动画控制期间跳过物理旋转，避免双驱动。
-        if (player.AnimatorHandler.IsInteracting && player.AnimatorHandler.UsingRootMotion)
+        if (player.AnimationHandler.IsInteracting && player.AnimationHandler.UsingRootMotion)
         {
             // 根动画期间由OnAnimatorMove驱动刚体，屏蔽速度驱动避免冲突。
             rb.linearVelocity = Vector3.zero;
@@ -196,7 +196,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void CaculateMovement()
     {
-        if (!CanMove || player.AnimatorHandler.IsInteracting)
+        if (!CanMove || player.AnimationHandler.IsInteracting)
         {
             rbVelocity = new Vector3(0f, rbVelocity.y, 0f);
             _speed = 0f;
@@ -256,7 +256,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         _hasDesiredRotation = false;
         if (!CanMove) return;
-        if (player.AnimatorHandler.IsInteracting) return;
+        if (player.AnimationHandler.IsInteracting) return;
         if (input.Direction.sqrMagnitude <= 0.01f) return;
 
         Vector3 inputDirection = movement.normalized;
@@ -274,7 +274,7 @@ public class PlayerLocomotion : MonoBehaviour
         if (!_hasDesiredRotation) return;
 
         // 根动画控制期间跳过物理旋转，避免双驱动。
-        if (player.AnimatorHandler.IsInteracting && player.AnimatorHandler.UsingRootMotion) return;
+        if (player.AnimationHandler.IsInteracting && player.AnimationHandler.UsingRootMotion) return;
 
         float rotation = Mathf.SmoothDampAngle(
             rb.rotation.eulerAngles.y,
@@ -360,7 +360,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (Grounded && _jumpTimeOutDelta < 0f)
         {
-            if (player.AnimatorHandler.IsInteracting) return; //动画交互时不允许跳跃
+            if (player.AnimationHandler.IsInteracting) return; //动画交互时不允许跳跃
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 _jumpTimeOutDelta = JumpTimeout;
@@ -373,9 +373,9 @@ public class PlayerLocomotion : MonoBehaviour
                 var velocity = new Vector3(horizontalVelocity.x, _verticalVelocity, horizontalVelocity.z);
                 rbVelocity = velocity;
                 Debug.Log("Jumping");
-                player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDJumping, true, 0.04f, false);
+                player.AnimationHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDJumping, true, false, 0.04f);
                 player.Animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, false);
-                // player.AnimatorHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.animIDIsFalling, true, 0.04f, false);
+
 
             }
 

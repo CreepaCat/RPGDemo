@@ -23,4 +23,5 @@ public static class PlayerAnimatorParamConfig
     public static readonly int clipIDFreeFall = Animator.StringToHash("FreeFall");
     public static readonly int clipIDUnsheath = Animator.StringToHash("Unsheath");
     public static readonly int clipIDSheath = Animator.StringToHash("Sheath");
+    public static readonly int clipIDDeath = Animator.StringToHash("Death");
 }

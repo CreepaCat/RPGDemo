@@ -7,18 +7,7 @@ public class ElenemtalGolemAnimationHandler : AnimationHandler
     protected override void Awake()
     {
         base.Awake();
-    }
-
-    public bool PlayTargetAnimation(int targetAnimation, bool isInteractingAnima, float crossFadeTime = 0.2f, bool usingRootMotion = false)
-    {
-
-        if (IsInteracting) return false;
-
-        _animator.SetBool(PlayerAnimatorParamConfig.animIDIsinteracting, isInteractingAnima);
-        _animator.SetBool("usingRootMotion", usingRootMotion);
-        _animator.Play(targetAnimation);
-        _animator.CrossFade(targetAnimation, crossFadeTime);
-        return true;
+        _enemy = GetComponent<Enemy>();
     }
 
     /// <summary>

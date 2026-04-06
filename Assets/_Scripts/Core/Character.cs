@@ -20,6 +20,20 @@ public class Character : MonoBehaviour
     public Transform WeaponHolder;
     public Transform Head;
 
+    public AnimationHandler AnimationHandler => _animationHandler;
+    public Fighter Fighter => _fighter;
+
+    private AnimationHandler _animationHandler;
+    private Fighter _fighter;
+
+
+
+    protected virtual void Awake()
+    {
+        _animationHandler = GetComponent<AnimationHandler>();
+        _fighter = GetComponent<Fighter>();
+    }
+
     public Transform GetCastTransform(CastType castType)
     {
         switch (castType)
