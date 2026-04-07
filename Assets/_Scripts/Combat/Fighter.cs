@@ -63,6 +63,7 @@ namespace RPGDemo.Combat
 
             IsAttacking = true;
             weapon.OpenDamageCollider(handIndex);
+            weapon.PlaySlashVfx(handIndex);
 
         }
 

@@ -21,7 +21,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   hitSoundData:
-    clip: {fileID: 8300000, guid: 97a93348ae9ec424a9b78f55944f74b0, type: 3}
+    clip: {fileID: 8300000, guid: 86ba81f58342e4021b497550de8d3dc2, type: 3}
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0

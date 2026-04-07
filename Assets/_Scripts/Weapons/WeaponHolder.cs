@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RPGDemo.Combat;
 using UnityEngine;
 
@@ -21,9 +22,14 @@ namespace RPGDemo.Weapons
 
         }
 
-        public IEnumerable<DamageCollider> GetDamageColliders()
+        public List<DamageCollider> GetDamageColliders()
         {
-            return GetComponentsInChildren<DamageCollider>();
+
+            if (GetComponentsInChildren<DamageCollider>()?.ToList() is { } colliders)
+            {
+                return colliders;
+            }
+            return new List<DamageCollider>();
         }
 
     }

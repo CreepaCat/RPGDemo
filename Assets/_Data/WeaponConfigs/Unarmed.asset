@@ -17,3 +17,12 @@ MonoBehaviour:
   weaponDamage: 5
   equippedPrefab: {fileID: 0}
   isUnarmed: 1
+  weaponLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  hitSoundData:
+    clip: {fileID: 8300000, guid: 86ba81f58342e4021b497550de8d3dc2, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  AttackCombo: []

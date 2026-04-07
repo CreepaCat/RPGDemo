@@ -12,9 +12,9 @@ namespace RPGDemo.Weapons
     /// </summary>
     public class Weapon : MonoBehaviour
     {
-        [SerializeField] protected WeaponConfig _currentWeaponConfig;
-        [SerializeField] protected WeaponHolder _rightWeaponHolder;
-        [SerializeField] protected WeaponHolder _leftWeaponHolder;
+        [SerializeField] protected WeaponConfig _currentWeaponConfig = null;
+        [SerializeField] protected WeaponHolder _rightWeaponHolder = null;
+        [SerializeField] protected WeaponHolder _leftWeaponHolder = null;
 
         public LayerMask targetLayer;
         protected Character character;
@@ -56,20 +56,7 @@ namespace RPGDemo.Weapons
 
         public void OpenDamageCollider(int handIndex)
         {
-            List<DamageCollider> dcs = new();
-            if (handIndex > 0)
-            {
-                dcs.AddRange(_rightWeaponHolder.GetDamageColliders().ToList());
-            }
-            else if (handIndex < 0)
-            {
-                dcs.AddRange(_leftWeaponHolder.GetDamageColliders().ToList());
-            }
-            else
-            {
-                dcs.AddRange(_rightWeaponHolder?.GetDamageColliders()?.ToList());
-                dcs.AddRange(_leftWeaponHolder?.GetDamageColliders()?.ToList());
-            }
+            List<DamageCollider> dcs = GetValidDamageColliders(handIndex);
 
             foreach (var collider in dcs)
             {
@@ -83,9 +70,8 @@ namespace RPGDemo.Weapons
         public void CloseDamageColliders()
         {
             List<DamageCollider> dcs = new();
-            dcs.AddRange(_rightWeaponHolder?.GetDamageColliders()?.ToList());
-            dcs.AddRange(_leftWeaponHolder?.GetDamageColliders()?.ToList());
 
+            AddBothHandsDamagecollidersTo(dcs);
 
             foreach (var collider in dcs)
             {
@@ -93,6 +79,7 @@ namespace RPGDemo.Weapons
                 collider.DisableCollider();
             }
         }
+
 
 
         public void UpdateWeaponConfig(WeaponConfig newConfig)
@@ -107,7 +94,61 @@ namespace RPGDemo.Weapons
         {
             _leftWeaponHolder = weaponHolder;
         }
+        internal void PlaySlashVfx(int handIndex)
+        {
+            List<DamageCollider> dcs = GetValidDamageColliders(handIndex);
+            foreach (var dc in dcs)
+            {
+                dc.PlayAttackVfx();
+            }
+        }
+
+        #region 根据动画参数获取对应手持武器的DamageCollider
+
+        private void AddBothHandsDamagecollidersTo(List<DamageCollider> dcs)
+        {
+            AddLeftHandDamagecollidersTo(dcs);
+            AddRightHandDamagecollidersTo(dcs);
+        }
+
+        private void AddRightHandDamagecollidersTo(List<DamageCollider> dcs)
+        {
+
+            if (_rightWeaponHolder)
+            {
+                dcs.AddRange(_rightWeaponHolder.GetDamageColliders());
+            }
+        }
+
+        private void AddLeftHandDamagecollidersTo(List<DamageCollider> dcs)
+        {
+
+            if (_leftWeaponHolder)
+            {
+                dcs.AddRange(_leftWeaponHolder.GetDamageColliders());
+            }
+        }
 
 
+
+        private List<DamageCollider> GetValidDamageColliders(int handIndex)
+        {
+            List<DamageCollider> dcs = new();
+            if (handIndex > 0) //右手
+            {
+                AddRightHandDamagecollidersTo(dcs);
+            }
+            else if (handIndex < 0) //左手
+            {
+                AddLeftHandDamagecollidersTo(dcs);
+            }
+            else //双手
+            {
+                AddBothHandsDamagecollidersTo(dcs);
+            }
+
+            return dcs;
+        }
     }
+    #endregion
 }

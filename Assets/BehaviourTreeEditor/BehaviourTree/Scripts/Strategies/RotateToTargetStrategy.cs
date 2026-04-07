@@ -42,7 +42,7 @@ namespace MyBehaviourTree
             context.Transform.rotation = Quaternion.Slerp(context.Transform.rotation, desiredRotation, rotateSpeed * Time.deltaTime / 180f);
             // context.Transform.rotation
 
-            if (Vector3.Angle(context.Transform.forward, forward) < 10f ||
+            if (Vector3.Angle(context.Transform.forward, forward) < 5f ||
             Time.time > startTime + maxRotateDuration)
             {
 

@@ -11,11 +11,13 @@ namespace RPGDemo.Weapons
         [SerializeField] private bool isUnarmed = false;
         [SerializeField] private LayerMask weaponLayer;
         [SerializeField] SoundData hitSoundData;
+        [SerializeField] ParticleSystem slashVfx;
 
         // [field: SerializeField] public int MaxCombo { get; private set; }
 
         public float WeaponDamage => weaponDamage;
         public SoundData HitSound => hitSoundData;
+        public ParticleSystem SlashVfx => slashVfx;
 
 
         // [field: SerializeField] public string LightAttack_01 { get; private set; }

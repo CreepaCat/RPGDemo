@@ -1,17 +1,19 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using Core.AudioSystem;
 using RPGDemo.Stats;
 using RPGDemo.Weapons;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPGDemo.Combat
 {
     public class DamageCollider : MonoBehaviour
     {
-        // [SerializeField] private float damage;
+        [Header("攻击粒子特效播放偏移量")]
+        [SerializeField] Vector3 posOffset;
+        [SerializeField] Quaternion rotateOffset;
 
+        [Header("对象Layer")]
         [SerializeField] LayerMask damageLayer;
 
         public Transform owner;
@@ -21,6 +23,9 @@ namespace RPGDemo.Combat
         Collider damageCollider;
         Weapon weapon;
 
+        Coroutine playingAttackVfx;
+        ParticleSystem ps;
+
 
 
         private void Awake()
@@ -28,14 +33,10 @@ namespace RPGDemo.Combat
             damageCollider = GetComponent<Collider>();
             damageCollider.isTrigger = true;
             DisableCollider();
+            ps = GetComponentInChildren<ParticleSystem>();
 
-            // GetComponentInParent<Weapon>().AddDamageCollider(this);
         }
 
-        private void OnDestroy()
-        {
-            // GetComponentInParent<Weapon>()?.RemoveDamageCollider(this);
-        }
 
         public void Setup(Transform owner, LayerMask damageLayer, Weapon weapon)
         {
@@ -43,6 +44,35 @@ namespace RPGDemo.Combat
             this.owner = owner;
             this.damageLayer = damageLayer;
             this.weapon = weapon;
+
+        }
+
+        public void PlayAttackVfx()
+        {
+
+            if (ps == null) return;
+            if (playingAttackVfx != null)
+            {
+                StopCoroutine(playingAttackVfx);
+                ps.transform.SetParent(transform);
+            }
+            playingAttackVfx = StartCoroutine(PlayingAttackVfxCoroutine(ps));
+
+
+        }
+
+        IEnumerator PlayingAttackVfxCoroutine(ParticleSystem ps)
+        {
+
+            ps.transform.SetParent(null);
+            ps.transform.position = transform.position + posOffset;
+            ps.transform.rotation = transform.rotation * rotateOffset;
+            ps.Play();
+            while (ps.isPlaying)
+            {
+                yield return null;
+            }
+            ps.transform.SetParent(transform);
 
         }
 

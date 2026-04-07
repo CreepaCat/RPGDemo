@@ -16,6 +16,9 @@ namespace RPGDemo.Attributes
         public void GainExp(int expToGain)
         {
             if (expToGain < 0) return;
+
+
+
             Debug.Log($"获得{expToGain}经验");
             totalExperience += expToGain;
             // totalExperience = Mathf.Min(totalExperience, maxExperience);

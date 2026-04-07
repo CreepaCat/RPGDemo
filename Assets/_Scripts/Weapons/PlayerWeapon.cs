@@ -202,13 +202,13 @@ namespace RPGDemo.Weapons
         private void UpdateWeapon(Transform sheathHolder)
         {
             GameObject weaponGO = _currentWeaponConfig?.SpawnWeapon(sheathHolder);
-            if (weaponGO == null) return;
-            List<DamageCollider> damageColliders = weaponGO?.GetComponents<DamageCollider>().ToList();
+            // if (weaponGO == null) return;
+            // List<DamageCollider> damageColliders = weaponGO?.GetComponents<DamageCollider>().ToList();
 
-            foreach (var collider in damageColliders)
-            {
-                collider?.Setup(player.transform, targetLayer, this);
-            }
+            // foreach (var collider in damageColliders)
+            // {
+            //     collider?.Setup(player.transform, targetLayer, this);
+            // }
 
         }
     }

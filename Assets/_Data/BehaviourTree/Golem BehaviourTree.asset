@@ -771,7 +771,7 @@ MonoBehaviour:
   description: "\u9762\u5411\u73A9\u5BB6"
   state: 0
   guid: 90223ea3e5d2cc04fb859bf426591f05
-  position: {x: 780.7998, y: 994.3999}
+  position: {x: 780.8, y: 994.4}
   started: 0
   strategy:
     rid: 2184903425464729766
@@ -786,7 +786,7 @@ MonoBehaviour:
         useBlackboardTarget: 0
         targetKey: Target
         target: {fileID: 0}
-        rotateSpeed: 600
+        rotateSpeed: 800
         maxRotateDuration: 1
 --- !u!114 &9117768115135474782
 MonoBehaviour:

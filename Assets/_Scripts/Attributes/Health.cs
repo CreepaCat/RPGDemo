@@ -73,6 +73,7 @@ namespace RPGDemo.Attributes
         }
         private void OnLevelUp()
         {
+            if (IsDead()) return;
             maxHealth = baseStats.GetStats(StatsType.Health);
             currentHealth = maxHealth;
             OnHealthChanged?.Invoke(0);
@@ -81,8 +82,6 @@ namespace RPGDemo.Attributes
 
         public void TakeDamage(float damageToTake)
         {
-            //  LazyInit();
-
             if (IsDead()) return;
             if (damageToTake < 0f)
             {
@@ -133,7 +132,6 @@ namespace RPGDemo.Attributes
 
         /// <summary>
         /// 生命自动恢复，不同于Heal,不会触发Heal事件
-        ///
         /// </summary>
         /// <param name="value"></param>
         public void RegenHealth(float value)
