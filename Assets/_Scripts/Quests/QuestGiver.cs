@@ -1,6 +1,7 @@
 
 using MyNodeEditor.Extension.Dialogue;
 using NewDialogueFrame;
+using RPGDemo.Inventories;
 using UnityEngine;
 
 namespace RPGDemo.Quests
@@ -9,6 +10,11 @@ namespace RPGDemo.Quests
     {
         [SerializeField] QuestSO questConfig;
         [SerializeField] DialogueTree dialogue;
+
+        [Header("提交任务道具")]
+        [SerializeField] InventoryItem questItem = null;
+        [SerializeField] int amount = 1;
+
 
         AIQuestHandler aiQuestHandler = null;
         /// <summary>
@@ -36,6 +42,13 @@ namespace RPGDemo.Quests
         {
             aiQuestHandler.GiveReward(questConfig);
 
+        }
+
+        public void GainQuestItemFromPlayer()
+        {
+            if (questItem == null) return;
+            Inventory.GetPlayerInventory().RemoveItem(questItem, amount);
+            SideMessageBox.Show(SideMessageBox.MessageType.Normal, $"提交任务道具{questItem.GetDisplayName()} x{amount}");
         }
 
     }

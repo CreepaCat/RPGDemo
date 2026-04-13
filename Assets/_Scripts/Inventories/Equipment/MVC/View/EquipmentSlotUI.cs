@@ -1,6 +1,7 @@
 using System;
 using RPGDemo.Core.DraggingFrame;
 using RPGDemo.Inventories.Utils;
+using TMPro;
 using UnityEngine;
 
 namespace RPGDemo.Inventories
@@ -12,6 +13,7 @@ namespace RPGDemo.Inventories
     {
         //config
         [SerializeField] EquipLocation _allowedEquipLocation;
+        [SerializeField] TextMeshProUGUI tmp_slotName;
         [SerializeField] InventoryItemIcon _itemIcon = null;
 
         //Cache
@@ -21,7 +23,10 @@ namespace RPGDemo.Inventories
         {
             _playerEquipment = Player.GetInstance().GetComponent<Equipment>();
             _playerEquipment.SetSlot(_allowedEquipLocation);
+            SetSlotName();
         }
+
+
 
         private void OnEnable()
         {
@@ -95,6 +100,33 @@ namespace RPGDemo.Inventories
         public void AddItems(InventoryItem item, int amount)
         {
             _playerEquipment.AddItem(_allowedEquipLocation, item as EquipableItem);
+        }
+        private void SetSlotName()
+        {
+            string slotName = "";
+            switch (_allowedEquipLocation)
+            {
+                case EquipLocation.Gloves:
+                    slotName = "手套";
+                    break;
+                case EquipLocation.Body:
+                    slotName = "胸甲";
+                    break;
+                case EquipLocation.Trousers:
+                    slotName = "腿甲";
+                    break;
+                case EquipLocation.Boots:
+                    slotName = "鞋子";
+                    break;
+                case EquipLocation.Weapon:
+                    slotName = "武器";
+                    break;
+                case EquipLocation.Helmet:
+                    slotName = "头盔";
+                    break;
+            }
+
+            tmp_slotName.text = slotName;
         }
     }
 }

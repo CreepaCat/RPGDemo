@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,48 @@ namespace RPGDemo.SceneManagement
         [field: SerializeField] public PortalDestination Destination { get; private set; }
         [SerializeField] float _fadeOutTime = 1f, _fadeInTime = 0.5f, _waitTime = 1f;
         [SerializeField] bool isInSceneTransition = false;
+
+        [Header("tween动画参数")]
+        [SerializeField] Transform doYoyoTarget;
+        public float amplitude = 2f;        // 上下移动的幅度（距离）
+                                            //public float amplitude = 2f;        // 上下移动的幅度（距离）
+        public float duration = 1.2f;       // 单程时间（越小越快）
+        public Ease easeType = Ease.InOutSine;   // 缓动类型（推荐 InOutSine 最自然）
+
+        private Vector3 startPos;
+        private Vector3 startRot;
+
+        private void Start()
+        {
+            startPos = doYoyoTarget.transform.position;
+
+            startRot = doYoyoTarget.transform.rotation.eulerAngles;
+            PlayYoYo();
+        }
+
+        private void OnDestroy()
+        {
+            doYoyoTarget.DOKill();
+        }
+
+
+        public void PlayYoYo()
+        {
+            // 计算目标位置（在初始位置的正上方或下方）
+            Vector3 targetPos = startPos + new Vector3(0, amplitude, 0);
+            Vector3 targetRot = startRot + new Vector3(0, 180f, 0);
+
+
+
+            // 使用 DOMoveY 实现上下移动 + 无限循环
+            doYoyoTarget.DOMoveY(targetPos.y, duration)
+                .SetEase(easeType)                    // 平滑缓动
+                .SetLoops(-1, LoopType.Yoyo);         // -1 = 无限循环，Yoyo = 往返
+
+            doYoyoTarget.DORotate(targetRot, duration)
+            .SetEase(Ease.Linear)
+            .SetLoops(-1, LoopType.Incremental);
+        }
 
         public void SceneTransition()
         {
@@ -74,7 +117,7 @@ namespace RPGDemo.SceneManagement
             playerAfterTransition.EnableLocomotion();
 
             //等待时间和淡入
-            yield return new WaitForSeconds(_waitTime);
+            yield return fader.LoadingProgress(_waitTime);
             yield return fader.FadeIn(_fadeInTime);
             //恢复角色输入
             playerAfterTransition.EnablePlayerControl();

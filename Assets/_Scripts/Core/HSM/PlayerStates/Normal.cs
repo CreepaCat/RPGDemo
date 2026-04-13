@@ -36,6 +36,7 @@ public class Normal : State
     protected override void OnEnter()
     {
         Debug.Log("OnEnter Normal State");
+        (Parent as Ground).isInCombat = false;
         //收剑
         _player.Weapon.SheathSword();
         // _player.Input.Interact += HandleInteractInput;

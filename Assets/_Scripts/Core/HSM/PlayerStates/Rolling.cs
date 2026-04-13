@@ -20,8 +20,13 @@ public class Rolling : State
     protected override void OnEnter()
     {
         _player.Locomotion.CanMove = false;
+        _player.Health.isImmunity = true;
         _player.Animator.SetBool(PlayerAnimatorParamConfig.animIDIsRolling, true);
         _player.AnimationHandler.PlayTargetAnimation(PlayerAnimatorParamConfig.clipIDRolling, true, true, 0.1f);
+    }
+    protected override void OnExit()
+    {
+        _player.Health.isImmunity = false;
     }
     protected override void OnUpdate(float deltaTime)
     {
@@ -30,6 +35,8 @@ public class Rolling : State
             _player.Locomotion.RollPerformed = false;
         }
     }
+
+
 
 
 

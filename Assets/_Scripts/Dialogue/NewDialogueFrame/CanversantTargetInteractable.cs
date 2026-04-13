@@ -8,11 +8,14 @@ namespace NewDialogueFrame
     [RequireComponent(typeof(CanversantTarget))]
     public class CanversantTargetInteractable : Interactable
     {
-        [SerializeField] private DialogueTree dialogueConfig;
+        [SerializeField] private DialogueTree defaultDialogue = null;
 
-        public List<DialogueTree> dialogues;
+        public List<DialogueTree> dialogues = new();
 
-        //  public DialogueTree GetDialogueConfig() => dialogueConfig;
+        private void Start()
+        {
+            dialogues.Add(defaultDialogue);
+        }
 
         //todo:交互时显示所有可选的对话分支UI，根据选择的分支加载对应的对话树
         //用对话Ui面板来显示所有可用对话树选项
@@ -31,6 +34,7 @@ namespace NewDialogueFrame
 
         public void AddDialogue(DialogueTree newDialogue)
         {
+            if (newDialogue == null || dialogues.Contains(newDialogue)) return;
             dialogues.Add(newDialogue);
         }
 

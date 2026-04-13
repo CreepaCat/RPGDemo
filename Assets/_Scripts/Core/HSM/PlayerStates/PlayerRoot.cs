@@ -7,6 +7,7 @@ public class PlayerRoot : State
 {
     public readonly Ground Ground; //最上层状态
     public readonly Airbone Airbone; //最上层
+    public readonly Rolling Rolling;
 
     public readonly Death Death;
 
@@ -20,6 +21,7 @@ public class PlayerRoot : State
         _player = player;
         Ground = new(stateMachine, this, player);
         Airbone = new(stateMachine, this, player);
+        Rolling = new(stateMachine, this, player);
         Death = new(stateMachine, this, player);
 
 
@@ -31,6 +33,10 @@ public class PlayerRoot : State
         {
             return Death;
         }
+        if (_player.Locomotion.RollPerformed)
+        {
+            return Rolling;
+        }
         if (_player.Locomotion.JumpPerformed || !_player.Locomotion.Grounded)
         {
             return Airbone;
@@ -41,17 +47,20 @@ public class PlayerRoot : State
 
     protected override State GetTransition()
     {
+
         if (_player.Health.IsDead())
         {
             return Death;
+        }
+        if (_player.Locomotion.RollPerformed)
+        {
+            return Rolling;
         }
         if (_player.Locomotion.JumpPerformed || !_player.Locomotion.Grounded)
         {
             return Airbone;
         }
         return Ground;
-        //  return null;
-
 
     }
 

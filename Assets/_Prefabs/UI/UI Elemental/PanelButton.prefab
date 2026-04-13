@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u4F7F\u7528"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4b9622ee60f04db4ca0bee0dcd7b8dfc, type: 2}
-  m_sharedMaterial: {fileID: -9157484755060443072, guid: 4b9622ee60f04db4ca0bee0dcd7b8dfc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6ea3e2b3697686c42a10ec6317607b5d, type: 2}
+  m_sharedMaterial: {fileID: 4761891901372918384, guid: 6ea3e2b3697686c42a10ec6317607b5d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 3626539897509512633}
   - component: {fileID: 499139058138443930}
   - component: {fileID: 109243710433802597}
+  - component: {fileID: 7000633720196435420}
   m_Layer: 0
   m_Name: PanelButton
   m_TagString: Untagged
@@ -258,3 +259,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7000633720196435420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301139720682039921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 30
+  m_PreferredWidth: -1
+  m_PreferredHeight: 60
+  m_FlexibleWidth: 1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1

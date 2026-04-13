@@ -96,6 +96,8 @@ namespace RPGDemo.Combat
             }
             if (other.TryGetComponent(out CombatTarget target) && !_targets.Contains(target))
             {
+                if (!target.IsDamageable()) return;
+
                 _targets.Add(target);
 
                 target.TakeDamage(owner.GetComponent<BaseStats>().GetStats(StatsType.Attack));

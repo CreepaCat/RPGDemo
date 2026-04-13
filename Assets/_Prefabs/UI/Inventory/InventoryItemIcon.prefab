@@ -114,3 +114,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ecf2b3c1277452f8b294652236c6aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Inventories.InventoryItemIcon
+  itemAmountText: {fileID: 0}

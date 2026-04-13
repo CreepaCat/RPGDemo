@@ -118,29 +118,23 @@ public class Player : Character, ISaveable
             _health.TakeDamage(10f);
 
         }
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            SetCursorState();
-        }
 
         stateMachine.Tick(Time.deltaTime);
 #if UNITY_EDITOR
         statePath = SetPath(stateMachine.Root.Leaf());
-        tmp_statePath.text = statePath;
+        if (tmp_statePath != null)
+            tmp_statePath.text = statePath;
 #endif
     }
 
-    private void SetCursorState()
-    {
-        Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Locked : CursorLockMode.None;
-    }
+
 
     public static string SetPath(State s)
     {
         return string.Join(">", s.PathToRoot().AsEnumerable().Reverse().Select(n => n.GetType().Name));
     }
 
-    public static Player GetInstance() => GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    public static Player GetInstance() => GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>();
 
     public void EnablePlayerControl() { input.EnablePlayerControl(); }
     public void DisablePlayerControl() { input.DisablePlayerAction(); }

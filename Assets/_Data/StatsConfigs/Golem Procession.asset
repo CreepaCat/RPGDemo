@@ -18,10 +18,10 @@ MonoBehaviour:
     stats:
     - statsType: 0
       levels:
-      - 100
       - 200
       - 300
-      - 400
+      - 450
+      - 600
     - statsType: 1
       levels:
       - 100

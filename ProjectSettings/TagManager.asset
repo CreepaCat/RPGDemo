@@ -21,9 +21,9 @@ TagManager:
   - Interactable
   - Enemy
   - Projectile
-  - 
-  - 
-  - 
+  - Minimap
+  - Environment
+  - NPC
   - 
   - 
   - 
@@ -52,4 +52,5 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
+  - Light Layer 8
   - Interaction Outline

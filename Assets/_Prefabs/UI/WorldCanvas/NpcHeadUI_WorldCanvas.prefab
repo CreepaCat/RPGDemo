@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 3218169822258590965}
   - component: {fileID: 4679112943219343345}
   - component: {fileID: 7575395853772511750}
+  - component: {fileID: 4790065917242042988}
   m_Layer: 11
   m_Name: NpcHeadUI_WorldCanvas
   m_TagString: Untagged
@@ -236,12 +237,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NpcQuestInfoIcon
   iconImage: {fileID: 6092913975972939553}
+  miniMapIcon: {fileID: 0}
   inProgressColor: {r: 0.7056604, g: 0.6803631, b: 0.6803631, a: 1}
-  canAcceptIcon: {fileID: 21300000, guid: c30d4e4cf825d0e42b16e9817a4ed4bf, type: 3}
-  canCompleteIcon: {fileID: 21300000, guid: b957074ddbbd4644c9bea3baabc54fad, type: 3}
+  canAcceptIcon: {fileID: 21300000, guid: 201feaf9de5473b4daa0316724f94274, type: 3}
+  canCompleteIcon: {fileID: 21300000, guid: f1fe614434e378f478d003d215c38de2, type: 3}
   inProgressIcon: {fileID: 21300000, guid: f1fe614434e378f478d003d215c38de2, type: 3}
   tmp_npcName: {fileID: 6458759525781651844}
   dialogueRole: {fileID: 0}
+  doYoyoTarget: {fileID: 2237791443462689172}
+  amplitude: 0.2
+  duration: 1.2
+  easeType: 26
 --- !u!114 &7575395853772511750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +261,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldCanvasFacingCamera
   target: {fileID: 3420310985198041139}
+  minDistanceToCamera: 5
+  maxDistanceToCamera: 15
+  ignoreYAxisFacing: 1
+--- !u!225 &4790065917242042988
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600887469041413246}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3935066312679663458
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b957074ddbbd4644c9bea3baabc54fad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1fe614434e378f478d003d215c38de2, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

@@ -15,7 +15,7 @@ MonoBehaviour:
   _itemID: a78e1296-5857-49a1-90ee-212c61bc2806
   _displayName: "\u5355\u624B\u5251"
   _description: "\u7834\u65E7\u7684\u5355\u624B\u5251"
-  _icon: {fileID: 21300000, guid: 33f2c49316e4df54b81848280edfac48, type: 3}
+  _icon: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
   _pickupPrefab: {fileID: 5278529781784925265, guid: 091a27eda2dd33f4c815b16a5fa2e120, type: 3}
   _isStackable: 0
   _maxStackableAmount: 0
@@ -23,4 +23,10 @@ MonoBehaviour:
   _price: 50
   _allowedEquipLocation: 4
   _levelLimitation: 1
+  additiveBonuses:
+  - statsType: 2
+    value: 5
+  percentageBonuses:
+  - statsType: 2
+    value: 0.01
   _weaponConfig: {fileID: 11400000, guid: 6c43aa33af65f45488a2d65b2f2f8028, type: 2}

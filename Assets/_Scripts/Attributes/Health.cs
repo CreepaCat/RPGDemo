@@ -20,6 +20,8 @@ namespace RPGDemo.Attributes
         private float regenInterval = 5f;
         private float lastRegenTimer = float.MaxValue;
 
+        public bool isImmunity = false;
+
         public bool IsInitialized { get; private set; }
         public event Action<float> OnHealthChanged;
         //public event Action<float> OnHeal;
@@ -83,6 +85,7 @@ namespace RPGDemo.Attributes
         public void TakeDamage(float damageToTake)
         {
             if (IsDead()) return;
+            if (isImmunity) return;
             if (damageToTake < 0f)
             {
                 //或调用takeHeal

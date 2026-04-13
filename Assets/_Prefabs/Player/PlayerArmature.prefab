@@ -52681,8 +52681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8db2df7ced3424479ace0bda6fa9dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLocomotion
-  moveSpeed: 5
-  sprintSpeed: 8
+  moveSpeed: 6
+  sprintSpeed: 12
   rotationSpeed: 360
   rotationSmoothTime: 0.2
   speedChangeRate: 300
@@ -52763,6 +52763,7 @@ MonoBehaviour:
   currentHealth: 0
   damageNumberPrefab: {fileID: 3269273814348931015, guid: e48c601c2bb87754598646f8cd95dc4d, type: 3}
   damageNumberStartPos: {fileID: 6622604400188189963}
+  isImmunity: 0
 --- !u!114 &4233209055052596992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52805,7 +52806,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 4096
-  weaponConfig: {fileID: 0}
+  weaponConfig: {fileID: 11400000, guid: 658b4af380f16014a925dcbb2e557342, type: 2}
   IsAttacking: 0
 --- !u!114 &230029311490946738
 MonoBehaviour:
@@ -52996,7 +52997,9 @@ MonoBehaviour:
   _currentWeaponConfig: {fileID: 0}
   _rightWeaponHolder: {fileID: 0}
   _leftWeaponHolder: {fileID: 0}
-  damageColliders: []
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _sheathHolder: {fileID: 7444601801764434987}
   drawOrSheathKey: 31
 --- !u!1 &6406612339540235573

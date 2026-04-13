@@ -829,7 +829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3466764980051407550, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
       propertyPath: _chaseStoppingDistance
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5123412991724230345, guid: 6bb4ee9ffa9a2e546929394b925dbe7a, type: 3}
       propertyPath: m_IsActive

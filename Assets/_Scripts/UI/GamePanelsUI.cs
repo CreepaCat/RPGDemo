@@ -1,10 +1,11 @@
 using System;
+using RPGDemo.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class GamePanelsUI : MonoBehaviour
+public class GamePanelsUI : BasePanel
 {
     // [SerializeField] ToggleGroup toggleGroup;
     [SerializeField] private Toggle toggle_questPanel;
@@ -14,6 +15,12 @@ public class GamePanelsUI : MonoBehaviour
     [SerializeField] CanvasGroup inventoryPanelCg;
     [SerializeField] CanvasGroup guidePanelCg;
     [SerializeField] Key GAME_PANEL_KEY = Key.I;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+    }
 
     private void Start()
     {
@@ -43,7 +50,7 @@ public class GamePanelsUI : MonoBehaviour
         {
             if (GetComponent<CanvasGroup>().alpha > 0)
             {
-                HideMe();
+                CloseMe();
 
             }
             else
@@ -67,20 +74,17 @@ public class GamePanelsUI : MonoBehaviour
 
     public void ShowMe()
     {
-        GetComponent<CanvasGroup>().alpha = 1f;
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.DisablePlayerControl();
+        UIManager.Instance.OpenPanel<GamePanelsUI>();
     }
 
     public void HideMe()
     {
-        GetComponent<CanvasGroup>().alpha = 0;
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        UIManager.Instance.ClosePanel<GamePanelsUI>();
+    }
 
-        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.EnablePlayerControl();
+    public void CloseMe()
+    {
+        CloseSelf();
     }
 
 }

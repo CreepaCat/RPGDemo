@@ -1,5 +1,6 @@
 using System;
 using RPGDemo.Inventories;
+using RPGDemo.UI;
 using UnityEngine;
 
 namespace RPGDemo.Shops
@@ -14,6 +15,7 @@ namespace RPGDemo.Shops
         {
             if (newShop == currentShop) return;
             currentShop = newShop;
+
             OnShopChanged?.Invoke();
         }
 

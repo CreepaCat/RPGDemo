@@ -1,5 +1,6 @@
 using System;
 using MyNodeEditor.Extension.Dialogue;
+using RPGDemo.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 namespace NewDialogueFrame
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class DialogueContainerUI : MonoBehaviour
+    public class DialogueContainerUI : BasePanel
     {
         [SerializeField] private TextMeshProUGUI speakerName;
         [SerializeField] private TextMeshProUGUI dialogueContent;
@@ -21,13 +22,11 @@ namespace NewDialogueFrame
         [SerializeField] private Transform dialogueOptionsRoot;
 
         PlayerCanversant _playerCanversant;
-        CanvasGroup canvasGroup;
 
-        void Awake()
+        protected override void Awake()
         {
-            _playerCanversant = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCanversant>();
-
-            canvasGroup = GetComponent<CanvasGroup>();
+            base.Awake();
+            _playerCanversant = Player.GetInstance().GetComponent<PlayerCanversant>();
 
         }
 
@@ -49,38 +48,19 @@ namespace NewDialogueFrame
 
         private void Start()
         {
-            HideMe();
+            OnHide();
         }
 
-        private void Update()
+        public void ShowMe()
         {
-            //按空格代表选择next或默认第一个选项
-            // if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            // {
-            //     if (dialogueOptionsRoot.gameObject.activeSelf)
-            //     {
-            //         dialogueOptionsRoot.transform.GetChild(0).GetComponent<Button>().onClick.Invoke();
-            //     }
-            //     else if (nextButton.gameObject.activeSelf)
-            //     {
-            //         nextButton.onClick.Invoke();
-            //     }
 
-            // }
+            UIManager.Instance.OpenPanel<DialogueContainerUI>();
         }
 
-        private void ShowMe()
+        public void HideMe()
         {
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
-            canvasGroup.alpha = 1;
-        }
+            UIManager.Instance.ClosePanel<DialogueContainerUI>();
 
-        private void HideMe()
-        {
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
-            canvasGroup.alpha = 0;
         }
 
         private void UpdateUI(DialogueNodeData runningNodeData)
@@ -90,6 +70,12 @@ namespace NewDialogueFrame
             speakerName.text = runningNodeData.speakerName;
             dialogueContent.text = runningNodeData.dialogueContent;
             avatar.sprite = runningNodeData.avatar;
+
+            if (runningNodeData?.dialogueRole?.speakerName == "玩家")
+            {
+                //说明后面的节点不是选项对话
+                return;
+            }
 
 
             var validOptions = runningNodeData.GetValidateOptions();

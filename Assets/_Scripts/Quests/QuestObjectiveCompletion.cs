@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using RPGDemo.Attributes;
+using NewDialogueFrame;
 
 namespace RPGDemo.Quests
 {
@@ -26,6 +27,7 @@ namespace RPGDemo.Quests
                     break;
                 case ObjectiveType.Talk:
                     //NPCDialogue.OnNPCTalked += HandleNPCTalked;
+                    //GetComponentInParent<CanversantTarget>().OnDialogueStart += CompleteObjective;
                     break;
             }
         }

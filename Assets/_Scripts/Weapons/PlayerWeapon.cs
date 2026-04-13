@@ -100,7 +100,7 @@ namespace RPGDemo.Weapons
                 UnsheathSword();
                 return;
             }
-            Debug.Log("HandleWeaponCombo");
+
             Player player = GetComponent<Player>();
             if (player.AnimationHandler.CanDoCombo)
             {

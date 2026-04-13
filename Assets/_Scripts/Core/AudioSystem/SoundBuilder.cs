@@ -37,6 +37,7 @@ namespace Core.AudioSystem
 
             SoundEmitter soundEmitter = soundManager.Get();
             soundEmitter.Initialize(soundData);
+            soundEmitter.SetVolume(soundManager.Volume);
             soundEmitter.transform.position = playPosition;
             soundEmitter.transform.SetParent(soundManager.transform);
             if (randomPitch)

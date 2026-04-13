@@ -11,12 +11,14 @@ namespace RPGDemo.Weapons
         [SerializeField] private bool isUnarmed = false;
         [SerializeField] private LayerMask weaponLayer;
         [SerializeField] SoundData hitSoundData;
+        [SerializeField] SoundData attackSoundData;
         [SerializeField] ParticleSystem slashVfx;
 
         // [field: SerializeField] public int MaxCombo { get; private set; }
 
         public float WeaponDamage => weaponDamage;
         public SoundData HitSound => hitSoundData;
+        public SoundData AttackSound => attackSoundData;
         public ParticleSystem SlashVfx => slashVfx;
 
 
@@ -50,6 +52,7 @@ namespace RPGDemo.Weapons
 
         public string GetNextCombo(int currentCombo)
         {
+            if (MaxCombo <= 0) return "";
             int nextCombo = (currentCombo + 1) % MaxCombo;
             return AttackCombo[nextCombo];
         }

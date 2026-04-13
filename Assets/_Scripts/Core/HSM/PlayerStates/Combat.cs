@@ -47,6 +47,8 @@ public class Combat : State
     {
         _player.Animator.SetBool(PlayerAnimatorParamConfig.animaIDIsCombat, true);
         Debug.Log("OnEnter Combat State");
+
+        (Parent as Ground).isInCombat = true;
         //拔剑
         _player.Weapon.UnsheathSword();
         _player.Input.Attack += AttackPerformed;

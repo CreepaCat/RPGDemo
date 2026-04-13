@@ -9,6 +9,8 @@ namespace Core.AudioSystem
         private static SoundManager _instance = null;
         public static SoundManager Instance => _instance;
 
+        public float Volume { get; set; } = 0.5f;
+
         IObjectPool<SoundEmitter> soundEmitterPool;
         readonly List<SoundEmitter> activedSoundEmitters = new();
         public Dictionary<SoundData, int> Counts = new();

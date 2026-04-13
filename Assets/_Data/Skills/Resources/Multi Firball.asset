@@ -16,11 +16,11 @@ MonoBehaviour:
   _displayName: "\u591A\u91CD\u706B\u7403\u672F"
   _description: "\u547D\u4E2D\u65F6\u53E0\u52A0\u4E00\u5C42\u71C3\u70E7\uFF0C\u6BCF\u79D2\u9020\u621060%\u653B\u51FB\u529B\u7684\u4F24\u5BB3"
   _icon: {fileID: 21300000, guid: c584f782e9ce03444b6cd36893975997, type: 3}
-  _pickupPrefab: {fileID: 0}
+  _pickupPrefab: {fileID: 5278529781784925265, guid: cfb7f3ee29aa21641b5112c0364953d4, type: 3}
   _isStackable: 0
   _maxStackableAmount: 0
-  _itemCategory: 0
-  _price: 10
+  _itemCategory: 4
+  _price: 200
   cooldown: 1
   _isConsumable: 0
   skillType: 0

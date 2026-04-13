@@ -42,12 +42,12 @@ public class InputReader : ScriptableObject, IPlayerActions
     public void EnablePlayerControl()
     {
         inputActions.Player.Enable();
-        SetCursorState(true);
+        // SetCursorState(true);
     }
     public void DisablePlayerAction()
     {
         inputActions.Player.Disable();
-        SetCursorState(false);
+        // SetCursorState(false);
     }
     // private void OnApplicationFocus(bool hasFocus)
     // {

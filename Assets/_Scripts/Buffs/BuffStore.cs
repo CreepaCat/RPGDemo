@@ -69,6 +69,7 @@ namespace RPGDemo.Buffs
         public void ApplyBuff(BuffInstance instance, Character caster, Character target, float duration = -1)
         {
             //必须new一个对象，防止共用一个引用对象造成数据干扰
+            //todo:用结构体
             BuffInstance newInstance = new BuffInstance(instance.data, caster, target, instance.effects);
 
             if (HasBuff(instance.data)) //如果身上已有该buff

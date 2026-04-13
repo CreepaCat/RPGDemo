@@ -1,18 +1,20 @@
 using NewDialogueFrame;
+using RPGDemo.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueChoosePanel : MonoBehaviour
+public class DialogueChoosePanel : BasePanel
 {
-    [SerializeField] CanvasGroup canvasGroup;
+    // [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] Transform optionsRoot;
     [SerializeField] Button optionPrefab;
 
     PlayerCanversant playerCanversant;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         playerCanversant = PlayerCanversant.GetPlayerCanversant();
     }
     private void Start()
@@ -29,20 +31,24 @@ public class DialogueChoosePanel : MonoBehaviour
         playerCanversant.OnChooseDialogue -= ShowMe;
     }
 
-    public void ShowMe()
+    private void ShowMe()
     {
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
-        Player.GetInstance().DisablePlayerControl();
+        UIManager.Instance.OpenPanel<DialogueChoosePanel>();
         DrawUI();
     }
-
-    public void HideMe()
+    private void HideMe()
     {
-        canvasGroup.alpha = 0f;
-        canvasGroup.blocksRaycasts = false;
-        Player.GetInstance().EnablePlayerControl();
+        //base.OnHide();
+        UIManager.Instance.ClosePanel<DialogueChoosePanel>();
     }
+    private void CloseMe()
+    {
+        CloseSelf();
+    }
+
+
+
+
 
     public void DrawUI()
     {
@@ -61,7 +67,8 @@ public class DialogueChoosePanel : MonoBehaviour
             tmp.text = dialogue.displayName;
             btn.onClick.AddListener(() =>
             {
-                HideMe();
+                //HideMe();
+                CloseMe();
                 playerCanversant.StartDialogue(dialogue, target);
             });
         }
@@ -70,7 +77,8 @@ public class DialogueChoosePanel : MonoBehaviour
         text.text = "离开";
         btnClose.onClick.AddListener(() =>
         {
-            HideMe();
+            // HideMe();
+            CloseMe();
             //将当前对话对象置空
             playerCanversant.SetCurrentCanversantTarget(null);
         });

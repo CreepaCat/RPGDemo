@@ -17,6 +17,8 @@ namespace RPGDemo.Combat
             health = GetComponent<Health>();
         }
 
+        public bool IsDamageable() => !health.isImmunity;
+
         public void TakeDamage(float damageToTake)
         {
             health.TakeDamage(damageToTake);

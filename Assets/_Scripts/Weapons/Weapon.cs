@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.AudioSystem;
 using RPGDemo.Combat;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ namespace RPGDemo.Weapons
             if (character.AnimationHandler.IsInteracting)
                 return;
             character.AnimationHandler.Animator.SetBool("DoCombo", true);
-            character.AnimationHandler.PlayTargetAnimation(Animator.StringToHash(_currentWeaponConfig.GetNextCombo(-1)), true, true, 0.2f);
+            character.AnimationHandler.PlayTargetAnimation(Animator.StringToHash(_currentWeaponConfig.GetNextCombo(-1)), true, false, 0.2f);
 
         }
 
@@ -102,6 +103,16 @@ namespace RPGDemo.Weapons
                 dc.PlayAttackVfx();
             }
         }
+        internal void PlayAttackSfx()
+        {
+            var sound = CurrentWeaponConfig?.AttackSound;
+            if (sound == null) return;
+            SoundManager.Instance.CreateSound()
+            .WithSound(sound)
+            .WithPlayPosition(transform.position)
+            .WithRandomPitch()
+            .Play();
+        }
 
         #region 根据动画参数获取对应手持武器的DamageCollider
 
@@ -149,6 +160,8 @@ namespace RPGDemo.Weapons
 
             return dcs;
         }
+
+
     }
     #endregion
 }

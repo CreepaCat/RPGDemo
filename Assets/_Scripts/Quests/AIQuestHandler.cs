@@ -32,41 +32,37 @@ namespace RPGDemo.Quests
         public AIQuestListStatus GetAIQuestListStatus()
         {
             var playerQuestList = PlayerQuestHandler.GetInstance();
-            bool hasCanCompleteQuest = false; //有可提交任务
-            bool hasCanGiveQuest = false; //有可接取任务
-            bool hasInProgressQuest = false; //有进行中任务
 
+            //按信息重要程度提前返回
             foreach (var quest in quests)
             {
                 var questStatus = playerQuestList.GetQuestStatus(quest);
                 if (questStatus == null)
                 {
                     Debug.Log("有没有接取的任务" + quest.GetQuestName());
-                    hasCanGiveQuest = playerQuestHandler.CanAcceptQuest(quest);
+                    // hasCanGiveQuest = playerQuestHandler.CanAcceptQuest(quest);
+                    if (playerQuestHandler.CanAcceptQuest(quest))
+                        return AIQuestListStatus.CanGiveQuest;
                 }
                 if (questStatus != null && !questStatus.IsFinished())
                 {
                     if (questStatus.IsCompleted())
                     {
-                        hasCanCompleteQuest = true;
+                        return AIQuestListStatus.CanCompleteQuest;
                     }
                     else
                     {
-                        hasInProgressQuest = true;
+                        return AIQuestListStatus.InProgress;
                     }
                 }
 
             }
 
-            //按信息重要程度提前返回
-            if (hasCanCompleteQuest) return AIQuestListStatus.CanCompleteQuest;
-            if (hasCanGiveQuest) return AIQuestListStatus.CanGiveQuest;
-            if (hasInProgressQuest) return AIQuestListStatus.InProgress;
             return AIQuestListStatus.NoQuest;
         }
         public void AddQuest(QuestSO questToAdd)
         {
-            if (quests.Contains(questToAdd)) return;
+            if (questToAdd == null || quests.Contains(questToAdd)) return;
             quests.Add(questToAdd);
         }
 
@@ -85,6 +81,12 @@ namespace RPGDemo.Quests
             if (!playerQuestHandler.HasQuest(questToReward))
             {
                 Debug.Log($"玩家没有任务{questToReward.GetQuestName()},无法获得任务奖励");
+
+                return;
+            }
+            if (playerQuestHandler.GetQuestStatus(questToReward).IsFinished())
+            {
+                Debug.Log($"任务{questToReward.GetQuestName()}已完结,无法重复获得任务奖励");
 
                 return;
             }

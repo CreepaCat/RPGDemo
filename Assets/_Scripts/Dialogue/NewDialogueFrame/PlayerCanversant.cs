@@ -103,6 +103,7 @@ namespace NewDialogueFrame
             //禁用角色移动输入
             //  GetComponent<Player>().DisablePlayerControl();
             currentDialogueTarget = newTarget;
+            newTarget.StartDialogue();
 
             Debug.Log("Starting Dialogue");
             currentDialogueTree.OnTreeStart();

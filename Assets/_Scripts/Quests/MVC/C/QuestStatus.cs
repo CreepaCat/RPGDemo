@@ -22,6 +22,10 @@ namespace RPGDemo.Quests
             {
                 objectiveStatuses.Add(new ObjectiveStatus(obj));
             }
+            if (objectiveStatuses == null || objectiveStatuses.Count < 1)
+            {
+                CompleteQuest();
+            }
         }
 
         public QuestSO GetQuest() => quest;
@@ -46,11 +50,12 @@ namespace RPGDemo.Quests
 
         public bool IsAllObjectivesCompleted()
         {
-            return objectiveStatuses.TrueForAll(s => s.IsCompleted());
+            return objectiveStatuses.Count < 1 || objectiveStatuses.TrueForAll(s => s.IsCompleted());
         }
 
         public bool IsCompleted()
         {
+
             //return objectiveStatuses.TrueForAll(s => s.IsCompleted());
             return progress == QuestProgress.Completed;
         }
@@ -67,7 +72,7 @@ namespace RPGDemo.Quests
 
         public bool IsInProgress()
         {
-            return progress == QuestProgress.Active || progress == QuestProgress.Completed;
+            return progress == QuestProgress.Active;
         }
 
 

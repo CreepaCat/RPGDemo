@@ -267,10 +267,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8592356840453999040}
     m_Modifications:
-    - target: {fileID: 2611105020140198988, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
-      propertyPath: UpdateMethod
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6143767611020540455, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -316,8 +312,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6517097417101743161, guid: 4f810d9ab20d84140b5e3e85432b3eb4, type: 3}
-      propertyPath: field of view
-      value: 35.983395
+      propertyPath: m_CullingMask.m_Bits
+      value: 114679
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -340,18 +336,6 @@ PrefabInstance:
     - target: {fileID: 163265271838445313, guid: a4402d898a860f1458090e329c40315a, type: 3}
       propertyPath: m_Name
       value: OverlayCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 167917659415018271, guid: a4402d898a860f1458090e329c40315a, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 4761891901372918384, guid: 6ea3e2b3697686c42a10ec6317607b5d, type: 2}
-    - target: {fileID: 167917659415018271, guid: a4402d898a860f1458090e329c40315a, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1162530709132237436, guid: a4402d898a860f1458090e329c40315a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.86
       objectReference: {fileID: 0}
     - target: {fileID: 2668447680951384740, guid: a4402d898a860f1458090e329c40315a, type: 3}
       propertyPath: m_Pivot.x

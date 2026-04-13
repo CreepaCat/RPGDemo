@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf05dadc2ccb40498bbe9fc7c865360, type: 3}
+  m_Name: Merchant_DialogueRole
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueRole
+  speakerName: "\u5546\u4EBA"
+  avatar: {fileID: 21300000, guid: a9aafaa0ecf5a7c4f93a7b27deae9466, type: 3}

@@ -35,6 +35,7 @@ namespace RPGDemo.Inventories
             {
                 iconImage.enabled = true;
                 iconImage.sprite = _item.GetIcon();
+                iconImage.preserveAspect = true;
 
                 var itemGetter = GetComponentInParent<IItemGetter>();
 

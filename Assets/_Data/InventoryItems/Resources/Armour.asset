@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e767a5f1aa641fe8e60b2af27b80b2c, type: 3}
+  m_Name: Armour
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Inventories.ArmourItem
+  _itemID: 6515fea1-7960-4fbb-bde9-8f1c085e96d4
+  _displayName: "\u8F7B\u578B\u62A4\u7532"
+  _description: "\u8F7B\u578B\u62A4\u7532\uFF0C\u804A\u80DC\u4E8E\u65E0\u3002"
+  _icon: {fileID: 21300000, guid: 2f1eaeeaad36ee5469eff7ff158f37ba, type: 3}
+  _pickupPrefab: {fileID: 5278529781784925265, guid: cfb7f3ee29aa21641b5112c0364953d4, type: 3}
+  _isStackable: 0
+  _maxStackableAmount: 0
+  _itemCategory: 2
+  _price: 50
+  _allowedEquipLocation: 1
+  _levelLimitation: 1
+  additiveBonuses:
+  - statsType: 0
+    value: 50
+  - statsType: 3
+    value: 20
+  percentageBonuses:
+  - statsType: 0
+    value: 0.1

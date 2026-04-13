@@ -15,7 +15,7 @@ MonoBehaviour:
   _itemID: 5a518e52-da5d-4b09-86ca-1dbd84cabd19
   _displayName: "\u5C0F\u9B54\u74F6"
   _description: "\u4F7F\u7528\u540E\u6062\u590D50\u6CD5\u529B\n"
-  _icon: {fileID: 21300000, guid: e6d1bfa7568106c4c823a4701cbe3180, type: 3}
+  _icon: {fileID: 21300000, guid: 6592b916f86b19e428db6f6847c7b6dd, type: 3}
   _pickupPrefab: {fileID: 5278529781784925265, guid: ab7425352b3889a418e2da6304006a18, type: 3}
   _isStackable: 1
   _maxStackableAmount: 20

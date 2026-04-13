@@ -42,6 +42,7 @@ namespace RPGDemo.Quests
             if (objective.IsUseCondition())
             {
                 isCompleted = objective.GetCondition()?.Check() ?? false;
+
             }
             else
             {

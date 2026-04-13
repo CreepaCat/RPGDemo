@@ -1,3 +1,5 @@
+using System;
+using RPGDemo.Quests;
 using UnityEngine;
 
 namespace NewDialogueFrame
@@ -5,8 +7,16 @@ namespace NewDialogueFrame
     /// <summary>
     /// 定义一个可对话对象，并可用于触发事件
     /// </summary>
-    public class CanversantTarget:MonoBehaviour
+    [RequireComponent(typeof(AIQuestHandler))]
+    public class CanversantTarget : MonoBehaviour
     {
+
+        public event Action OnDialogueStart;
+
+        public void StartDialogue()
+        {
+            OnDialogueStart?.Invoke();
+        }
         public void OnPlayerAccept()
         {
             Debug.Log("CanversantTarget.OnPlayerAccept:给与玩家任务道具");

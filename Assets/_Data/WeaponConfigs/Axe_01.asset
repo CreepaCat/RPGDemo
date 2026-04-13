@@ -25,6 +25,12 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
+  attackSoundData:
+    clip: {fileID: 8300000, guid: acf85299200ca40e28f237a9999407c6, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  slashVfx: {fileID: 0}
   AttackCombo:
   - 1H_Light_Attack_1
   - 1H_Light_Attack_2

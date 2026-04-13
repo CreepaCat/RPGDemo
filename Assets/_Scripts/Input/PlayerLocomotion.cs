@@ -180,10 +180,11 @@ public class PlayerLocomotion : MonoBehaviour
         // 根动画控制期间跳过物理旋转，避免双驱动。
         if (player.AnimationHandler.IsInteracting && player.AnimationHandler.UsingRootMotion)
         {
-            // 根动画期间由OnAnimatorMove驱动刚体，屏蔽速度驱动避免冲突。
             rb.linearVelocity = Vector3.zero;
             return;
         }
+        rb.isKinematic = false;
+
         rbVelocity.y = _verticalVelocity;
 
         rb.linearVelocity = rbVelocity;
@@ -196,6 +197,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void CaculateMovement()
     {
+        //交互型动画时不允许移动
         if (!CanMove || player.AnimationHandler.IsInteracting)
         {
             rbVelocity = new Vector3(0f, rbVelocity.y, 0f);
@@ -204,8 +206,6 @@ public class PlayerLocomotion : MonoBehaviour
             player.Animator.SetFloat(PlayerAnimatorParamConfig.animIDSpeed, _animationBlend);
             return;
         }
-        //交互型动画时不允许移动
-        //  if (player.AnimatorHandler.IsInteracting) return;
 
         float targetSpeed = isSprinting ? sprintSpeed : moveSpeed;
 
@@ -272,9 +272,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         if (!CanMove) return;
         if (!_hasDesiredRotation) return;
-
-        // 根动画控制期间跳过物理旋转，避免双驱动。
-        if (player.AnimationHandler.IsInteracting && player.AnimationHandler.UsingRootMotion) return;
+        if (player.AnimationHandler.IsInteracting) return;
 
         float rotation = Mathf.SmoothDampAngle(
             rb.rotation.eulerAngles.y,
@@ -340,8 +338,16 @@ public class PlayerLocomotion : MonoBehaviour
 
     internal void Move(Vector3 movement, Quaternion deltaRotation)
     {
-        // Debug.Log("根动画移动" + movement);
-        var targetMovement = movement + new Vector3(0f, _verticalVelocity * Time.deltaTime, 0f);
+        movement.y = 0f;
+
+        var verticalDrop = Vector3.zero;
+
+
+        if (RollPerformed) //翻滚时贴地
+        {
+            verticalDrop = new Vector3(0f, _verticalVelocity * Time.deltaTime, 0f);
+        }
+        var targetMovement = movement + verticalDrop;
         rb.MovePosition(rb.position + targetMovement);
 
         if (deltaRotation != Quaternion.identity)

@@ -8,12 +8,12 @@ public class Ground : State
     public readonly Normal Normal;
     public readonly Combat Combat;
     public readonly Locomotion Locomotion;
-    public readonly Rolling Rolling;
+
 
     //public readonly CombatLocomotion CombatLocomotion;
     readonly Player _player;
 
-    bool isInCombat = false;
+    public bool isInCombat = false;
     bool interactPerformed = false;
 
     public Ground(HSM.StateMachine stateMachine, State parent, Player player) : base(stateMachine, parent)
@@ -21,27 +21,32 @@ public class Ground : State
         _player = player;
         Normal = new(stateMachine, this, player);
         Combat = new(stateMachine, this, player);
-        Rolling = new(stateMachine, this, player);
+
         Locomotion = new(stateMachine, this, player);
 
 
     }
     protected override State GetInitialState()
     {
+        if (_player.PlayerCanversant.IsInDialogue)
+        {
+            return Normal;
+        }
         return isInCombat ? (State)Combat : Normal;
     }
 
     protected override State GetTransition()
     {
-        if (_player.Locomotion.RollPerformed)
-        {
-            return Rolling;
-        }
 
+        if (_player.PlayerCanversant.IsInDialogue)
+        {
+            return Normal;
+        }
         if (_player.Locomotion.IsMoving)
         {
             return Locomotion;
         }
+
 
 
         //管理战斗和非战斗状态切换
@@ -54,6 +59,7 @@ public class Ground : State
     }
     protected override void OnEnter()
     {
+
 
         _player.Animator.SetBool(PlayerAnimatorParamConfig.animIDIsFalling, false);
         _player.Input.Interact += InteractPerformed;

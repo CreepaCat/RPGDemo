@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace RPGDemo.Inventories.Pickups
@@ -9,9 +10,34 @@ namespace RPGDemo.Inventories.Pickups
         int _amount;
         Inventory _inventory;
 
+        [Header("悠悠球参数")]
+        public float amplitude = 2f;        // 上下移动的幅度（距离）
+        public float duration = 1.2f;       // 单程时间（越小越快）
+        public Ease easeType = Ease.InOutSine;   // 缓动类型（推荐 InOutSine 最自然）
+
+        private Vector3 startPos;
+
         private void Start()
         {
             _inventory = Inventory.GetPlayerInventory();
+            startPos = transform.position;
+            PlayYoYo();
+        }
+
+        private void OnDestroy()
+        {
+            transform.DOKill();
+        }
+
+        public void PlayYoYo()
+        {
+            // 计算目标位置（在初始位置的正上方或下方）
+            Vector3 targetPos = startPos + new Vector3(0, amplitude, 0);
+
+            // 使用 DOMoveY 实现上下移动 + 无限循环
+            transform.DOMoveY(targetPos.y, duration)
+                .SetEase(easeType)                    // 平滑缓动
+                .SetLoops(-1, LoopType.Yoyo);         // -1 = 无限循环，Yoyo = 往返
         }
 
         public void Setup(InventoryItem item, int amount = 1)

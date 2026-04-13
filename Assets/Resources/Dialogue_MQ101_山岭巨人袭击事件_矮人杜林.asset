@@ -1,0 +1,395 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8468253298480933804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 98fcca9f3db9d9d41b61c98deb91c991
+  isEntryPoint: 0
+  position: {x: 1033.42, y: 412.80002}
+  tree: {fileID: 11400000}
+  children: []
+  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
+  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+  dialogueContent: "\u5F88\u597D\uFF0C\u6210\u8272\u4E0D\u9519\uFF0C\u6211\u8FD9\u5C31\u7ED9\u4F60\u6253\u9020\u6B66\u5668"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 11400000, guid: e39cddc7ee81fed4da605f0741603da1, type: 2}
+  condition: {fileID: 0}
+  OptionList: []
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &-4210708956024108929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 627dfea0b8b38db43ac9debc829998fc
+  isEntryPoint: 0
+  position: {x: 695.2, y: 412.36615}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: -8468253298480933804}
+  speakerName: "\u73A9\u5BB6"
+  avatar: {fileID: 21300000, guid: 1626f696d8f058243bd912ee2dc47da1, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 2bea4bd4a1e083d478800026ec5b5269, type: 2}
+  dialogueContent: "\u627E\u5230\u4F60\u8981\u7684\u4E1C\u897F\u4E86"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 11400000, guid: 5f12cffbcfa1a624682c7b3e667648c6, type: 2}
+  condition: {fileID: 11400000, guid: de69fab6c8a218b4c9f3a32a578d4029, type: 2}
+  OptionList:
+  - OptionText: Option 1
+    PortName: 3afec8cb70854624580029454e2f00fb
+    ChildGuid: 98fcca9f3db9d9d41b61c98deb91c991
+    OptionIndex: 0
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &-1751018286026885265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: dbfb8093ca1b9f043a5fd22881504b61
+  isEntryPoint: 0
+  position: {x: 582.4, y: 44.510483}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: 5781479711197064815}
+  speakerName: "\u73A9\u5BB6"
+  avatar: {fileID: 21300000, guid: 1626f696d8f058243bd912ee2dc47da1, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 2bea4bd4a1e083d478800026ec5b5269, type: 2}
+  dialogueContent: "\u53D1\u751F\u4E86\u4EC0\u4E48\u4E8B\uFF1F\u8FD9\u5730\u65B9\u50CF\u88AB\u9668\u77F3\u7838\u8FC7\u4E00\u6837\u3002"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 0}
+  condition: {fileID: 11400000, guid: c32c929aa6c0dd24aaa98ba1565afefd, type: 2}
+  OptionList:
+  - OptionText: Option 1
+    PortName: 3c86e50843b455b44b73a4b73e6a34b2
+    ChildGuid: 5edf7e8b914f6834f8a74021988d9300
+    OptionIndex: 0
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &-1411799780600052382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 6a1d5aaa301b6c3478650b364784fecd
+  isEntryPoint: 0
+  position: {x: 1192.826, y: 23.199936}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: 8347596994377772027}
+  speakerName: "\u73A9\u5BB6"
+  avatar: {fileID: 21300000, guid: 1626f696d8f058243bd912ee2dc47da1, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 2bea4bd4a1e083d478800026ec5b5269, type: 2}
+  dialogueContent: "\u6211\u80FD\u5E2E\u4F60\u505A\u70B9\u4EC0\u4E48\uFF1F\u603B\u4E0D\u80FD\u770B\u4F60\u4E00\u76F4\u5BF9\u7740\u706B\u7089\u5492\u9A82\u3002"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 0}
+  condition: {fileID: 0}
+  OptionList:
+  - OptionText: Option 1
+    PortName: 955a230a3f920764489bcbd8e99243e9
+    ChildGuid: 032413a69e992114aa374e57e2866bd5
+    OptionIndex: 0
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &-389496832880908319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: ffe7824608908ca4fa0403971e1da66c
+  isEntryPoint: 0
+  position: {x: 1803.2001, y: 133.59991}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: 2100493273776842702}
+  speakerName: "\u73A9\u5BB6"
+  avatar: {fileID: 21300000, guid: 1626f696d8f058243bd912ee2dc47da1, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 2bea4bd4a1e083d478800026ec5b5269, type: 2}
+  dialogueContent: "\u6CA1\u95EE\u9898\uFF0C5\u5757\u7CBE\u94C1\u77FF\u662F\u5427\uFF1F\u6211\u53BB\u5E9F\u589F\u91CC\u7FFB\u7FFB\u3002"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 0}
+  condition: {fileID: 0}
+  OptionList:
+  - OptionText: Option 1
+    PortName: 964d531bb0d1f4d45a20b9219a850f8a
+    ChildGuid: 3ecf0de07bcc4b54c94ae7b5f5050686
+    OptionIndex: 0
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a3cfab8c9cf23488426aba0df3a932, type: 3}
+  m_Name: "Dialogue_MQ101_\u5C71\u5CAD\u5DE8\u4EBA\u88AD\u51FB\u4E8B\u4EF6_\u77EE\u4EBA\u675C\u6797"
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueTree
+  rootNodeData: {fileID: 2665220601551124202}
+  treeState: 1
+  NodeLinks:
+  - BaseNodeGUID: Start
+    PortName: Next
+    TargetNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
+  - BaseNodeGUID: ffe7824608908ca4fa0403971e1da66c
+    PortName: 964d531bb0d1f4d45a20b9219a850f8a
+    TargetNodeGUID: 3ecf0de07bcc4b54c94ae7b5f5050686
+  - BaseNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
+    PortName: 19bd7a1cf97de054e9aa635d9f41f907
+    TargetNodeGUID: dbfb8093ca1b9f043a5fd22881504b61
+  - BaseNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
+    PortName: b63cc28b175971548a6cac318d3207df
+    TargetNodeGUID: 3968aac75fc8ba44bbf7b5e4731b3008
+  - BaseNodeGUID: 5edf7e8b914f6834f8a74021988d9300
+    PortName: 78a66a6f73872114e8bc7a0836efeb0a
+    TargetNodeGUID: 6a1d5aaa301b6c3478650b364784fecd
+  - BaseNodeGUID: dbfb8093ca1b9f043a5fd22881504b61
+    PortName: 3c86e50843b455b44b73a4b73e6a34b2
+    TargetNodeGUID: 5edf7e8b914f6834f8a74021988d9300
+  - BaseNodeGUID: 6a1d5aaa301b6c3478650b364784fecd
+    PortName: 955a230a3f920764489bcbd8e99243e9
+    TargetNodeGUID: 032413a69e992114aa374e57e2866bd5
+  - BaseNodeGUID: 032413a69e992114aa374e57e2866bd5
+    PortName: a095acc671fff744881464ccd8f064be
+    TargetNodeGUID: ffe7824608908ca4fa0403971e1da66c
+  - BaseNodeGUID: 627dfea0b8b38db43ac9debc829998fc
+    PortName: 3afec8cb70854624580029454e2f00fb
+    TargetNodeGUID: 98fcca9f3db9d9d41b61c98deb91c991
+  - BaseNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
+    PortName: 5a2cd794ef385c3449d94bc8284b56d3
+    TargetNodeGUID: 627dfea0b8b38db43ac9debc829998fc
+  NodeDatas:
+  - {fileID: -389496832880908319}
+  - {fileID: 2100493273776842702}
+  - {fileID: 2665220601551124202}
+  - {fileID: 5781479711197064815}
+  - {fileID: -1751018286026885265}
+  - {fileID: -1411799780600052382}
+  - {fileID: 8347596994377772027}
+  - {fileID: -4210708956024108929}
+  - {fileID: -8468253298480933804}
+  - {fileID: 2706765234993934759}
+  displayName: "\u5C71\u5CAD\u5DE8\u4EBA\u88AD\u51FB\u4E8B\u4EF6"
+  condition: {fileID: 11400000, guid: 44e956014be134741a9e77c33df5044d, type: 2}
+--- !u!114 &2100493273776842702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 3ecf0de07bcc4b54c94ae7b5f5050686
+  isEntryPoint: 0
+  position: {x: 2099.2, y: 133.59999}
+  tree: {fileID: 11400000}
+  children: []
+  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
+  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+  dialogueContent: "\u52A8\u4F5C\u5FEB\u70B9\uFF01\u6211\u5C31\u5728\u8FD9\u6E05\u7406\u7089\u819B\uFF0C\u522B\u8BA9\u6211\u7B49\u592A\u4E45\u3002"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 11400000, guid: 6e21c65a2992890449368ba2093b9442, type: 2}
+  condition: {fileID: 0}
+  OptionList: []
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &2665220601551124202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: a36bddef32ddc3a42a94bf8c3c82ef5e
+  isEntryPoint: 0
+  position: {x: 286.3999, y: 195.99982}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: -1751018286026885265}
+  - {fileID: 2706765234993934759}
+  - {fileID: -4210708956024108929}
+  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
+  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+  dialogueContent: "\u8BE5\u6B7B\uFF0C\u4E1C\u897F\u5168\u6BC1\u4E86"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 0}
+  condition: {fileID: 0}
+  OptionList:
+  - OptionText: "\u8BE2\u95EE"
+    PortName: 19bd7a1cf97de054e9aa635d9f41f907
+    ChildGuid: dbfb8093ca1b9f043a5fd22881504b61
+    OptionIndex: 0
+  - OptionText: "\u4EFB\u52A1\u8BE6\u60C5"
+    PortName: b63cc28b175971548a6cac318d3207df
+    ChildGuid: 3968aac75fc8ba44bbf7b5e4731b3008
+    OptionIndex: 1
+  - OptionText: "\u63D0\u4EA4\u4EFB\u52A1"
+    PortName: 5a2cd794ef385c3449d94bc8284b56d3
+    ChildGuid: 627dfea0b8b38db43ac9debc829998fc
+    OptionIndex: 2
+  nextDialogueIndex: 2
+  nexDialogueStart: 1
+--- !u!114 &2706765234993934759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 3968aac75fc8ba44bbf7b5e4731b3008
+  isEntryPoint: 0
+  position: {x: 668, y: 229.60004}
+  tree: {fileID: 11400000}
+  children: []
+  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
+  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+  dialogueContent: "\u6211\u7684\u77FF\u77F3\u5168\u88AB\u57CB\u5728\u4E1C\u8FB9\u5E9F\u589F\u4E0B\u4E86\u3002\u6CA1\u77FF\u77F3\u6211\u5C31\u6CA1\u6CD5\u5F00\u5DE5\uFF0C\u6CA1\u6B66\u5668\u4F60\u5C31\u53EA\u80FD\u7528\u62F3\u5934\u53BB\u63CD\u5DE8\u4EBA\u3002"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 0}
+  condition: {fileID: 11400000, guid: a7cc9cdba56745042a02a51ef0c54d71, type: 2}
+  OptionList: []
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &5781479711197064815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 5edf7e8b914f6834f8a74021988d9300
+  isEntryPoint: 0
+  position: {x: 866.39996, y: 56.251648}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: -1411799780600052382}
+  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
+  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+  dialogueContent: "\u5C71\u5CAD\u5DE8\u4EBA\uFF01\u90A3\u5E2E\u77F3\u5934\u8111\u888B\u7A81\u88AD\u4E86\u6751\u5B50\uFF0C\u62A2\u8D70\u4E86\u6211\u65CF\u7684\u7B26\u6587\u77F3\uFF0C\u8FD8\u7838\u70C2\u4E86\u6211\u7684\u7089\u5B50\uFF01"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 0}
+  condition: {fileID: 0}
+  OptionList:
+  - OptionText: "\u5E2E\u52A9"
+    PortName: 78a66a6f73872114e8bc7a0836efeb0a
+    ChildGuid: 6a1d5aaa301b6c3478650b364784fecd
+    OptionIndex: 0
+  nextDialogueIndex: 0
+  nexDialogueStart: 1
+--- !u!114 &8347596994377772027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1936add0ec1004492564060d0cf996, type: 3}
+  m_Name: DialogueNodeData
+  m_EditorClassIdentifier: Assembly-CSharp::MyNodeEditor.Extension.Dialogue.DialogueNodeData
+  state: 1
+  started: 0
+  guid: 032413a69e992114aa374e57e2866bd5
+  isEntryPoint: 0
+  position: {x: 1503.2, y: 56.799973}
+  tree: {fileID: 11400000}
+  children:
+  - {fileID: -389496832880908319}
+  speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
+  avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
+  dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
+  dialogueContent: "\u6211\u7684\u77FF\u77F3\u5168\u88AB\u57CB\u5728\u4E1C\u8FB9\u5E9F\u589F\u4E0B\u4E86\u3002\u6CA1\u77FF\u77F3\u6211\u5C31\u6CA1\u6CD5\u5F00\u5DE5\uFF0C\u6CA1\u6B66\u5668\u4F60\u5C31\u53EA\u80FD\u7528\u62F3\u5934\u53BB\u63CD\u5DE8\u4EBA\u3002"
+  OnEnterAction: {fileID: 0}
+  OnExitAction: {fileID: 0}
+  condition: {fileID: 0}
+  OptionList:
+  - OptionText: "\u63A5\u53D7"
+    PortName: a095acc671fff744881464ccd8f064be
+    ChildGuid: ffe7824608908ca4fa0403971e1da66c
+    OptionIndex: 0
+  nextDialogueIndex: 0
+  nexDialogueStart: 1

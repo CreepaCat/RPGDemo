@@ -12,38 +12,43 @@ namespace RPGDemo.Saving
     {
         //CONFIG
         private const string SavingJsonExtension = ".sav";
-        
+
         private const string LastSceneBuildIndexString = "lastSceneInBuildIndex";
-        
-        
+
+
         // PUBLIC
         /// <summary>
         /// 存档
         /// </summary>
         /// <param name="fileName"></param>
-       public void SaveFile(string fileName)
-       {
-          
-           //存档前先尝试读取同名文件，创建或读取同名文件为JObject对象
-           JObject state = LoadOrCreateJObject(fileName);
+        public void SaveFile(string fileName)
+        {
 
-           //然后将数据存进JObject对象并存储为Json文件
-           using (var streamWriter = File.CreateText(GetPathFromSaveFile(fileName)))
-           {
-               using (var writer = new JsonTextWriter(streamWriter))
-               { 
-                   CaptureState(state);
-                  
-                   writer.Formatting = Formatting.Indented; //json格式是否缩进
-                   state.WriteTo(writer);
-               }
-           }
-           
-           Debug.Log("Save to: " + GetPathFromSaveFile(fileName));
-           
-           
-       }
-        
+            //存档前先尝试读取同名文件，创建或读取同名文件为JObject对象
+            JObject state = LoadOrCreateJObject(fileName);
+
+            //然后将数据存进JObject对象并存储为Json文件
+            using (var streamWriter = File.CreateText(GetPathFromSaveFile(fileName)))
+            {
+                using (var writer = new JsonTextWriter(streamWriter))
+                {
+                    CaptureState(state);
+
+                    writer.Formatting = Formatting.Indented; //json格式是否缩进
+                    state.WriteTo(writer);
+                }
+            }
+
+            Debug.Log("Save to: " + GetPathFromSaveFile(fileName));
+
+
+        }
+
+        public bool HasFile(string fileName)
+        {
+            return HasPath(fileName);
+        }
+
         /// <summary>
         /// 不重新加载场景的读档
         /// </summary>
@@ -60,7 +65,7 @@ namespace RPGDemo.Saving
             RestoreState(state);
             Debug.Log("Load from: " + GetPathFromSaveFile(fileName));
         }
-        
+
         /// <summary>
         /// 重新加载场景并读取存档数据
         /// </summary>
@@ -74,25 +79,25 @@ namespace RPGDemo.Saving
                 Debug.Log("使用默认场景 ");
                 yield break;
             }
-            
+
             JObject state = LoadOrCreateJObject(fileName);
             IDictionary<string, JToken> stateDict = state;
-            
+
             //默认使用当前场景的索引，若存档中有上次保存的场景索引，则使用存档的索引
             int buildIndex = SceneManager.GetActiveScene().buildIndex;
-            
+
             if (stateDict.ContainsKey(LastSceneBuildIndexString))
             {
                 buildIndex = stateDict[LastSceneBuildIndexString].Value<int>();
             }
             yield return SceneManager.LoadSceneAsync(buildIndex);
-            
+
             //保证场景加载完毕再读取存档数据
             RestoreState(state);
             Debug.Log("Load scene and file from: " + GetPathFromSaveFile(fileName));
-            
+
         }
-        
+
         /// <summary>
         /// 删除存档
         /// </summary>
@@ -102,15 +107,15 @@ namespace RPGDemo.Saving
             File.Delete(GetPathFromSaveFile(fileName));
             Debug.Log("Delete file: " + GetPathFromSaveFile(fileName));
         }
-        
-        
+
+
         //PRIVATE
-        
+
         /// <summary>
         /// 读取存档数据
         /// </summary>
         /// <param name="state"></param>
-        private void RestoreState( IDictionary<string, JToken> state)
+        private void RestoreState(IDictionary<string, JToken> state)
         {
             //IDictionary<string, JToken> state = state;
             foreach (var saveableEntity in FindObjectsByType<SaveableEntity>(FindObjectsSortMode.None))
@@ -122,14 +127,14 @@ namespace RPGDemo.Saving
                 }
             }
         }
-        
+
         /// <summary>
         /// 存储存档数据
         /// </summary>
         /// <param name="state"></param>
-        private void CaptureState( IDictionary<string, JToken> state)
+        private void CaptureState(IDictionary<string, JToken> state)
         {
-           // IDictionary<string, JToken> state = state;
+            // IDictionary<string, JToken> state = state;
             foreach (var saveableEntity in FindObjectsByType<SaveableEntity>(FindObjectsSortMode.None))
             {
                 state[saveableEntity.GetUniqueIdentifier()] = saveableEntity.CapatureState();
@@ -155,26 +160,26 @@ namespace RPGDemo.Saving
                     return JObject.Load(reader);
                 }
             }
-            
+
         }
 
         private bool HasPath(string saveFileName)
-       {
-           string path = GetPathFromSaveFile(saveFileName);
-           if (!File.Exists(path))
-           {
-               return false;
-           }
-           return true;
-       }
-       
+        {
+            string path = GetPathFromSaveFile(saveFileName);
+            if (!File.Exists(path))
+            {
+                return false;
+            }
+            return true;
+        }
 
-       private string GetPathFromSaveFile(string saveFileName)
-       {
-           string fullPath = Path.Combine(Application.persistentDataPath, saveFileName +  SavingJsonExtension );
-           fullPath = fullPath.Replace('\\', '/');
-           return fullPath;
-       }
-     
+
+        private string GetPathFromSaveFile(string saveFileName)
+        {
+            string fullPath = Path.Combine(Application.persistentDataPath, saveFileName + SavingJsonExtension);
+            fullPath = fullPath.Replace('\\', '/');
+            return fullPath;
+        }
+
     }
 }

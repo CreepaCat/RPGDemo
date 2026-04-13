@@ -8,15 +8,15 @@ using Newtonsoft.Json.Linq;
 
 namespace RPGDemo.Shops
 {
-    public class Shop : Interactable, ISaveable
+    public class Shop : MonoBehaviour, ISaveable
     {
         [SerializeField] ShopConfig shopConfig = null;
         private List<ShopItem> shopItems = new();
         //  public event Action OnShopItemsUpdated;
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
+            //base.Awake();
             //原配置的shopItems，以及玩家出售的不在shopConfig里的item list
             if (shopConfig != null && shopItems.Count < 1) //确保在读档之前使用初始化配置
             {
@@ -154,12 +154,12 @@ namespace RPGDemo.Shops
             return true;
 
         }
-        //todo:通过对话打开商店
-        public override void Interact(Interactor interactor)
+        //通过对话打开商店
+        public void Interact()
         {
-            base.Interact(interactor);
+            // base.Interact(interactor);
             Debug.Log("Interacting with shop...");
-            interactor.GetComponentInParent<Shopper>()?.InteractWithShop(this);
+            Player.GetInstance().GetComponent<Shopper>()?.InteractWithShop(this);
         }
 
         public int GetQuantity(InventoryItem item)

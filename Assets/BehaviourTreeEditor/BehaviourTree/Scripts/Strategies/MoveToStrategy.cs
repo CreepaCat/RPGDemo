@@ -20,11 +20,12 @@ namespace MyBehaviourTree
             }
 
             // NavMeshAgent agent = context.GetComponent<NavMeshAgent>();
-            // if (agent == null)
-            // {
-            //     return Node.State.Failure;
-            // }
+
             var agent = context.Agent;
+            if (agent == null || !agent.enabled || agent.isStopped)
+            {
+                return Node.State.Failure;
+            }
 
             Transform target = ResolveTarget(context);
             if (target == null)

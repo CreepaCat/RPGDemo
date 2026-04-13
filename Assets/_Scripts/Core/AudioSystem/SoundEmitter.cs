@@ -32,6 +32,10 @@ namespace Core.AudioSystem
             audioSource.loop = data.loop;
             audioSource.playOnAwake = data.playOnAwake;
         }
+        public void SetVolume(float volume)
+        {
+            audioSource.volume = volume;
+        }
 
         public void Play()
         {
@@ -64,5 +68,7 @@ namespace Core.AudioSystem
         {
             audioSource.pitch += Random.Range(min, max);
         }
+
+
     }
 }

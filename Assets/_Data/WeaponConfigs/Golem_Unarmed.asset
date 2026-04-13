@@ -25,6 +25,12 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
+  attackSoundData:
+    clip: {fileID: 8300000, guid: f3bc87a5dd7c74e188673c56e63e7636, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  slashVfx: {fileID: 0}
   AttackCombo:
   - LightAttack
   - HeaveyAttack

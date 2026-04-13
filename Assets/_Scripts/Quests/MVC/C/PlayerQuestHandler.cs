@@ -19,6 +19,8 @@ namespace RPGDemo.Quests
         public event System.Action<QuestSO> OnQuestCompleted;
         public event System.Action<QuestSO> OnQuestProgressChanged;
 
+        QuestStatus trackingQuest;
+
 
         private void Start()
         {
@@ -39,6 +41,14 @@ namespace RPGDemo.Quests
 
         public List<QuestStatus> GetActiveQuests() => activeQuests;
 
+        internal void SetTrackingQuest(QuestStatus qs)
+        {
+
+            trackingQuest = qs;
+        }
+
+        public QuestStatus GetTrackingQuest() => trackingQuest;
+
 
         public void AcceptQuest(QuestSO quest)
         {
@@ -46,14 +56,54 @@ namespace RPGDemo.Quests
 
             InstantiateQuestTracker(quest);
 
-            activeQuests.Add(new QuestStatus(quest));
+            var qs = new QuestStatus(quest);
+
+            activeQuests.Add(qs);
+
+            SortQuests();
+            SetTrackingQuest(qs);
+
             SideMessageBox.ShowQuestAccepted(quest.GetQuestName());
 
             //接取任务后立马进行一次条件检测
+            OnQuestProgressChanged?.Invoke(quest);
             ConditionHandler.GetInstance().AnyConditionChanged();
 
-            OnQuestProgressChanged?.Invoke(quest);
         }
+
+        private void SortQuests()
+        {
+            activeQuests.Sort((a, b) =>
+            {
+                //完结状态
+                int af = a.IsFinished() ? 1 : -1;
+                int bf = b.IsFinished() ? 1 : -1;
+                int finishedCompare = af.CompareTo(bf);
+                if (finishedCompare != 0)
+                {
+                    return finishedCompare;
+                }
+
+                //可提交任务
+                int ac = a.IsCompleted() ? -1 : 1;
+                int bc = b.IsCompleted() ? -1 : 1;
+                int completedCompare = af.CompareTo(bf);
+                if (completedCompare != 0)
+                {
+                    return completedCompare;
+                }
+
+                int levelCompare = a.quest.GetQuestLevel().CompareTo(b.quest.GetQuestLevel());
+                if (levelCompare != 0)
+                {
+                    return levelCompare;
+                }
+                //按id
+                return string.Compare(a.quest.GetQuestName(), b.quest.GetQuestName(), StringComparison.Ordinal);
+
+            });
+        }
+
         /// <summary>
         /// 对每一个任务都添加一个任务追踪器
         /// </summary>
@@ -109,9 +159,16 @@ namespace RPGDemo.Quests
             {
                 Destroy(tracker);
             }
-            OnQuestProgressChanged?.Invoke(quest);
+            SortQuests();
             SideMessageBox.ShowQuestCompleted(quest.GetQuestName());
+            OnQuestProgressChanged?.Invoke(quest);
             ConditionHandler.GetInstance().AnyConditionChanged();
+
+            //自动接取后续任务
+            if (quest.postQuest != null)
+            {
+                AcceptQuest(quest.postQuest);
+            }
         }
 
         #region ConditionHandler AnyConditionChanged事件回调方法
@@ -134,6 +191,7 @@ namespace RPGDemo.Quests
             if (qs.IsAllObjectivesCompleted())
             {
                 qs.CompleteQuest();
+                SortQuests();
                 OnQuestCompleted?.Invoke(quest);
             }
 
@@ -162,7 +220,7 @@ namespace RPGDemo.Quests
             //todo:如此一来对话端就要做更细化的分支,可接取、进行中、可提交、已完成，用四个分支进行细化对话
             if (HasQuest(questSo))
             {
-                // Debug.Log("已任务" + questSo.GetQuestName());
+                Debug.Log("已有任务" + questSo.GetQuestName());
                 return false;
             }
             // if (GetQuestStatus(questSo)?.progress == QuestProgress.Finished)
@@ -173,7 +231,7 @@ namespace RPGDemo.Quests
             //等级限制
             if (GetComponent<BaseStats>().CurrentLevel < questSo.questLevel)
             {
-                // Debug.Log("等级不足" + questSo.GetQuestName());
+                Debug.Log("等级不足" + questSo.GetQuestName());
                 return false;
             }
             //前置任务限制
@@ -181,7 +239,7 @@ namespace RPGDemo.Quests
             {
                 if (!HasQuest(preQuest) || GetQuestStatus(preQuest).progress != QuestProgress.Finished)
                 {
-                    // Debug.Log("前置任务未完成" + questSo.GetQuestName());
+                    Debug.Log("前置任务未完成" + questSo.GetQuestName());
                     return false;
                 }
             }
@@ -199,6 +257,7 @@ namespace RPGDemo.Quests
         {
 
             QuestSO quest = (QuestSO)parameters.ToArray()[0].scriptableObject;
+            if (quest == null) return null;
             switch (predicate)
             {
                 case Predicate.QuestCompleted:
@@ -216,9 +275,23 @@ namespace RPGDemo.Quests
                 case Predicate.QuestInprogress:
                     if (quest == null) return false;
                     return HasQuest(quest) && IsQuestInProgress(quest);
-                default:
-                    return null;
+                    // default:
+                    //     return null;
             }
+
+            ObjectiveSO objective = (ObjectiveSO)parameters.ToArray()[1].scriptableObject;
+            if (objective == null) return null;
+            switch (predicate)
+            {
+                case Predicate.ObjectiveCompleted:
+                    if (quest == null) return false;
+                    if (objective == null) return false;
+                    if (!quest.HasObjective(objective)) return false;
+                    return GetQuestStatus(quest).GetObjectiveStatus(objective).IsCompleted();
+
+            }
+            return null;
+
         }
         #endregion
 
@@ -271,6 +344,8 @@ namespace RPGDemo.Quests
             }
 
         }
+
+
         #endregion
 
     }

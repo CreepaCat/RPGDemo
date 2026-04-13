@@ -82,7 +82,7 @@ MonoBehaviour:
   disableColor: 1
   RenderingLayer:
     serializedVersion: 0
-    m_Bits: 256
+    m_Bits: 512
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295

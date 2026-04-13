@@ -1,14 +1,13 @@
-using System;
 using System.Linq;
 using RPGDemo.Inventories;
-using Unity.VisualScripting;
+using RPGDemo.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace RPGDemo.Shops
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class ShopUI : MonoBehaviour
+    public class ShopUI : BasePanel
     {
         [SerializeField] Button btnClose;
         [SerializeField] ShopSlotUI shopSlotUIPrefab;
@@ -21,17 +20,18 @@ namespace RPGDemo.Shops
         [SerializeField] SellItemPanel sellItemPanel;
         [SerializeField] BuyItemPanel buyItemPanel;
 
-        CanvasGroup _canvasGroup;
+        // CanvasGroup canvasGroup;
         Shopper _playerShopper;
         ItemCategory currentItemCategory = ItemCategory.None;
 
 
-        private void Awake()
+        protected override void Awake()
         {
-            _canvasGroup = GetComponent<CanvasGroup>();
+            base.Awake();
+
             _playerShopper = Player.GetInstance().GetComponent<Shopper>();
 
-            btnClose.onClick.AddListener(HideMe);
+            btnClose.onClick.AddListener(CloseMe);
             btnSellMode.onClick.AddListener(ShowSellPanel);
         }
         private void OnEnable()
@@ -101,6 +101,7 @@ namespace RPGDemo.Shops
             if (_playerShopper.GetCurrentShop() == null)
             {
                 HideMe();
+
                 return;
             }
             ShowMe();
@@ -109,7 +110,7 @@ namespace RPGDemo.Shops
         private void Redraw()
         {
             //当不显示时不重绘UI
-            if (_canvasGroup.alpha < 0.1f)
+            if (canvasGroup.alpha < 0.1f)
             {
                 return;
             }
@@ -142,20 +143,23 @@ namespace RPGDemo.Shops
 
         }
 
-        private void HideMe()
+        public void CloseMe()
         {
-            _canvasGroup.alpha = 0;
-            _canvasGroup.blocksRaycasts = false;
-
+            CloseSelf();
             _playerShopper.InteractWithShop(null);
         }
 
-        private void ShowMe()
+
+        public void HideMe()
         {
-            _canvasGroup.alpha = 1;
-            _canvasGroup.blocksRaycasts = true;
+            UIManager.Instance.ClosePanel<ShopUI>();
+            _playerShopper.InteractWithShop(null);
+        }
+
+        public void ShowMe()
+        {
+            UIManager.Instance.OpenPanel<ShopUI>();
             Redraw();
-            // ShowBuyPanel(null);
         }
 
 

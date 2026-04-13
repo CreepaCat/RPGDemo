@@ -1,6 +1,6 @@
-using System;
-using System.Collections.Generic;
+using System.Linq;
 using RPGDemo.Core;
+using RPGDemo.Inventories;
 using UnityEngine;
 
 namespace RPGDemo.Quests
@@ -40,6 +40,9 @@ namespace RPGDemo.Quests
             // bool nowCompleted = false;
 
             var objStatus = playerQuestHandler.GetQuestStatus(quest).GetObjectiveStatus(objective);
+
+            UpdateCollectTypeQuestTrackingUI(objStatus);
+
             bool nowCompleted = objStatus.IsCompleted();
 
             if (isCompleted && !nowCompleted)
@@ -52,6 +55,33 @@ namespace RPGDemo.Quests
             {
                 playerQuestHandler.CompleteObjective(quest, objective);
                 isCompleted = true;
+            }
+        }
+
+        private void UpdateCollectTypeQuestTrackingUI(ObjectiveStatus objStatus)
+        {
+
+            if (objective.GetObjectiveType() == ObjectiveType.Collect)
+            {
+                //如果任务已提交，则将目标状态定格
+                if (playerQuestHandler.GetQuestStatus(quest).IsFinished())
+                {
+                    objStatus.currentProgress = objective.GetRequiredAmount();
+                    return;
+                }
+                //显示背包物品个数
+                var item = objective.GetCondition().GetParameters().ToList()[0].scriptableObject as InventoryItem;
+                if (item == null) return;
+
+                int itemNum = Inventory.GetPlayerInventory().GetTotalAmount(item);
+                if (objStatus.currentProgress != itemNum)
+                {
+                    objStatus.currentProgress = itemNum;
+                    Mathf.Clamp(objStatus.currentProgress, 0, objective.GetRequiredAmount());
+                    //发布任务进程改变事件,用来更新UI
+                    playerQuestHandler.CompleteObjective(quest, objective, 0);
+                }
+
             }
         }
     }

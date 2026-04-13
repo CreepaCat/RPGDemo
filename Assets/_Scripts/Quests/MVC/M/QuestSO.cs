@@ -22,6 +22,7 @@ namespace RPGDemo.Quests
         [field: SerializeField] public int rewardCoins { private set; get; } = -1;
         [field: SerializeField] public int rewardExp { private set; get; } = -1;
         [field: SerializeField] public List<QuestSO> preQuests { private set; get; } = new List<QuestSO>();
+        [SerializeField] public QuestSO postQuest;  //后续任务，完成此任务后自动接取
 
         //CACHE
         private static Dictionary<string, QuestSO> questsDict;
