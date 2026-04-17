@@ -43,7 +43,11 @@ namespace RPGDemo.Inventories
             }
             Debug.Log("init inventory slots");
 
-            // Array.Copy(slots, filterSlots, maxSlotsNum);
+            foreach (var item in tesetItems)
+            {
+                if (item == null) continue;
+                AddItemToFirstFoundSlot(item, 1);
+            }
         }
 
 

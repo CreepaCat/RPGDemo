@@ -1,7 +1,9 @@
 using System.Collections;
+using QFSW.QC;
 using RPGDemo.Saving;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace RPGDemo.SceneManagement
 {
@@ -17,31 +19,26 @@ namespace RPGDemo.SceneManagement
 
         const string defaultSaveFile = "RPGDemo";
 
-        private void Awake()
-        {
-            //每次自动加载上次存档场景
-            // StartCoroutine(LoadLastSceneAsync());
-            //通过主菜单选择加载
-        }
 
         private IEnumerator LoadLastSceneAsync()
         {
+            Fader fader = FindFirstObjectByType<Fader>();
+            yield return fader.FadeOut(0.2f);
             yield return GetComponent<SavingSystem>().LoadLastSceneAsync(defaultSaveFile);
+            yield return fader.LoadingProgress(1f);
+            yield return fader.FadeIn(0.2f);
         }
 
         //TEST
         private void Update()
         {
+            if (GameStatus.Instance.IsUsingConsole) return;
             if (Keyboard.current[saveKey].wasPressedThisFrame)
             {
 
                 Save();
             }
-            // if (Keyboard.current[loadFileKey].wasPressedThisFrame)
-            // {
-            //
-            //     LoadFile();
-            // }
+
 
             if (Keyboard.current[loadKey].wasPressedThisFrame)
             {
@@ -66,10 +63,53 @@ namespace RPGDemo.SceneManagement
         /// <summary>
         /// 加载场景,并加载数据
         /// </summary>
+        [Command("load-scene")]
         public void LoadScene()
         {
             StartCoroutine(LoadLastSceneAsync());
         }
+        /// <summary>
+        /// 新游戏
+        /// </summary>
+        internal void LoadNewGame()
+        {
+            StartCoroutine(LoadNewGameAsync());
+        }
+
+        IEnumerator LoadNewGameAsync()
+        {
+            Fader fader = FindFirstObjectByType<Fader>();
+            yield return fader.FadeOut(0.2f);
+            yield return SceneManager.LoadSceneAsync(1);
+            yield return fader.LoadingProgress(1f);
+            yield return fader.FadeIn(0.2f);
+        }
+
+        /// <summary>
+        /// 玩家死亡重生
+        /// </summary>
+        internal void Respawn()
+        {
+            StartCoroutine(RespawnAsync());
+        }
+
+        IEnumerator RespawnAsync()
+        {
+            Fader fader = FindFirstObjectByType<Fader>();
+
+            yield return fader.FadeOut(0.2f);
+            Save();
+            yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            LoadFile();
+            //寻找角色出生点并更新角色位置
+            Portal portal = GameObject.FindFirstObjectByType<Portal>();
+            portal.UpdatePlayer(portal);
+            yield return fader.LoadingProgress(1f);
+            yield return fader.FadeIn(0.2f);
+
+            Save();//重生后存档
+        }
+
 
         public bool HasFile()
         {
@@ -88,7 +128,6 @@ namespace RPGDemo.SceneManagement
         {
             GetComponent<SavingSystem>().Delete(defaultSaveFile);
         }
-
 
 
     }

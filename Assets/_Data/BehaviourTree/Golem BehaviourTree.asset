@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e1d22a3e6c6be468556ae7dbc5ef6e, type: 3}
   m_Name: ConditionNode
   m_EditorClassIdentifier: Assembly-CSharp::MyBehaviourTree.ConditionNode
-  description: "\u73A9\u5BB6\u4E0D\u5728\u8FFD\u51FB\u8303\u56F416"
+  description: "\u73A9\u5BB6\u4E0D\u5728\u8FFD\u51FB\u8303\u56F426"
   state: 0
   guid: 076da9bb475a14c4db863d61430ee3c7
   position: {x: 173.6, y: 875.2001}
@@ -661,7 +661,7 @@ MonoBehaviour:
     - rid: 2184903441031102554
       type: {class: IsPlayerInRange, ns: , asm: Assembly-CSharp}
       data:
-        range: 16
+        range: 26
 --- !u!114 &5710016816886797585
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ namespace RPGDemo.Quests
 
         int _lastSelectedIndex = -1;
 
-        public Action OnRefreshPanel;
+        public event Action OnRefreshPanel;
         private void Awake()
         {
             _playerQuestHandler = PlayerQuestHandler.GetInstance();
@@ -33,6 +33,7 @@ namespace RPGDemo.Quests
             _playerQuestHandler.OnQuestProgressChanged += RefreshPanel;
             btn_trackQuest.onClick.AddListener(() =>
             {
+                if (_currentSelectedQuest == null) return;
                 if (_currentSelectedQuest.IsFinished())
                 {
                     BottomMessageBox.ShowCustom("已完结任务无法追踪");
@@ -55,6 +56,9 @@ namespace RPGDemo.Quests
             txt_noQuest.gameObject.SetActive(!_playerQuestHandler.HasAnyQuest());
 
             SetCurrentSelectedSlot(0);
+            _playerQuestHandler.SetTrackingQuest(_currentSelectedQuest);
+            DrawQuestSlots();
+
         }
 
         private void RefreshPanel(QuestSO quest)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.AudioSystem;
 using Newtonsoft.Json.Linq;
 using RPGDemo.Core;
 using RPGDemo.Saving;
@@ -13,6 +14,9 @@ namespace RPGDemo.Quests
     {
         [SerializeField] List<QuestSO> congfigQuests;
         [SerializeField] QuestObjectiveTracker objectiveTrackerPrefab;
+
+        [SerializeField] private SoundData acceptedQuest;
+        [SerializeField] private SoundData finishedQuest;
 
         private List<QuestStatus> activeQuests = new();
 
@@ -30,7 +34,7 @@ namespace RPGDemo.Quests
                 AcceptQuest(quest);
 
             }
-            // OnQuestProgressChanged?.Invoke(null);
+            OnQuestProgressChanged?.Invoke(null);
 
         }
 
@@ -60,6 +64,7 @@ namespace RPGDemo.Quests
 
             activeQuests.Add(qs);
 
+
             SortQuests();
             SetTrackingQuest(qs);
 
@@ -67,7 +72,12 @@ namespace RPGDemo.Quests
 
             //接取任务后立马进行一次条件检测
             OnQuestProgressChanged?.Invoke(quest);
+
             ConditionHandler.GetInstance().AnyConditionChanged();
+            SoundManager.Instance.CreateSound()
+                 .WithSound(acceptedQuest)
+                 .WithPlayPosition(transform.position)
+                 .Play();
 
         }
 
@@ -164,10 +174,18 @@ namespace RPGDemo.Quests
             OnQuestProgressChanged?.Invoke(quest);
             ConditionHandler.GetInstance().AnyConditionChanged();
 
+
             //自动接取后续任务
             if (quest.postQuest != null)
             {
                 AcceptQuest(quest.postQuest);
+            }
+            else
+            {  //当没有直接后续任务时，才播放任务完成音效
+                SoundManager.Instance.CreateSound()
+                 .WithSound(finishedQuest)
+                 .WithPlayPosition(transform.position)
+                 .Play();
             }
         }
 
@@ -300,6 +318,7 @@ namespace RPGDemo.Quests
         enum SaveData
         {
             QuestStatuses,
+            TrackingQuest
         }
 
         JToken ISaveable.CapatureStateAsJToken()
@@ -317,6 +336,14 @@ namespace RPGDemo.Quests
             }
             //JToken表示可以嵌套在JObject内
             statusDict[saveKey] = JToken.FromObject(questStatusRecords);
+
+            //追踪任务存档
+            string saveKey2 = SaveData.TrackingQuest.ToString();
+            if (trackingQuest != null)
+            {
+                string questName = trackingQuest.GetQuest().GetQuestName();
+                statusDict[saveKey2] = questName;
+            }
 
             return state;
         }
@@ -342,6 +369,14 @@ namespace RPGDemo.Quests
                     InstantiateQuestTracker(questStatus.quest);
                 }
             }
+
+            string saveKey2 = SaveData.TrackingQuest.ToString();
+            if (!stateDict.ContainsKey(saveKey2)) return;
+
+            string questName = stateDict[saveKey2].ToObject<string>();
+            var questSO = QuestSO.GetByName(questName);
+
+            trackingQuest = GetQuestStatus(questSO);
 
         }
 

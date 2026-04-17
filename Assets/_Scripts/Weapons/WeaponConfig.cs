@@ -22,13 +22,16 @@ namespace RPGDemo.Weapons
         public ParticleSystem SlashVfx => slashVfx;
 
 
-        // [field: SerializeField] public string LightAttack_01 { get; private set; }
-        // [field: SerializeField] public string LightAttack_02 { get; private set; }
-        // [field: SerializeField] public string LightAttack_03 { get; private set; }
-        // [field: SerializeField] public string HeaveyAttack { get; private set; }
-
         public string[] AttackCombo;
         public int MaxCombo => AttackCombo.Length;
+
+
+        public bool CanAttack()
+        {
+            return MaxCombo > 0;
+        }
+
+        public GameObject GetEquippedPrefab() => equippedPrefab;
 
         //todo:对不同的武器使用不同的动画覆盖器
 
@@ -64,6 +67,7 @@ namespace RPGDemo.Weapons
             int random = Random.Range(0, AttackCombo.Length);
             return AttackCombo[random];
         }
+
 
     }
 }

@@ -17,7 +17,22 @@ namespace Core.AudioSystem
         [SerializeField] AudioMixerGroup musicMixerGroup = null;
 
         public static MusicManager Instance { get; private set; } = null;
-        public float Volume { get; set; } = 0.5f;
+
+        const string VolumePrefKey = "MusicManager.Volume";
+        private float volume = 0.5f;
+        public float Volume
+        {
+            get => volume;
+            set
+            {
+                float newVolume = Mathf.Clamp01(value);
+                if (Mathf.Approximately(volume, newVolume)) return;
+
+                volume = newVolume;
+                PlayerPrefs.SetFloat(VolumePrefKey, volume);
+                PlayerPrefs.Save();
+            }
+        }
 
         private void Awake()
         {
@@ -27,6 +42,7 @@ namespace Core.AudioSystem
                 return;
             }
             Instance = this;
+            volume = PlayerPrefs.GetFloat(VolumePrefKey, volume);
         }
 
         void Start()
@@ -69,10 +85,11 @@ namespace Core.AudioSystem
 
             previous = current;
 
-            current = gameObject.GetOrAdd<AudioSource>();
+            // 通过AddComponent来确保previous 和 current不会是同一个
+            current = gameObject.AddComponent<AudioSource>();
             current.clip = clip;
             current.outputAudioMixerGroup = musicMixerGroup;
-            current.loop = false; // 循环播放列表音乐
+            current.loop = true; // 单曲循环
             current.volume = 0;
             current.bypassListenerEffects = true;
             current.Play();

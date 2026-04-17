@@ -25,6 +25,13 @@ namespace RPGDemo.Inventories
         {
             //通知UI绘制
             OnEquipmentUpdated?.Invoke();
+            OnWeaponUpdated?.Invoke();
+            //todo：根据字典配置将所有装备装上
+            // foreach (var pair in _equiments)
+            // {
+            //     AddItem(pair.Key, pair.Value);
+            // }
+
         }
 
         public InventoryItem GetEquipableItemInSlot(EquipLocation location)
@@ -52,12 +59,14 @@ namespace RPGDemo.Inventories
 
         public void AddItem(EquipLocation location, EquipableItem item)
         {
+
             Debug.Assert(item.GetAllowedEquipLocation() == location);
 
 
             _equiments[location] = item;
             if (location == EquipLocation.Weapon)
             {
+                Player.GetInstance().IsInCombat = true;
                 OnWeaponUpdated?.Invoke();
             }
             OnEquipmentUpdated?.Invoke();

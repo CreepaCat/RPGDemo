@@ -57,15 +57,19 @@ namespace RPGDemo.UI
         // }
 
         private void Update()
-        {
+        {   //主菜单UI不通过Esc关闭
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+                return;
+
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
                 if (panelStack.Count > 0)
                 {
 
                     ClosePanel();
+
                 }
-                else if (SceneManager.GetActiveScene().buildIndex != 0)
+                else
                 {
 
                     OpenPanel<PauseMenu>();

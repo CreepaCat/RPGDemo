@@ -4,7 +4,6 @@ using UnityEngine.AI;
 using RPGDemo.Attributes;
 using MyBehaviourTree;
 using System.Collections;
-using Core.AudioSystem;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
@@ -12,14 +11,16 @@ using Core.AudioSystem;
 [RequireComponent(typeof(BehaviourTreeRunner))]
 public class Enemy : Character
 {
-    public StateMachine StateMachine => stateMachine;
+    public Health Health => health;
     public NavMeshAgent Agent => agent;
     public Animator Animator => animator;
     public AIController AIController => aiController;
     public BehaviourTreeRunner TreeRunner => treeRunner;
 
+    [SerializeField] ParticleSystem VFX;
 
-    StateMachine stateMachine;
+
+    //StateMachine stateMachine;
     NavMeshAgent agent;
     Animator animator;
     AIController aiController;
@@ -29,6 +30,7 @@ public class Enemy : Character
 
 
     Player player;
+    EnemyGroup enemyGroup; //敌人团伙
 
     protected override void Awake()
     {
@@ -40,9 +42,18 @@ public class Enemy : Character
         baseStats = GetComponent<BaseStats>();
         treeRunner = GetComponent<BehaviourTreeRunner>();
 
+
+
         agent.isStopped = false;
 
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
+        enemyGroup = GetComponentInParent<EnemyGroup>();
+
+        if (enemyGroup != null)
+        {
+            enemyGroup.AddEnemy(this);
+        }
     }
 
     private void OnEnable()
@@ -116,6 +127,12 @@ public class Enemy : Character
 
         AnimationHandler.PlayInterruptAnimation(Animator.StringToHash("Death"), true);
         Fighter.DisableWeaponDamage();
+        enemyGroup?.RemoveEnemy(this);
+
+        if (VFX != null)
+        {
+            Destroy(VFX.gameObject);
+        }
 
 
         StartCoroutine(DeathCoroutine(5f));

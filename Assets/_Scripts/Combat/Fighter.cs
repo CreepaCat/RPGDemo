@@ -14,7 +14,11 @@ namespace RPGDemo.Combat
     {
         [SerializeField] float autoTargetRadius = 20f;
         [SerializeField] LayerMask targetLayer;
-        [Required][SerializeField] WeaponConfig weaponConfig;
+
+#if UNITY_EDITOR
+        [Required]
+#endif
+        [SerializeField] WeaponConfig weaponConfig;
 
         //[SerializeField] bool isPlayer = false;
 
@@ -37,14 +41,9 @@ namespace RPGDemo.Combat
             //将player Weapon和 enmey weapon统一
             weapon = GetComponent<Weapon>();
             weapon.targetLayer = targetLayer;
-        }
-
-
-
-        private void Start()
-        {
             weapon.UpdateWeaponConfig(weaponConfig);
         }
+
 
         public void HandleRandomAttack()
         {
@@ -72,7 +71,7 @@ namespace RPGDemo.Combat
         {
             IsAttacking = false;
             weapon.CloseDamageColliders();
-            //_player.Animator.SetBool("DoCombo", false);
+
         }
 
         public Character GetCurrentTarget()
@@ -83,10 +82,6 @@ namespace RPGDemo.Combat
 
         }
 
-        // public void EnableWeaponDamage()
-        // {
-        //     weapon.OpenDamageCollider();
-        // }
 
         public void DisableWeaponDamage()
         {

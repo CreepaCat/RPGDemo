@@ -27,7 +27,7 @@ namespace RPGDemo.Quests
                     break;
                 case ObjectiveType.Talk:
                     //NPCDialogue.OnNPCTalked += HandleNPCTalked;
-                    //GetComponentInParent<CanversantTarget>().OnDialogueStart += CompleteObjective;
+                    GetComponentInParent<CanversantTarget>().OnDialogueStart += CompleteObjective;
                     break;
             }
         }

@@ -20,7 +20,7 @@ MonoBehaviour:
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u5546\u4EBA"
-  avatar: {fileID: 21300000, guid: 5a41844cf7a9bf14dbc4119fcd5fa5ad, type: 3}
+  avatar: {fileID: 21300000, guid: a9aafaa0ecf5a7c4f93a7b27deae9466, type: 3}
   dialogueRole: {fileID: 11400000, guid: cb4c044bc3738a945893c7b4761a78e8, type: 2}
   dialogueContent: "\u591A\u8C22\u60E0\u987E\u3002"
   OnEnterAction: {fileID: 11400000, guid: 3b87fa5391d932e429b2a54bf7ba3666, type: 2}

@@ -30,7 +30,7 @@ namespace MyNodeEditor.Extension.Dialogue
         public static void ShowGraphWindow()
         {
             DialogueGraphy wnd = GetWindow<DialogueGraphy>();
-            wnd.titleContent = new GUIContent("DialogueGraph");
+            wnd.titleContent = new GUIContent("对话编辑器");
         }
         /// <summary>
         /// 双击资源打开窗口

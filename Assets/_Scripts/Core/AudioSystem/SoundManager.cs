@@ -6,10 +6,24 @@ namespace Core.AudioSystem
 {
     public class SoundManager : MonoBehaviour
     {
-        private static SoundManager _instance = null;
-        public static SoundManager Instance => _instance;
+        // private static SoundManager _instance = null;
+        public static SoundManager Instance { get; private set; }
 
-        public float Volume { get; set; } = 0.5f;
+        const string VolumePrefKey = "SoundManager.Volume";
+        float volume = 0.5f;
+        public float Volume
+        {
+            get => volume;
+            set
+            {
+                float newVolume = Mathf.Clamp01(value);
+                if (Mathf.Approximately(volume, newVolume)) return;
+
+                volume = newVolume;
+                PlayerPrefs.SetFloat(VolumePrefKey, volume);
+                PlayerPrefs.Save();
+            }
+        }
 
         IObjectPool<SoundEmitter> soundEmitterPool;
         readonly List<SoundEmitter> activedSoundEmitters = new();
@@ -25,14 +39,13 @@ namespace Core.AudioSystem
 
         private void Awake()
         {
-            if (_instance == null)
-            {
-                _instance = this;
-            }
-            else
+            if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
+                return;
             }
+            Instance = this;
+            volume = PlayerPrefs.GetFloat(VolumePrefKey, volume);
         }
 
         private void Start()

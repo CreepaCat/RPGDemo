@@ -25,8 +25,10 @@ namespace RPGDemo.Inventories
             _item = item;
 
             var iconImage = GetComponent<Image>();
+            var itemGetter = GetComponentInParent<IItemGetter>();
 
-            if (_item == null)
+
+            if (_item == null || itemGetter.GetAmount() < 1)
             {
                 iconImage.enabled = false;
                 itemAmountText?.gameObject.SetActive(false);
@@ -37,7 +39,6 @@ namespace RPGDemo.Inventories
                 iconImage.sprite = _item.GetIcon();
                 iconImage.preserveAspect = true;
 
-                var itemGetter = GetComponentInParent<IItemGetter>();
 
 
                 if (itemGetter.GetAmount() > 1)
@@ -48,6 +49,10 @@ namespace RPGDemo.Inventories
                         itemAmountText.text = itemGetter.GetAmount().ToString();
                     }
 
+                }
+                else
+                {
+                    itemAmountText?.gameObject.SetActive(false);
                 }
             }
         }

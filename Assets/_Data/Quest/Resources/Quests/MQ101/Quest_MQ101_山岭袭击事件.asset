@@ -20,7 +20,7 @@ MonoBehaviour:
   <rewardItems>k__BackingField:
   - quantity: 1
     item: {fileID: 11400000, guid: f191e729999ad004aac345f899c840ea, type: 2}
-  <rewardCoins>k__BackingField: 100
-  <rewardExp>k__BackingField: 100
+  <rewardCoins>k__BackingField: 20
+  <rewardExp>k__BackingField: 20
   <preQuests>k__BackingField: []
   postQuest: {fileID: 11400000, guid: c4ecd913995f07f46954e8e07a5ce4f3, type: 2}

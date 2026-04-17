@@ -1,6 +1,5 @@
 using RPGDemo.Core.DraggingFrame;
 using RPGDemo.Inventories.Utils;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 

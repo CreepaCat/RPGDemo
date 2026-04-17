@@ -10,7 +10,7 @@ public class Combat : State
 
     readonly Player _player;
 
-    bool attackPerformed = false;
+    //bool attackPerformed = false;
     public Combat(HSM.StateMachine stateMachine, State parent, Player player) : base(stateMachine, parent)
     {
         _player = player;
@@ -48,28 +48,19 @@ public class Combat : State
         _player.Animator.SetBool(PlayerAnimatorParamConfig.animaIDIsCombat, true);
         Debug.Log("OnEnter Combat State");
 
-        (Parent as Ground).isInCombat = true;
+        _player.IsInCombat = true;
         //拔剑
         _player.Weapon.UnsheathSword();
-        _player.Input.Attack += AttackPerformed;
-        attackPerformed = false;
-    }
-
-    protected override void OnExit()
-    {
-        _player.Input.Attack -= AttackPerformed;
     }
 
     protected override void OnUpdate(float deltaTime)
     {
-        if (attackPerformed)
+        if (_player.AttackPerformed)
         {
-            attackPerformed = false;
+            _player.AttackPerformed = false;
             _player.Fighter.HandleComboAttack();
         }
     }
-
-    void AttackPerformed() => attackPerformed = true;
 
 
 }

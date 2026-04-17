@@ -112,6 +112,7 @@ public class NpcHeadUI : MonoBehaviour
 
     public void UpdateIcon(QuestSO questSO)
     {
+        if (miniMapIcon == null || iconImage == null) return;
         var questStatus = aIQuestHandler.GetAIQuestListStatus();
         if (questStatus == AIQuestListStatus.InProgress)
         {

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3643bdf12c7c442ad331f7083639e5, type: 3}
+  m_Name: "Condition_SQ101_\u5BF9\u8BDD\u5F00\u542F"
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Core.ConditionSO
+  description: 
+  predicateType: 0
+  parameters: []
+  logicType: 2
+  isNegative: 0
+  subConditions:
+  - {fileID: 11400000, guid: d19df4d55275e4f4b8c0c156200b8dac, type: 2}
+  - {fileID: 11400000, guid: 1483fa15af0f270498e0362c9c052cee, type: 2}
+  - {fileID: 11400000, guid: f2efdfb50ed79a44c97cb310957be9f1, type: 2}

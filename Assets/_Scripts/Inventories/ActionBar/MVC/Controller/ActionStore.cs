@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.AudioSystem;
 using Newtonsoft.Json.Linq;
 using RPGDemo.Saving;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace RPGDemo.Inventories.ActionBar
     /// </summary>
     public class ActionStore : MonoBehaviour, ISaveable
     {
+        [SerializeField] SoundData usingPotion;
         //冷却物品缓存
         Dictionary<ActionItem, float> cooldownItems = new Dictionary<ActionItem, float>();
 
@@ -71,6 +73,8 @@ namespace RPGDemo.Inventories.ActionBar
             if (!actionItems.ContainsKey(index)) return false;
 
             var actionItem = actionItems[index].actionItem;
+
+            if (actionItem == null || actionItems[index].amount < 1) return false;
             //检查冷却
             if (cooldownItems.ContainsKey(actionItem))
             {
@@ -83,6 +87,11 @@ namespace RPGDemo.Inventories.ActionBar
                 if (actionItem.IsConsumable())
                 {
                     actionItems[index].amount -= 1;
+                    SoundManager.Instance.CreateSound()
+                            .WithSound(usingPotion)
+                            .WithPlayPosition(transform.position)
+                            .Play();
+
                 }
                 else
                 {
@@ -91,6 +100,11 @@ namespace RPGDemo.Inventories.ActionBar
                 AddCooldownItem(actionItem);
 
                 OnActionStoreUpdated?.Invoke(); //刷新UI
+
+                // if (actionItems[index].amount == 0)
+                // {
+                //     actionItems[index].actionItem = null;
+                // }
                 return true;
 
             }
@@ -233,6 +247,7 @@ namespace RPGDemo.Inventories.ActionBar
             List<ActionSlotSaveData> saveData = new();
             foreach (var keyValuePair in actionItems)
             {
+                if (keyValuePair.Value.actionItem == null) continue;
                 ActionSlotSaveData saveItem = new ActionSlotSaveData()
                 {
                     itemID = keyValuePair.Value.actionItem.GetItemID(),

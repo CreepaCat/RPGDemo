@@ -4,8 +4,10 @@ using RPGDemo.Combat;
 using RPGDemo.Inventories.ActionBar;
 using UnityEngine;
 
+[RequireComponent(typeof(AnimationHandler))]
 public class Character : MonoBehaviour
 {
+    //释放技能的方式
     public enum CastType
     {
         None,

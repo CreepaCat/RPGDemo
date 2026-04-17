@@ -20,7 +20,7 @@ MonoBehaviour:
   _isStackable: 0
   _maxStackableAmount: 0
   _itemCategory: 0
-  _price: 10
+  _price: 100
   cooldown: 1
   _isConsumable: 0
   skillType: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
   castType: 2
   castOffset: {x: 0, y: 0, z: 0}
   targetStrategy:
-    rid: -2
+    rid: 2184903696545218828
   rangeStrategy:
     rid: -2
   filterStrategy:
@@ -52,6 +52,10 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2184903696545218828
+      type: {class: SingleTargetStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
+      data:
+        isSelfTarget: 0
     - rid: 5548055959870111992
       type: {class: DamageEffectStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
       data:

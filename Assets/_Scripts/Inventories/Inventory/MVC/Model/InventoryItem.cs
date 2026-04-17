@@ -85,20 +85,24 @@ namespace RPGDemo.Inventories
             return pickup;
         }
 
-        //在对象被实例化之前时回调此方法
-        // public void OnBeforeSerialize()
-        // {
-        //     if (string.IsNullOrWhiteSpace(_itemID))
-        //     {
-        //         _itemID = System.Guid.NewGuid().ToString();
-        //     }
-        // }
+        public string GetCategoryString()
+        {
+            switch (_itemCategory)
+            {
+                case ItemCategory.Weapon:
+                    return "武器";
+                case ItemCategory.Armour:
+                    return "护甲";
+                case ItemCategory.Potion:
+                    return "消耗品";
+                case ItemCategory.SkillRoll:
+                    return "技能";
+                case ItemCategory.QuestItem:
+                    return "任务物品";
 
-
-        // public void OnAfterDeserialize()
-        // {
-
-        // }
-
+                default:
+                    return "无";
+            }
+        }
     }
 }

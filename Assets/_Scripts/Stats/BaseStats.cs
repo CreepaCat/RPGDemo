@@ -4,6 +4,7 @@ using RPGDemo.Saving;
 using UnityEngine;
 using System;
 using RPGDemo.Core;
+using Core.AudioSystem;
 
 namespace RPGDemo.Stats
 {
@@ -16,6 +17,8 @@ namespace RPGDemo.Stats
         [SerializeField] Procession _processionConfig = null;
 
         public event Action OnStatsReady; //懒加载事件
+
+        [SerializeField] SoundData levelUp;
 
 
 
@@ -113,8 +116,12 @@ namespace RPGDemo.Stats
             ConditionHandler.GetInstance().AnyConditionChanged();
             OnLevelUp?.Invoke();
             print($"LevelUp 事件发布,当前等级{CurrentLevel}");
-
+            SoundManager.Instance.CreateSound()
+                  .WithSound(levelUp)
+                  .WithPlayPosition(transform.position)
+                  .Play();
             LevelUpEffect();
+            BottomMessageBox.ShowCustom($"等级提升!当前等级Lv. {CurrentLevel}");
             if (totalExperience >= GetStats(StatsType.Experience))
             {
                 LevelUp(totalExperience);

@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 5931591878361889581}
   - component: {fileID: 7149627127929627472}
   - component: {fileID: 5260426277394123922}
+  - component: {fileID: 134149510540921484}
+  - component: {fileID: 5448942296060239131}
+  - component: {fileID: 6588912223833925722}
   m_Layer: 11
   m_Name: "NPC_\u6751\u957F"
   m_TagString: Untagged
@@ -118,19 +121,7 @@ MonoBehaviour:
   isEnabled: 1
   onInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5260426277394123922}
-        m_TargetAssemblyTypeName: RPGDemo.Quests.QuestObjectiveCompletion, Assembly-CSharp
-        m_MethodName: CompleteObjective
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   defaultDialogue: {fileID: 0}
   dialogues: []
 --- !u!114 &5931591878361889581
@@ -173,6 +164,56 @@ MonoBehaviour:
   quest: {fileID: 11400000, guid: 2cf19938297403946a6eb936b379f32c, type: 2}
   objective: {fileID: 11400000, guid: a20a6b3549d670e479d4a62cc70ae375, type: 2}
   completeNumber: 1
+--- !u!114 &134149510540921484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554546106940859365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc012a3b357f8804397042ad2374ae98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC
+  RightHand: {fileID: 0}
+  LeftHand: {fileID: 0}
+  WeaponHolder: {fileID: 0}
+  Head: {fileID: 0}
+--- !u!95 &5448942296060239131
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554546106940859365}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 038320a534bd8b444b43734860d1a211, type: 3}
+  m_Controller: {fileID: 9100000, guid: 69d8a8434df72f04ba1158294e9c73f9, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6588912223833925722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5554546106940859365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71b3eba5af97964dbf61d5e668e2a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationHandler
 --- !u!1 &5714052572989406493
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,15 +371,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2004727536112947488, guid: 0e3045d46627f3b449759c118159e933, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -134.00085
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2004727536112947488, guid: 0e3045d46627f3b449759c118159e933, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2004727536112947488, guid: 0e3045d46627f3b449759c118159e933, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 390.2699
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2004727536112947488, guid: 0e3045d46627f3b449759c118159e933, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3953,7 +3994,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 69d8a8434df72f04ba1158294e9c73f9, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 95591422076939428, guid: be05525325fdeb94d86bcd45c734c1e5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

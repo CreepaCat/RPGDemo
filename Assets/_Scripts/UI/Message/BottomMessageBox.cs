@@ -318,6 +318,10 @@ public class BottomMessageBox : MonoBehaviour
             t += Time.deltaTime;
             float ratio = Mathf.Clamp01(t / scrollDuration);
             ratio = Mathf.SmoothStep(0f, 1f, ratio);
+            if (entry == null || entry.rect == null)
+            {
+                yield break;
+            }
             entry.rect.anchoredPosition = Vector2.LerpUnclamped(start, target, ratio);
             yield return null;
         }

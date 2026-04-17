@@ -59,6 +59,9 @@ public class Player : Character, ISaveable
 
     private PlayerAnimationHandler _animatorHandler;
 
+    public bool IsInCombat;
+    public bool AttackPerformed;
+
 
     protected override void Awake()
     {
@@ -86,6 +89,8 @@ public class Player : Character, ISaveable
     {
         _health.OnHealthChanged += OnHealthChanged;
         _health.OnDeath += OnDeath;
+
+        Input.Attack += OnAttack;
     }
 
 
@@ -94,12 +99,12 @@ public class Player : Character, ISaveable
     {
         _health.OnDeath -= OnDeath;
         _health.OnHealthChanged -= OnHealthChanged;
+
+        Input.Attack -= OnAttack;
     }
 
     void Start()
     {
-        _baseStats.SetLevelByTotalExp(100);
-
         input.EnablePlayerActions();
 
     }
@@ -108,6 +113,14 @@ public class Player : Character, ISaveable
     {
 
 
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
+        {
+            IsInCombat = !IsInCombat;
+
+        }
+
+        stateMachine.Tick(Time.deltaTime);
+#if UNITY_EDITOR
         if (Keyboard.current.nKey.wasPressedThisFrame)
         {
             _experience.GainExp(100);
@@ -118,13 +131,18 @@ public class Player : Character, ISaveable
             _health.TakeDamage(10f);
 
         }
-
-        stateMachine.Tick(Time.deltaTime);
-#if UNITY_EDITOR
         statePath = SetPath(stateMachine.Root.Leaf());
         if (tmp_statePath != null)
             tmp_statePath.text = statePath;
 #endif
+    }
+
+    private void OnAttack()
+    {
+        if (AnimationHandler.IsHandInteracting) return;
+        if (!Locomotion.Grounded) return;
+
+        AttackPerformed = true;
     }
 
 
@@ -144,12 +162,25 @@ public class Player : Character, ISaveable
 
     public void Move(Vector3 movement)
     {
-        Locomotion.Move(movement);
+        Locomotion.RootMotionMove(movement);
     }
 
-    public void Move(Vector3 movement, Quaternion deltaRotation)
+    //根动画运动
+    public void RootMotionMove(Vector3 movement, Quaternion deltaRotation)
     {
-        Locomotion.Move(movement, deltaRotation);
+        Locomotion.RootMotionMove(movement, deltaRotation);
+    }
+
+    //传送
+    public void TransTo(Transform point)
+    {
+        var rb = GetComponent<Rigidbody>();
+
+        // 瞬移使用直接设置刚体位姿，避免MovePosition在同帧切换isKinematic时不生效。
+        rb.position = point.position;
+        rb.rotation = point.rotation;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
     private void OnDeath()
@@ -176,6 +207,7 @@ public class Player : Character, ISaveable
     {
         Position,
         Rotation,
+        IsInCombat
     }
     JToken ISaveable.CapatureStateAsJToken()
     {
@@ -183,6 +215,7 @@ public class Player : Character, ISaveable
         IDictionary<string, JToken> stateDict = state;
         stateDict[PlayerSavingData.Position.ToString()] = transform.position.ToJToken();
         stateDict[PlayerSavingData.Rotation.ToString()] = transform.rotation.eulerAngles.ToJToken();
+        stateDict[PlayerSavingData.IsInCombat.ToString()] = IsInCombat;
 
         return state;
 
@@ -193,15 +226,30 @@ public class Player : Character, ISaveable
         JObject state = s as JObject;
         IDictionary<string, JToken> stateDict = state;
 
+        var rb = GetComponent<Rigidbody>();
+
         if (stateDict.ContainsKey(PlayerSavingData.Position.ToString()))
         {
-            transform.position = stateDict[PlayerSavingData.Position.ToString()].ToVector3();
+            rb.position = stateDict[PlayerSavingData.Position.ToString()].ToVector3();
 
         }
 
         if (stateDict.ContainsKey(PlayerSavingData.Rotation.ToString()))
         {
-            transform.eulerAngles = stateDict[PlayerSavingData.Rotation.ToString()].ToVector3();
+            var eulerAngles = stateDict[PlayerSavingData.Rotation.ToString()].ToVector3();
+            Quaternion rotation = Quaternion.Euler(eulerAngles);
+            rb.rotation = rotation;
         }
+
+        if (stateDict.ContainsKey(PlayerSavingData.IsInCombat.ToString()))
+        {
+            IsInCombat = stateDict[PlayerSavingData.IsInCombat.ToString()].ToObject<bool>();
+        }
+
+
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
+
+
 }

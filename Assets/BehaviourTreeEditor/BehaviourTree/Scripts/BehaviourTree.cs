@@ -17,8 +17,6 @@ namespace MyBehaviourTree
 
         public Node.State Update()
         {
-
-            // return rootNode.Update();
             if (rootNode.state == Node.State.Running)
             {
                 treeState = rootNode.Update();
@@ -71,9 +69,32 @@ namespace MyBehaviourTree
 
         }
 
+        public static List<Node> GetChildren(Node n)
+        {
+            List<Node> result = new();
+            switch (n)
+            {
+                case RootNode root:
+                    if (root.child != null)
+                        result.Add(root.child);
+                    break;
+                case CompositeNode cn:
+                    result.AddRange(cn.children);
+                    break;
+                case DecoratorNode dn:
+                    if (dn.child != null)
+                        result.Add(dn.child);
+                    break;
+
+                default:
+                    break;
+            }
+            return result;
+        }
+
 
         #region  Editor
-
+#if UNITY_EDITOR
 
         public Node CreateNode(System.Type type)
         {
@@ -111,28 +132,7 @@ namespace MyBehaviourTree
 
         }
 
-        public static List<Node> GetChildren(Node n)
-        {
-            List<Node> result = new();
-            switch (n)
-            {
-                case RootNode root:
-                    if (root.child != null)
-                        result.Add(root.child);
-                    break;
-                case CompositeNode cn:
-                    result.AddRange(cn.children);
-                    break;
-                case DecoratorNode dn:
-                    if (dn.child != null)
-                        result.Add(dn.child);
-                    break;
 
-                default:
-                    break;
-            }
-            return result;
-        }
 
         public void RemoveChild(Node parent, Node child)
         {
@@ -196,6 +196,9 @@ namespace MyBehaviourTree
 
 
         }
+#endif
+        #endregion
     }
-    #endregion
+
+
 }

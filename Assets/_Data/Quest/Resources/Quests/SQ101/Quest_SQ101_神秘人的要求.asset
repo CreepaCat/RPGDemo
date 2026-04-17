@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3883fa03b9d8e642956ae7715362fbf, type: 3}
+  m_Name: "Quest_SQ101_\u795E\u79D8\u4EBA\u7684\u8981\u6C42"
+  m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quest.QuestSO
+  <questName>k__BackingField: "\u795E\u79D8\u4EBA\u7684\u8981\u6C42"
+  <questLevel>k__BackingField: 2
+  description: "\u4E00\u540D\u88F9\u7740\u6B8B\u7834\u6597\u7BF7\u7684\u795E\u79D8\u4EBA\u51FA\u73B0\u5728\u4F60\u7684\u53BB\u8DEF\u4E0A\u3002\u4ED6\u4F3C\u4E4E\u5BF9\u90A3\u4E9B\u66B4\u8D70\u7684\u5DE8\u4EBA\u5E76\u4E0D\u611F\u5230\u610F\u5916\uFF0C\u53CD\u800C\u5BF9\u5B83\u4EEC\u4F53\u5185\u4EA7\u751F\u7684\u4E00\u79CD\u5947\u5F02\u5F02\u53D8\u4EA7\u751F\u4E86\u6D53\u539A\u5174\u8DA3\u3002\u4ED6\u5411\u4F60\u8BB8\u8BFA\uFF0C\u53EA\u8981\u4F60\u80FD\u89E3\u51B3\u6389\u90A3\u5934\u6700\u9EBB\u70E6\u7684\u53D8\u5F02\u4E2A\u4F53\uFF0C\u4ED6\u5C31\u4F1A\u5206\u4EAB\u4E00\u4E9B\u201C\u4E0D\u5C5E\u4E8E\u666E\u901A\u58EB\u5175\u201D\u7684\u6280\u5DE7\u3002"
+  <objectives>k__BackingField:
+  - {fileID: 11400000, guid: 46bc19620c5879a4b81409317a2ebe14, type: 2}
+  <rewardItems>k__BackingField:
+  - quantity: 1
+    item: {fileID: 11400000, guid: 023e1b7614a9f8243b78ce5d8cc2b83c, type: 2}
+  - quantity: 3
+    item: {fileID: 11400000, guid: b94eea10664d7724b844ab8e745fde2f, type: 2}
+  <rewardCoins>k__BackingField: -1
+  <rewardExp>k__BackingField: 50
+  <preQuests>k__BackingField:
+  - {fileID: 11400000, guid: e3b51dd235aca614da2bf4bc58402ea2, type: 2}
+  postQuest: {fileID: 0}

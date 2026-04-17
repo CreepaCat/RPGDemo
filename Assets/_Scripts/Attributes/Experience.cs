@@ -51,7 +51,7 @@ namespace RPGDemo.Attributes
             IDictionary<string, JToken> stateDict = state;
             if (stateDict.ContainsKey(SaveData.Exp.ToString()))
             {
-                stateDict[SaveData.Exp.ToString()] = totalExperience;
+                totalExperience = stateDict[SaveData.Exp.ToString()].ToObject<int>();
             }
 
 

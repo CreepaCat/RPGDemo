@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a20a6b3549d670e479d4a62cc70ae375, type: 2}
   <rewardItems>k__BackingField: []
   <rewardCoins>k__BackingField: -1
-  <rewardExp>k__BackingField: 50
+  <rewardExp>k__BackingField: 30
   <preQuests>k__BackingField:
   - {fileID: 11400000, guid: c4ecd913995f07f46954e8e07a5ce4f3, type: 2}
   postQuest: {fileID: 11400000, guid: c66bac6afeb2a034bb85dab7e18ddd49, type: 2}

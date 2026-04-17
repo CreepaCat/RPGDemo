@@ -16,6 +16,7 @@ namespace NewDialogueFrame
         public void StartDialogue()
         {
             OnDialogueStart?.Invoke();
+            GetComponentInParent<NPC>().AnimationHandler.PlayTargetAnimation(Animator.StringToHash("Talk"), true);
         }
         public void OnPlayerAccept()
         {

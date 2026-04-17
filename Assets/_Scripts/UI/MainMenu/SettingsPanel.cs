@@ -1,7 +1,4 @@
-using System.Collections.Generic;
 using Core.AudioSystem;
-using Newtonsoft.Json.Linq;
-using RPGDemo.Saving;
 using RPGDemo.UI;
 using TMPro;
 using UnityEngine;
@@ -21,13 +18,15 @@ public class SettingsPanel : BasePanel
         slider_sound.onValueChanged.AddListener((v) =>
         {
             txt_soundAmount.text = Mathf.RoundToInt(v * 100).ToString();
-            ApplyValue();
+            SoundManager.Instance.Volume = slider_sound.value;
+            //ApplyValue();
         });
 
         slider_music.onValueChanged.AddListener((v) =>
        {
            txt_musicAmount.text = Mathf.RoundToInt(v * 100).ToString();
-           ApplyValue();
+           MusicManager.Instance.Volume = slider_music.value;
+           // ApplyValue();
        });
 
         slider_sound.value = SoundManager.Instance.Volume;
@@ -36,7 +35,9 @@ public class SettingsPanel : BasePanel
         btn_close.onClick.AddListener(CloseMe);
 
         HideMe();
+
     }
+
 
     public void CloseMe()
     {
@@ -46,6 +47,8 @@ public class SettingsPanel : BasePanel
     public void ShowMe()
     {
         UIManager.Instance.OpenPanel<SettingsPanel>();
+        slider_sound.value = SoundManager.Instance.Volume;
+        slider_music.value = MusicManager.Instance.Volume;
     }
 
     public void HideMe()
@@ -53,11 +56,4 @@ public class SettingsPanel : BasePanel
         UIManager.Instance.ClosePanel<SettingsPanel>();
     }
 
-    private void ApplyValue()
-    {
-        SoundManager.Instance.Volume = slider_sound.value;
-        MusicManager.Instance.Volume = slider_music.value;
-    }
-
-    //todo:声音面板设置用注册表来存档，避免与游戏存档冲突
 }

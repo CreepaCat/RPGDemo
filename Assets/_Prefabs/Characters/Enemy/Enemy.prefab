@@ -1,5 +1,96 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3624873871485942737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4146816907997862950}
+  - component: {fileID: 5724450407657340633}
+  m_Layer: 0
+  m_Name: MinimapRedPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4146816907997862950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624873871485942737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalScale: {x: 16, y: 16, z: 16}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7874366520681138108}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &5724450407657340633
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624873871485942737}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: fbdd7ecf39c13bf48a5bd02a1159c90b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
 --- !u!1001 &2687193042873377688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90,6 +181,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5191961477656077348, guid: 60e04ac9513e7d341ae9a533529d4c26, type: 3}
       insertIndex: -1
       addedObject: {fileID: 422781009371998226}
+    - targetCorrespondingSourceObject: {fileID: 5191961477656077348, guid: 60e04ac9513e7d341ae9a533529d4c26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4146816907997862950}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2716147127135783449, guid: 60e04ac9513e7d341ae9a533529d4c26, type: 3}
       insertIndex: -1
@@ -121,6 +215,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2716147127135783449, guid: 60e04ac9513e7d341ae9a533529d4c26, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1757025884352344552}
+    - targetCorrespondingSourceObject: {fileID: 2716147127135783449, guid: 60e04ac9513e7d341ae9a533529d4c26, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4884735180700239769}
   m_SourcePrefab: {fileID: 100100000, guid: 60e04ac9513e7d341ae9a533529d4c26, type: 3}
 --- !u!1 &70758787706661249 stripped
 GameObject:
@@ -251,6 +348,7 @@ MonoBehaviour:
   currentHealth: 0
   damageNumberPrefab: {fileID: 0}
   damageNumberStartPos: {fileID: 0}
+  isImmunity: 0
 --- !u!114 &4708845477256631428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +377,11 @@ MonoBehaviour:
   _startingLevel: 1
   <CurrentLevel>k__BackingField: 1
   _processionConfig: {fileID: 0}
+  levelUp:
+    clip: {fileID: 0}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
   _levelUpEffect: {fileID: 0}
 --- !u!114 &1757025884352344552
 MonoBehaviour:
@@ -297,6 +400,18 @@ MonoBehaviour:
     CurrentState: 0
     WayPoints: []
     transformEntries: []
+--- !u!114 &4884735180700239769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70758787706661249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71b3eba5af97964dbf61d5e668e2a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationHandler
 --- !u!4 &7874366520681138108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5191961477656077348, guid: 60e04ac9513e7d341ae9a533529d4c26, type: 3}

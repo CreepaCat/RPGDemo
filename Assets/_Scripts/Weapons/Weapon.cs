@@ -31,6 +31,8 @@ namespace RPGDemo.Weapons
         {
             if (_currentWeaponConfig == null)
                 return;
+            if (!_currentWeaponConfig.CanAttack())
+                return;
 
             if (character.AnimationHandler.IsInteracting)
                 return;
@@ -85,6 +87,7 @@ namespace RPGDemo.Weapons
 
         public void UpdateWeaponConfig(WeaponConfig newConfig)
         {
+            Debug.Log("UpdateWeaponConfig" + newConfig?.ItemName);
             _currentWeaponConfig = newConfig;
         }
         internal void SetRightWeaponHolder(WeaponHolder weaponHolder)

@@ -1,6 +1,5 @@
 using HSM;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Ground : State
 {
@@ -13,7 +12,7 @@ public class Ground : State
     //public readonly CombatLocomotion CombatLocomotion;
     readonly Player _player;
 
-    public bool isInCombat = false;
+    //public bool isInCombat = false;
     bool interactPerformed = false;
 
     public Ground(HSM.StateMachine stateMachine, State parent, Player player) : base(stateMachine, parent)
@@ -32,7 +31,7 @@ public class Ground : State
         {
             return Normal;
         }
-        return isInCombat ? (State)Combat : Normal;
+        return _player.IsInCombat ? (State)Combat : Normal;
     }
 
     protected override State GetTransition()
@@ -42,6 +41,11 @@ public class Ground : State
         {
             return Normal;
         }
+        if (_player.AttackPerformed || _player.Fighter.IsAttacking)
+        {
+            return Combat;
+        }
+
         if (_player.Locomotion.IsMoving)
         {
             return Locomotion;
@@ -50,7 +54,7 @@ public class Ground : State
 
 
         //管理战斗和非战斗状态切换
-        return isInCombat ? (State)Combat : Normal;
+        return _player.IsInCombat ? (State)Combat : Normal;
 
 
 
@@ -73,11 +77,6 @@ public class Ground : State
     protected override void OnUpdate(float deltaTime)
     {
 
-        if (Keyboard.current.tabKey.wasPressedThisFrame)
-        {
-            isInCombat = !isInCombat;
-
-        }
 
         _player.Locomotion.CaculateMovement();
 

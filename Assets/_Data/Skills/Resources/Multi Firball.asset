@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Skills.SkillItem
   _itemID: 1e200bdb-dc92-47a2-91aa-c4f224448e57
   _displayName: "\u591A\u91CD\u706B\u7403\u672F"
-  _description: "\u547D\u4E2D\u65F6\u53E0\u52A0\u4E00\u5C42\u71C3\u70E7\uFF0C\u6BCF\u79D2\u9020\u621060%\u653B\u51FB\u529B\u7684\u4F24\u5BB3"
+  _description: "\u547D\u4E2D\u65F6\u9020\u6210\u4F24\u5BB3\u5E76\u65BD\u52A0\u4E00\u5C42\u71C3\u70E7\uFF0C\u6BCF\u5C42\u6BCF\u79D2\u9020\u62105%\u653B\u51FB\u529B\u7684\u4F24\u5BB3\uFF0C\u6700\u9AD8\u4E09\u5C42"
   _icon: {fileID: 21300000, guid: c584f782e9ce03444b6cd36893975997, type: 3}
   _pickupPrefab: {fileID: 5278529781784925265, guid: cfb7f3ee29aa21641b5112c0364953d4, type: 3}
   _isStackable: 0

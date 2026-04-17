@@ -13,19 +13,11 @@ namespace RPGDemo.Weapons
     /// </summary>
     public class PlayerWeapon : Weapon
     {
-        // [SerializeField] private WeaponConfig _currentWeaponConfig;
-        // [SerializeField] private WeaponHolder _weaponHolder;
+
         [SerializeField] private SheathHolder _sheathHolder;
-
-        [SerializeField] private Key drawOrSheathKey = Key.Q;
-
 
         public bool HasSheathedWeapon => _sheathHolder.transform.childCount > 0;
         public bool HasEquippedWeapon => _rightWeaponHolder.transform.childCount > 0;
-
-        // private int clipIDLightAttack => Animator.StringToHash(_currentWeaponConfig.LightAttack_01);
-        // private int clipIDHeaveyAttack => Animator.StringToHash(_currentWeaponConfig.HeaveyAttack);
-
         private Player player;
         Equipment playerEquipment;
 
@@ -51,45 +43,12 @@ namespace RPGDemo.Weapons
 
         void Start()
         {
-            OnEquippedWeaponUpdated();
+            // OnEquippedWeaponUpdated();
         }
-
 
 
         //PUBLIC
 
-        #region 轻重攻击
-
-        // public void LightAttack()
-        // {
-        //     if (_currentWeaponConfig == null)
-        //         return;
-        //     if (HasSheathedWeapon)
-        //     {
-        //         UnsheathSword();
-        //         return;
-        //     }
-        //     Debug.Log("轻攻击");
-        //     Player player = GetComponent<Player>();
-        //     player.AnimationHandler.PlayTargetAnimation(clipIDLightAttack, true);
-        //     //currentCombo = 0;
-        //     player.AnimationHandler.UpdateCanDoCombo(true);
-        // }
-
-        // public void HeaveAttack()
-        // {
-        //     if (_currentWeaponConfig == null)
-        //         return;
-        //     if (HasSheathedWeapon)
-        //     {
-        //         UnsheathSword();
-        //         return;
-        //     }
-        //     Debug.Log("重攻击");
-        //     GetComponent<Player>().AnimationHandler.PlayTargetAnimation(clipIDHeaveyAttack, true);
-        //     lastAttack = _currentWeaponConfig.HeaveyAttack;
-        // }
-        #endregion
 
         public override void HandleWeaponCombo()
         {
@@ -165,12 +124,16 @@ namespace RPGDemo.Weapons
         {
             if (playerEquipment.HasEquippedWeapon())
             {
+                Debug.Log("角色有装备武器");
                 WeaponItem weaponItem = playerEquipment.GetEquipableItemInSlot(EquipLocation.Weapon) as WeaponItem;
                 EquipWeapon(weaponItem.GetWeaponConfig());
-                UnsheathSword();
+                if (player.IsInCombat)
+                    UnsheathSword();
+                //
             }
             else
             {
+                Debug.Log("角色没有装备武器");
                 EquipWeapon(null);
             }
         }
@@ -191,6 +154,7 @@ namespace RPGDemo.Weapons
 
         private void SpawnWeaponInSheath(Transform sheathHolder)
         {
+            Debug.Log("SpawnWeaponInSheath");
             DestroyHolderChildren();
             UpdateWeapon(sheathHolder);
         }

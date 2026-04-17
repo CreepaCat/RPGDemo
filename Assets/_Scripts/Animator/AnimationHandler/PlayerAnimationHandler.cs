@@ -72,7 +72,7 @@ public class PlayerAnimationHandler : AnimationHandler
 
         Vector3 deltaPosition = _animator.deltaPosition;
         deltaPosition.y = 0;
-        _player.Move(deltaPosition, _animator.deltaRotation);
+        _player.RootMotionMove(deltaPosition, _animator.deltaRotation);
     }
 
 }

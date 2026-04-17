@@ -91,7 +91,7 @@ MonoBehaviour:
   OnExitAction: {fileID: 0}
   condition: {fileID: 0}
   OptionList:
-  - OptionText: Option 1
+  - OptionText: "\u653E\u5FC3"
     PortName: 4e9b279cd1ced7a438f1e7800ec5f49e
     ChildGuid: a7d3e045e6ed76143b6e9b1eb5afd7a6
     OptionIndex: 0

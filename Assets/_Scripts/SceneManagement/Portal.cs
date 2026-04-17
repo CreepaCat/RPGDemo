@@ -40,7 +40,7 @@ namespace RPGDemo.SceneManagement
             PlayYoYo();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             doYoyoTarget.DOKill();
         }
@@ -165,15 +165,12 @@ namespace RPGDemo.SceneManagement
 
         }
 
-        private void UpdatePlayer(Portal otherPortal)
+        public void UpdatePlayer(Portal otherPortal)
         {
             if (otherPortal == null) return;
 
-            GameObject player = GameObject.FindWithTag("Player");
-            player.transform.position = otherPortal.spawnPoint.position;
-            player.transform.rotation = otherPortal.spawnPoint.rotation;
-
-
+            var player = Player.GetInstance();
+            player.TransTo(otherPortal.spawnPoint);
 
         }
 

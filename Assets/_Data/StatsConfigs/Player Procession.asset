@@ -22,26 +22,31 @@ MonoBehaviour:
       - 200
       - 300
       - 400
+      - 600
     - statsType: 1
       levels:
       - 100
       - 200
       - 300
       - 400
+      - 600
     - statsType: 2
       levels:
       - 10
       - 20
       - 30
       - 40
+      - 60
     - statsType: 3
       levels:
       - 10
       - 20
       - 30
       - 40
+      - 60
     - statsType: 4
       levels:
       - 100
       - 200
-      - 300
+      - 500
+      - 800

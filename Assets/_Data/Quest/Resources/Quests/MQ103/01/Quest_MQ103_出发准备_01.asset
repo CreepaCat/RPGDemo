@@ -18,8 +18,8 @@ MonoBehaviour:
   <objectives>k__BackingField:
   - {fileID: 11400000, guid: d4f7353728290c741bd846d87dfc2b78, type: 2}
   <rewardItems>k__BackingField: []
-  <rewardCoins>k__BackingField: 100
-  <rewardExp>k__BackingField: 20
+  <rewardCoins>k__BackingField: 110
+  <rewardExp>k__BackingField: 10
   <preQuests>k__BackingField:
   - {fileID: 11400000, guid: 2cf19938297403946a6eb936b379f32c, type: 2}
   postQuest: {fileID: 11400000, guid: 4fb14198e724c8e4ca83f6c6027246b3, type: 2}

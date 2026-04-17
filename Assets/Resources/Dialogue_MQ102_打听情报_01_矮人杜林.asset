@@ -16,7 +16,7 @@ MonoBehaviour:
   started: 0
   guid: 3c2d8a776d61d44499a709c36b6a311d
   isEntryPoint: 0
-  position: {x: 294.39996, y: 166.4}
+  position: {x: 296.51605, y: 166.4}
   tree: {fileID: 11400000}
   children:
   - {fileID: 292538490547271429}
@@ -50,7 +50,7 @@ MonoBehaviour:
   started: 0
   guid: fcd993783b99e51478f430c69b198bd0
   isEntryPoint: 0
-  position: {x: 898.27216, y: 300.8}
+  position: {x: 943.20013, y: -33.64005}
   tree: {fileID: 11400000}
   children:
   - {fileID: 2423906910685990471}
@@ -84,7 +84,7 @@ MonoBehaviour:
   started: 0
   guid: 91e9f564fbe18f44d9393d5081773e3c
   isEntryPoint: 0
-  position: {x: 1032, y: 88.80002}
+  position: {x: 943.19995, y: 260}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
@@ -172,7 +172,7 @@ MonoBehaviour:
     PortName: e14354586196dad4d89b0cf8147474c9
     ChildGuid: 91e9f564fbe18f44d9393d5081773e3c
     OptionIndex: 1
-  nextDialogueIndex: 0
+  nextDialogueIndex: 1
   nexDialogueStart: 1
 --- !u!114 &2423906910685990471
 MonoBehaviour:
@@ -190,7 +190,7 @@ MonoBehaviour:
   started: 0
   guid: 6fb9101373f6cc248bcee7b0f5c39f3e
   isEntryPoint: 0
-  position: {x: 1197.6, y: 300.80005}
+  position: {x: 1242.3745, y: -21.599976}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"

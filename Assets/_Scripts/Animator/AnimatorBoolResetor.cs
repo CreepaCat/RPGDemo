@@ -19,4 +19,5 @@ public class AnimatorBoolResetor : StateMachineBehaviour
             animator.SetBool(animBoolInfos[i].animBoolName, animBoolInfos[i].status);
         }
     }
+
 }

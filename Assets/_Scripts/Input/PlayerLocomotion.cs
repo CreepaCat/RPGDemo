@@ -142,6 +142,9 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void OnRoll()
     {
+        if (player.AnimationHandler.IsInteracting)
+            return;
+        if (!Grounded) return;
         RollPerformed = true;
 
     }
@@ -329,14 +332,16 @@ public class PlayerLocomotion : MonoBehaviour
     }
 
     //根动画移动
-    internal void Move(Vector3 movement)
+    internal void RootMotionMove(Vector3 movement)
     {
         // Debug.Log("根动画移动" + movement);
         var targetMovement = movement + new Vector3(0f, _verticalVelocity * Time.deltaTime, 0f);
         rb.MovePosition(rb.position + targetMovement);
     }
 
-    internal void Move(Vector3 movement, Quaternion deltaRotation)
+
+
+    internal void RootMotionMove(Vector3 movement, Quaternion deltaRotation)
     {
         movement.y = 0f;
 

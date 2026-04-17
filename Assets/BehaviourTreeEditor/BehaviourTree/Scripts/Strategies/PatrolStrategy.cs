@@ -23,7 +23,7 @@ namespace MyBehaviourTree
         {
             NavMeshAgent agent = context.Agent;
 
-            if (agent == null) return Node.State.Failure;
+            if (agent == null || !agent.enabled || agent.isStopped) return Node.State.Failure;
             if (wayPoints == null) return Node.State.Failure;
 
             agent.SetDestination(wayPoints[currentIndex].position);
@@ -38,7 +38,8 @@ namespace MyBehaviourTree
         public override void OnStop(BehaviourTreeContext context)
         {
             base.OnStart(context);
-            context.Agent.isStopped = true;
+            if (context.Agent.enabled)
+                context.Agent.isStopped = true;
             currentIndex = GetNextPoint();
         }
 
