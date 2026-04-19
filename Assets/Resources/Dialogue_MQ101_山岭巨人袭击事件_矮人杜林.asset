@@ -45,7 +45,7 @@ MonoBehaviour:
   started: 0
   guid: 627dfea0b8b38db43ac9debc829998fc
   isEntryPoint: 0
-  position: {x: 695.2, y: 412.36615}
+  position: {x: 582.4, y: 412.8}
   tree: {fileID: 11400000}
   children:
   - {fileID: -8468253298480933804}
@@ -113,7 +113,7 @@ MonoBehaviour:
   started: 0
   guid: 6a1d5aaa301b6c3478650b364784fecd
   isEntryPoint: 0
-  position: {x: 1192.826, y: 23.199936}
+  position: {x: 1192.8, y: 44.80002}
   tree: {fileID: 11400000}
   children:
   - {fileID: 8347596994377772027}
@@ -147,7 +147,7 @@ MonoBehaviour:
   started: 0
   guid: ffe7824608908ca4fa0403971e1da66c
   isEntryPoint: 0
-  position: {x: 1803.2001, y: 133.59991}
+  position: {x: 1799.2263, y: 44.80002}
   tree: {fileID: 11400000}
   children:
   - {fileID: 2100493273776842702}
@@ -183,42 +183,42 @@ MonoBehaviour:
   - BaseNodeGUID: Start
     PortName: Next
     TargetNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
-  - BaseNodeGUID: ffe7824608908ca4fa0403971e1da66c
-    PortName: 964d531bb0d1f4d45a20b9219a850f8a
-    TargetNodeGUID: 3ecf0de07bcc4b54c94ae7b5f5050686
   - BaseNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
     PortName: 19bd7a1cf97de054e9aa635d9f41f907
     TargetNodeGUID: dbfb8093ca1b9f043a5fd22881504b61
   - BaseNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
     PortName: b63cc28b175971548a6cac318d3207df
     TargetNodeGUID: 3968aac75fc8ba44bbf7b5e4731b3008
-  - BaseNodeGUID: 5edf7e8b914f6834f8a74021988d9300
-    PortName: 78a66a6f73872114e8bc7a0836efeb0a
-    TargetNodeGUID: 6a1d5aaa301b6c3478650b364784fecd
+  - BaseNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
+    PortName: 5a2cd794ef385c3449d94bc8284b56d3
+    TargetNodeGUID: 627dfea0b8b38db43ac9debc829998fc
   - BaseNodeGUID: dbfb8093ca1b9f043a5fd22881504b61
     PortName: 3c86e50843b455b44b73a4b73e6a34b2
     TargetNodeGUID: 5edf7e8b914f6834f8a74021988d9300
   - BaseNodeGUID: 6a1d5aaa301b6c3478650b364784fecd
     PortName: 955a230a3f920764489bcbd8e99243e9
     TargetNodeGUID: 032413a69e992114aa374e57e2866bd5
-  - BaseNodeGUID: 032413a69e992114aa374e57e2866bd5
-    PortName: a095acc671fff744881464ccd8f064be
-    TargetNodeGUID: ffe7824608908ca4fa0403971e1da66c
+  - BaseNodeGUID: 5edf7e8b914f6834f8a74021988d9300
+    PortName: 78a66a6f73872114e8bc7a0836efeb0a
+    TargetNodeGUID: 6a1d5aaa301b6c3478650b364784fecd
   - BaseNodeGUID: 627dfea0b8b38db43ac9debc829998fc
     PortName: 3afec8cb70854624580029454e2f00fb
     TargetNodeGUID: 98fcca9f3db9d9d41b61c98deb91c991
-  - BaseNodeGUID: a36bddef32ddc3a42a94bf8c3c82ef5e
-    PortName: 5a2cd794ef385c3449d94bc8284b56d3
-    TargetNodeGUID: 627dfea0b8b38db43ac9debc829998fc
+  - BaseNodeGUID: 032413a69e992114aa374e57e2866bd5
+    PortName: a095acc671fff744881464ccd8f064be
+    TargetNodeGUID: ffe7824608908ca4fa0403971e1da66c
+  - BaseNodeGUID: ffe7824608908ca4fa0403971e1da66c
+    PortName: 964d531bb0d1f4d45a20b9219a850f8a
+    TargetNodeGUID: 3ecf0de07bcc4b54c94ae7b5f5050686
   NodeDatas:
-  - {fileID: -389496832880908319}
-  - {fileID: 2100493273776842702}
-  - {fileID: 2665220601551124202}
-  - {fileID: 5781479711197064815}
-  - {fileID: -1751018286026885265}
   - {fileID: -1411799780600052382}
+  - {fileID: 5781479711197064815}
   - {fileID: 8347596994377772027}
+  - {fileID: -389496832880908319}
+  - {fileID: 2665220601551124202}
+  - {fileID: -1751018286026885265}
   - {fileID: -4210708956024108929}
+  - {fileID: 2100493273776842702}
   - {fileID: -8468253298480933804}
   - {fileID: 2706765234993934759}
   displayName: "\u5C71\u5CAD\u5DE8\u4EBA\u88AD\u51FB\u4E8B\u4EF6"
@@ -239,7 +239,7 @@ MonoBehaviour:
   started: 0
   guid: 3ecf0de07bcc4b54c94ae7b5f5050686
   isEntryPoint: 0
-  position: {x: 2099.2, y: 133.59999}
+  position: {x: 2100, y: 44.799984}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
@@ -312,13 +312,13 @@ MonoBehaviour:
   started: 0
   guid: 3968aac75fc8ba44bbf7b5e4731b3008
   isEntryPoint: 0
-  position: {x: 668, y: 229.60004}
+  position: {x: 582.4, y: 220}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
   dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
-  dialogueContent: "\u6211\u7684\u77FF\u77F3\u5168\u88AB\u57CB\u5728\u4E1C\u8FB9\u5E9F\u589F\u4E0B\u4E86\u3002\u6CA1\u77FF\u77F3\u6211\u5C31\u6CA1\u6CD5\u5F00\u5DE5\uFF0C\u6CA1\u6B66\u5668\u4F60\u5C31\u53EA\u80FD\u7528\u62F3\u5934\u53BB\u63CD\u5DE8\u4EBA\u3002"
+  dialogueContent: "\u6211\u7684\u77FF\u77F3\u5168\u88AB\u57CB\u5728\u5317\u8FB9\u5E9F\u589F\u4E0B\u4E86\u3002\u6CA1\u77FF\u77F3\u6211\u5C31\u6CA1\u6CD5\u5F00\u5DE5\uFF0C\u6CA1\u6B66\u5668\u4F60\u5C31\u53EA\u80FD\u7528\u62F3\u5934\u53BB\u63CD\u5DE8\u4EBA\u3002"
   OnEnterAction: {fileID: 0}
   OnExitAction: {fileID: 0}
   condition: {fileID: 11400000, guid: a7cc9cdba56745042a02a51ef0c54d71, type: 2}
@@ -341,7 +341,7 @@ MonoBehaviour:
   started: 0
   guid: 5edf7e8b914f6834f8a74021988d9300
   isEntryPoint: 0
-  position: {x: 866.39996, y: 56.251648}
+  position: {x: 899.458, y: 44.799984}
   tree: {fileID: 11400000}
   children:
   - {fileID: -1411799780600052382}
@@ -375,14 +375,14 @@ MonoBehaviour:
   started: 0
   guid: 032413a69e992114aa374e57e2866bd5
   isEntryPoint: 0
-  position: {x: 1503.2, y: 56.799973}
+  position: {x: 1500.0259, y: 44.80002}
   tree: {fileID: 11400000}
   children:
   - {fileID: -389496832880908319}
   speakerName: "\u675C\u6797\u2022\u94C1\u62F3"
   avatar: {fileID: 21300000, guid: 14e97d44cf1586f4ba766c661b158eaf, type: 3}
   dialogueRole: {fileID: 11400000, guid: 878f8f443f5710443bfdfc348db9f42b, type: 2}
-  dialogueContent: "\u6211\u7684\u77FF\u77F3\u5168\u88AB\u57CB\u5728\u4E1C\u8FB9\u5E9F\u589F\u4E0B\u4E86\u3002\u6CA1\u77FF\u77F3\u6211\u5C31\u6CA1\u6CD5\u5F00\u5DE5\uFF0C\u6CA1\u6B66\u5668\u4F60\u5C31\u53EA\u80FD\u7528\u62F3\u5934\u53BB\u63CD\u5DE8\u4EBA\u3002"
+  dialogueContent: "\u6211\u7684\u77FF\u77F3\u5168\u88AB\u57CB\u5728\u5317\u8FB9\u5E9F\u589F\u4E0B\u4E86\u3002\u6CA1\u77FF\u77F3\u6211\u5C31\u6CA1\u6CD5\u5F00\u5DE5\uFF0C\u6CA1\u6B66\u5668\u4F60\u5C31\u53EA\u80FD\u7528\u62F3\u5934\u53BB\u63CD\u5DE8\u4EBA\u3002"
   OnEnterAction: {fileID: 0}
   OnExitAction: {fileID: 0}
   condition: {fileID: 0}

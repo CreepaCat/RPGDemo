@@ -22,7 +22,7 @@ namespace RPGDemo.Quests
         {
             quest = questSo;
             objective = objectiveSo;
-            gameObject.name = questSo.description + objectiveSo.Description;
+            gameObject.name = objectiveSo.Description;
             ConditionHandler.OnAnyConditionChanged += CheckAndUpdate;
             playerQuestHandler = PlayerQuestHandler.GetInstance();
             if (!playerQuestHandler.HasQuest(quest)) return;

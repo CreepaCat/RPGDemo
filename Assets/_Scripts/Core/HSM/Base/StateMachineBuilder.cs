@@ -22,6 +22,7 @@ namespace HSM
             var hashSet = new HashSet<State>();
             Wire(root, m, hashSet);
 
+              //将state加进machine字典，key为type
             foreach (var s in hashSet)
             {
                 m.StateDict[s.GetType()] = s;
@@ -46,7 +47,7 @@ namespace HSM
             if (machineField != null) machineField.SetValue(s, m);  //将状态机记录到该节点
 
 
-            //todo:将state加进machine字典，key为type
+
 
             foreach (var fld in s.GetType().GetFields(flags))
             {

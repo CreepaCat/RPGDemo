@@ -50,7 +50,7 @@ namespace HSM
             if (from == to || from == null || to == null) return;
 
 
-            //1、获取最近共同祖先节点
+            //1、获取最近共同祖先节点lca
             State lca = TransitionSequencer.LowestCommonAncestor(from, to);
             if (lca == null) return;
 

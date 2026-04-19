@@ -52669,6 +52669,8 @@ MonoBehaviour:
   damageNumberUIParent: {fileID: 0}
   tmp_statePath: {fileID: 0}
   statePath: 
+  IsInCombat: 0
+  AttackPerformed: 0
 --- !u!114 &5240615460057469033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52682,9 +52684,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLocomotion
   moveSpeed: 6
-  sprintSpeed: 12
-  rotationSpeed: 360
-  rotationSmoothTime: 0.2
+  sprintSpeed: 9.6
+  rotationSpeed: 720
+  rotationSmoothTime: 0.1
   speedChangeRate: 300
   _grounded: 1
   GroundedOffset: -0.24
@@ -52695,7 +52697,7 @@ MonoBehaviour:
   JumpHeight: 1
   Gravity: -15
   JumpTimeout: 0.5
-  FallTimeout: 0.15
+  FallTimeout: 0.2
   jumpLockDuration: 0.2
   CheckStairs: 0
   stairHeight: 0.45
@@ -52746,7 +52748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09857004db398f34b98c791492981b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Attributes.Experience
-  totalExperience: 100
+  totalExperience: 0
 --- !u!114 &6441502357694983502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52836,8 +52838,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Stats.BaseStats
   CharacterClass: 0
   _startingLevel: 1
-  <CurrentLevel>k__BackingField: 2
+  <CurrentLevel>k__BackingField: 1
   _processionConfig: {fileID: 11400000, guid: 08de7c4130b23514882ea082b29dc079, type: 2}
+  levelUp:
+    clip: {fileID: 8300000, guid: aa35ade8ed5d02f47b50807cd06ab23d, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
   _levelUpEffect: {fileID: 9158635742410941698, guid: 0767fdb081295684aa29dc66fa58825d, type: 3}
 --- !u!114 &8234758324420539903
 MonoBehaviour:
@@ -52893,6 +52900,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e8719d1a2046bd83db791962ea4282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Inventories.ActionBar.ActionStore
+  usingPotion:
+    clip: {fileID: 8300000, guid: c465c12f43abc304586875d56174eaef, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
 --- !u!114 &6241028325816984152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52920,6 +52932,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Quest.PlayerQuest
   congfigQuests: []
   objectiveTrackerPrefab: {fileID: 4005437254303714311, guid: df2eb06767ae6004c92380dac23b89f7, type: 3}
+  acceptedQuest:
+    clip: {fileID: 8300000, guid: 36186b48ef3eb8b478bd1a0c328d594a, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+  finishedQuest:
+    clip: {fileID: 8300000, guid: cd8b86e0a1ae24b4086f48ae48c42f36, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
 --- !u!114 &1640715928691297894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52957,7 +52979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5f9de8371c08849869ea05118c6035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Inventories.Purse
-  startingBalance: 2000
+  startingBalance: 20
   currentBalance: 0
 --- !u!114 &507301975519762849
 MonoBehaviour:
@@ -53001,7 +53023,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _sheathHolder: {fileID: 7444601801764434987}
-  drawOrSheathKey: 31
 --- !u!1 &6406612339540235573
 GameObject:
   m_ObjectHideFlags: 0

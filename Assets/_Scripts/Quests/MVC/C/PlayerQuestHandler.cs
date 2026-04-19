@@ -120,12 +120,17 @@ namespace RPGDemo.Quests
         /// <param name="quest"></param>
         private void InstantiateQuestTracker(QuestSO quest)
         {
+            string trackerName = "QuestTracker_" + quest.GetQuestName();
+            GameObject trackerGo = GameObject.Find(trackerName);
+            if (trackerGo != null) return;
+
             var trackerParent = new GameObject("QuestTracker_" + quest.GetQuestName());
             DontDestroyOnLoad(trackerParent);
 
             foreach (var objective in quest.GetQuestObjectives())
             {
                 var tracker = Instantiate(objectiveTrackerPrefab, trackerParent.transform);
+                //tracker.gameObject.name = objective.Description;
                 tracker.Setup(quest, objective);
 
             }
@@ -293,22 +298,10 @@ namespace RPGDemo.Quests
                 case Predicate.QuestInprogress:
                     if (quest == null) return false;
                     return HasQuest(quest) && IsQuestInProgress(quest);
-                    // default:
-                    //     return null;
+                default:
+                    return null;
             }
 
-            ObjectiveSO objective = (ObjectiveSO)parameters.ToArray()[1].scriptableObject;
-            if (objective == null) return null;
-            switch (predicate)
-            {
-                case Predicate.ObjectiveCompleted:
-                    if (quest == null) return false;
-                    if (objective == null) return false;
-                    if (!quest.HasObjective(objective)) return false;
-                    return GetQuestStatus(quest).GetObjectiveStatus(objective).IsCompleted();
-
-            }
-            return null;
 
         }
         #endregion

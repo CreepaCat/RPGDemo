@@ -64,13 +64,12 @@ namespace HSM
         internal void InnerUpdate(float deltaTime)
         {
             State t = GetTransition();
-            // if (Leaf() != t)
 
-            //!防止重复进入同一个子节点
+            //*防止重复进入同一个子节点
             if (t != null && ActiveChild != t)
             {
 
-                //!从叶子节点退出，保证状态退出顺序正确
+                //*从叶子节点开始退出，保证状态退出顺序正确
                 var from = Leaf();
                 if (from != t)
                 {

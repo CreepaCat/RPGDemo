@@ -36,7 +36,7 @@ namespace RPGDemo.Core
         [SerializeField] ConditionLogicType logicType = ConditionLogicType.Single;
         [Header("取反")]
         [Tooltip("对AND取反不等价于原条件的OR，这符合德摩根定律AND + 取反 → 等价于 (!A) OR (!B)\nOR + 取反 → 等价于 (!A) AND (!B)\nSingle + 取反 → 等价于 !(原条件)")]
-        [SerializeField] private bool isNegative = false; //是否取反值，取反后AND等价于OR
+        [SerializeField] private bool isNegative = false; //结果是否取反值
 
         [Header("子条件（And / Or  使用）")]
         [SerializeField] List<ConditionSO> subConditions = null;

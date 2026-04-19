@@ -15,7 +15,7 @@ MonoBehaviour:
   description: "\u653B\u51FB\u884C\u4E3A"
   state: 0
   guid: e91cec4d8d340574d94919aeaf97a9aa
-  position: {x: 931.19995, y: 1009.60004}
+  position: {x: 960.7998, y: 1003.9998}
   started: 0
   strategy:
     rid: 2184903425464729765
@@ -41,7 +41,7 @@ MonoBehaviour:
   description: 
   state: 0
   guid: 5a3067b4efd39d745b64c24fe9d599b6
-  position: {x: -849.59985, y: 665.6}
+  position: {x: -849.6, y: 665.60004}
   started: 0
   child: {fileID: -1282151080699659693}
 --- !u!114 &-7020310319828181208
@@ -110,7 +110,7 @@ MonoBehaviour:
   description: "\u505C\u6B62\u79FB\u52A8"
   state: 0
   guid: f56ad066943bde446b9664686a2de48e
-  position: {x: -559.99976, y: 688.79987}
+  position: {x: -559.99994, y: 688}
   started: 0
   strategy:
     rid: 2184903425464729767
@@ -201,7 +201,7 @@ MonoBehaviour:
   description: "\u653B\u51FB\u95F4\u96943\u79D2"
   state: 0
   guid: e3bc88b4008fb9f4485161fb0d9dcc8e
-  position: {x: 1129.6, y: 1009.6792}
+  position: {x: 1180.8, y: 1004.00006}
   started: 0
   strategy:
     rid: -2
@@ -334,7 +334,7 @@ MonoBehaviour:
   description: 
   state: 0
   guid: 9c08a35380ca0414fb8917f1a532f074
-  position: {x: 237.60004, y: -154.17487}
+  position: {x: 237.6001, y: -150.39996}
   started: 0
   children:
   - {fileID: 3894618846474910716}
@@ -564,7 +564,7 @@ MonoBehaviour:
   description: 
   state: 0
   guid: d48e8f7c9facdb7458d90bd1728d22ab
-  position: {x: 388.00003, y: 556}
+  position: {x: 349.6001, y: 548.8}
   started: 0
   children:
   - {fileID: 5687073124706087847}
@@ -677,7 +677,7 @@ MonoBehaviour:
   description: "\u73A9\u5BB6\u5728\u7591\u60D1\u8303\u56F48"
   state: 0
   guid: cbaa8990f75beb6428f41ec90cd34d55
-  position: {x: -1222.4, y: 665.6}
+  position: {x: -1219.2001, y: 665.60004}
   started: 0
   strategy:
     rid: -2
@@ -771,7 +771,7 @@ MonoBehaviour:
   description: "\u9762\u5411\u73A9\u5BB6"
   state: 0
   guid: 90223ea3e5d2cc04fb859bf426591f05
-  position: {x: 780.8, y: 994.4}
+  position: {x: 774.3999, y: 1003.9998}
   started: 0
   strategy:
     rid: 2184903425464729766

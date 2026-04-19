@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Inventories.WeaponItem
   _itemID: 1f5b0e29-9d61-40e6-9d36-defe2f902e8a
-  _displayName: "\u5355\u624B\u65A7"
+  _displayName: "\u788E\u77F3\u8005"
   _description: "\u77EE\u4EBA\u953B\u9020\u65A7\u5934\uFF0C\u53EF\u4EE5\u5288\u5F00\u5C71\u5CAD\u5DE8\u4EBA\u575A\u786C\u7684\u76AE\u80A4"
   _icon: {fileID: 21300000, guid: 172774604c1bee84185a69041576525b, type: 3}
   _pickupPrefab: {fileID: 5278529781784925265, guid: 7d54211b0759c3e4d875c24e03d537ea, type: 3}

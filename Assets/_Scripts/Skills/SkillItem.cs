@@ -96,6 +96,11 @@ namespace RPGDemo.Skills
 
             //todo:禁用角色输入，并插值转向
             caster.transform.rotation = Quaternion.LookRotation(dir);
+            if (caster.transform.TryGetComponent(out Rigidbody rb))
+            {
+                rb.MoveRotation(Quaternion.LookRotation(dir));
+                rb.angularVelocity = Vector3.zero;
+            }
 
             float delayTiem = animationStrategy == null ? 0f : animationStrategy.DelayTime;
             caster.StartCoroutine(CastSkillCroutine(delayTiem, caster, targets));

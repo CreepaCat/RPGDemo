@@ -21,10 +21,10 @@ MonoBehaviour:
   _maxStackableAmount: 0
   _itemCategory: 4
   _price: 200
-  cooldown: 1
+  cooldown: 5
   _isConsumable: 0
   skillType: 0
-  <manaCost>k__BackingField: 60
+  <manaCost>k__BackingField: 80
   unlockCost: 1
   prerequisites:
   - {fileID: 11400000, guid: 01e49aabbe075e347b83908681a11c2e, type: 2}
@@ -43,7 +43,7 @@ MonoBehaviour:
   animationStrategy:
     rid: 5548055959870112007
   effectStrategies:
-  - rid: 5548055983140896877
+  - rid: 2184903764255703043
   - rid: 5548055959870112004
   requirementStrategy:
     rid: -2
@@ -56,6 +56,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2184903764255703043
+      type: {class: AttackMultilplierDamageEffectStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        attackDamageMultiplier: 120
+    - rid: 2184903764255703045
+      type: {class: AttackMultilplierDamageEffectStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        attackDamageMultiplier: 5
     - rid: 5548055959870111993
       type: {class: HomingProjectile, ns: , asm: Assembly-CSharp}
       data:
@@ -83,7 +91,7 @@ MonoBehaviour:
         buff:
           data: {fileID: 11400000, guid: 78054e8b829d5e342a26ef6d3f496c6f, type: 2}
           effects:
-          - rid: 5548055983140896874
+          - rid: 2184903764255703045
           remainingTime: 5
           currentStack: 3
           owner: {fileID: 0}
@@ -112,11 +120,3 @@ MonoBehaviour:
         vfx: {fileID: 198430637241592466, guid: c787459d7b28c9a4ab701b1720cef097, type: 3}
         spawnOffset: {x: 0, y: 2, z: 0}
         destroyAfterSeconds: 1
-    - rid: 5548055983140896874
-      type: {class: AttackMultilplierDamageEffectStrategy, ns: , asm: Assembly-CSharp}
-      data:
-        attackDamageMultiplier: 5
-    - rid: 5548055983140896877
-      type: {class: AttackMultilplierDamageEffectStrategy, ns: , asm: Assembly-CSharp}
-      data:
-        attackDamageMultiplier: 120

@@ -57,7 +57,8 @@ namespace RPGDemo.Quests
 
             SetCurrentSelectedSlot(0);
             _playerQuestHandler.SetTrackingQuest(_currentSelectedQuest);
-            DrawQuestSlots();
+            // DrawQuestSlots();
+            RefreshPanel(null);
 
         }
 

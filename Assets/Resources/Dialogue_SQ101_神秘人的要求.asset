@@ -16,7 +16,7 @@ MonoBehaviour:
   started: 0
   guid: 95a9327475e207048b6c36ff95eec1ec
   isEntryPoint: 0
-  position: {x: 590.39996, y: -0.82199097}
+  position: {x: 590.39996, y: -0.79996306}
   tree: {fileID: 11400000}
   children:
   - {fileID: 2000003599049513981}
@@ -118,7 +118,7 @@ MonoBehaviour:
   started: 0
   guid: 8d70878087ee614468dffac1c6b3ea12
   isEntryPoint: 0
-  position: {x: 247.20003, y: 157.6}
+  position: {x: 255.74954, y: 166.39998}
   tree: {fileID: 11400000}
   children:
   - {fileID: -8745521682087914797}
@@ -144,7 +144,7 @@ MonoBehaviour:
     PortName: 198eef0bb8d7f7443a38750b03058053
     ChildGuid: 1ac221a111a50df49a09f9fdf3f4f4d6
     OptionIndex: 2
-  nextDialogueIndex: 0
+  nextDialogueIndex: 2
   nexDialogueStart: 1
 --- !u!114 &-5389752363851252991
 MonoBehaviour:
@@ -162,13 +162,13 @@ MonoBehaviour:
   started: 0
   guid: 0fde19b93c08ac3449f9c96ffd108e70
   isEntryPoint: 0
-  position: {x: 572.7999, y: 152.79996}
+  position: {x: 590.39996, y: 166.4}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u73A9\u5BB6"
   avatar: {fileID: 21300000, guid: 1626f696d8f058243bd912ee2dc47da1, type: 3}
   dialogueRole: {fileID: 11400000, guid: 2bea4bd4a1e083d478800026ec5b5269, type: 2}
-  dialogueContent: "\u5728\u4E1C\u8FB9\u5BC6\u6797\u91CC\uFF0C\u6709\u4E00\u5934\u53D8\u5F02\u7684**\u201C\u788E\u9885\u8005\u201D\u5DE8\u4EBA**\uFF0C\u5B83\u541E\u4E0B\u4E86\u4E00\u679A\u71C3\u70E7\u7684\u6676\u77F3\u3002\u628A\u90A3\u5757\u77F3\u5934\u5E26\u56DE\u6765\u7ED9\u6211\u3002"
+  dialogueContent: "\u5728\u897F\u8FB9\u5BC6\u6797\u91CC\uFF0C\u6709\u4E00\u5934\u53D8\u5F02\u7684**\u201C\u788E\u9885\u8005\u201D\u5DE8\u4EBA**\uFF0C\u5B83\u541E\u4E0B\u4E86\u4E00\u679A\u71C3\u70E7\u7684\u6676\u77F3\u3002\u628A\u90A3\u5757\u77F3\u5934\u5E26\u56DE\u6765\u7ED9\u6211\u3002"
   OnEnterAction: {fileID: 0}
   OnExitAction: {fileID: 0}
   condition: {fileID: 11400000, guid: f2efdfb50ed79a44c97cb310957be9f1, type: 2}
@@ -191,7 +191,7 @@ MonoBehaviour:
   started: 0
   guid: 1ac221a111a50df49a09f9fdf3f4f4d6
   isEntryPoint: 0
-  position: {x: 590.4, y: 316}
+  position: {x: 590.39996, y: 347.45773}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u795E\u79D8\u4EBA"
@@ -220,7 +220,7 @@ MonoBehaviour:
   started: 0
   guid: 6e1670c496363ae459c6715b1adfb9e0
   isEntryPoint: 0
-  position: {x: 1501.5999, y: -92}
+  position: {x: 1501.6001, y: -77.600006}
   tree: {fileID: 11400000}
   children: []
   speakerName: "\u795E\u79D8\u4EBA"
@@ -276,15 +276,15 @@ MonoBehaviour:
     PortName: c239e4670a1dab8449e74130ec25d8b5
     TargetNodeGUID: c77fb3ea736f2d6448064f5e13ed3dd8
   NodeDatas:
-  - {fileID: -5648198590181881953}
-  - {fileID: -8745521682087914797}
   - {fileID: -6827827668611246984}
   - {fileID: -5873458402198799657}
   - {fileID: 2000003599049513981}
-  - {fileID: -3121633910815193623}
-  - {fileID: -1149596010177657915}
-  - {fileID: -5389752363851252991}
   - {fileID: 7214955529838237664}
+  - {fileID: -3121633910815193623}
+  - {fileID: -5389752363851252991}
+  - {fileID: -8745521682087914797}
+  - {fileID: -5648198590181881953}
+  - {fileID: -1149596010177657915}
   displayName: "\u795E\u79D8\u4EBA\u7684\u8981\u6C42"
   condition: {fileID: 11400000, guid: 93b0245f0b8e44446b0b64c79cb0935b, type: 2}
 --- !u!114 &2000003599049513981
@@ -311,7 +311,7 @@ MonoBehaviour:
   speakerName: "\u795E\u79D8\u4EBA"
   avatar: {fileID: 21300000, guid: 0bd7685b6c2399e44960dd704fca5c04, type: 3}
   dialogueRole: {fileID: 11400000, guid: 49785b3f52de74e4286184257951793e, type: 2}
-  dialogueContent: "\u540D\u5B57\u5E76\u4E0D\u91CD\u8981\u3002\u5728\u4E1C\u8FB9\u5BC6\u6797\u91CC\uFF0C\u6709\u4E00\u5934\u53D8\u5F02\u7684**\u201C\u788E\u9885\u8005\u201D\u5DE8\u4EBA**\uFF0C\u5B83\u541E\u4E0B\u4E86\u4E00\u679A\u71C3\u70E7\u7684\u6676\u77F3\u3002"
+  dialogueContent: "\u540D\u5B57\u5E76\u4E0D\u91CD\u8981\u3002\u5728\u897F\u8FB9\u5BC6\u6797\u91CC\uFF0C\u6709\u4E00\u5934\u53D8\u5F02\u7684**\u201C\u788E\u9885\u8005\u201D\u5DE8\u4EBA**\uFF0C\u5B83\u541E\u4E0B\u4E86\u4E00\u679A\u71C3\u70E7\u7684\u6676\u77F3\u3002"
   OnEnterAction: {fileID: 0}
   OnExitAction: {fileID: 0}
   condition: {fileID: 0}
@@ -324,7 +324,7 @@ MonoBehaviour:
     PortName: c239e4670a1dab8449e74130ec25d8b5
     ChildGuid: c77fb3ea736f2d6448064f5e13ed3dd8
     OptionIndex: 1
-  nextDialogueIndex: 1
+  nextDialogueIndex: 0
   nexDialogueStart: 1
 --- !u!114 &7214955529838237664
 MonoBehaviour:

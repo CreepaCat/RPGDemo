@@ -109,7 +109,6 @@ public class PlayerLocomotion : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        // rb.isKinematic = true;
         rb.freezeRotation = true;
         rb.useGravity = false;
 

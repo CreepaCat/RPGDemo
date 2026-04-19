@@ -42,7 +42,7 @@ MonoBehaviour:
     PortName: 0dce7026cee4a064283a4f0c9d7cce02
     ChildGuid: 8366e350f639b9243aecd1cd074d1451
     OptionIndex: 2
-  nextDialogueIndex: 0
+  nextDialogueIndex: 1
   nexDialogueStart: 1
 --- !u!114 &-1837856151654141830
 MonoBehaviour:
@@ -72,7 +72,7 @@ MonoBehaviour:
   condition: {fileID: 0}
   OptionList: []
   nextDialogueIndex: 0
-  nexDialogueStart: 0
+  nexDialogueStart: 1
 --- !u!114 &-1364863866018106697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
     PortName: b2b7abc0306dd3a4aaa14c20ccd2c39a
     ChildGuid: ee48de7521528414e9c7884080823263
     OptionIndex: 1
-  nextDialogueIndex: 0
+  nextDialogueIndex: 1
   nexDialogueStart: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -194,7 +194,7 @@ MonoBehaviour:
   condition: {fileID: 0}
   OptionList: []
   nextDialogueIndex: 0
-  nexDialogueStart: 0
+  nexDialogueStart: 1
 --- !u!114 &3608258262309901445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
     ChildGuid: 75e93497b6f7a15428655543a05c9aff
     OptionIndex: 0
   nextDialogueIndex: 0
-  nexDialogueStart: 0
+  nexDialogueStart: 1
 --- !u!114 &5210335443753862078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
     ChildGuid: c409ce3a8c1c574438758c502330b73a
     OptionIndex: 0
   nextDialogueIndex: 0
-  nexDialogueStart: 0
+  nexDialogueStart: 1
 --- !u!114 &6517013242991052739
 MonoBehaviour:
   m_ObjectHideFlags: 0

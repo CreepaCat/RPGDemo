@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPGDemo.Skills.SkillItem
   _itemID: b6a16052-0d36-40f0-8ea4-dfe1ca335d50
   _displayName: "\u706B\u7403\u672F"
-  _description: 
+  _description: "\u7ECF\u5178\u706B\u7403\u672F\uFF0C\u7A33\u5B9A\u6613\u7528\u3002"
   _icon: {fileID: 21300000, guid: 447a3de3e3f0dc54aaa942d7c48e9f90, type: 3}
   _pickupPrefab: {fileID: 6370474167730380488, guid: 82df8836ab04fc84f86cb13b15928cf0, type: 3}
   _isStackable: 0
   _maxStackableAmount: 0
-  _itemCategory: 0
+  _itemCategory: 4
   _price: 100
-  cooldown: 1
+  cooldown: 3
   _isConsumable: 0
   skillType: 0
-  <manaCost>k__BackingField: 30
+  <manaCost>k__BackingField: 50
   unlockCost: 1
   prerequisites: []
   isUnlockedByDefault: 0
@@ -43,6 +43,7 @@ MonoBehaviour:
     rid: 5548055959870112006
   effectStrategies:
   - rid: 5548055959870111992
+  - rid: 2184903717423153417
   requirementStrategy:
     rid: -2
   visualStrategies:
@@ -56,6 +57,22 @@ MonoBehaviour:
       type: {class: SingleTargetStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
       data:
         isSelfTarget: 0
+    - rid: 2184903717423153417
+      type: {class: AddBuffEffectStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        buff:
+          data: {fileID: 11400000, guid: 78054e8b829d5e342a26ef6d3f496c6f, type: 2}
+          effects:
+          - rid: 2184903717423153418
+          remainingTime: 5
+          currentStack: 3
+          owner: {fileID: 0}
+          target: {fileID: 0}
+          nextTickTime: 7.445421
+    - rid: 2184903717423153418
+      type: {class: AttackMultilplierDamageEffectStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        attackDamageMultiplier: 5
     - rid: 5548055959870111992
       type: {class: DamageEffectStrategy, ns: RPGDemo.Core.Strategies, asm: Assembly-CSharp}
       data:

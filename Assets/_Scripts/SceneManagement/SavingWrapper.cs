@@ -98,7 +98,6 @@ namespace RPGDemo.SceneManagement
             Fader fader = FindFirstObjectByType<Fader>();
 
             yield return fader.FadeOut(0.2f);
-            Save();
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
             LoadFile();
             //寻找角色出生点并更新角色位置
