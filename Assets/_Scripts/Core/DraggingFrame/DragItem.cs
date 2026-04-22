@@ -54,15 +54,12 @@ namespace RPGDemo.Core.DraggingFrame
             //1、不在UI上(本Canvas所属的UI)
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-
-                // Debug.Log("鼠标不在UI上");
                 //丢弃处理，将parentCanvas作为垃圾桶
                 container = _parentCanvas.GetComponent<IDragDestination<T>>();
 
             }
             else //2、从鼠标pointerEnter的gameObject处获取容器
             {
-                //  Debug.Log("鼠标在UI上");
                 container = GetContainer(eventData);
             }
 
@@ -159,7 +156,6 @@ namespace RPGDemo.Core.DraggingFrame
 
 
             //4、若都符合条件则执行完美交换
-            // print("背包物品完美交换");
             if (removedSourceItemAmount > 0)
             {
                 destinationContainer.AddItems(removedSourceItem, removedSourceItemAmount);

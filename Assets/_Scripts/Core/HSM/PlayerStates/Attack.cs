@@ -22,7 +22,6 @@ public class Attack : State
     protected override void OnEnter()
     {
         Debug.Log("OnEnter Attack State");
-        //  _player.Locomotion.StopMovement();
         _player.Animator.SetBool("DoCombo", false);
         _player.Locomotion.CanMove = false;
     }

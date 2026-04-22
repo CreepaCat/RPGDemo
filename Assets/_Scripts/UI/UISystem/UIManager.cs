@@ -19,8 +19,6 @@ namespace RPGDemo.UI
         // 所有面板的缓存
         private Dictionary<string, BasePanel> panelCache = new Dictionary<string, BasePanel>();
 
-        // BasePanel pausePanel = null;
-
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -50,11 +48,6 @@ namespace RPGDemo.UI
                 panelCache[panelName] = panelPrefab.prefab;
             }
         }
-
-        // public void SetPauseMenuPanel(BasePanel pauseMenu)
-        // {
-        //     pausePanel = pauseMenu;
-        // }
 
         private void Update()
         {   //主菜单UI不通过Esc关闭

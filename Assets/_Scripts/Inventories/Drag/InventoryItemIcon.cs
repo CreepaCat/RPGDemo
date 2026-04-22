@@ -8,7 +8,6 @@ namespace RPGDemo.Inventories
     public class InventoryItemIcon : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI itemAmountText = null;
-        // [SerializeField] bool isActionItem = false;
 
         //CACHE
         private InventoryItem _item = null;

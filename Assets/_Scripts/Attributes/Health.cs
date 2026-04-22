@@ -24,13 +24,9 @@ namespace RPGDemo.Attributes
 
         public bool IsInitialized { get; private set; }
         public event Action<float> OnHealthChanged;
-        //public event Action<float> OnHeal;
         public event Action OnDeath;
         private BaseStats baseStats;
 
-        /// <summary>
-        /// Awake is called when the script instance is being loaded.
-        /// </summary>
         private void Awake()
         {
             currentHealth = maxHealth;
@@ -157,7 +153,6 @@ namespace RPGDemo.Attributes
 
         public float GetHealthRatio()
         {
-            // EnsureInitialized();
             LazyInit();
             if (maxHealth <= 0f) return 0f;
             return currentHealth / maxHealth;

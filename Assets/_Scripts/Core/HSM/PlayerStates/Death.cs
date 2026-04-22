@@ -14,7 +14,6 @@ public class Death : State
 
     protected override void OnEnter()
     {
-        //base.OnEnter();
         _player.Animator.Play("Death");
     }
 }

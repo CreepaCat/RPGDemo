@@ -11,9 +11,9 @@ namespace RPGDemo.Inventories.Pickups
         Inventory _inventory;
 
         [Header("悠悠球参数")]
-        public float amplitude = 2f;        // 上下移动的幅度（距离）
-        public float duration = 1.2f;       // 单程时间（越小越快）
-        public Ease easeType = Ease.InOutSine;   // 缓动类型（推荐 InOutSine 最自然）
+        public float amplitude = 2f;        // 上下移动的幅度
+        public float duration = 1.2f;       // 单程时间
+        public Ease easeType = Ease.InOutSine;   // 缓动类型
 
         private Vector3 startPos;
 
@@ -71,16 +71,6 @@ namespace RPGDemo.Inventories.Pickups
             }
 
             int quantityRemained = 0;
-            // for (int i = 0; i < GetItemAmount(); i++)
-            // {
-            //     bool success = _inventory.AddItemToFirstFoundSlot(_item, 1);
-            //     if (!success)
-            //     {
-            //         quantityRemained = _amount - i;
-            //         break;
-            //     }
-            //     Debug.Log("Picked up " + _item.GetDisplayName() + "x" + (_amount - quantityRemained));
-            // }
 
             PickupSpawner spawner = GetComponentInParent<PickupSpawner>();
             spawner?.PickupCallback(_amount - quantityRemained);

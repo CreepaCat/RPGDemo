@@ -11,11 +11,6 @@ namespace RPGDemo.Inventories
     // [CreateAssetMenu(fileName = "New InventoryItem", menuName = "InventoryItem/New Item", order = 0)]
     public abstract class InventoryItem : Item
     {
-        // //CONFIG
-        // [SerializeField] private string _itemID;
-        // [SerializeField] private string _displayName;
-        // [SerializeField][TextArea] private string _description;
-        // [SerializeField] private Sprite _icon;
         [SerializeField] Pickup _pickupPrefab = null;
 
         [SerializeField] private bool _isStackable = false;

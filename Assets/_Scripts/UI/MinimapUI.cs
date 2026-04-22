@@ -8,18 +8,15 @@ public class MinimapUI : MonoBehaviour
     public Image arrow;
     public TextMeshProUGUI mapName;
 
-    //public Collider[] minimapBondingBoxs;
+
     [SerializeField]
     private Collider minimapBondingBox;
-    //public Transform[] minimapBoxTrans;
-
-    // int currMapId;
 
     Transform playerTransform;
     bool playerAdded;
     Quaternion arrrot;
 
-    [Header("Minimap Boundary")]
+    [Header("Minimap边界")]
     [SerializeField, Range(0f, 1f)]
     private float mapPivotMin = 0.2f;
     [SerializeField, Range(0f, 1f)]
@@ -36,15 +33,6 @@ public class MinimapUI : MonoBehaviour
 
     public void UpdateMap()
     {
-        // if (Player.GetInstance.CurrentMapData != null)
-        // {
-        //     this.currMapId = User.Instance.CurrentMapData.ID;
-        //     this.mapName.text = User.Instance.CurrentMapData.Name;
-
-        //覆盖Img图片的方法，overrideSprite和sprite是同一种东西的不同用法
-        //如果原先是overrideSprite则可覆盖
-        // this.mapImage.overrideSprite = MinimapManager.Instance.LoadMinimap();
-
 
         //设置小地图默认数据
         this.mapImage.SetNativeSize();//使用原始大小
@@ -60,19 +48,14 @@ public class MinimapUI : MonoBehaviour
             return;
         }
 
-        //}
-
-
     }
 
 
     void Update()
     {
-        //MiniMap实时更新,那么在何时加载图片？
+
         if (this.minimapBondingBox != null && this.playerTransform != null)
         {
-            //	Debug.Log("box:"+minimapBondingBox.transform.name);
-            //可通过collider获取几何体的尺寸
             float realWidth = minimapBondingBox.bounds.size.x;
 
             float realHeight = minimapBondingBox.bounds.size.z;//因为是俯视的collider,纵向为z轴
@@ -81,12 +64,10 @@ public class MinimapUI : MonoBehaviour
             float realX = playerTransform.position.x - minimapBondingBox.bounds.min.x;
             float realY = playerTransform.position.z - minimapBondingBox.bounds.min.z;//合起来为相对collider原点偏移
 
-            //Debug.LogFormat("realX:{0} realY:{1}", realX, realY);
-
             //按比例换算成中心点位置
             float pivotX = realX / realWidth;
             float pivotY = realY / realHeight;
-            //Debug.LogFormat("pivotX:{0} pivotY:{1}" ,pivotX, pivotY);
+
 
             float minPivot = Mathf.Min(mapPivotMin, mapPivotMax);
             float maxPivot = Mathf.Max(mapPivotMin, mapPivotMax);
@@ -118,7 +99,6 @@ public class MinimapUI : MonoBehaviour
             arrow.rectTransform.localPosition = arrowOffset;
 
             //箭头旋转
-            //  this.arrrot.eulerAngles = new Vector3(0, 0, -this.playerTransform.eulerAngles.y + 90f);
             this.arrrot.eulerAngles = new Vector3(0, 0, -this.playerTransform.eulerAngles.y);
             this.arrow.rectTransform.localRotation = arrrot;
         }

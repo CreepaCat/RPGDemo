@@ -17,7 +17,6 @@ public class BottomMessageBox : MonoBehaviour
     [Header("UI")]
     [SerializeField] private RectTransform messageRoot;
     [SerializeField] private Image messageTemplate;
-    //  [SerializeField] private TextMeshProUGUI messageTemplate;
 
     [Header("Display")]
     [SerializeField] private int maxVisibleCount = 3;
@@ -329,23 +328,5 @@ public class BottomMessageBox : MonoBehaviour
         entry.rect.anchoredPosition = target;
         entry.moveRoutine = null;
         // entry.canvasGroup.alpha = 0f;
-    }
-
-    [ContextMenu("Test Inventory Space Not Enough")]
-    private void TestInventorySpaceNotEnough()
-    {
-        ShowInventorySpaceNotEnough();
-    }
-
-    [ContextMenu("Test Mana Not Enough")]
-    private void TestManaNotEnough()
-    {
-        ShowManaNotEnough();
-    }
-
-    [ContextMenu("Test Gold Not Enough")]
-    private void TestGoldNotEnough()
-    {
-        ShowGoldNotEnough();
     }
 }

@@ -26,11 +26,6 @@ namespace RPGDemo.Inventories
             //通知UI绘制
             OnEquipmentUpdated?.Invoke();
             OnWeaponUpdated?.Invoke();
-            //todo：根据字典配置将所有装备装上
-            // foreach (var pair in _equiments)
-            // {
-            //     AddItem(pair.Key, pair.Value);
-            // }
 
         }
 

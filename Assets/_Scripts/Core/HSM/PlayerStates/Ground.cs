@@ -8,11 +8,8 @@ public class Ground : State
     public readonly Combat Combat;
     public readonly Locomotion Locomotion;
 
-
-    //public readonly CombatLocomotion CombatLocomotion;
     readonly Player _player;
 
-    //public bool isInCombat = false;
     bool interactPerformed = false;
 
     public Ground(HSM.StateMachine stateMachine, State parent, Player player) : base(stateMachine, parent)
@@ -50,8 +47,6 @@ public class Ground : State
         {
             return Locomotion;
         }
-
-
 
         //管理战斗和非战斗状态切换
         return _player.IsInCombat ? (State)Combat : Normal;

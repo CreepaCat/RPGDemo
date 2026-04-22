@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements; // 可选，如果需要更高级的 UI
 
 namespace MyNodeEditor.Extension.Dialogue
 {
@@ -15,17 +14,16 @@ namespace MyNodeEditor.Extension.Dialogue
 
             //禁用脚本字段交互
             SerializedProperty scriptProperty = serializedObject.FindProperty("m_Script");
-            
+
             EditorGUI.BeginDisabledGroup(true); //禁止交互字段区域
             if (scriptProperty != null)
             {
-              
+
                 EditorGUILayout.PropertyField(scriptProperty, new GUIContent("Script"));
-               
+
             }
 
             //名字字段
-           
             SerializedProperty speakerNameProperty = serializedObject.FindProperty("speakerName");
             if (speakerNameProperty != null)
             {
@@ -33,8 +31,8 @@ namespace MyNodeEditor.Extension.Dialogue
                 EditorGUILayout.PropertyField(speakerNameProperty, new GUIContent("SpeakerName"));
                 EditorGUI.EndDisabledGroup();
             }
-            
-            // // 开始水平布局，使字段和预览并排
+
+
             EditorGUILayout.BeginHorizontal();
 
             // 手动绘制 Sprite 字段
@@ -55,11 +53,11 @@ namespace MyNodeEditor.Extension.Dialogue
             {
                 //GUILayout.Label("No Sprite assigned.");
             }
-        
+
 
             // 结束水平布局
             EditorGUILayout.EndHorizontal();
-            
+
             EditorGUI.EndDisabledGroup();
 
             string[] dontDrawProperties = new[]

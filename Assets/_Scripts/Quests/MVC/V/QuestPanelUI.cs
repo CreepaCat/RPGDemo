@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace RPGDemo.Quests
@@ -57,7 +56,6 @@ namespace RPGDemo.Quests
 
             SetCurrentSelectedSlot(0);
             _playerQuestHandler.SetTrackingQuest(_currentSelectedQuest);
-            // DrawQuestSlots();
             RefreshPanel(null);
 
         }
@@ -109,12 +107,11 @@ namespace RPGDemo.Quests
             foreach (var questStatus in _playerQuestHandler.GetActiveQuests())
             {
                 QuestSlotUI questSlot = Instantiate(questSlotPrefab, questSlotsRoot);
-                // bool isSelected = (ReferenceEquals(quest, _currentSelectedQuest));
                 bool isSelected = _lastSelectedIndex == slotIndex;
                 questSlot.Setup(questStatus, slotIndex, isSelected,
                 _playerQuestHandler.GetTrackingQuest() == questStatus);
 
-                //if(slotIndex == cu)
+
                 slotIndex++;
 
             }

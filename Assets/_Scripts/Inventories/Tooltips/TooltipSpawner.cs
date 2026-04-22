@@ -158,7 +158,6 @@ namespace RPGDemo.Inventories.Tooltips
             }
             if (!_tooltip && CanCreateTooltip())//该显示却没有显示
             {
-                // print("Creating tooltip");
                 _tooltip = Instantiate(tooltipPrefab, parentCanvas.transform);
 
 
@@ -175,7 +174,6 @@ namespace RPGDemo.Inventories.Tooltips
 
         void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
         {
-            //throw new System.NotImplementedException();
             ClearTooltip();
 
         }

@@ -13,7 +13,6 @@ namespace RPGDemo.SceneManagement
     {
 
         [SerializeField] private Key saveKey = Key.U;
-        // [SerializeField] private Key loadFileKey = Key.I;
         [SerializeField] private Key loadKey = Key.L;
         [SerializeField] private Key deleteKey = Key.K;
 
@@ -42,8 +41,6 @@ namespace RPGDemo.SceneManagement
 
             if (Keyboard.current[loadKey].wasPressedThisFrame)
             {
-                Debug.Log($"{loadKey} key was just pressed");
-                // StartCoroutine(LoadLastSceneAsync("SaveableCube"));
                 LoadScene();
 
             }

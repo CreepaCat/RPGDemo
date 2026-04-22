@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static PlayerInputActions;
 
@@ -42,21 +41,10 @@ public class InputReader : ScriptableObject, IPlayerActions
     public void EnablePlayerControl()
     {
         inputActions.Player.Enable();
-        // SetCursorState(true);
     }
     public void DisablePlayerAction()
     {
         inputActions.Player.Disable();
-        // SetCursorState(false);
-    }
-    // private void OnApplicationFocus(bool hasFocus)
-    // {
-    // 	SetCursorState(cursorLocked);
-    // }
-
-    private void SetCursorState(bool newState)
-    {
-        Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
     public void OnAttack(InputAction.CallbackContext context)

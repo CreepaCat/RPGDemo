@@ -100,11 +100,6 @@ namespace RPGDemo.Inventories.ActionBar
                 AddCooldownItem(actionItem);
 
                 OnActionStoreUpdated?.Invoke(); //刷新UI
-
-                // if (actionItems[index].amount == 0)
-                // {
-                //     actionItems[index].actionItem = null;
-                // }
                 return true;
 
             }

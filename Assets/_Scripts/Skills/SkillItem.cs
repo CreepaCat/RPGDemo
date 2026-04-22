@@ -18,8 +18,6 @@ namespace RPGDemo.Skills
     [CreateAssetMenu(fileName = "New Skill", menuName = "RPGDemo/Skills/New Skill Item")]
     public class SkillItem : ActionItem
     {
-        //public float baseDamage = 1;//基础伤害
-        // Active / Passive 主动技能与被动技能
         public SkillType skillType = SkillType.Active;
         [field: SerializeField] public float manaCost { get; private set; } = 10;
 
@@ -146,12 +144,9 @@ namespace RPGDemo.Skills
             }
             else
             {
-                // 用局部变量固定当前 target,防止闭包影响
-                // Character currentTarget = null;
                 //多目标
                 foreach (var target in targets)
                 {
-                    //  currentTarget = target;
                     SpawnProjectile(caster, target, launchPos);
                 }
             }

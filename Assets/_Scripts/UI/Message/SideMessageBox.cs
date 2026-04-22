@@ -330,28 +330,4 @@ public class SideMessageBox : MonoBehaviour
         entry.rect.anchoredPosition = target;
         entry.moveRoutine = null;
     }
-
-    [ContextMenu("Test Pickup Message")]
-    private void TestPickupMessage()
-    {
-        Show(MessageType.Pickup, "测试道具 x1");
-    }
-
-    [ContextMenu("Test Drop Message")]
-    private void TestDropMessage()
-    {
-        Show(MessageType.Drop, "测试道具 x1");
-    }
-
-    [ContextMenu("Test QuestCompleted Message")]
-    private void TestQuestCompletedMessage()
-    {
-        ShowQuestCompleted("第一章:新的旅程");
-    }
-
-    [ContextMenu("Test Reward Message")]
-    private void TestRewardMessage()
-    {
-        ShowReward("金币", 300);
-    }
 }

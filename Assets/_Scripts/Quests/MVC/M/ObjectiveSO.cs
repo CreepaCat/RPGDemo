@@ -12,7 +12,6 @@ namespace RPGDemo.Quests
     public class ObjectiveSO : ScriptableObject
     {
         [field: SerializeField] public string Description { get; private set; }
-        // [field: SerializeField] public int CompletedRequireAmount { get; private set; } = 1;
         [SerializeField] private int _completedRequireAmount = 1;
 
 
@@ -31,7 +30,6 @@ namespace RPGDemo.Quests
             }
             if (string.IsNullOrEmpty(description))
             {
-                Debug.LogWarning("Objective description is null or empty.");
                 return null;
             }
 
@@ -50,7 +48,7 @@ namespace RPGDemo.Quests
                 }
                 else
                 {
-                    Debug.LogWarning($"Duplicate Objective Description found: {obj.Description}. Skipping.");
+
                 }
             }
         }

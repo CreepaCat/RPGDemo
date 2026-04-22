@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace RPGDemo.Inventories.Utils
 {
-    public class ItemDropper : MonoBehaviour,ISaveable
+    public class ItemDropper : MonoBehaviour, ISaveable
     {
         //CACHE
         private List<Pickup> droppedPickups = null; //记录在本场景丢弃的物品（怪物的掉落物同样）
@@ -20,9 +20,9 @@ namespace RPGDemo.Inventories.Utils
 
         public void DropItem(InventoryItem item, int amount)
         {
-            if(amount <= 0) return;
-            SpawnPickup(item, amount,GetDropLocation());
-        
+            if (amount <= 0) return;
+            SpawnPickup(item, amount, GetDropLocation());
+
         }
         void SpawnPickup(InventoryItem item, int amount, Vector3 position)
         {
@@ -33,10 +33,9 @@ namespace RPGDemo.Inventories.Utils
 
         protected virtual Vector3 GetDropLocation()
         {
-           // return GameObject.FindGameObjectWithTag("Player").transform.position;
-           return transform.position;
+            return transform.position;
         }
-        
+
         /// <summary>
         /// 掉落物结构体，用于记录其它场景的掉落物，和存档
         /// </summary>
@@ -58,26 +57,26 @@ namespace RPGDemo.Inventories.Utils
             Debug.Log("ItemDropper CapatureStateAsJToken");
             JObject state = new JObject();
             IDictionary<string, JToken> stateDict = state;
-            
+
             var dropRecordsToSave = new List<DropRecord>();
-            
+
             //先加入其它场景的掉落物记录列表
             dropRecordsToSave.AddRange(otherSceneDrops);
-            
+
             int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-            
+
             //再加入本场景的掉落物列表（剔除空掉落物,因为有些可能已被玩家拾取）
             var updatedDroppedPickups = new List<Pickup>();
             foreach (var pickup in droppedPickups)
             {
-                if(pickup == null) continue;
+                if (pickup == null) continue;
                 updatedDroppedPickups.Add(pickup);
             }
-            droppedPickups =  updatedDroppedPickups;
-            
+            droppedPickups = updatedDroppedPickups;
+
             foreach (var droppedPickup in droppedPickups)
             {
-                if(droppedPickup == null) continue;
+                if (droppedPickup == null) continue;
                 DropRecord dropRecord = new DropRecord()
                 {
                     itemID = droppedPickup.GetItem().GetItemID(),
@@ -87,7 +86,7 @@ namespace RPGDemo.Inventories.Utils
                 };
                 dropRecordsToSave.Add(dropRecord);
             }
-            
+
             stateDict[SaveData.DroppedPickups.ToString()] = JToken.FromObject(dropRecordsToSave);
             return state;
 
@@ -97,33 +96,32 @@ namespace RPGDemo.Inventories.Utils
         void ISaveable.RestoreStateFromJToken(JToken s)
         {
             Debug.Log("ItemDropper RestoreStateFromJToken");
-           JObject state = s as JObject;
-           IDictionary<string, JToken> stateDict = state;
+            JObject state = s as JObject;
+            IDictionary<string, JToken> stateDict = state;
 
-           if (stateDict.ContainsKey(SaveData.DroppedPickups.ToString()))
-           {
-               var dropRecordsList = stateDict[SaveData.DroppedPickups.ToString()].ToObject<List<DropRecord>>();
-               //先清除缓存列表
-               droppedPickups.Clear();
-               otherSceneDrops.Clear();
-               //读取本场景的掉落物并生成，若非本场景的则加入缓存列表
-               int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-               foreach (var droppedRecord in dropRecordsList)
-               {
-                   if (droppedRecord.sceneBuildIndex != currentSceneBuildIndex)
-                   {
-                       otherSceneDrops.Add(droppedRecord);
-                       continue;
-                   }
-                   SpawnPickup(InventoryItem.GetItemFromID(droppedRecord.itemID), 
-                       droppedRecord.amount, 
-                       droppedRecord.JTokenPosition.ToVector3());
-                   
-               }
-           }
+            if (stateDict.ContainsKey(SaveData.DroppedPickups.ToString()))
+            {
+                var dropRecordsList = stateDict[SaveData.DroppedPickups.ToString()].ToObject<List<DropRecord>>();
+                //先清除缓存列表
+                droppedPickups.Clear();
+                otherSceneDrops.Clear();
+                //读取本场景的掉落物并生成，若非本场景的则加入缓存列表
+                int currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+                foreach (var droppedRecord in dropRecordsList)
+                {
+                    if (droppedRecord.sceneBuildIndex != currentSceneBuildIndex)
+                    {
+                        otherSceneDrops.Add(droppedRecord);
+                        continue;
+                    }
+                    SpawnPickup(InventoryItem.GetItemFromID(droppedRecord.itemID),
+                        droppedRecord.amount,
+                        droppedRecord.JTokenPosition.ToVector3());
+
+                }
+            }
         }
     }
 
-   
-}
 
+}

@@ -7,7 +7,6 @@ namespace RPGDemo.Inventories
     public class WeaponItem : EquipableItem
     {
         [SerializeField] private WeaponConfig _weaponConfig = null;
-        // [SerializeField] private
         public WeaponConfig GetWeaponConfig() => _weaponConfig;
 
     }

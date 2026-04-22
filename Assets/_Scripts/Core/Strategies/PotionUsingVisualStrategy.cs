@@ -17,7 +17,6 @@ namespace RPGDemo.Core.Strategies
         {
             ParticleSystem vfx = GameObject.Instantiate(onUsingVfxPrefab, caster.transform);
             vfx.transform.position = caster.transform.position + Vector3.up;
-            //Destroy(vfx.gameObject, destroyAfterSeconds);
 
         }
     }

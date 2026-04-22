@@ -15,7 +15,7 @@ public class Combat_Idle : State
 
     protected override State GetTransition()
     {
-        return null; //返回
+        return null;
 
     }
 

@@ -24,7 +24,6 @@ namespace MyNodeEditor.Extension.Dialogue
         private static DialogueTree _cachedSelectedNodeTree = null;
         private MiniMap _minimap = null;
 
-        //  private VisualTreeAsset m_VisualTreeAsset = null;
 
         [MenuItem("MyTools/对话编辑器")]
         public static void ShowGraphWindow()
@@ -67,7 +66,6 @@ namespace MyNodeEditor.Extension.Dialogue
 
 
         }
-        // Don't forget to unregister in OnDisable to avoid leaks
         private void OnDisable()
         {
             CleanupWindow();
@@ -79,7 +77,6 @@ namespace MyNodeEditor.Extension.Dialogue
 
         public void ConstructViewers()
         {
-            // Each editor window contains a root VisualElement object
             VisualElement root = rootVisualElement;
 
             //将自定义UI布局克隆进root visual
@@ -177,13 +174,12 @@ namespace MyNodeEditor.Extension.Dialogue
             var newTree = dialogueTreeViewer.CreateTree();
             Selection.activeObject = newTree;
             LoadData(newTree);
-            //将目前的资源焦点放在新建文件上
         }
 
         private void SaveData()
         {
             DialogueGraphSaveUtility.GetInstance(dialogueTreeViewer).SaveGraph(dialogueTreeViewer.currentNodeTree);
-            //inspectorViewer.UpdateSelection();
+
         }
 
         private void LoadData(DialogueTree newTree)
@@ -267,18 +263,10 @@ namespace MyNodeEditor.Extension.Dialogue
             {
                 //调用对应方法显示新树
                 dialogueTreeViewer.PopulateView(nodeTree);
-                //dialogueTreeViewer?.UpdateNodeStates();
 
             }
 
         }
 
-        /// <summary>
-        /// 每10帧执行一次的面板刷新回调
-        /// </summary>
-        // private void OnInspectorUpdate()
-        // {
-        //     dialogueTreeViewer?.UpdateNodeStates();
-        // }
     }
 }

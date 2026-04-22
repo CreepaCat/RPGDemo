@@ -33,7 +33,7 @@ public class Air_Falling : State
 
     protected override void OnUpdate(float deltaTime)
     {
-        // 下落阶段动画在进入时设置，具体速度由 Airbone 父状态统一驱动。
+        // Falling状态只需要关心何时退出，具体速度由 Airbone 父状态统一驱动。
         if (_player.Locomotion.Grounded && _player.Locomotion.JumpPerformed)
         {
             _player.Locomotion.JumpPerformed = false;

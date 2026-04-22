@@ -21,8 +21,6 @@ namespace RPGDemo.Quests
     {
         [SerializeField] private List<QuestSO> quests;
 
-        // public AIQuestListStatus questListStatus = AIQuestListStatus.NoQuest;
-
         PlayerQuestHandler playerQuestHandler;
         private void Awake()
         {

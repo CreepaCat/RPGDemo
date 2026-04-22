@@ -20,7 +20,6 @@ namespace RPGDemo.Shops
         [SerializeField] SellItemPanel sellItemPanel;
         [SerializeField] BuyItemPanel buyItemPanel;
 
-        // CanvasGroup canvasGroup;
         Shopper _playerShopper;
         ItemCategory currentItemCategory = ItemCategory.None;
 
@@ -47,7 +46,6 @@ namespace RPGDemo.Shops
         private void Start()
         {
             HideMe();
-            // ShowBuyPanel(null);
         }
 
         public void SetCurrentCategory(int categoryIndex)

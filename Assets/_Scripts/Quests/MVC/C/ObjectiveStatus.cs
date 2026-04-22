@@ -36,7 +36,7 @@ namespace RPGDemo.Quests
         public bool IsCompleted()
         {
             if (objective == null) return false;
-            //return objective.GetCondition()?.Check() ?? false;
+
 
             bool isCompleted = false;
             if (objective.IsUseCondition())
@@ -62,7 +62,6 @@ namespace RPGDemo.Quests
             {
                 return "已完成";
             }
-            //  UpdateAmounts();
             return $"{currentProgress}/{objective.GetRequiredAmount()}";
 
 

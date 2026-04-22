@@ -27,10 +27,6 @@ namespace RPGDemo.Stats
         [SerializeField] GameObject _levelUpEffect = null; //升级特效
 
         public event Action OnLevelUp;
-
-        /// <summary>
-        /// Awake is called when the script instance is being loaded.
-        /// </summary>
         private void Awake()
         {
             CurrentLevel = _startingLevel;

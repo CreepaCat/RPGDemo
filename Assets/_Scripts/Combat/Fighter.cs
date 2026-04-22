@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using RPGDemo.Weapons;
 using UnityEngine;
-using RPGDemo.Attributes;
 
 #if UNITY_EDITOR
 using Sirenix.OdinInspector;
@@ -19,8 +18,6 @@ namespace RPGDemo.Combat
         [Required]
 #endif
         [SerializeField] WeaponConfig weaponConfig;
-
-        //[SerializeField] bool isPlayer = false;
 
         Weapon weapon;
 
@@ -92,7 +89,6 @@ namespace RPGDemo.Combat
         {
 
             List<Character> results = new();
-            //targetBuffer = new RaycastHit[32];
 
             int count = Physics.SphereCastNonAlloc(transform.position, autoTargetRadius, Vector3.up, targetBuffer, 3f, targetLayer);
             for (int i = 0; i < count; i++)
@@ -128,8 +124,6 @@ namespace RPGDemo.Combat
         public void Hit()
         {
             Debug.Log("Hit");
-            //打开武器伤害范围检测，对所有符合条件的对象施加伤害
-            //_weapon.GetComponent<Collider>().enabled = true;
         }
 
         #endregion

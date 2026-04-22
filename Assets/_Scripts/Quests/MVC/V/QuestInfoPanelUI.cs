@@ -35,9 +35,9 @@ namespace RPGDemo.Quests
         }
         public void UpdateUI()
         {
-            //Debug.Log("QuestInfoPanelUI UpdateUI");
+
             var currentSelectedQuest = GetComponentInParent<QuestPanelUI>().CurrentSelectedQuest;
-            //gameObject.SetActive(false);
+
             canvasGroup.alpha = 0;
 
             if (currentSelectedQuest == null) return;

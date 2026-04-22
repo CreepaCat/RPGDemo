@@ -66,12 +66,8 @@ namespace RPGDemo.SceneManagement
         {
             canFading = false;
             _img_loadingBarFill.fillAmount = 0f;
-            // Debug.Log("Fading out");
             yield return FadeOut(fadeOutTime);
             yield return LoadingProgress(waitTime);
-
-            // yield return new WaitForSeconds(waitTime);
-            //  Debug.Log("Fading in");
             yield return FadeIn(fadeInTime);
             canFading = true;
         }
@@ -97,10 +93,6 @@ namespace RPGDemo.SceneManagement
             {
                 yield return null;
                 _img_loadingBarFill.fillAmount += Time.unscaledDeltaTime / fadeOutTime * 0.8f;
-                // _img_rotationIcon.rectTransform.rotation =
-                //  Quaternion.Euler(new Vector3(0, 0,
-                //  _img_rotationIcon.rectTransform.rotation.eulerAngles.z + rotationSpeed * Time.unscaledDeltaTime));
-
                 _coverCanvasGroup.alpha += Time.unscaledDeltaTime / fadeOutTime;
 
             }

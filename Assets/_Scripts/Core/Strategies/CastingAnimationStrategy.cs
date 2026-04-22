@@ -14,14 +14,11 @@ namespace RPGDemo.Core.Strategies
             var animatorHandler = caster.GetComponent<PlayerAnimationHandler>();
             if (animatorHandler.IsInteracting || animatorHandler.IsHandInteracting) return false;
             return true;
-
-            //  if (isHandInteractingAnima && animatorHandler.IsInteracting || animatorHandler.IsHandInteracting) return false;
         }
 
         public override void PlayAnimation(Character caster)
         {
             Debug.Log(caster + "播放施法动画片段" + animationClip.name);
-            // caster.GetComponent<Animator>().CrossFade(animationClip.name, 0.2f);
             var animatorHandler = caster.GetComponent<PlayerAnimationHandler>();
             if (isInteractingAnima)
             {

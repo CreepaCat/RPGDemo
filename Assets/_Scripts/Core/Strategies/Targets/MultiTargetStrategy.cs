@@ -31,7 +31,6 @@ public class MultiTargetStrategy : TargetStrategy
                 result.Add(targets[i]);
             }
         }
-        Debug.Log("多目标选择" + result.Count);
 
         return result;
     }

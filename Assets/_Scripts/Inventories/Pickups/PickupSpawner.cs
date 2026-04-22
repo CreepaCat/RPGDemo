@@ -5,8 +5,9 @@ using RPGDemo.Saving;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace RPGDemo.Inventories.Pickups{
-    public class PickupSpawner : MonoBehaviour,ISaveable
+namespace RPGDemo.Inventories.Pickups
+{
+    public class PickupSpawner : MonoBehaviour, ISaveable
     {
         [SerializeField] InventoryItem item;
         [SerializeField] int amount = 1;
@@ -70,7 +71,7 @@ namespace RPGDemo.Inventories.Pickups{
                 bool isCollected = stateDict[SaveData.IsCollected.ToString()].ToObject<bool>();
                 if (isCollected)
                 {
-                   // Debug.Log("物品已被拾取，销毁");
+                    // Debug.Log("物品已被拾取，销毁");
                     DestroyPickup();
                 }
             }

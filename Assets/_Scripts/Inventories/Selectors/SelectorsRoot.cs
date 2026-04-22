@@ -6,17 +6,15 @@ namespace RPGDemo.Inventories
 {
     public class SelectorsRoot : MonoBehaviour
     {
-        
+
         SlotItemSelector _currentSelected = null;
-        
-        
+
+
         public SlotItemSelector GetCurrentSelected() => _currentSelected;
-        
-        public void UpdateSelectors(SlotItemSelector newSelector,SlotItemSelector[] selectors)
+
+        public void UpdateSelectors(SlotItemSelector newSelector, SlotItemSelector[] selectors)
         {
-            if(ReferenceEquals(_currentSelected, newSelector)) return;
-           // Debug.Log("UpdateSelectors,Count"+selectors.Length );
-            
+            if (ReferenceEquals(_currentSelected, newSelector)) return;
             //新选择
             foreach (var selector in selectors)
             {
@@ -33,13 +31,13 @@ namespace RPGDemo.Inventories
                     }
                     _currentSelected = newSelector;
                     _currentSelected.Selected();
-                    
+
                     break;
-                    
+
                 }
             }
         }
-        
+
 
     }
 }

@@ -13,15 +13,10 @@ namespace RPGDemo.Inventories
     /// </summary>
     public class Inventory : MonoBehaviour, ISaveable, IPredicateEvaluator
     {
-        //背包数据结构：背包格，格子数
-        //API:移除格子物品，添加物品
-        //刷新UI事件
 
         [SerializeField] private InventoryItem[] tesetItems;
         [SerializeField] private int maxSlotsNum = 20;
         [SerializeField] InventorySlot[] slots;
-
-        // InventorySlot[] filterSlots;
 
         public event Action OnInventoryUpdated;
         public int GetMaxSlotsNum() => maxSlotsNum;
@@ -41,8 +36,8 @@ namespace RPGDemo.Inventories
             {
                 slots[i].index = i;//记录slot的索引
             }
-            Debug.Log("init inventory slots");
 
+            //添加测试物品
             foreach (var item in tesetItems)
             {
                 if (item == null) continue;
@@ -422,7 +417,7 @@ namespace RPGDemo.Inventories
             {
                 if (slots[i].item == null || slots[i].amount == 0)
                 {
-                    // Debug.Log("找到空格" + i);
+
                     return i;
                 }
             }
@@ -437,7 +432,7 @@ namespace RPGDemo.Inventories
                 if (ReferenceEquals(slots[i].item, item)
                     && slots[i].amount + amountToAdd <= item.GetMaxStackableAmount())
                 {
-                    //Debug.Log("找到堆叠格" + i);
+
                     return i;
                 }
             }

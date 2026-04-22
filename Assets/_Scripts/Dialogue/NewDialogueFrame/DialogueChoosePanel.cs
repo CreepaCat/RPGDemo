@@ -38,7 +38,6 @@ public class DialogueChoosePanel : BasePanel
     }
     private void HideMe()
     {
-        //base.OnHide();
         UIManager.Instance.ClosePanel<DialogueChoosePanel>();
     }
     private void CloseMe()
@@ -67,7 +66,6 @@ public class DialogueChoosePanel : BasePanel
             tmp.text = dialogue.displayName;
             btn.onClick.AddListener(() =>
             {
-                //HideMe();
                 CloseMe();
                 playerCanversant.StartDialogue(dialogue, target);
             });
@@ -77,7 +75,6 @@ public class DialogueChoosePanel : BasePanel
         text.text = "离开";
         btnClose.onClick.AddListener(() =>
         {
-            // HideMe();
             CloseMe();
             //将当前对话对象置空
             playerCanversant.SetCurrentCanversantTarget(null);

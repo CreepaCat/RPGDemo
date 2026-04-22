@@ -12,11 +12,9 @@ namespace RPGDemo.Shops
     {
         [SerializeField] ShopConfig shopConfig = null;
         private List<ShopItem> shopItems = new();
-        //  public event Action OnShopItemsUpdated;
 
         protected void Awake()
         {
-            //base.Awake();
             //原配置的shopItems，以及玩家出售的不在shopConfig里的item list
             if (shopConfig != null && shopItems.Count < 1) //确保在读档之前使用初始化配置
             {
@@ -149,7 +147,6 @@ namespace RPGDemo.Shops
 
             }
             purse.SpendMoney(totalPrice);
-            // playerInventory.AddItemDict(itemDict);
 
             return true;
 
@@ -157,7 +154,6 @@ namespace RPGDemo.Shops
         //通过对话打开商店
         public void Interact()
         {
-            // base.Interact(interactor);
             Debug.Log("Interacting with shop...");
             Player.GetInstance().GetComponent<Shopper>()?.InteractWithShop(this);
         }

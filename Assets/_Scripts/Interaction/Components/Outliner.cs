@@ -11,12 +11,10 @@ namespace RPGDemo.InteractionSystem
 
 
         private RenderingLayerMask originalRenderingLayerMask;
-        // [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer; //角色渲染
+
 
         private void Awake()
         {
-            //skinnedMeshRenderer ??=
-
             highlightTarget = GetComponentsInChildren<SkinnedMeshRenderer>();
             if (highlightTarget == null || highlightTarget.Length < 1)
                 highlightTarget = GetComponentsInChildren<MeshRenderer>();
@@ -25,7 +23,7 @@ namespace RPGDemo.InteractionSystem
             originalRenderingLayerMask = highlightTarget[0].renderingLayerMask;
 
             int DefaultLayerIndex = 0;
-            //在编辑器设置的属于交互轮廓线的renderinglayer
+            //在编辑器设置的属于交互轮廓线的renderinglayer,结合outline插件
             int interactionOutlineLayerIndex = 9;
 
             uint mixedMask = (1u << DefaultLayerIndex) | (1u << interactionOutlineLayerIndex);

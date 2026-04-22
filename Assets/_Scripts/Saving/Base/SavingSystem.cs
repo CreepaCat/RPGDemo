@@ -117,7 +117,6 @@ namespace RPGDemo.Saving
         /// <param name="state"></param>
         private void RestoreState(IDictionary<string, JToken> state)
         {
-            //IDictionary<string, JToken> state = state;
             foreach (var saveableEntity in FindObjectsByType<SaveableEntity>(FindObjectsSortMode.None))
             {
                 string id = saveableEntity.GetUniqueIdentifier();
@@ -134,7 +133,6 @@ namespace RPGDemo.Saving
         /// <param name="state"></param>
         private void CaptureState(IDictionary<string, JToken> state)
         {
-            // IDictionary<string, JToken> state = state;
             foreach (var saveableEntity in FindObjectsByType<SaveableEntity>(FindObjectsSortMode.None))
             {
                 state[saveableEntity.GetUniqueIdentifier()] = saveableEntity.CapatureState();
@@ -152,7 +150,6 @@ namespace RPGDemo.Saving
 
             using (var streamReader = File.OpenText(GetPathFromSaveFile(fileName)))
             {
-                // Debug.Log(" File.OpenText :" + GetPathFromSaveFile(fileName));
                 using (var reader = new JsonTextReader(streamReader))
                 {
                     //定义如何解析浮点数

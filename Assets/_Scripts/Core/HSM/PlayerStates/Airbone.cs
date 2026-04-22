@@ -7,8 +7,6 @@ public class Airbone : State
     public readonly Air_Jumping Jumping;
     public readonly Air_Falling Falling;
 
-    const float LandingVerticalSpeed = -1.9f;
-
     public Airbone(HSM.StateMachine stateMachine, State parent, Player player) : base(stateMachine, parent)
     {
         _player = player;
