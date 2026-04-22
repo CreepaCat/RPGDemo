@@ -157,19 +157,8 @@ namespace MyNodeEditor.Extension.Dialogue
         public DialogueNodeView CreateNodeView(DialogueNodeData nodeDate)
         {
             var tempNodeView = new DialogueNodeView(nodeDate);
-            //节点样式
-            // if (nodeDate.HasCondition())
-            // {
-            //     tempNodeView.styleSheets.Add(Resources.Load<StyleSheet>("DialogueNodeView_HasCondition"));
-            // }
-            // else
-            // {
-            //     tempNodeView.styleSheets.Add(Resources.Load<StyleSheet>("DialogueNodeView"));
-            // }
             tempNodeView.UpdateStyleSheet();
 
-
-            // tempDialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
             var inputPort = GetPortInstance(tempNodeView, Direction.Input, Port.Capacity.Multi);
             inputPort.portName = "Input";
             tempNodeView.inputContainer.Add(inputPort);
@@ -182,12 +171,6 @@ namespace MyNodeEditor.Extension.Dialogue
 
             CreateNodeViewButtons(tempNodeView);
             CreateEventAddArea(tempNodeView);
-
-            // var button = new Button(() => { AddChoicePort(tempNodeView); })
-            // {
-            //     text = "添加选项"
-            // };
-            // tempNodeView.titleButtonContainer.Add(button);
 
             tempNodeView.OnNodeSelected += OnNodeSelected;
 
@@ -248,7 +231,6 @@ namespace MyNodeEditor.Extension.Dialogue
         {
             if (tree == null)
             {
-                //EditorUtility.DisplayDialog("File Not Found", "请先选择加载文件!", "OK");
                 return;
 
             }
@@ -336,7 +318,7 @@ namespace MyNodeEditor.Extension.Dialogue
                 name = objectFiledname,
                 label = labelname,
                 objectType = fieldType,
-                // value = tempNodeView.NodeData.OnEnterAction,
+
             };
 
             //数据绑定事件
@@ -372,7 +354,6 @@ namespace MyNodeEditor.Extension.Dialogue
 
             // 最大高度 + 垂直滚动（内容超高时自动出现滚动条）
             dialogueTextField.style.height = new StyleLength(StyleKeyword.Auto);
-            // dialogueTextField.style.minHeight = 50;
             dialogueTextField.style.maxWidth = DefaultNodeSize.x + 10;
             dialogueTextField.style.maxHeight = 100; // 限制最大高度，避免无限拉伸
 
@@ -514,7 +495,6 @@ namespace MyNodeEditor.Extension.Dialogue
 
             entryNodeData.guid = "Start";
             entryNodeData.name = "START";
-            // entryNodeData.tree = currentNodeTree; //必须将当前树赋值，当前树可能为空
             entryNodeData.isEntryPoint = true;
             entryNodeData.position = new Vector2(100, 200);
 

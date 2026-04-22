@@ -46,11 +46,6 @@ namespace RPGDemo.Projectiles
             skillId = skillGuid;
             strategy.Initialize(gameObject, caster, target, launchPos, dir);
 
-            // strategy = new ProjectileStrategy();
-
-
-
-
             Destroy(gameObject, lifetime);
         }
 

@@ -40,8 +40,7 @@ namespace MyNodeEditorExtension.Dialogue
 
 
             if (!SaveNodes(dialogueTreeToSave)) return;
-            // SaveExposedProperties(dialogueTree);
-            // SaveCommentBlocks(dialogueTree);
+
 
             if (!AssetDatabase.IsValidFolder("Assets/Resources"))
                 AssetDatabase.CreateFolder("Assets", "Resources");
@@ -58,8 +57,7 @@ namespace MyNodeEditorExtension.Dialogue
                 DialogueTree container = loadedAsset as DialogueTree;
                 container.NodeLinks = dialogueTreeToSave.NodeLinks;
                 container.NodeDatas = dialogueTreeToSave.NodeDatas;
-                // container.ExposedProperties = dialogueTree.ExposedProperties;
-                // container.CommentBlockData = dialogueTree.CommentBlockData;
+
                 EditorUtility.SetDirty(container);
             }
 
@@ -106,8 +104,7 @@ namespace MyNodeEditorExtension.Dialogue
             {
                 _targetGraph.SetGraphViewWriteBackSuppressed(false);
             }
-            // AddExposedProperties();
-            // GenerateCommentBlocks();
+
         }
 
         /// <summary>
@@ -115,8 +112,7 @@ namespace MyNodeEditorExtension.Dialogue
         /// </summary>
         public void ClearGraph()
         {
-            // NodeViews.Find(x => x.NodeData.isEntryPoint).NodeData.guid
-            //     = _targetDialogueTree?.NodeLinks[0].BaseNodeGUID;
+
             foreach (var perNode in NodeViews)
             {
                 //起始节点永远不删除
@@ -134,13 +130,12 @@ namespace MyNodeEditorExtension.Dialogue
         /// </summary>
         private void GenerateDialogueNodes()
         {
-            // Debug.Log("对话树子元素个数：" +_targetDialogueTree.NodeDatas.Count);
+
             foreach (var perNodeDate in _targetDialogueTree.NodeDatas.Cast<DialogueNodeData>().ToList())
             {
                 var tempNodeView = _targetGraph.CreateNodeView(perNodeDate);
 
-                //生成出口列表前先清空
-                // perNodeDate.OptionList.Clear();
+
 
                 if (perNodeDate.OptionList != null && perNodeDate.OptionList.Count > 0)
                 {

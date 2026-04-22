@@ -10,7 +10,6 @@ namespace RPGDemo.Quests
     public class QuestSO : ScriptableObject
     {
         //CONFIG
-        //  [field: SerializeField] public string questID { private set; get; }
         [field: SerializeField] public string questName { private set; get; }
         [field: SerializeField] public int questLevel { private set; get; }
 

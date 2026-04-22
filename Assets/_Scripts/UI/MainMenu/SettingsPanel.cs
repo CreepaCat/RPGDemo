@@ -19,14 +19,13 @@ public class SettingsPanel : BasePanel
         {
             txt_soundAmount.text = Mathf.RoundToInt(v * 100).ToString();
             SoundManager.Instance.Volume = slider_sound.value;
-            //ApplyValue();
         });
 
         slider_music.onValueChanged.AddListener((v) =>
        {
            txt_musicAmount.text = Mathf.RoundToInt(v * 100).ToString();
            MusicManager.Instance.Volume = slider_music.value;
-           // ApplyValue();
+
        });
 
         slider_sound.value = SoundManager.Instance.Volume;

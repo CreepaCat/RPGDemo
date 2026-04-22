@@ -31,7 +31,7 @@ namespace RPGDemo.UI
         }
 
         /// <summary>
-        /// 关闭当前面板（推荐在面板内部按钮调用）
+        /// 关闭当前面板（在面板内部关闭按钮调用）
         /// </summary>
         protected void CloseSelf()
         {

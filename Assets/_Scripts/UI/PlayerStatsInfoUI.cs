@@ -13,9 +13,6 @@ public class PlayerStatsInfoUI : MonoBehaviour
 
     Player player;
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
     private void Awake()
     {
         player = Player.GetInstance();

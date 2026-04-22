@@ -237,7 +237,6 @@ namespace RPGDemo.Quests
             if (questSo == null) return false;
 
             var questStatus = GetQuestStatus(questSo);
-            // if (questStatus == null) return true;
             //是否已提交
             //todo:严格判断，只要接取了就不能再接取（除非中途放其了）
             //todo:如此一来对话端就要做更细化的分支,可接取、进行中、可提交、已完成，用四个分支进行细化对话

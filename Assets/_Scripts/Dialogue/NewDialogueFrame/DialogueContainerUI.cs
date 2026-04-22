@@ -1,9 +1,7 @@
-using System;
 using MyNodeEditor.Extension.Dialogue;
 using RPGDemo.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace NewDialogueFrame

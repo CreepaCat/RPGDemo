@@ -55,8 +55,6 @@ namespace RPGDemo.Quests
 
         public bool IsCompleted()
         {
-
-            //return objectiveStatuses.TrueForAll(s => s.IsCompleted());
             return progress == QuestProgress.Completed;
         }
         public void CompleteQuest()
@@ -115,7 +113,7 @@ namespace RPGDemo.Quests
         {
             public string objectiveDescription;
             public int currentProgress;
-            //public bool everCompleted;
+
         }
 
         public object CaptureState()
@@ -133,11 +131,9 @@ namespace RPGDemo.Quests
                 {
                     objectiveDescription = status.objective.Description,
                     currentProgress = status.currentProgress,
-                    //everCompleted = status.everCompleted
+
                 });
             }
-
-            // JObject state = JObject.FromObject(record);
             return record;
         }
 
@@ -165,7 +161,6 @@ namespace RPGDemo.Quests
                 ObjectiveStatus objStatus = new ObjectiveStatus(objSO)
                 {
                     currentProgress = objRecord.currentProgress,
-                    //everCompleted = objRecord.everCompleted
                 };
                 objectiveStatuses.Add(objStatus);
             }

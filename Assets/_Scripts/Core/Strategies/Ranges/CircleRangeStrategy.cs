@@ -14,8 +14,6 @@ public class CircleRangeStrategy : RangeStrategy
     //todo:角度限制，是否在前方扇形范围
     public override List<Vector3> GetAreaPositions(Character caster)
     {
-
-        // throw new System.NotImplementedException();
         return null;
     }
 

@@ -6,7 +6,6 @@ namespace Core.AudioSystem
 {
     public class SoundManager : MonoBehaviour
     {
-        // private static SoundManager _instance = null;
         public static SoundManager Instance { get; private set; }
 
         const string VolumePrefKey = "SoundManager.Volume";

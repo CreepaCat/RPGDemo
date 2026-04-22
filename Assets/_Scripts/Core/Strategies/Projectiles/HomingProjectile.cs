@@ -16,10 +16,8 @@ public class HomingProjectile : ProjectileStrategy
 
     public override void Initialize(GameObject projectile, Character caster, Character target, Vector3 launchPosition, Vector3 launchDirection)
     {
-        //no op;
         if (target == null)
         {
-            //projectile.GetComponent<Rigidbody>().linearVelocity = speed *
             Destroy(projectile);
 
         }

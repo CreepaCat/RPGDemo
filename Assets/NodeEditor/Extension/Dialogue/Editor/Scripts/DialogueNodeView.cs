@@ -21,7 +21,7 @@ namespace MyNodeEditor.Extension.Dialogue
             this.NodeData = nodeData;
             this.title = nodeData.speakerName; //title即name
             this.viewDataKey = nodeData.guid;  //viewDataKey即 guid
-                                               //  this.Q<Label>("title").style.fontSize = 14;
+
 
             style.left = nodeData.position.x;
             style.top = nodeData.position.y;
@@ -39,14 +39,13 @@ namespace MyNodeEditor.Extension.Dialogue
         {
             if (NodeData.HasCondition())
             {
-                //styleSheets.Remove();
-                //  styleSheets.Add(Resources.Load<StyleSheet>("DialogueNodeView_HasCondition"));
+
                 styleSheets.Remove(dialogueNodeView);
                 styleSheets.Add(dialogueNodeView_HasCondition);
             }
             else
             {
-                //styleSheets.Add(Resources.Load<StyleSheet>("DialogueNodeView"));
+
                 styleSheets.Remove(dialogueNodeView_HasCondition);
                 styleSheets.Add(dialogueNodeView);
             }

@@ -14,9 +14,6 @@ public class WorldCanvasFacingCamera : MonoBehaviour
     Camera mainCamera;
 
     Transform currentTarget;
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
     private void Awake()
     {
         canvas = GetComponent<Canvas>();

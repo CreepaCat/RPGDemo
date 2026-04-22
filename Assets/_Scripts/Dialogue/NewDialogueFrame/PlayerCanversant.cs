@@ -53,8 +53,6 @@ namespace NewDialogueFrame
 
         void Update()
         {
-
-            //只有当树不为空时才执行其Update方法
             if (currentDialogueTree != null)
             {
                 currentDialogueTree.Update();
@@ -100,8 +98,6 @@ namespace NewDialogueFrame
                 return;
             }
             SetCurrentDialogueTree(newDialoguTree);
-            //禁用角色移动输入
-            //  GetComponent<Player>().DisablePlayerControl();
             currentDialogueTarget = newTarget;
             newTarget.StartDialogue();
 
@@ -114,12 +110,7 @@ namespace NewDialogueFrame
 
         public void EndDialogue()
         {
-            //主动触发最后一个节点的退出事件
-            // TriggerExitEvent();
             CurrentNodeData = null;
-
-            //恢复角色移动输入
-            // GetComponent<Player>().EnablePlayerControl();
             currentDialogueTarget = null;
 
             Debug.Log("Ending Dialogue");
@@ -163,7 +154,6 @@ namespace NewDialogueFrame
                 foreach (DialogueEventTrigger trigger in eventTriggers)
                 {
                     if (!ReferenceEquals(trigger.GetDialogueEvent(), _currentNodeData.OnEnterAction))
-                        //  if((DialogueNodeEnterEvent)trigger.GetDialogueEvent() != _currentNodeData.OnEnterAction)
                         continue;
                     trigger.TriggerEvent();
                 }
@@ -180,7 +170,6 @@ namespace NewDialogueFrame
                 foreach (DialogueEventTrigger trigger in eventTriggers)
                 {
                     if (!ReferenceEquals(trigger.GetDialogueEvent(), _currentNodeData.OnExitAction))
-                        //  if((DialogueNodeEnterEvent)trigger.GetDialogueEvent() != _currentNodeData.OnEnterAction)
                         continue;
                     trigger.TriggerEvent();
                 }

@@ -5,7 +5,7 @@ public class Normal : State
 {
     public readonly Normal_Idle Normal_Idle; //最上层状态
                                              // public readonly Locomotion Locomotion;
-    public readonly N_Talk Talk;
+    public readonly Normal_Talk Talk;
     readonly Player _player;
 
 

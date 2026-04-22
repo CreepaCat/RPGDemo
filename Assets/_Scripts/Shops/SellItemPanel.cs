@@ -15,7 +15,6 @@ namespace RPGDemo.Shops
         [SerializeField] Slider quantitySlider = null;
 
         [SerializeField] Button btn_sell = null;
-        // [SerializeField] Button btn_cancel = null;
 
         private int _currentQuantity = 0;
 
@@ -55,8 +54,6 @@ namespace RPGDemo.Shops
                 txt_itemDisplayName.text = item.GetDisplayName();
 
             }
-            // txt_maxQuantity.text = quantitySlider.maxValue.ToString();
-            // quantitySlider.value = 1;
             UpdateSliderQuantity(1, item);
         }
 
@@ -90,7 +87,6 @@ namespace RPGDemo.Shops
         {
             var item = sellItemSlotUI.GetItem();
             if (item == null) return;
-            // UpdateSliderQuantity(amount, item);
             txt_currentQuantity.text = quantitySlider.value.ToString();
             _currentQuantity = (int)amount;
             txt_totalPrice.text = "总价:" + (item?.GetPrice() * _currentQuantity).ToString();

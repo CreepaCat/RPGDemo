@@ -1,14 +1,13 @@
 using MyNodeEditor.Extension.Dialogue;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace NewDialogueFrame
 {
     /// <summary>
-    ///用于对话事件的触发 
+    ///用于对话事件的触发
     /// </summary>
-    public class DialogueEventTrigger:MonoBehaviour
+    public class DialogueEventTrigger : MonoBehaviour
     {
         [SerializeField] DialogueNodeEventSO dialogueEvent;
         [SerializeField] private UnityEvent onTrigger;
